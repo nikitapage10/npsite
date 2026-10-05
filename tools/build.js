@@ -47,6 +47,8 @@ function convert(file, title, extraScript) {
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
+  const opens = (body.match(/<div[\s>]/g) || []).length, closes = (body.match(/<\/div>/g) || []).length;
+  if (opens !== closes) throw new Error(file + ': ' + opens + ' <div> vs ' + closes + ' </div>, markup is unbalanced');
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -249,6 +251,17 @@ const script = `<script>
     return function () { dead = true; clearTimeout(timer); io.disconnect(); ro.disconnect(); };
   }
   if ($('deck')) npDeck($('deck'));
+  function npCount(scope) {
+    var els = [].slice.call(scope.querySelectorAll('[data-count]')), t0 = performance.now(), D = 1400;
+    function step(now) {
+      var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+      els.forEach(function (el) { el.textContent = String(Math.round(+el.getAttribute('data-count') * e)); });
+      if (k < 1) requestAnimationFrame(step);
+    }
+    els.forEach(function (el) { el.textContent = '0'; });
+    setTimeout(function () { requestAnimationFrame(step); }, 500);
+  }
+  npCount(panel);
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });

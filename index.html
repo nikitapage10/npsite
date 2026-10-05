@@ -211,6 +211,28 @@ a{color:#3a3835}a:hover{color:#3a3835}
 }
 @keyframes deck-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion: reduce){.deck-card{transition:opacity .3s}.deck.autoplay .deck-tab[aria-selected="true"] .deck-tab-bar{animation:none}}
+.hstats{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:28px}
+.hstat{display:flex;align-items:center;gap:12px}
+.hstat-n{font-size:64px;line-height:0.9;letter-spacing:-0.04em;color:#3a3835;font-variant-numeric:lining-nums}
+.hstat-c{font-size:12.5px;line-height:1.35;letter-spacing:0.02em;color:rgba(58,56,53,0.72)}
+.hstat-k{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.6);font-weight:500;margin-bottom:6px}
+.hstat-logos{padding-left:28px;border-left:1px solid rgba(58,56,53,0.18)}
+.hstat-row{display:flex;align-items:center;gap:14px}
+.hstat-row img{height:34px;width:auto;display:block;transition:transform .3s}
+.hstat-row img:hover{transform:translateY(-2px) rotate(-2deg)}
+.hstat-place{display:flex;align-items:center;gap:12px;padding-left:28px;border-left:1px solid rgba(58,56,53,0.18)}
+.hstat-place img{width:76px;height:auto;display:block}
+.hstat-city{display:block;font-size:19px;letter-spacing:-0.01em}
+.feat{position:relative;overflow:hidden}
+.feat > span{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 2px;position:relative;z-index:1}
+.feat-d{flex-basis:100%;margin-left:0;font-size:12px;color:rgba(58,56,53,0.6);transition:color .25s}
+.feat::before{content:"";position:absolute;inset:0;background:#3a3835;transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(0.2,0.8,0.2,1)}
+.feat:hover::before{transform:scaleX(1)}
+.feat:hover,.feat:hover span,.feat:hover .feat-d{color:#fff !important}
+.feat svg{position:relative;z-index:1}
+.feat:hover svg{color:#fff}
+@media (max-width:1100px){.hstats{grid-template-columns:auto auto minmax(0,1fr)}.hstat-place{display:none}}
+@media (min-width:768px) and (max-height:860px){.hstat-n{font-size:52px}.hstat-row img{height:28px}.hstat-place img{width:60px}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -335,17 +357,18 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 
 <div data-np="panel" class="panel-outer" style="margin-top: auto; align-self: center; width: 100%; box-sizing: border-box; position: relative; z-index: 10; will-change: transform, opacity">
-<div class="panel" style="background: rgba(252,250,246,0.96); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid #e5e7eb; border-bottom: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding-bottom: 24px">
-<div class="facts">
-<div>10 years across 8 industry sectors</div>
-<div>Microsoft · Verizon · KPMG</div>
-<div>Based in Denver</div>
+<div class="panel" style="border-top: 2px solid #b08d4c; background: rgba(252,250,246,0.96); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid #e5e7eb; border-bottom: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding-bottom: 24px">
+<div class="hstats">
+<div class="hstat"><span class="serif hstat-n" data-count="10">10</span><span class="hstat-c">years of<br>experience</span></div>
+<div class="hstat"><span class="serif hstat-n" data-count="8">8</span><span class="hstat-c">industry<br>sectors</span></div>
+<div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row"><img src="assets/logo-microsoft.webp" alt="Microsoft"><img src="assets/logo-verizon.webp" alt="Verizon"><img src="assets/logo-kpmg.webp" alt="KPMG"></div></div>
+<div class="hstat-place"><img src="assets/place-denver.webp" alt=""><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
 </div>
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
-<a class="feat" href="#work"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Work</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-<a class="feat" href="#approach"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Approach</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-<a class="feat" href="#background"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Background</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#work"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Work</span><span class="feat-d">Four projects</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#approach"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Approach</span><span class="feat-d">How I work with people</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#background"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Background</span><span class="feat-d">Career timeline</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 </div>
 </div>
 </div>
@@ -444,7 +467,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <button class="deck-btn deck-prev" type="button" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg></button>
 <span class="deck-count" aria-live="polite">01 / 04</span>
 <button class="deck-btn deck-next" type="button" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
-</div>
 </div>
 </div>
 </div>
@@ -836,6 +858,17 @@ a{color:#3a3835}a:hover{color:#3a3835}
     return function () { dead = true; clearTimeout(timer); io.disconnect(); ro.disconnect(); };
   }
   if ($('deck')) npDeck($('deck'));
+  function npCount(scope) {
+    var els = [].slice.call(scope.querySelectorAll('[data-count]')), t0 = performance.now(), D = 1400;
+    function step(now) {
+      var k = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - k, 3);
+      els.forEach(function (el) { el.textContent = String(Math.round(+el.getAttribute('data-count') * e)); });
+      if (k < 1) requestAnimationFrame(step);
+    }
+    els.forEach(function (el) { el.textContent = '0'; });
+    setTimeout(function () { requestAnimationFrame(step); }, 500);
+  }
+  npCount(panel);
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
