@@ -37,7 +37,8 @@ const BLOBS = {
   "3f5c8a8555059b0b40c4b5fbf9d8ec85": "assets/logo-signature.webp",
   "037b59ccffbaf6bee1fac4662a5de4a2": "assets/paper-white.webp",
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
-  "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp"
+  "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp",
+  "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf"
 };
 
 function convert(file, title, extraScript) {
@@ -241,6 +242,13 @@ const script = `<script>
       tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
       if (count) count.textContent = pad(active + 1) + ' / ' + pad(n);
       if (user) { auto = false; container.classList.remove('autoplay'); }
+      if (user && window.innerWidth < 900) {
+        var row = container.querySelector('.deck-tabs'), tab = tabs[active];
+        if (row && tab) row.scrollTo({ left: tab.offsetLeft - (row.clientWidth - tab.offsetWidth) / 2, behavior: 'smooth' });
+        var top = container.getBoundingClientRect().top, sc = container.parentNode;
+        while (sc && sc.nodeType === 1 && !/(auto|scroll)/.test(getComputedStyle(sc).overflowY)) sc = sc.parentNode;
+        if (top < 72 && sc && sc.nodeType === 1) sc.scrollTo({ top: sc.scrollTop + top - sc.getBoundingClientRect().top - 72, behavior: 'smooth' });
+      }
       restart();
     }
     function restart() {
@@ -271,6 +279,17 @@ const script = `<script>
     return function () { dead = true; clearTimeout(timer); io.disconnect(); ro.disconnect(); };
   }
   if ($('deck')) npDeck($('deck'));
+  function npMenu(nav, menu) {
+    var btn = nav.querySelector('.menu-btn');
+    if (!btn || !menu) return function () {};
+    function toggle(open) { menu.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function onBtn() { toggle(btn.getAttribute('aria-expanded') !== 'true'); }
+    function onMenu(e) { if (e.target.closest('a')) toggle(false); }
+    function onKey(e) { if (e.key === 'Escape') toggle(false); }
+    btn.addEventListener('click', onBtn); menu.addEventListener('click', onMenu); document.addEventListener('keydown', onKey);
+    return function () { btn.removeEventListener('click', onBtn); menu.removeEventListener('click', onMenu); document.removeEventListener('keydown', onKey); };
+  }
+  npMenu($('nav'), $('menu'));
   function npCount(scope) {
     var els = [].slice.call(scope.querySelectorAll('[data-count]')), t0 = performance.now(), D = 1400;
     function step(now) {

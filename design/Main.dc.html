@@ -413,6 +413,45 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .intro-h{font-size:34px}
 .intro-card > div{padding:28px 32px !important;gap:14px !important}
 }
+.menu-btn,.mobile-menu,.deck-tab-s{display:none}
+.pw{margin:4px 0 0;display:grid;gap:14px}
+.pw > div{display:grid;gap:4px}
+.pw dt{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;font-weight:600;color:#8a6a2c}
+.pw dd{margin:0;font-size:15px;line-height:1.6;color:rgba(58,56,53,0.82)}
+@media (min-width:900px){.pw > div{grid-template-columns:112px minmax(0,1fr);gap:16px;align-items:baseline}}
+@media (max-width:899px){
+.deck{scroll-margin-top:72px}
+.deck-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -24px;padding:10px 24px;position:sticky;top:68px;z-index:6;background:rgba(255,255,255,0.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.deck-tabs::-webkit-scrollbar{display:none}
+.deck-tab{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid rgba(58,56,53,0.25);border-radius:999px;background:#fff;color:rgba(58,56,53,0.8);font:inherit;font-size:13.5px;white-space:nowrap;cursor:pointer}
+.deck-tab[aria-selected="true"]{background:#3a3835;border-color:#3a3835;color:#fff}
+.deck-tab-n{font-size:11px;letter-spacing:0.1em;opacity:0.65}
+.deck-tab-t,.deck-tab-bar{display:none}
+.deck-tab-s{display:inline}
+}
+@media (max-width:767px){
+.nav .btn-nav{display:none}
+.menu-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px solid rgba(58,56,53,0.3);border-radius:8px;background:rgba(255,255,255,0.88);color:#3a3835;font:inherit;font-size:14px;font-weight:500;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.menu-btn svg{width:18px;height:18px}
+.menu-btn .mb-x,.menu-btn[aria-expanded="true"] .mb-o{display:none}
+.menu-btn[aria-expanded="true"] .mb-x{display:block}
+.mobile-menu{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;z-index:49;padding:92px 20px 28px;background:#FCFBF7;box-shadow:0 30px 50px -30px rgba(58,56,53,0.45);transform:translateY(-104%);visibility:hidden;transition:transform .4s cubic-bezier(0.2,0.8,0.2,1),visibility 0s .4s}
+.mobile-menu.is-open{transform:none;visibility:visible;transition:transform .4s cubic-bezier(0.2,0.8,0.2,1)}
+.mm-link{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-size:30px;letter-spacing:-0.02em;line-height:1.2;padding:14px 0;border-bottom:1px solid #e7e2d8;color:#3a3835;text-decoration:none}
+.mm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.mm-actions .btn{padding:12px 20px}
+.hero-video{object-position:70% 0 !important}
+.hero-content{margin-top:auto;padding:0 20px 32px}
+.hero-content::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:-110px;bottom:0;background:linear-gradient(to bottom, rgba(252,251,247,0) 0, rgba(252,251,247,0.92) 90px, #FCFBF7 130px)}
+.hero-h1{font-size:32px}
+.hero-sub{margin-top:16px}
+.hide-m{display:none}
+}
+@media (hover:none), (max-width:767px){
+#look canvas{display:none}
+.look-hint{display:none}
+#look .look-text{background:linear-gradient(to top, rgba(252,251,247,0.96) 0, rgba(252,251,247,0.88) 26%, rgba(252,251,247,0) 52%)}
+}
 </style>
 </helmet>
 <div ref="{{setRoot}}" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #3a3835; font-family: 'Inter', sans-serif; position: relative">
@@ -429,8 +468,16 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <a class="nav-link" href="#contact">Contact</a>
 </div>
 <a class="btn btn-nav" href="Resume.dc.html">View resume</a>
+<button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu">Menu<svg class="mb-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg><svg class="mb-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
 </div>
 </nav>
+<div id="mobile-menu" ref="{{setMenu}}" class="mobile-menu">
+<a class="mm-link" href="#work">Work</a>
+<a class="mm-link" href="#approach">Approach</a>
+<a class="mm-link" href="#background">Background</a>
+<a class="mm-link" href="#contact">Contact</a>
+<div class="mm-actions"><a class="btn" href="Resume.dc.html">View resume</a><a class="btn btn-ghost" href="/_blob/8dad07a8a984ef5ac4efacfe031593d2" download="Nikita-Page-Resume.pdf">Download PDF</a></div>
+</div>
 
 <div id="top" ref="{{setTrack}}" style="position: relative; height: 210vh">
 <section style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center">
@@ -438,7 +485,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div ref="{{setZoom}}" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
 <div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
-<video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" poster="/_blob/a378f43a05d4124142e84b4ac01885fe" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
+<video ref="{{setVideo}}" class="hero-video" src="/_blob/f1ef867ba998411a2993a50cc89ab517" poster="/_blob/a378f43a05d4124142e84b4ac01885fe" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
 <div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: {{washiOp}}; pointer-events: none"></div>
@@ -463,7 +510,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div ref="{{setHero}}" class="hero-content" style="position: relative; z-index: 10; align-self: stretch; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; text-align: left; will-change: transform, opacity">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500; margin-bottom: 18px">Nikita Page <span style="margin: 0 8px; opacity: 0.5">|</span> Security and technology leadership</div>
 <h1 class="serif hero-h1" style="margin: 0; max-width: 12.5em; line-height: 1.08; letter-spacing: -0.035em; color: #3a3835; font-weight: 400">I bring clarity to complex technology decisions.</h1>
-<p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’m a security and technology-risk leader at Microsoft. I work with engineers to understand complex systems, bring stakeholders together around the risks, and help leaders decide what needs to happen next. My work spans LinkedIn, Xbox and Copilot, with hands-on experience building AI tools that support the people doing the work.</p>
+<p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’m a security and technology-risk leader at Microsoft. I work with engineers to understand complex systems, bring stakeholders together around the risks, and help leaders decide what needs to happen next.<span class="hide-m"> My work spans LinkedIn, Xbox and Copilot, with hands-on experience building AI tools that support the people doing the work.</span></p>
 <div class="hero-cta" style="display: flex; flex-wrap: wrap; gap: 12px"><a class="btn btn-hero" href="#work">Explore my work</a><a class="btn btn-hero btn-ghost" href="Resume.dc.html">View my resume</a></div>
 <div class="hero-facts-m">10 years across 8 industry sectors · Microsoft · Verizon · KPMG · Based in Denver</div>
 </div>
@@ -479,7 +526,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
 <a class="feat" href="#work"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Work</span><span class="feat-d">Four projects</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-<a class="feat" href="#approach"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Approach</span><span class="feat-d">How I work with people</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#approach"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Approach</span><span class="feat-d">How I work</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 <a class="feat" href="#background"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Background</span><span class="feat-d">Career timeline</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 </div>
 </div>
@@ -548,10 +595,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 <div ref="{{setDeck}}" class="deck">
 <div class="deck-tabs" role="tablist" aria-label="Projects">
-<button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">An AI hub for evidence review</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
-<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">02</span><span class="deck-tab-t">AI enablement for 200 colleagues</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
-<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">03</span><span class="deck-tab-t">Azure migration readiness across two acquisitions</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
-<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">04</span><span class="deck-tab-t">Establishing a shared view of secure development</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">An AI hub for evidence review</span><span class="deck-tab-s">AI evidence hub</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">02</span><span class="deck-tab-t">AI enablement for 200 colleagues</span><span class="deck-tab-s">AI enablement</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">03</span><span class="deck-tab-t">Azure migration readiness across two acquisitions</span><span class="deck-tab-s">Azure migration</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">04</span><span class="deck-tab-t">Establishing a shared view of secure development</span><span class="deck-tab-s">Secure development</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
 </div>
 <div class="deck-main">
 <div class="deck-stack">
@@ -559,35 +606,42 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
 <div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Audit evidence needs to connect clearly to the controls being tested and the risks being assessed. I designed and built a review hub using Copilot Studio, Microsoft Foundry and Azure to bring that work together.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The hub maps submitted evidence to controls and risks and updates risk narratives for an auditor to review. Agent access is scoped to data-loss-prevention rules, keeping the workflow within defined data boundaries.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
-
+<dl class="pw">
+<div><dt>Problem</dt><dd>Audit evidence has to connect clearly to the controls being tested and the risks being assessed, and the risk narrative has to keep up as evidence comes in.</dd></div>
+<div><dt>What I owned</dt><dd>I designed and built the hub myself in Copilot Studio, Microsoft Foundry and Azure. It maps submitted evidence to controls and risks and drafts narrative updates for an auditor to review. I scoped agent access to data-loss-prevention rules.</dd></div>
+<div><dt>Result</dt><dd>A working review workflow, applied on an audit, that brings evidence mapping and narrative updates together while staying inside defined data boundaries.</dd></div>
+</dl>
 </article>
 <article class="work-card deck-card" data-pos="1" aria-hidden="true"><img class="work-art" src="/_blob/31432c3e8a34120a2325c508c727bb9d" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for 200 colleagues</h3>
 <div class="proof-line"><span>13 contributors</span><span>2 months</span><span>~200 participants</span></div>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Building useful AI tools also means helping people understand how to use them. I led 13 contributors over two months to develop a one-hour enablement session for approximately 200 audit, risk and compliance professionals.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
+<dl class="pw">
+<div><dt>Problem</dt><dd>About 200 audit, risk and compliance professionals needed practical, credible examples of how AI could support their everyday work.</dd></div>
+<div><dt>What I owned</dt><dd>I led 13 contributors over two months. I met contributors individually to shape their use cases, integrated them into one storyline across planning, fieldwork and reporting, and built the demo chatbots and interactive demo audit myself.</dd></div>
+<div><dt>Result</dt><dd>A one-hour enablement session for about 200 colleagues, with concrete demonstrations they could map to their own work.</dd></div>
+</dl>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
 <article class="work-card deck-card" data-pos="2" aria-hidden="true"><img class="work-art" src="/_blob/4cefba8785268eb628d6f7fdc83338a0" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
 <div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">When services from two acquisitions were moving to Azure, teams needed a clearer view of responsibilities and readiness.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I structured the advisory work and built the planning matrix from scratch. I ran weekly technical learning sessions and worked with stakeholders and a senior executive to align recommendations on who owned what and what needed to be ready.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
-
+<dl class="pw">
+<div><dt>Problem</dt><dd>Services from two acquisitions were moving to Azure, and teams needed a clear view of who owned what and what had to be ready.</dd></div>
+<div><dt>What I owned</dt><dd>I structured the advisory work and built the planning matrix from scratch. I ran weekly technical learning sessions, recalibrated the plan as scope evolved, and aligned recommendations with stakeholders and a senior executive.</dd></div>
+<div><dt>Result</dt><dd>A structured view of ownership and readiness, agreed with a senior executive, to inform migration decisions.</dd></div>
+</dl>
 </article>
 <article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/7bdd5f0eaca0940a9cea751541684b90" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
 <div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Following Microsoft’s Activision Blizzard acquisition, future audit planning needed a clearer understanding of secure-development practices across a varied gaming portfolio.</p>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I coordinated discovery with security and engineering leaders across ABK, ZeniMax and Minecraft, adapting the work to their development cycles. I brought the findings together in a landscape assessment that established a baseline for subsequent gaming audit planning.</p>
-
+<dl class="pw">
+<div><dt>Problem</dt><dd>After Microsoft’s Activision Blizzard acquisition, audit planning needed a clear understanding of secure-development practices across a varied gaming portfolio.</dd></div>
+<div><dt>What I owned</dt><dd>I coordinated discovery with security and engineering leaders across ABK, ZeniMax and Minecraft, adapted the work to each studio’s development cycle, and wrote the landscape assessment.</dd></div>
+<div><dt>Result</dt><dd>A shared secure-development baseline for subsequent gaming audit planning.</dd></div>
+</dl>
 </article>
 </div>
 <div class="deck-controls">
@@ -600,37 +654,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </section>
 
-<section id="approach" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
-<div class="chapter">
-<div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Approach</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I work with people</h2>
-</div>
-<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">My background is in security and risk. A large part of my contribution is helping people with different responsibilities reach a shared understanding and decide how to respond.</p>
-</div>
-<div class="appr-grid">
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/1ca8eacf17c61511b80495ad3bfcfec2" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">01</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I get close to the technical detail, ask questions and work with engineers on their own terms. That can mean reviewing code, developing KQL test plans or learning how a new infrastructure environment operates. Understanding the system helps me ask better questions about the risks around it.</p>
-</article>
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/5a799255273e51b591df1fc25d8fe70b" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">02</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I lead rotating engagement teams of 8–12 and coordinate with engineering and business stakeholders. I make scope, responsibilities and dependencies clear so people understand how their work fits together. Listening to the people closest to the work is an important part of that process.</p>
-</article>
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/81976d1b13c9fe451785a1a34783cfb9" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">03</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I explain risks through their likelihood and potential financial and reputational impact. Then I work with directors and corporate vice presidents to secure commitment to remediation. The goal is a decision people understand and can act on.</p>
-</article>
-</div>
-</section>
-
-<section id="translate" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-top: 0">
+<section id="translate" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">In practice</div>
@@ -723,7 +747,37 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </section>
 
-<section id="look" aria-label="Interactive illustration: move across it to reveal Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
+<section id="approach" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Approach</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I work</h2>
+</div>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">Much of my contribution is helping people with different responsibilities reach a shared understanding and decide how to respond.</p>
+</div>
+<div class="appr-grid">
+<article class="appr-card">
+<div class="appr-art"><img src="/_blob/1ca8eacf17c61511b80495ad3bfcfec2" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">01</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I work with engineers on their own terms, from code review to KQL test plans. Understanding the system leads to better questions about its risks.</p>
+</article>
+<article class="appr-card">
+<div class="appr-art"><img src="/_blob/5a799255273e51b591df1fc25d8fe70b" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">02</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I lead teams of 8–12 and make scope, ownership and dependencies clear, so everyone can see how their work fits together.</p>
+</article>
+<article class="appr-card">
+<div class="appr-art"><img src="/_blob/81976d1b13c9fe451785a1a34783cfb9" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">03</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I frame risks by likelihood and financial and reputational impact, then work with directors and corporate vice presidents to commit to remediation.</p>
+</article>
+</div>
+</section>
+
+<section id="look" aria-label="Illustration of Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
 <div class="look-art">
 <img src="/_blob/788ba417914b44bc1ffcae86b9596440" loading="eager" alt="Illustration of Nikita presenting to a team" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
 <div class="ann ann-r" style="--x: 5.0%; --y: 24.0%; --i: 0"><span class="ann-dot"></span><span class="ann-line"></span><span class="ann-label"><span class="ann-k">Ask me about</span><strong class="ann-h">Working onsite at LinkedIn</strong><span class="ann-c">Frequent trips to partner directly with its security and infrastructure teams.</span></span></div>
@@ -732,10 +786,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 <canvas ref="{{setInk}}" data-tex="/_blob/9bdec23150a5e336244130a3dc3de770" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
 <svg aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none"><rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect><rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect></svg>
-<div class="sec" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
+<div class="sec look-text" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Look closer</div>
 <h2 class="serif sec-h2" style="margin: 12px 0 0; max-width: 720px; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">There’s always more under the surface.</h2>
-<p style="margin: 16px 0 0; font-size: 14px; color: rgba(58,56,53,0.72)">Move across the page to see it.</p>
+<p class="look-hint" style="margin: 16px 0 0; font-size: 14px; color: rgba(58,56,53,0.72)">Move across the page to see it.</p>
 </div>
 </section>
 
@@ -893,6 +947,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <a class="btn btn-hero" href="mailto:connect@nikita.page" style="background: #FFFFFF; color: #3a3835">Get in touch</a>
 <a href="mailto:connect@nikita.page" style="color: #FFFFFF; font-size: 15px">connect@nikita.page</a>
 <a class="btn btn-hero" href="Resume.dc.html" style="background: transparent; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35)">View my resume</a>
+<a href="/_blob/8dad07a8a984ef5ac4efacfe031593d2" download="Nikita-Page-Resume.pdf" style="color: #FFFFFF; font-size: 15px">Download PDF</a>
 </div>
 <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.55)">
 <span>Nikita Page · Denver, Colorado</span>
@@ -928,6 +983,7 @@ class Component extends DCLogic {
   setArcMask = (el) => { this.arcMask = el; };
   setArcDot = (el) => { this.arcDot = el; };
   setNav = (el) => { this.nav = el; };
+  setMenu = (el) => { this.menu = el; };
   setChips = (el) => { this.chips = el; };
   setQuote = (el) => { this.quote = el; };
   setTestis = (el) => { this.testis = el; };
@@ -1093,6 +1149,17 @@ class Component extends DCLogic {
     };
   }
 
+  npMenu(nav, menu) {
+    var btn = nav.querySelector('.menu-btn');
+    if (!btn || !menu) return function () {};
+    function toggle(open) { menu.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+    function onBtn() { toggle(btn.getAttribute('aria-expanded') !== 'true'); }
+    function onMenu(e) { if (e.target.closest('a')) toggle(false); }
+    function onKey(e) { if (e.key === 'Escape') toggle(false); }
+    btn.addEventListener('click', onBtn); menu.addEventListener('click', onMenu); document.addEventListener('keydown', onKey);
+    return function () { btn.removeEventListener('click', onBtn); menu.removeEventListener('click', onMenu); document.removeEventListener('keydown', onKey); };
+  }
+
   npDeck(container) {
     var cards = [].slice.call(container.querySelectorAll('.deck-card'));
     var tabs = [].slice.call(container.querySelectorAll('.deck-tab'));
@@ -1115,6 +1182,13 @@ class Component extends DCLogic {
       tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
       if (count) count.textContent = pad(active + 1) + ' / ' + pad(n);
       if (user) { auto = false; container.classList.remove('autoplay'); }
+      if (user && window.innerWidth < 900) {
+        var row = container.querySelector('.deck-tabs'), tab = tabs[active];
+        if (row && tab) row.scrollTo({ left: tab.offsetLeft - (row.clientWidth - tab.offsetWidth) / 2, behavior: 'smooth' });
+        var top = container.getBoundingClientRect().top, sc = container.parentNode;
+        while (sc && sc.nodeType === 1 && !/(auto|scroll)/.test(getComputedStyle(sc).overflowY)) sc = sc.parentNode;
+        if (top < 72 && sc && sc.nodeType === 1) sc.scrollTo({ top: sc.scrollTop + top - sc.getBoundingClientRect().top - 72, behavior: 'smooth' });
+      }
       restart();
     }
     function restart() {
@@ -1255,6 +1329,7 @@ class Component extends DCLogic {
     this.stopBloom = this.npBloom(this.bloomCanvas);
     if (this.panel) this.npCount(this.panel);
     if (this.deck) this.stopDeck = this.npDeck(this.deck);
+    if (this.nav) this.stopMenu = this.npMenu(this.nav, this.menu);
     if (this.ink) this.stopInk = this.npInk(this.ink, null);
     this.startLoop();
     this.applyScroll();
@@ -1268,6 +1343,7 @@ class Component extends DCLogic {
     if (this.stopXlat) this.stopXlat();
     if (this.stopBloom) this.stopBloom();
     if (this.stopDeck) this.stopDeck();
+    if (this.stopMenu) this.stopMenu();
     if (this.stopInk) this.stopInk();
     cancelAnimationFrame(this.scrollRaf);
     window.removeEventListener('resize', this.onScroll);
@@ -1284,7 +1360,7 @@ class Component extends DCLogic {
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
       grainOp: this.props.paperTexture === 'Fine grain' ? 0.6 : 0, setHero: this.setHero, setBloom: this.setBloom,
-      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setXlat: this.setXlat, setDeck: this.setDeck, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, setTestis: this.setTestis, setCollage: this.setCollage, onScroll: this.onScroll
+      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setXlat: this.setXlat, setDeck: this.setDeck, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setMenu: this.setMenu, setChips: this.setChips, setQuote: this.setQuote, setTestis: this.setTestis, setCollage: this.setCollage, onScroll: this.onScroll
     };
   }
 }
