@@ -17,6 +17,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .serif{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-weight:400}
 .nav{padding:16px 24px}
 .nav-links{display:none}
+.brand-logo{height:44px}
 .nav-link{color:rgba(58,56,53,.7);text-decoration:none;font-size:14px;transition:color .2s}
 .nav-link:hover{color:#3a3835}
 .btn{display:inline-flex;align-items:center;justify-content:center;background:#3a3835;color:#fff;font-size:14px;font-weight:500;border-radius:8px;text-decoration:none;transition:background-color .2s;min-height:44px;box-sizing:border-box}
@@ -146,6 +147,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:768px){
 .nav{padding:20px max(56px, calc((100% - 1280px) / 2))}
 .nav-links{display:flex}
+.brand-logo{height:56px}
 .hero-content{padding:clamp(150px, 25vh, 250px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
 .hero-sub{max-width:420px}
 .panel-outer{padding:0 56px;max-width:1392px}
@@ -190,9 +192,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div ref="{{setRoot}}" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #3a3835; font-family: 'Inter', sans-serif; position: relative">
 
 <nav ref="{{setNav}}" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
-<a href="#top" aria-label="Nikita Page, back to top" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #3a3835">
-<span class="serif" style="font-size: 24px; letter-spacing: -0.02em; line-height: 1">Nikita Page</span>
-<span style="font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.24em; font-weight: 500; color: rgba(58,56,53,0.75)">Business <span style="color: rgba(58,56,53,0.4)">/</span> Technology</span>
+<a href="#top" aria-label="Nikita Page, back to top" style="display: flex; align-items: center; text-decoration: none">
+<img class="brand-logo" src="/_blob/77bc7680346dc347f0cd6d83a76d7a95" alt="Nikita Page" style="display: block; width: auto">
 </a>
 <div class="nav-links" style="align-items: center; gap: 32px">
 <a class="nav-link" href="#range">Range</a>
@@ -212,9 +213,10 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(250,247,240,0.28); pointer-events: none"></div>
 <svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: {{paperOpacity}}; pointer-events: none">
 <filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.33  1.6 0 0 0 -0.62"></feColorMatrix></filter>
-<filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.37  0 0 0 0 0.30  -1.2 0 0 0 0.62"></feColorMatrix></filter>
+<filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.46  0 0 0 0 0.41  0 0 0 0 0.34  -1.1 0 0 0 0.44"></feColorMatrix></filter>
 <filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.44  0.9 0 0 0 -0.32"></feColorMatrix></filter>
 <rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect>
 <rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect>
@@ -515,7 +517,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"paperOpacity":{"editor":"range","default":0.85,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"paperOpacity":{"editor":"range","default":0.6,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   setRoot = (el) => { this.root = el; };
   setTrack = (el) => { this.track = el; };
@@ -724,7 +726,7 @@ class Component extends DCLogic {
     return {
       yes: true,
       setRoot: this.setRoot, setTrack: this.setTrack, setZoom: this.setZoom,
-      setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.85, setHero: this.setHero,
+      setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.6, setHero: this.setHero,
       setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, onScroll: this.onScroll
     };
   }

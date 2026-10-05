@@ -15,7 +15,8 @@ const BLOBS = {
   "6747b2e537495b8eb81140492364b6fa": "assets/place-ukraine.webp",
   "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
-  "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp"
+  "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
+  "77bc7680346dc347f0cd6d83a76d7a95": "assets/logo-nikita.webp"
 };
 
 function convert(file, title, extraScript) {
@@ -29,7 +30,7 @@ function convert(file, title, extraScript) {
     .replace(/playsInline="\{\{yes\}\}"/g, 'playsinline')
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
-    .replace(/\{\{paperOpacity\}\}/g, '0.85')
+    .replace(/\{\{paperOpacity\}\}/g, '0.6')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
