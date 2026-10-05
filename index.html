@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
 <title>Nikita Page | Security and technology leadership</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap">
@@ -267,6 +268,66 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:1380px) and (max-height:900px){.testis{top:92px;height:560px}.testi{width:290px;padding:24px 24px 22px}.testi blockquote{font-size:17px}.testi:nth-of-type(2){top:142px;right:290px}.testi:nth-of-type(3){top:282px}}
 .bloom{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none;mix-blend-mode:multiply}
 @media (prefers-reduced-motion: reduce){.bloom{display:none}}
+.brand-logo{-webkit-mask-image:linear-gradient(90deg,#000 44%,transparent 56%);mask-image:linear-gradient(90deg,#000 44%,transparent 56%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0;animation:sig-write 2.4s cubic-bezier(0.55,0.1,0.35,1) 0.35s forwards}
+@keyframes sig-write{to{-webkit-mask-position:0 0;mask-position:0 0}}
+@media (prefers-reduced-motion: reduce){.brand-logo{animation:none;-webkit-mask-image:none;mask-image:none}}
+a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3px;border-radius:4px}
+.xlat{margin-top:44px}
+.xl-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.xl-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.xl-tab{font:inherit;font-size:14px;padding:10px 16px;min-height:44px;border:1px solid rgba(58,56,53,0.25);background:transparent;color:rgba(58,56,53,0.75);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.xl-tab:hover{border-color:#3a3835;color:#3a3835}
+.xl-tab[aria-selected="true"]{background:#3a3835;border-color:#3a3835;color:#fff}
+.xl-switch{position:relative;display:inline-flex;padding:4px;border-radius:999px;background:#ECE5D8;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.12)}
+.xl-thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:#3a3835;transition:transform .45s cubic-bezier(0.2,0.8,0.2,1)}
+.xlat[data-v="exec"] .xl-thumb{transform:translateX(100%);background:#b08d4c}
+.xl-v{position:relative;z-index:1;font:inherit;font-size:14px;font-weight:500;padding:10px 22px;min-height:40px;border:0;border-radius:999px;background:none;color:rgba(58,56,53,0.75);cursor:pointer;transition:color .3s}
+.xl-v[aria-pressed="true"]{color:#fff}
+.xl-stage{display:grid}
+.xl-f{grid-area:1 / 1;display:grid;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.xl-f.is-on{opacity:1;visibility:visible;transition:opacity .35s}
+.xl-pane{grid-area:1 / 1;box-sizing:border-box;padding:32px;opacity:0;visibility:hidden;transform:translateY(14px) scale(0.985);filter:blur(6px);transition:opacity .45s,transform .55s cubic-bezier(0.2,0.8,0.2,1),filter .45s,visibility 0s .45s}
+.xl-pane.is-on{opacity:1;visibility:visible;transform:none;filter:none;transition:opacity .45s,transform .55s cubic-bezier(0.2,0.8,0.2,1),filter .45s}
+.xl-pane > *{opacity:0;transform:translateY(8px);transition:opacity .4s calc(var(--k, 0) * 90ms + 80ms),transform .5s calc(var(--k, 0) * 90ms + 80ms) cubic-bezier(0.2,0.8,0.2,1)}
+.xl-pane.is-on > *{opacity:1;transform:none}
+.xl-eng{background:#2f2d2a;color:#ece6da;font-family:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,monospace;box-shadow:0 30px 60px -30px rgba(30,28,25,0.6)}
+.xl-exec{background:#FCFBF7;border:1px solid #e7e2d8;box-shadow:0 30px 60px -30px rgba(58,56,53,0.4)}
+.xl-head{display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:0.08em;color:rgba(236,230,218,0.6);padding-bottom:14px;margin-bottom:18px;border-bottom:1px dashed rgba(236,230,218,0.2)}
+.xl-sev{padding:2px 8px;border-radius:3px}
+.xl-sev-high{background:rgba(214,120,90,0.2);color:#f0b39c}
+.xl-sev-medium{background:rgba(176,141,76,0.22);color:#e3c88f}
+.xl-k{font-family:Inter,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;font-weight:500;margin-top:18px;margin-bottom:6px}
+.xl-eng .xl-k{color:rgba(236,230,218,0.55)}
+.xl-exec .xl-k{color:rgba(58,56,53,0.6)}
+.xl-pane > .xl-k:first-child,.xl-head + .xl-k{margin-top:0}
+.xl-obs{margin:0;font-size:13.5px;line-height:1.65}
+.xl-eng code{color:#e3c88f}
+.xl-code{margin:0;padding:14px 16px;background:rgba(0,0,0,0.25);border-left:2px solid #b08d4c;font-size:12.5px;line-height:1.6;white-space:pre-wrap;overflow-x:auto;color:#d9d2c3}
+.xl-fix{margin:0;padding-left:18px;font-size:13.5px;line-height:1.7}
+.xl-what{margin:0;font-size:28px;line-height:1.25;letter-spacing:-0.02em;color:#3a3835}
+.xl-why{margin:0;font-size:15.5px;line-height:1.65;color:rgba(58,56,53,0.85)}
+.xl-meters{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:16px}
+.xl-meters > div{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(58,56,53,0.75)}
+.xl-meters span:first-child{margin-right:6px}
+.xl-meters em{font-style:normal;font-weight:600;color:#3a3835;margin-left:6px}
+.xl-dot{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.4)}
+.xl-dot.on{background:#b08d4c;box-shadow:none}
+.xl-ask{margin-top:22px;padding:18px 20px;background:#F2E8D7;border-left:3px solid #b08d4c}
+.xl-ask .xl-k{margin-top:0}
+.xl-ask p{margin:0;font-size:20px;line-height:1.35;color:#3a3835}
+.xl-note{margin:16px 0 0;font-size:12.5px;color:rgba(58,56,53,0.6)}
+@media (min-width:900px){.xl-pane{padding:40px 48px}.xl-what{font-size:34px}.xl-obs,.xl-fix{font-size:14.5px}}
+.track-wrap{margin-top:8px}
+.track-label{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.6);font-weight:500;margin-bottom:8px}
+.track{display:flex;align-items:center;gap:16px;padding:12px 16px 12px 12px;background:#FCFBF7;border:1px solid #e7e2d8;text-decoration:none;color:#3a3835;max-width:440px;transition:transform .3s,box-shadow .3s}
+.track:hover{transform:translateY(-2px);box-shadow:0 18px 30px -18px rgba(58,56,53,0.45);color:#3a3835}
+.track img{width:64px;height:64px;display:block;flex-shrink:0}
+.track-meta{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.track-t{font-size:20px;line-height:1.2}
+.track-a{font-size:13px;color:rgba(58,56,53,0.65)}
+.track-play{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#3a3835;color:#fff;flex-shrink:0}
+.track-embed{display:block;width:100%;max-width:520px;height:152px;border:0;border-radius:12px}
+@media (max-width:767px){#roots svg text[font-size="30"]{font-size:56px}#roots svg text[font-size="17"]{display:none}.globe-emb{width:17%}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -362,7 +423,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div data-np="zoom" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
 <div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
-<video data-np="video" src="hero-loop.mp4" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
+<video data-np="video" data-src="hero-loop.mp4" data-src-small="hero-loop-960.mp4" preload="none" poster="assets/hero-poster.webp" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
 <div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0; pointer-events: none"></div>
@@ -397,8 +458,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div class="hstats">
 <div class="hstat"><span class="serif hstat-n" data-count="10">10</span><span class="hstat-c">years of<br>experience</span></div>
 <div class="hstat"><span class="serif hstat-n" data-count="8">8</span><span class="hstat-c">industry<br>sectors</span></div>
-<div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row"><img src="assets/logo-microsoft.webp" alt="Microsoft"><img src="assets/logo-verizon.webp" alt="Verizon"><img src="assets/logo-kpmg.webp" alt="KPMG"></div></div>
-<div class="hstat-place"><img src="assets/place-denver.webp" alt=""><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
+<div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row"><img loading="lazy" decoding="async" src="assets/logo-microsoft.webp" alt="Microsoft"><img loading="lazy" decoding="async" src="assets/logo-verizon.webp" alt="Verizon"><img loading="lazy" decoding="async" src="assets/logo-kpmg.webp" alt="KPMG"></div></div>
+<div class="hstat-place"><img loading="lazy" decoding="async" src="assets/place-denver.webp" alt=""><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
 </div>
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
@@ -427,14 +488,14 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <div data-np="chips" class="ind-grid" style="--q: 0">
 <span class="chip ind-label" style="--i: 0">Industries I’ve worked in</span>
-<span class="chip ind" style="--i: 0"><img src="assets/icon-banking.webp" alt=""><span>Banking</span></span>
-<span class="chip ind" style="--i: 1"><img src="assets/icon-insurance.webp" alt=""><span>Insurance</span></span>
-<span class="chip ind" style="--i: 2"><img src="assets/icon-beauty.webp" alt=""><span>Fashion &amp; beauty</span></span>
-<span class="chip ind" style="--i: 3"><img src="assets/icon-grocery.webp" alt=""><span>Grocery retail</span></span>
-<span class="chip ind" style="--i: 4"><img src="assets/icon-telecom.webp" alt=""><span>Telecom</span></span>
-<span class="chip ind" style="--i: 5"><img src="assets/icon-gaming.webp" alt=""><span>Gaming</span></span>
-<span class="chip ind" style="--i: 6"><img src="assets/icon-cloud.webp" alt=""><span>Cloud &amp; AI</span></span>
-<span class="chip ind" style="--i: 7"><img src="assets/icon-datacenter.webp" alt=""><span>Hardware &amp; datacenters</span></span>
+<span class="chip ind" style="--i: 0"><img loading="lazy" decoding="async" src="assets/icon-banking.webp" alt=""><span>Banking</span></span>
+<span class="chip ind" style="--i: 1"><img loading="lazy" decoding="async" src="assets/icon-insurance.webp" alt=""><span>Insurance</span></span>
+<span class="chip ind" style="--i: 2"><img loading="lazy" decoding="async" src="assets/icon-beauty.webp" alt=""><span>Fashion &amp; beauty</span></span>
+<span class="chip ind" style="--i: 3"><img loading="lazy" decoding="async" src="assets/icon-grocery.webp" alt=""><span>Grocery retail</span></span>
+<span class="chip ind" style="--i: 4"><img loading="lazy" decoding="async" src="assets/icon-telecom.webp" alt=""><span>Telecom</span></span>
+<span class="chip ind" style="--i: 5"><img loading="lazy" decoding="async" src="assets/icon-gaming.webp" alt=""><span>Gaming</span></span>
+<span class="chip ind" style="--i: 6"><img loading="lazy" decoding="async" src="assets/icon-cloud.webp" alt=""><span>Cloud &amp; AI</span></span>
+<span class="chip ind" style="--i: 7"><img loading="lazy" decoding="async" src="assets/icon-datacenter.webp" alt=""><span>Hardware &amp; datacenters</span></span>
 </div>
 </div>
 <div data-np="testis" class="testis">
@@ -476,7 +537,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <div class="deck-main">
 <div class="deck-stack">
-<article class="work-card deck-card" data-pos="0" aria-hidden="false"><img class="work-art" src="assets/work-evidence.webp" alt="">
+<article class="work-card deck-card" data-pos="0" aria-hidden="false"><img loading="lazy" decoding="async" class="work-art" src="assets/work-evidence.webp" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
 <div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
@@ -485,7 +546,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
 
 </article>
-<article class="work-card deck-card" data-pos="1" aria-hidden="true"><img class="work-art" src="assets/work-enablement.webp" alt="">
+<article class="work-card deck-card" data-pos="1" aria-hidden="true"><img loading="lazy" decoding="async" class="work-art" src="assets/work-enablement.webp" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for 200 colleagues</h3>
 <div class="proof-line"><span>13 contributors</span><span>2 months</span><span>~200 participants</span></div>
@@ -493,7 +554,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
-<article class="work-card deck-card" data-pos="2" aria-hidden="true"><img class="work-art" src="assets/work-migration.webp" alt="">
+<article class="work-card deck-card" data-pos="2" aria-hidden="true"><img loading="lazy" decoding="async" class="work-art" src="assets/work-migration.webp" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
 <div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
@@ -502,7 +563,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
 
 </article>
-<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="assets/work-securedev.webp" alt="">
+<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img loading="lazy" decoding="async" class="work-art" src="assets/work-securedev.webp" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
 <div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
@@ -531,19 +592,19 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <div class="appr-grid">
 <article class="appr-card">
-<div class="appr-art"><img src="assets/approach-system.webp" alt=""></div>
+<div class="appr-art"><img loading="lazy" decoding="async" src="assets/approach-system.webp" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I get close to the technical detail, ask questions and work with engineers on their own terms. That can mean reviewing code, developing KQL test plans or learning how a new infrastructure environment operates. Understanding the system helps me ask better questions about the risks around it.</p>
 </article>
 <article class="appr-card">
-<div class="appr-art"><img src="assets/approach-shared.webp" alt=""></div>
+<div class="appr-art"><img loading="lazy" decoding="async" src="assets/approach-shared.webp" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I lead rotating engagement teams of 8–12 and coordinate with engineering and business stakeholders. I make scope, responsibilities and dependencies clear so people understand how their work fits together. Listening to the people closest to the work is an important part of that process.</p>
 </article>
 <article class="appr-card">
-<div class="appr-art"><img src="assets/approach-decision.webp" alt=""></div>
+<div class="appr-art"><img loading="lazy" decoding="async" src="assets/approach-decision.webp" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I explain risks through their likelihood and potential financial and reputational impact. Then I work with directors and corporate vice presidents to secure commitment to remediation. The goal is a decision people understand and can act on.</p>
@@ -551,8 +612,101 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
+<section id="translate" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-top: 0">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">In practice</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">One finding, two audiences</h2>
+</div>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">The same issue has to work for the engineer who fixes it and the executive who funds the fix. Switch views to see how I translate between them.</p>
+</div>
+<div data-np="xlat" class="xlat">
+<div class="xl-bar">
+<div class="xl-tabs" role="tablist" aria-label="Example findings">
+<button class="xl-tab" type="button" role="tab" aria-selected="true">AI assistant access</button>
+<button class="xl-tab" type="button" role="tab" aria-selected="false">Release signing key</button>
+<button class="xl-tab" type="button" role="tab" aria-selected="false">Capacity forecast</button>
+</div>
+<div class="xl-switch" role="group" aria-label="Audience">
+<span class="xl-thumb" aria-hidden="true"></span>
+<button class="xl-v" type="button" aria-pressed="true" data-v="eng">Engineer view</button>
+<button class="xl-v" type="button" aria-pressed="false" data-v="exec">Executive view</button>
+</div>
+</div>
+<div class="xl-stage">
+<article class="xl-f is-on" aria-hidden="false">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>AIG-014</span><span class="xl-sev xl-sev-high">Severity: High</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">Service principal <code>svc-evidence-agent</code> holds tenant-wide <code>Files.Read.All</code> and <code>Sites.Read.All</code>. No Conditional Access policy, no access review, sign-in logs retained 30 days.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">AADServicePrincipalSignInLogs
+| where ServicePrincipalName == "svc-evidence-agent"
+| summarize Calls = count(), Sites = dcount(ResourceId)
+    by bin(TimeGenerated, 1d)</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Replace with <code>Sites.Selected</code>, scoped to the evidence library</li><li>Enroll the principal in quarterly access reviews</li><li>Stream sign-in logs to Log Analytics (365-day retention) with a volume alert</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Our new AI assistant can read far more company data than its job requires.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">It only needs one evidence library, but its access reaches every team’s files. If its credentials were misused, confidential documents across the company could be exposed.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Approve two sprints of engineering time to narrow its access before the wider rollout.</p></div>
+</div>
+</article>
+<article class="xl-f" aria-hidden="true">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>SDL-027</span><span class="xl-sev xl-sev-high">Severity: High</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">3 of 5 studio pipelines sign release builds with one shared key stored as a pipeline secret variable. Key last rotated in 2022; no HSM; signing events are not logged centrally.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">pipelines/release.yml
+  - task: SignBuild@2
+    inputs:
+      keyRef: $(SHARED_SIGNING_KEY)   # same key, 3 studios</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Move signing to a managed, HSM-backed signing service</li><li>Issue per-studio keys with 12-month rotation</li><li>Log every signing event to the central SIEM</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Several game teams prove their releases are genuine with one shared, years-old key.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">If that key leaked, someone could ship a fake update that players’ devices would trust: a direct hit to player safety and brand trust.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot"></span><span class="xl-dot"></span><em>Low</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>Severe</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Fund a shared signing service and set a 90-day migration target for every studio.</p></div>
+</div>
+</article>
+<article class="xl-f" aria-hidden="true">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>CAP-009</span><span class="xl-sev xl-sev-medium">Severity: Medium</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">Capacity forecast ingests utilization from a manual weekly CSV export. 2 of 6 regions have been missing since the spring migration; no reconciliation against actuals; owner unassigned after a reorg.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">forecast_inputs.csv
+  regions_present: 4 / 6
+  last_updated:    19 days ago
+  owner:           (none)</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Automate the feed from the telemetry store (Azure Data Explorer)</li><li>Add a weekly forecast-vs-actuals check with a variance threshold</li><li>Name an accountable owner in the RACI</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Our capacity plan relies on a manual spreadsheet with missing data and no owner.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">Plans built on gaps lead either to buying hardware we don’t need or running short when demand spikes. Both are costly, and shortfalls are visible to customers.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Name one accountable owner and automate the data feed this quarter.</p></div>
+</div>
+</article>
+</div>
+<p class="xl-note">Illustrative examples drawn from the kinds of systems I assess. They are not findings from a real engagement.</p>
+</div>
+</section>
+
 <section id="look" aria-label="Interactive illustration: move across it to reveal Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
-<img src="assets/presenting.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
+<img loading="lazy" decoding="async" src="assets/presenting.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
 <canvas data-np="ink" data-tex="assets/paper-mask.webp" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
 <svg aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none"><rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect><rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect></svg>
 <div class="sec" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
@@ -571,7 +725,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="tlx-node" aria-hidden="true"></span>
 <article class="tlx-card">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-microsoft.webp" alt="Microsoft">
+<img loading="lazy" decoding="async" class="tlx-logo" src="assets/logo-microsoft.webp" alt="Microsoft">
 <span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">March 2021–present</span>
 </div>
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Senior IT Audit Manager</h3>
@@ -586,7 +740,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="tlx-node" aria-hidden="true"></span>
 <article class="tlx-card">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-verizon.webp" alt="Verizon">
+<img loading="lazy" decoding="async" class="tlx-logo" src="assets/logo-verizon.webp" alt="Verizon">
 <span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">April 2019–May 2020</span>
 </div>
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Audit Consultant</h3>
@@ -601,7 +755,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="tlx-node" aria-hidden="true"></span>
 <article class="tlx-card">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-kpmg.webp" alt="KPMG">
+<img loading="lazy" decoding="async" class="tlx-logo" src="assets/logo-kpmg.webp" alt="KPMG">
 <span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">June 2017–May 2019</span>
 </div>
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Advisory Associate</h3>
@@ -616,7 +770,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="tlx-node" aria-hidden="true"></span>
 <article class="tlx-card">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-pennstate.webp" alt="Penn State">
+<img loading="lazy" decoding="async" class="tlx-logo" src="assets/logo-pennstate.webp" alt="Penn State">
 <span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right"></span>
 </div>
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">B.S. in Information Sciences and Technology</h3>
@@ -642,6 +796,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">I’m from Ukraine, have lived in New York, and now call Denver home. My Ukrainian heritage remains an important part of who I am.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Music is another part of my life. I’ve spent nearly two decades DJing and several years producing melodic electronic music. I also enjoy designing interfaces and experimenting with product ideas.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Through Nikita Page Productions, I’ve helped founders work through technology decisions, workflows and early prototypes. It’s another way I put my technical experience and curiosity to work.</p>
+<div class="track-wrap"><div class="track-label">A track of mine</div>
+<iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/5ZnSNUn3uN0RKTC6wocgWa?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
 </div>
 </div>
 <div data-np="roots" style="margin-top: 48px; position: relative; --r: 0">
@@ -698,9 +854,9 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <text x="226" y="300.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Colorado · home now</text>
 <rect x="0" y="0" width="1280" height="480" fill="url(#np-globe-fade)" pointer-events="none"></rect>
 </svg>
-<img class="globe-emb" src="assets/place-ukraine.webp" alt="" aria-hidden="true" style="--at: 0.02; --tx: -50%; left: 76.70%; top: 34.83%">
-<img class="globe-emb" src="assets/place-newyork.webp" alt="" aria-hidden="true" style="--at: 0.8; --tx: -22%; left: 29.81%; top: 53.92%">
-<img class="globe-emb" src="assets/place-denver.webp" alt="" aria-hidden="true" style="--at: 0.97; --tx: -80%; left: 18.70%; top: 48.92%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-ukraine.webp" alt="" aria-hidden="true" style="--at: 0.02; --tx: -50%; left: 76.70%; top: 34.83%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-newyork.webp" alt="" aria-hidden="true" style="--at: 0.8; --tx: -22%; left: 29.81%; top: 53.92%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-denver.webp" alt="" aria-hidden="true" style="--at: 0.97; --tx: -80%; left: 18.70%; top: 48.92%">
 </div>
 </div>
 </section>
@@ -986,6 +1142,35 @@ a{color:#3a3835}a:hover{color:#3a3835}
     return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
   }
   npBloom($('bloom'));
+  function npXlat(container) {
+    var tabs = [].slice.call(container.querySelectorAll('.xl-tab'));
+    var views = [].slice.call(container.querySelectorAll('.xl-v'));
+    var items = [].slice.call(container.querySelectorAll('.xl-f'));
+    var f = 0, v = 'eng', touched = false, hinted = false;
+    function render() {
+      container.setAttribute('data-v', v);
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === f ? 'true' : 'false'); });
+      views.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+      items.forEach(function (it, k) {
+        it.classList.toggle('is-on', k === f);
+        it.setAttribute('aria-hidden', k === f ? 'false' : 'true');
+        it.querySelector('.xl-eng').classList.toggle('is-on', v === 'eng');
+        it.querySelector('.xl-exec').classList.toggle('is-on', v === 'exec');
+      });
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { touched = true; f = k; render(); }); });
+    views.forEach(function (b) { b.addEventListener('click', function () { touched = true; v = b.getAttribute('data-v'); render(); }); });
+    // One gentle flip when the section first comes into view, so the toggle explains itself.
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting || hinted) return;
+      hinted = true;
+      setTimeout(function () { if (!touched) { v = 'exec'; render(); } }, 1600);
+    }, { threshold: 0.5 });
+    io.observe(container);
+    render();
+    return function () { io.disconnect(); };
+  }
+  if ($('xlat')) npXlat($('xlat'));
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
@@ -993,6 +1178,10 @@ a{color:#3a3835}a:hover{color:#3a3835}
   applyScroll();
 
   video.muted = true;
+  if (video.getAttribute('data-src') && !video.getAttribute('src')) {
+    var small = window.innerWidth < 900 || (navigator.connection && navigator.connection.saveData);
+    video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
+  }
   function play() { if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }
   video.addEventListener('canplay', play);
   document.addEventListener('visibilitychange', play);

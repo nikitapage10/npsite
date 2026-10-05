@@ -271,6 +271,66 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:1380px) and (max-height:900px){.testis{top:92px;height:560px}.testi{width:290px;padding:24px 24px 22px}.testi blockquote{font-size:17px}.testi:nth-of-type(2){top:142px;right:290px}.testi:nth-of-type(3){top:282px}}
 .bloom{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none;mix-blend-mode:multiply}
 @media (prefers-reduced-motion: reduce){.bloom{display:none}}
+.brand-logo{-webkit-mask-image:linear-gradient(90deg,#000 44%,transparent 56%);mask-image:linear-gradient(90deg,#000 44%,transparent 56%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0;animation:sig-write 2.4s cubic-bezier(0.55,0.1,0.35,1) 0.35s forwards}
+@keyframes sig-write{to{-webkit-mask-position:0 0;mask-position:0 0}}
+@media (prefers-reduced-motion: reduce){.brand-logo{animation:none;-webkit-mask-image:none;mask-image:none}}
+a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3px;border-radius:4px}
+.xlat{margin-top:44px}
+.xl-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}
+.xl-tabs{display:flex;flex-wrap:wrap;gap:8px}
+.xl-tab{font:inherit;font-size:14px;padding:10px 16px;min-height:44px;border:1px solid rgba(58,56,53,0.25);background:transparent;color:rgba(58,56,53,0.75);cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.xl-tab:hover{border-color:#3a3835;color:#3a3835}
+.xl-tab[aria-selected="true"]{background:#3a3835;border-color:#3a3835;color:#fff}
+.xl-switch{position:relative;display:inline-flex;padding:4px;border-radius:999px;background:#ECE5D8;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.12)}
+.xl-thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:#3a3835;transition:transform .45s cubic-bezier(0.2,0.8,0.2,1)}
+.xlat[data-v="exec"] .xl-thumb{transform:translateX(100%);background:#b08d4c}
+.xl-v{position:relative;z-index:1;font:inherit;font-size:14px;font-weight:500;padding:10px 22px;min-height:40px;border:0;border-radius:999px;background:none;color:rgba(58,56,53,0.75);cursor:pointer;transition:color .3s}
+.xl-v[aria-pressed="true"]{color:#fff}
+.xl-stage{display:grid}
+.xl-f{grid-area:1 / 1;display:grid;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.xl-f.is-on{opacity:1;visibility:visible;transition:opacity .35s}
+.xl-pane{grid-area:1 / 1;box-sizing:border-box;padding:32px;opacity:0;visibility:hidden;transform:translateY(14px) scale(0.985);filter:blur(6px);transition:opacity .45s,transform .55s cubic-bezier(0.2,0.8,0.2,1),filter .45s,visibility 0s .45s}
+.xl-pane.is-on{opacity:1;visibility:visible;transform:none;filter:none;transition:opacity .45s,transform .55s cubic-bezier(0.2,0.8,0.2,1),filter .45s}
+.xl-pane > *{opacity:0;transform:translateY(8px);transition:opacity .4s calc(var(--k, 0) * 90ms + 80ms),transform .5s calc(var(--k, 0) * 90ms + 80ms) cubic-bezier(0.2,0.8,0.2,1)}
+.xl-pane.is-on > *{opacity:1;transform:none}
+.xl-eng{background:#2f2d2a;color:#ece6da;font-family:ui-monospace,"Cascadia Code","SF Mono",Menlo,Consolas,monospace;box-shadow:0 30px 60px -30px rgba(30,28,25,0.6)}
+.xl-exec{background:#FCFBF7;border:1px solid #e7e2d8;box-shadow:0 30px 60px -30px rgba(58,56,53,0.4)}
+.xl-head{display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:0.08em;color:rgba(236,230,218,0.6);padding-bottom:14px;margin-bottom:18px;border-bottom:1px dashed rgba(236,230,218,0.2)}
+.xl-sev{padding:2px 8px;border-radius:3px}
+.xl-sev-high{background:rgba(214,120,90,0.2);color:#f0b39c}
+.xl-sev-medium{background:rgba(176,141,76,0.22);color:#e3c88f}
+.xl-k{font-family:Inter,sans-serif;font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;font-weight:500;margin-top:18px;margin-bottom:6px}
+.xl-eng .xl-k{color:rgba(236,230,218,0.55)}
+.xl-exec .xl-k{color:rgba(58,56,53,0.6)}
+.xl-pane > .xl-k:first-child,.xl-head + .xl-k{margin-top:0}
+.xl-obs{margin:0;font-size:13.5px;line-height:1.65}
+.xl-eng code{color:#e3c88f}
+.xl-code{margin:0;padding:14px 16px;background:rgba(0,0,0,0.25);border-left:2px solid #b08d4c;font-size:12.5px;line-height:1.6;white-space:pre-wrap;overflow-x:auto;color:#d9d2c3}
+.xl-fix{margin:0;padding-left:18px;font-size:13.5px;line-height:1.7}
+.xl-what{margin:0;font-size:28px;line-height:1.25;letter-spacing:-0.02em;color:#3a3835}
+.xl-why{margin:0;font-size:15.5px;line-height:1.65;color:rgba(58,56,53,0.85)}
+.xl-meters{display:flex;flex-wrap:wrap;gap:12px 32px;margin-top:16px}
+.xl-meters > div{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(58,56,53,0.75)}
+.xl-meters span:first-child{margin-right:6px}
+.xl-meters em{font-style:normal;font-weight:600;color:#3a3835;margin-left:6px}
+.xl-dot{width:10px;height:10px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.4)}
+.xl-dot.on{background:#b08d4c;box-shadow:none}
+.xl-ask{margin-top:22px;padding:18px 20px;background:#F2E8D7;border-left:3px solid #b08d4c}
+.xl-ask .xl-k{margin-top:0}
+.xl-ask p{margin:0;font-size:20px;line-height:1.35;color:#3a3835}
+.xl-note{margin:16px 0 0;font-size:12.5px;color:rgba(58,56,53,0.6)}
+@media (min-width:900px){.xl-pane{padding:40px 48px}.xl-what{font-size:34px}.xl-obs,.xl-fix{font-size:14.5px}}
+.track-wrap{margin-top:8px}
+.track-label{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.6);font-weight:500;margin-bottom:8px}
+.track{display:flex;align-items:center;gap:16px;padding:12px 16px 12px 12px;background:#FCFBF7;border:1px solid #e7e2d8;text-decoration:none;color:#3a3835;max-width:440px;transition:transform .3s,box-shadow .3s}
+.track:hover{transform:translateY(-2px);box-shadow:0 18px 30px -18px rgba(58,56,53,0.45);color:#3a3835}
+.track img{width:64px;height:64px;display:block;flex-shrink:0}
+.track-meta{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.track-t{font-size:20px;line-height:1.2}
+.track-a{font-size:13px;color:rgba(58,56,53,0.65)}
+.track-play{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#3a3835;color:#fff;flex-shrink:0}
+.track-embed{display:block;width:100%;max-width:520px;height:152px;border:0;border-radius:12px}
+@media (max-width:767px){#roots svg text[font-size="30"]{font-size:56px}#roots svg text[font-size="17"]{display:none}.globe-emb{width:17%}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -365,7 +425,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div ref="{{setZoom}}" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
 <div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
-<video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
+<video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" poster="/_blob/a378f43a05d4124142e84b4ac01885fe" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
 <div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: {{washiOp}}; pointer-events: none"></div>
@@ -554,6 +614,99 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
+<section id="translate" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-top: 0">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">In practice</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">One finding, two audiences</h2>
+</div>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">The same issue has to work for the engineer who fixes it and the executive who funds the fix. Switch views to see how I translate between them.</p>
+</div>
+<div ref="{{setXlat}}" class="xlat">
+<div class="xl-bar">
+<div class="xl-tabs" role="tablist" aria-label="Example findings">
+<button class="xl-tab" type="button" role="tab" aria-selected="true">AI assistant access</button>
+<button class="xl-tab" type="button" role="tab" aria-selected="false">Release signing key</button>
+<button class="xl-tab" type="button" role="tab" aria-selected="false">Capacity forecast</button>
+</div>
+<div class="xl-switch" role="group" aria-label="Audience">
+<span class="xl-thumb" aria-hidden="true"></span>
+<button class="xl-v" type="button" aria-pressed="true" data-v="eng">Engineer view</button>
+<button class="xl-v" type="button" aria-pressed="false" data-v="exec">Executive view</button>
+</div>
+</div>
+<div class="xl-stage">
+<article class="xl-f is-on" aria-hidden="false">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>AIG-014</span><span class="xl-sev xl-sev-high">Severity: High</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">Service principal <code>svc-evidence-agent</code> holds tenant-wide <code>Files.Read.All</code> and <code>Sites.Read.All</code>. No Conditional Access policy, no access review, sign-in logs retained 30 days.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">AADServicePrincipalSignInLogs
+| where ServicePrincipalName == "svc-evidence-agent"
+| summarize Calls = count(), Sites = dcount(ResourceId)
+    by bin(TimeGenerated, 1d)</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Replace with <code>Sites.Selected</code>, scoped to the evidence library</li><li>Enroll the principal in quarterly access reviews</li><li>Stream sign-in logs to Log Analytics (365-day retention) with a volume alert</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Our new AI assistant can read far more company data than its job requires.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">It only needs one evidence library, but its access reaches every team’s files. If its credentials were misused, confidential documents across the company could be exposed.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Approve two sprints of engineering time to narrow its access before the wider rollout.</p></div>
+</div>
+</article>
+<article class="xl-f" aria-hidden="true">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>SDL-027</span><span class="xl-sev xl-sev-high">Severity: High</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">3 of 5 studio pipelines sign release builds with one shared key stored as a pipeline secret variable. Key last rotated in 2022; no HSM; signing events are not logged centrally.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">pipelines/release.yml
+  - task: SignBuild@2
+    inputs:
+      keyRef: $(SHARED_SIGNING_KEY)   # same key, 3 studios</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Move signing to a managed, HSM-backed signing service</li><li>Issue per-studio keys with 12-month rotation</li><li>Log every signing event to the central SIEM</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Several game teams prove their releases are genuine with one shared, years-old key.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">If that key leaked, someone could ship a fake update that players’ devices would trust: a direct hit to player safety and brand trust.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot"></span><span class="xl-dot"></span><em>Low</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>Severe</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Fund a shared signing service and set a 90-day migration target for every studio.</p></div>
+</div>
+</article>
+<article class="xl-f" aria-hidden="true">
+<div class="xl-pane xl-eng is-on">
+<div class="xl-head"><span>CAP-009</span><span class="xl-sev xl-sev-medium">Severity: Medium</span></div>
+<div class="xl-k" style="--k: 0">Observation</div>
+<p class="xl-obs" style="--k: 0">Capacity forecast ingests utilization from a manual weekly CSV export. 2 of 6 regions have been missing since the spring migration; no reconciliation against actuals; owner unassigned after a reorg.</p>
+<div class="xl-k" style="--k: 1">Evidence</div>
+<pre class="xl-code" style="--k: 1">forecast_inputs.csv
+  regions_present: 4 / 6
+  last_updated:    19 days ago
+  owner:           (none)</pre>
+<div class="xl-k" style="--k: 2">Remediation</div>
+<ul class="xl-fix" style="--k: 2"><li>Automate the feed from the telemetry store (Azure Data Explorer)</li><li>Add a weekly forecast-vs-actuals check with a variance threshold</li><li>Name an accountable owner in the RACI</li></ul>
+</div>
+<div class="xl-pane xl-exec">
+<div class="xl-k" style="--k: 0">What’s happening</div>
+<p class="serif xl-what" style="--k: 0">Our capacity plan relies on a manual spreadsheet with missing data and no owner.</p>
+<div class="xl-k" style="--k: 1">Why it matters</div>
+<p class="xl-why" style="--k: 1">Plans built on gaps lead either to buying hardware we don’t need or running short when demand spikes. Both are costly, and shortfalls are visible to customers.</p>
+<div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div></div>
+<div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Name one accountable owner and automate the data feed this quarter.</p></div>
+</div>
+</article>
+</div>
+<p class="xl-note">Illustrative examples drawn from the kinds of systems I assess. They are not findings from a real engagement.</p>
+</div>
+</section>
+
 <section id="look" aria-label="Interactive illustration: move across it to reveal Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
 <img src="/_blob/788ba417914b44bc1ffcae86b9596440" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
 <canvas ref="{{setInk}}" data-tex="/_blob/9bdec23150a5e336244130a3dc3de770" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
@@ -645,6 +798,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">I’m from Ukraine, have lived in New York, and now call Denver home. My Ukrainian heritage remains an important part of who I am.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Music is another part of my life. I’ve spent nearly two decades DJing and several years producing melodic electronic music. I also enjoy designing interfaces and experimenting with product ideas.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Through Nikita Page Productions, I’ve helped founders work through technology decisions, workflows and early prototypes. It’s another way I put my technical experience and curiosity to work.</p>
+<div class="track-wrap"><div class="track-label">A track of mine</div>
+<a class="track" data-spotify="5ZnSNUn3uN0RKTC6wocgWa" href="https://open.spotify.com/track/5ZnSNUn3uN0RKTC6wocgWa" target="_blank" rel="noopener"><img src="/_blob/3b87fb250a686f592abddf1d7929424c" alt="Cover art for Take What You Want"><span class="track-meta"><span class="serif track-t">Take What You Want</span><span class="track-a">feat. Manno · Listen on Spotify</span></span><span class="track-play" aria-hidden="true"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></span></a></div>
 </div>
 </div>
 <div ref="{{setRoots}}" style="margin-top: 48px; position: relative; --r: 0">
@@ -738,6 +893,7 @@ class Component extends DCLogic {
   setPanel = (el) => { this.panel = el; };
   setIntro = (el) => { this.intro = el; };
   setPath = (el) => { this.path = el; };
+  setXlat = (el) => { this.xlat = el; };
   setDeck = (el) => { this.deck = el; };
   setHsStage = (el) => { this.hsStage = el; };
   setHsRoll = (el) => { this.hsRoll = el; };
@@ -1040,7 +1196,37 @@ class Component extends DCLogic {
     return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
   }
 
+  npXlat(container) {
+    var tabs = [].slice.call(container.querySelectorAll('.xl-tab'));
+    var views = [].slice.call(container.querySelectorAll('.xl-v'));
+    var items = [].slice.call(container.querySelectorAll('.xl-f'));
+    var f = 0, v = 'eng', touched = false, hinted = false;
+    function render() {
+      container.setAttribute('data-v', v);
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === f ? 'true' : 'false'); });
+      views.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+      items.forEach(function (it, k) {
+        it.classList.toggle('is-on', k === f);
+        it.setAttribute('aria-hidden', k === f ? 'false' : 'true');
+        it.querySelector('.xl-eng').classList.toggle('is-on', v === 'eng');
+        it.querySelector('.xl-exec').classList.toggle('is-on', v === 'exec');
+      });
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { touched = true; f = k; render(); }); });
+    views.forEach(function (b) { b.addEventListener('click', function () { touched = true; v = b.getAttribute('data-v'); render(); }); });
+    // One gentle flip when the section first comes into view, so the toggle explains itself.
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting || hinted) return;
+      hinted = true;
+      setTimeout(function () { if (!touched) { v = 'exec'; render(); } }, 1600);
+    }, { threshold: 0.5 });
+    io.observe(container);
+    render();
+    return function () { io.disconnect(); };
+  }
+
   componentDidMount() {
+    if (this.xlat) this.stopXlat = this.npXlat(this.xlat);
     this.stopBloom = this.npBloom(this.bloomCanvas);
     if (this.panel) this.npCount(this.panel);
     if (this.deck) this.stopDeck = this.npDeck(this.deck);
@@ -1054,6 +1240,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     this.dead = true;
+    if (this.stopXlat) this.stopXlat();
     if (this.stopBloom) this.stopBloom();
     if (this.stopDeck) this.stopDeck();
     if (this.stopInk) this.stopInk();
@@ -1072,7 +1259,7 @@ class Component extends DCLogic {
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
       grainOp: this.props.paperTexture === 'Fine grain' ? 0.6 : 0, setHero: this.setHero, setBloom: this.setBloom,
-      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setDeck: this.setDeck, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, setTestis: this.setTestis, setCollage: this.setCollage, onScroll: this.onScroll
+      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setXlat: this.setXlat, setDeck: this.setDeck, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, setTestis: this.setTestis, setCollage: this.setCollage, onScroll: this.onScroll
     };
   }
 }

@@ -17,6 +17,8 @@ const BLOBS = {
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
   "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
   "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp",
+  "3b87fb250a686f592abddf1d7929424c": "assets/track-cover.webp",
+  "a378f43a05d4124142e84b4ac01885fe": "assets/hero-poster.webp",
   "3415aa425ddd9e431d0abaa0a737ff9a": "assets/work-evidence.webp",
   "31432c3e8a34120a2325c508c727bb9d": "assets/work-enablement.webp",
   "4cefba8785268eb628d6f7fdc83338a0": "assets/work-migration.webp",
@@ -55,6 +57,9 @@ function convert(file, title, extraScript) {
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   // Drafts (e.g. unapproved testimonials) live on the design canvas only.
   body = body.replace(/<figure [^>]*data-draft="true"[^>]*>[\s\S]*?<\/figure>\n?/g, '');
+  body = body.replace(/<a class="track" data-spotify="([^"]+)"[\s\S]*?<\/a>/g, (_, id) => '<iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/' + id + '?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>');
+  body = body.replace('src="hero-loop.mp4" poster=', 'data-src="hero-loop.mp4" data-src-small="hero-loop-960.mp4" preload="none" poster=');
+  body = body.replace(/<img (?![^>]*\bloading=)(?![^>]*class="brand-logo")/g, '<img loading="lazy" decoding="async" ');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
   const opens = (body.match(/<div[\s>]/g) || []).length, closes = (body.match(/<\/div>/g) || []).length;
   if (opens !== closes) throw new Error(file + ': ' + opens + ' <div> vs ' + closes + ' </div>, markup is unbalanced');
@@ -63,6 +68,7 @@ function convert(file, title, extraScript) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
 <title>${title}</title>
 ${helmet.trim()}
 </head>
@@ -337,6 +343,35 @@ const script = `<script>
     return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
   }
   npBloom($('bloom'));
+  function npXlat(container) {
+    var tabs = [].slice.call(container.querySelectorAll('.xl-tab'));
+    var views = [].slice.call(container.querySelectorAll('.xl-v'));
+    var items = [].slice.call(container.querySelectorAll('.xl-f'));
+    var f = 0, v = 'eng', touched = false, hinted = false;
+    function render() {
+      container.setAttribute('data-v', v);
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === f ? 'true' : 'false'); });
+      views.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-v') === v ? 'true' : 'false'); });
+      items.forEach(function (it, k) {
+        it.classList.toggle('is-on', k === f);
+        it.setAttribute('aria-hidden', k === f ? 'false' : 'true');
+        it.querySelector('.xl-eng').classList.toggle('is-on', v === 'eng');
+        it.querySelector('.xl-exec').classList.toggle('is-on', v === 'exec');
+      });
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { touched = true; f = k; render(); }); });
+    views.forEach(function (b) { b.addEventListener('click', function () { touched = true; v = b.getAttribute('data-v'); render(); }); });
+    // One gentle flip when the section first comes into view, so the toggle explains itself.
+    var io = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting || hinted) return;
+      hinted = true;
+      setTimeout(function () { if (!touched) { v = 'exec'; render(); } }, 1600);
+    }, { threshold: 0.5 });
+    io.observe(container);
+    render();
+    return function () { io.disconnect(); };
+  }
+  if ($('xlat')) npXlat($('xlat'));
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
@@ -344,6 +379,10 @@ const script = `<script>
   applyScroll();
 
   video.muted = true;
+  if (video.getAttribute('data-src') && !video.getAttribute('src')) {
+    var small = window.innerWidth < 900 || (navigator.connection && navigator.connection.saveData);
+    video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
+  }
   function play() { if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }
   video.addEventListener('canplay', play);
   document.addEventListener('visibilitychange', play);
