@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hero texture options</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:opsz,wght@6..72,400&amp;display=swap">
+<style>
+body{margin:0}
+.opt{margin:0;display:flex;flex-direction:column;gap:12px}
+.frame{position:relative;aspect-ratio:840 / 527;overflow:hidden;background:#ece5d8}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.frame svg,.frame .wash{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cap{font-size:13px;line-height:1.5;color:rgba(58,56,53,0.72)}
+.cap strong{display:block;font-size:15px;font-weight:600;color:#3a3835;margin-bottom:2px}
+</style>
+</helmet>
+<div style="width: 1440px; height: 820px; box-sizing: border-box; padding: 48px 56px; background: #F3EFE8; color: #3a3835; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; gap: 28px">
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0">
+<filter id="tx-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
+<filter id="tx-hot" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" seed="6" result="n"></feTurbulence><feDiffuseLighting in="n" surfaceScale="0.9" diffuseConstant="1.1" lighting-color="#fffdf8"><feDistantLight azimuth="235" elevation="60"></feDistantLight></feDiffuseLighting><feColorMatrix type="saturate" values="0.3"></feColorMatrix></filter>
+<filter id="tx-cold" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="11" result="n"></feTurbulence><feDiffuseLighting in="n" surfaceScale="2.4" diffuseConstant="1.08" lighting-color="#fffaf0"><feDistantLight azimuth="235" elevation="52"></feDistantLight></feDiffuseLighting><feColorMatrix type="saturate" values="0.35"></feColorMatrix></filter>
+<filter id="tx-riso" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" seed="9"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.42  0 0 0 0 0.30  4 0 0 0 -2.55"></feColorMatrix></filter>
+</svg>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Hero texture</div>
+<h1 style="margin: 8px 0 0; font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 36px; letter-spacing: -0.02em">Pick one</h1>
+</div>
+<p style="margin: 0; max-width: 520px; font-size: 14px; line-height: 1.55; color: rgba(58,56,53,0.72)">The same frame of the hero video with six treatments. View at 100% zoom to judge the grain.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 32px">
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame, no texture"></div>
+<figcaption class="cap"><strong>A · Clean</strong>No texture at all. The illustration carries the look on its own.</figcaption></figure>
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame with film grain"><svg aria-hidden="true" style="mix-blend-mode: soft-light; opacity: 0.55"><rect width="100%" height="100%" filter="url(#tx-grain)"></rect></svg></div>
+<figcaption class="cap"><strong>B · Film grain</strong>Fine, even monochrome grain. Photographic rather than papery.</figcaption></figure>
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame with hot-press paper"><svg aria-hidden="true" style="mix-blend-mode: soft-light; opacity: 0.75"><rect width="100%" height="100%" filter="url(#tx-hot)"></rect></svg></div>
+<figcaption class="cap"><strong>C · Hot-press paper</strong>Smooth, satin watercolor paper with a tiny tooth.</figcaption></figure>
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame with cold-press paper"><svg aria-hidden="true" style="mix-blend-mode: soft-light; opacity: 0.75"><rect width="100%" height="100%" filter="url(#tx-cold)"></rect></svg></div>
+<figcaption class="cap"><strong>D · Cold-press paper</strong>Soft raised bumps lit from the upper left, like classic watercolor paper.</figcaption></figure>
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame with vellum"><div class="wash" style="background: rgba(255,253,248,0.16)"></div><svg aria-hidden="true" style="mix-blend-mode: soft-light; opacity: 0.3"><rect width="100%" height="100%" filter="url(#tx-grain)"></rect></svg></div>
+<figcaption class="cap"><strong>E · Vellum</strong>A faint frosted haze with very fine grain, as if seen through tracing paper.</figcaption></figure>
+
+<figure class="opt"><div class="frame"><img src="/_blob/3ae0ae0478726d7b96a1e18311d5e21e" alt="Hero frame with risograph speckle"><div class="wash" style="background: rgba(246,236,214,0.2); mix-blend-mode: multiply"></div><svg aria-hidden="true" style="mix-blend-mode: multiply; opacity: 0.4"><rect width="100%" height="100%" filter="url(#tx-riso)"></rect></svg></div>
+<figcaption class="cap"><strong>F · Risograph</strong>Warm paper tint with sparse ink speckle, like a riso print.</figcaption></figure>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":820}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
