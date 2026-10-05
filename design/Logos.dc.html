@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Logo options</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap">
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/9d4d074c9335825a23cce178ee03b498?family=P22+Mackinac+W01+Book">
+<style>
+body{margin:0}
+.serif{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-weight:400}
+</style>
+</helmet>
+<div style="width: 1440px; height: 420px; box-sizing: border-box; padding: 48px 56px; background: #ECE5D8; color: #3a3835; font-family: 'Inter', sans-serif; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+
+<div style="background: #F3EEE4; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">A · Signature</div>
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px">
+<span style="font-family: 'Newsreader', Georgia, serif; font-style: italic; font-size: 34px; letter-spacing: -0.02em; line-height: 1">Nikita Page</span>
+<svg viewBox="0 0 180 14" aria-hidden="true" style="width: 170px; height: 14px"><path d="M2 9 C 40 3, 95 13, 176 4" fill="none" stroke="#3a3835" stroke-width="1.4" stroke-linecap="round"></path></svg>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(58,56,53,0.72)">Italic serif with a hand-drawn underline that draws itself in on load. Personal, a little editorial.</p>
+</div>
+
+<div style="background: #F3EEE4; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">B · Overlap monogram</div>
+<div style="display: flex; align-items: center; gap: 14px">
+<svg viewBox="0 0 64 56" aria-hidden="true" style="width: 60px; height: 52px"><text x="2" y="46" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="50" fill="#3a3835">N</text><text x="24" y="46" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="50" fill="none" stroke="#3a3835" stroke-width="1.2">P</text></svg>
+<span style="font-size: 15px; font-weight: 500; letter-spacing: -0.01em">Nikita Page</span>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(58,56,53,0.72)">Solid N, outlined P, overlapping: two sides meeting. Calm, works small.</p>
+</div>
+
+<div style="background: #F3EEE4; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">C · Horizon</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<svg viewBox="0 0 48 32" aria-hidden="true" style="width: 48px; height: 32px"><path d="M10 22 A 10 10 0 0 1 30 22" fill="none" stroke="#3a3835" stroke-width="1.4"></path><path d="M2 26 L 14 16 L 21 22 L 30 13 L 46 26" fill="none" stroke="#3a3835" stroke-width="1.4" stroke-linejoin="round"></path><path d="M2 29.5 H 46" stroke="#3a3835" stroke-width="1.4"></path></svg>
+<span class="serif" style="font-size: 22px; letter-spacing: -0.02em">Nikita Page</span>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(58,56,53,0.72)">A line-drawn sun over hills, echoing the landscape in the video. Ties the logo to the hero.</p>
+</div>
+
+<div style="background: #F3EEE4; padding: 32px; display: flex; flex-direction: column; justify-content: space-between">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">D · Wordmark + line</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span class="serif" style="font-size: 26px; letter-spacing: -0.02em; line-height: 1">Nikita Page</span>
+<span style="font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.24em; font-weight: 500; color: rgba(58,56,53,0.75)">Business <span style="color: rgba(58,56,53,0.4)">/</span> Technology</span>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(58,56,53,0.72)">No symbol: the serif name with your positioning underneath. The simplest and most direct.</p>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":420}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

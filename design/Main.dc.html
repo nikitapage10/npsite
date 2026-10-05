@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nikita Page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap">
+<link rel="stylesheet" href="https://db.onlinewebfonts.com/c/9d4d074c9335825a23cce178ee03b498?family=P22+Mackinac+W01+Book">
+<style>
+body{margin:0;background:#fff;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:#3a3835}a:hover{color:#3a3835}
+.serif{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-weight:400}
+.nav{padding:16px 24px}
+.nav-links{display:none}
+.nav-link{color:rgba(58,56,53,.7);text-decoration:none;font-size:14px;transition:color .2s}
+.nav-link:hover{color:#3a3835}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#3a3835;color:#fff;font-size:14px;font-weight:500;border-radius:8px;text-decoration:none;transition:background-color .2s;min-height:44px;box-sizing:border-box}
+.btn:hover{background:rgba(58,56,53,.9);color:#fff}
+.btn-nav{padding:10px 20px}
+.btn-hero{padding:12px 24px}
+.hero-content{padding:96px 16px 0}
+.hero-h1{font-size:36px}
+.hero-sub{margin-top:20px;max-width:384px}
+.hero-cta{margin-top:24px}
+.panel-outer{padding:0 16px}
+.panel{padding:32px 20px 0}
+.panel-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.panel-h2{font-size:24px}
+.panel-h2 br{display:none}
+.rows{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.feat{display:flex;align-items:center;justify-content:space-between;background:#F4F3F3;padding:14px 16px;text-decoration:none;color:#3a3835;font-size:14px;transition:all .2s;min-height:44px;box-sizing:border-box}
+.feat:hover{background:#eaeaea;color:#3a3835}
+.feat svg{color:#9ca3af;transition:all .2s}
+.feat:hover svg{color:#374151;transform:translateX(2px)}
+.intro-inner{padding:96px 16px 24px}
+.intro-card{max-width:640px;width:100%}
+.intro-h{font-size:30px}
+.intro-quote{display:none}
+.chip{--e:clamp(0, calc(var(--q) * 10 - var(--i)), 1);opacity:var(--e);transform:translate(calc((1 - var(--e)) * -56px), calc((1 - var(--e)) * -28px));background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid #e5e7eb;padding:10px 16px;font-size:14px;color:#3a3835;white-space:nowrap}
+.chapter{display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.proof{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.path{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.sec{padding:96px 24px}
+.sec-h2{font-size:32px}
+.tl{--t:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:44px;padding-left:32px}
+.tl-line{position:absolute;left:5px;top:6px;bottom:0;width:1px;background:#3a3835;transform-origin:top;transform:scaleY(var(--t))}
+.tl-item{--e:clamp(0, calc(var(--t) * 4.6 - var(--i)), 1);position:relative;display:flex;flex-direction:column;gap:10px;opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 32px))}
+.tl-dot{position:absolute;left:-32px;top:2px;width:11px;height:11px;border-radius:50%;border:1px solid #3a3835;background:#3a3835;box-sizing:border-box;transform:scale(calc(0.3 + var(--e) * 0.7))}
+.tl-now .tl-dot::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid #3a3835;animation:tl-pulse 2.4s ease-out infinite}
+@keyframes tl-pulse{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+.tl-logo{height:30px;display:flex;align-items:center;color:#3a3835;opacity:.85;transition:opacity .2s}
+.tl-item:hover .tl-logo{opacity:1}
+.tl-year{font-size:40px;line-height:1;letter-spacing:-0.03em}
+.wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
+@keyframes wv{0%{transform:scaleY(.45)}100%{transform:scaleY(1)}}
+@media (prefers-reduced-motion: reduce){.wave span{animation:none}}
+
+.lede{font-size:20px}
+@media (min-width:640px){
+.nav{padding:20px 40px}
+.hero-content{padding:104px 24px 0}
+.hero-h1{font-size:48px}
+.hero-sub{margin-top:24px;max-width:448px}
+.hero-cta{margin-top:32px}
+.btn-hero{padding:14px 32px}
+.panel-outer{padding:0 24px}
+.panel{padding:48px 32px 0}
+.panel-grid{gap:32px}
+.panel-h2{font-size:30px}
+.panel-h2 br{display:inline}
+.rows{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.feat{padding:16px 24px}
+.proof{grid-template-columns:repeat(2,minmax(0,1fr))}
+.sec{padding:120px 40px}
+}
+@media (min-width:768px){
+.nav{padding:20px max(56px, calc((100% - 1280px) / 2))}
+.nav-links{display:flex}
+.hero-content{padding:clamp(150px, 25vh, 250px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
+.hero-sub{max-width:420px}
+.panel-outer{padding:0 56px;max-width:1392px}
+.panel{max-width:760px}
+.hero-h1{font-size:72px}
+.hero-sub{margin-top:32px;font-size:16px}
+.hero-cta{margin-top:40px}
+.panel{padding:64px 48px 0}
+.panel-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:64px}
+.panel-h2{font-size:34px}
+.panel-grid{gap:48px}
+.panel-body{font-size:15px}
+.intro-inner{padding:120px 56px 56px}
+.intro-h{font-size:44px}
+.intro-quote{display:block}
+.chapter{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px}
+.path{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tl{grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-left:0;padding-top:48px}
+.tl-line{left:0;right:0;top:5px;bottom:auto;width:auto;height:1px;transform-origin:left;transform:scaleX(var(--t))}
+.tl-dot{left:0;top:-48px}
+.tl-year{font-size:48px}
+.sec{padding:140px 56px}
+.sec-h2{font-size:52px}
+.lede{font-size:24px}
+}
+@media (min-width:1024px){
+.hero-h1{font-size:96px}
+}
+@media (min-width:768px) and (max-height:860px){
+.hero-content{padding-top:clamp(150px, 23vh, 250px)}
+.hero-h1{font-size:clamp(60px, 10.5vh, 96px)}
+.hero-sub{margin-top:20px}
+.hero-cta{margin-top:24px}
+.panel{padding-top:32px}
+.panel-divider,.rows{display:none}
+.intro-inner{padding-top:96px;padding-bottom:32px}
+.intro-h{font-size:34px}
+.intro-card > div{padding:28px 32px !important;gap:14px !important}
+}
+</style>
+</helmet>
+<div ref="{{setRoot}}" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #3a3835; font-family: 'Inter', sans-serif; position: relative">
+
+<nav ref="{{setNav}}" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
+<a href="#top" aria-label="Nikita Page, back to top" style="display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: #3a3835">
+<span class="serif" style="font-size: 24px; letter-spacing: -0.02em; line-height: 1">Nikita Page</span>
+<span style="font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.24em; font-weight: 500; color: rgba(58,56,53,0.75)">Business <span style="color: rgba(58,56,53,0.4)">/</span> Technology</span>
+</a>
+<div class="nav-links" style="align-items: center; gap: 32px">
+<a class="nav-link" href="#range">Range</a>
+<a class="nav-link" href="#translation">Translation</a>
+<a class="nav-link" href="#building">Building</a>
+<a class="nav-link" href="#path">Path</a>
+</div>
+<a class="btn btn-nav" href="mailto:connect@nikita.page">Say hello</a>
+</nav>
+
+<div id="top" ref="{{setTrack}}" style="position: relative; height: 320vh">
+<section style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center">
+
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
+<div ref="{{setZoom}}" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
+<div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
+<video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
+</div>
+</div>
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: {{paperOpacity}}; pointer-events: none">
+<filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.33  1.6 0 0 0 -0.62"></feColorMatrix></filter>
+<filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.44  0.9 0 0 0 -0.32"></feColorMatrix></filter>
+<rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect>
+<rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect>
+</svg>
+</div>
+
+<div ref="{{setHero}}" class="hero-content" style="position: relative; z-index: 10; align-self: stretch; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; text-align: left; will-change: transform, opacity">
+<h1 class="serif hero-h1" style="margin: 0; line-height: 1.1; letter-spacing: -0.05em; color: #3a3835; font-weight: 400">Hi, I’m<br>Nikita Page.</h1>
+<p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I connect business and technology. Ten years across eight industries taught me to see the whole system and explain it to anyone in the room. From Ukraine, based in Denver, currently at Microsoft.</p>
+<a class="btn btn-hero hero-cta" href="#range">Read my story</a>
+</div>
+
+<div ref="{{setPanel}}" class="panel-outer" style="margin-top: auto; align-self: center; width: 100%; box-sizing: border-box; position: relative; z-index: 10; will-change: transform, opacity">
+<div class="panel" style="background: rgba(255,255,255,0.9); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid #e5e7eb; border-bottom: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding-bottom: 24px">
+<div class="panel-grid">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Who is Nikita?</div>
+<h2 class="serif panel-h2" style="margin: 12px 0 0; line-height: 1.25; letter-spacing: -0.025em; font-weight: 400">Business fluent,<br>tech native</h2>
+</div>
+<div style="display: flex; align-items: flex-end">
+<p class="panel-body" style="margin: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’ve worked across banking, retail, telecom, gaming, and AI. I bring that high-level view to every problem: how the pieces connect, what actually matters, and how to get engineers and executives moving in the same direction.</p>
+</div>
+</div>
+<div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
+<div class="rows">
+<a class="feat" href="#range"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Range</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#translation"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Translation</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#building"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Building</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+</div>
+</div>
+</div>
+
+<div aria-hidden="false" style="position: absolute; inset: 0; z-index: 20; pointer-events: none">
+<div class="intro-inner" style="height: 100%; box-sizing: border-box; max-width: 1392px; margin: 0 auto; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
+<div ref="{{setIntro}}" class="intro-card" style="opacity: 0; transform-origin: top left; will-change: transform, opacity">
+<div style="background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 40px; display: flex; flex-direction: column; gap: 20px">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">A quick introduction</div>
+<h2 class="serif intro-h" style="margin: 0; line-height: 1.12; letter-spacing: -0.03em; font-weight: 400">I’m the person in the room who speaks both engineer and executive.</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.7)">For ten years, across eight industries (from banks and beauty brands to telecom, gaming, and AI), I’ve been the one connecting the dots. I see how the pieces fit, work out what actually matters, and help both sides act on it.</p>
+<div style="height: 1px; background: #e5e7eb"></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: rgba(58,56,53,0.6)">
+<span>From Ukraine</span>
+<span>Based in Denver</span>
+<span>Penn State, Information Sciences &amp; Technology</span>
+</div>
+</div>
+</div>
+<div ref="{{setChips}}" style="--q: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 680px">
+<span class="chip" style="--i: 0; background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; padding-left: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500">Rooms I’ve worked in</span>
+<span class="chip" style="--i: 0">Banking</span>
+<span class="chip" style="--i: 1">Insurance</span>
+<span class="chip" style="--i: 2">Fashion &amp; beauty</span>
+<span class="chip" style="--i: 3">Grocery retail</span>
+<span class="chip" style="--i: 5">Telecom</span>
+<span class="chip" style="--i: 6">Gaming</span>
+<span class="chip" style="--i: 7">Cloud &amp; AI</span>
+<span class="chip" style="--i: 8">Hardware &amp; datacenters</span>
+</div>
+</div>
+<figure ref="{{setQuote}}" class="intro-quote" style="margin: 0; align-self: flex-end; max-width: 560px; opacity: 0; transform-origin: top left; will-change: transform, opacity; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 36px 40px">
+<blockquote class="serif" style="margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -0.03em; color: #3a3835">“The problems rhyme, even when the vocabulary doesn’t.”</blockquote>
+<figcaption style="margin-top: 16px; font-size: 13px; color: rgba(58,56,53,0.68)">What ten years across eight industries taught me</figcaption>
+</figure>
+</div>
+</div>
+</section>
+</div>
+
+<section id="range" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01 / Range</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I’ve worked in more rooms than most.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">Banks, insurers, fashion, beauty, grocery, telecom, and now LinkedIn, Xbox, and Copilot. Ten years across eight industries taught me that the problems rhyme even when the vocabulary doesn’t. That’s what lets me walk into a new domain and see the whole picture quickly.</p>
+<div class="proof">
+<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">Three studios, one baseline</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">After Microsoft’s $75.4B Activision Blizzard acquisition, I worked with security and engineering leaders across ABK, ZeniMax, and Minecraft. I adapted to each studio’s rhythm and wrote the landscape assessment the next phase of planning was built on.</p>
+</div>
+<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">Cloud to custom silicon</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">Cloud, identity, privacy, AI, secure development, supply chain, custom-silicon R&amp;D, and datacenter energy and capacity. That’s more than ten domains, and in each one I learned to talk with engineers on their own terms.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="translation" style="background: #F4F3F3">
+<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02 / Translation</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I speak business to tech, and tech to business.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">Engineers want precision. Executives want a decision. I work between them, aligning dozens of engineering and business stakeholders and turning a technical problem into a business case: how likely it is, and what it could cost. Then I get directors and corporate vice presidents to commit.</p>
+<div class="proof">
+<div style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">Two acquisitions, one migration plan</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">When services from two acquisitions moved to Azure, I built the planning matrix from scratch, ran weekly technical learning sessions, and aligned a senior executive on who owns what and when each piece is ready.</p>
+</div>
+<div style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">Making AI make sense to 200 people</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">I led AI enablement for a department of about 200 professionals, showing them how to apply AI to their everyday work. I directed 13 contributors and built the demo chatbots myself.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="building" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03 / Building</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I don’t just advise. I build.</h2>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">A high-level view only helps if it reaches the ground. So I build the tools: AI workflows, dashboards, and prototypes. Through my own company, Nikita Page Productions, I help founders turn early ideas into plans they can actually build.</p>
+<div class="proof">
+<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">An AI hub that keeps the story current</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">Built in Copilot Studio, Microsoft Foundry, and Azure. It connects evidence to risks, keeps the narrative up to date on its own, and limits each agent’s access to what data-loss-prevention rules allow.</p>
+</div>
+<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 15px; font-weight: 600">From idea to buildable plan</h3>
+<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">With startups and small businesses I lead discovery, workflow design, and prototyping, along with technology strategy and architecture.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="path" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-top: 0">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 48px; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 760px">How I got here</h2>
+<p class="serif lede" style="margin: -28px 0 72px; max-width: 640px; line-height: 1.45; color: rgba(58,56,53,0.85)">Four chapters, each adding a new language I can speak.</p>
+<div ref="{{setPath}}" class="tl">
+<span class="tl-line" aria-hidden="true"></span>
+<div class="tl-item" style="--i: 1">
+<span class="tl-dot" aria-hidden="true"></span>
+<div class="serif tl-year">Education</div>
+<div class="tl-logo"><svg viewBox="0 0 150 30" aria-label="Penn State" role="img" style="height: 30px; width: auto"><path d="M3 3 H21 V15 C21 22 12 27 12 27 C12 27 3 22 3 15 Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8 11 L12 7 L16 11 M12 7 V20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><text x="30" y="20.5" font-family="'Newsreader', Georgia, serif" font-size="16" letter-spacing="1.6" fill="currentColor">PENN STATE</text></svg></div>
+<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where technology became a direction.</p>
+<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">B.S., Information Sciences &amp; Technology</div>
+</div>
+<div class="tl-item" style="--i: 2">
+<span class="tl-dot" aria-hidden="true"></span>
+<div class="serif tl-year">2017</div>
+<div class="tl-logo"><svg viewBox="0 0 84 30" aria-label="KPMG" role="img" style="height: 30px; width: auto"><text x="0" y="23" font-family="Inter, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="currentColor">KPMG</text></svg></div>
+<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where I learned to translate between business and technology.</p>
+<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Banks, insurers, and fashion, beauty, and grocery brands</div>
+</div>
+<div class="tl-item" style="--i: 3">
+<span class="tl-dot" aria-hidden="true"></span>
+<div class="serif tl-year">2019</div>
+<div class="tl-logo"><svg viewBox="0 0 118 30" aria-label="Verizon" role="img" style="height: 30px; width: auto"><text x="0" y="22" font-family="Inter, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.6" fill="currentColor">verizon</text><path d="M101 12 L106 18 L115 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"></path></svg></div>
+<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where I learned what operating at scale really means.</p>
+<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Telecom infrastructure, engineering, and cloud</div>
+</div>
+<div class="tl-item tl-now" style="--i: 4">
+<span class="tl-dot" aria-hidden="true"></span>
+<div class="serif tl-year">Today</div>
+<div class="tl-logo"><svg viewBox="0 0 222 30" aria-label="Microsoft and independent ventures" role="img" style="height: 30px; width: auto"><rect x="1" y="4" width="10" height="10" fill="currentColor"></rect><rect x="12" y="4" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="1" y="15" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="12" y="15" width="10" height="10" fill="currentColor" opacity="0.55"></rect><text x="30" y="21.5" font-family="Inter, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.3" fill="currentColor">Microsoft</text><text x="128" y="21.5" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="19" fill="currentColor">+ ventures</text></svg></div>
+<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where security, AI, systems, and leadership began to converge.</p>
+<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Since 2020: LinkedIn, Xbox, and Copilot, plus independent ventures</div>
+</div>
+</div>
+</section>
+
+<section id="roots" style="background: #F4F3F3">
+<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Roots</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">From Ukraine, onward.</h2>
+</div>
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">Ukraine is the beginning of my story. Denver is home now, but where I came from is still a big part of how I understand myself and the life I’ve built, across technology, music, design, and everything in between.</p>
+</div>
+</div>
+</section>
+
+<section id="beyond" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div class="chapter">
+<div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Beyond the résumé</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">Music, making, and whatever comes next.</h2>
+</div>
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">I’ve been a DJ for nearly two decades and a producer for the past several years. When I’m not working, I’m usually making music, prototyping a product, designing an interface, or finding some unnecessarily complicated way to turn an idea into something real.</p>
+</div>
+<div class="wave" aria-hidden="true" style="margin-top: 72px; height: 96px; display: flex; align-items: center; gap: 3px; overflow: hidden"><span style="--i: 0; height: 22px"></span><span style="--i: 1; height: 27px"></span><span style="--i: 2; height: 19px"></span><span style="--i: 3; height: 17px"></span><span style="--i: 4; height: 20px"></span><span style="--i: 5; height: 30px"></span><span style="--i: 6; height: 21px"></span><span style="--i: 7; height: 24px"></span><span style="--i: 8; height: 35px"></span><span style="--i: 9; height: 26px"></span><span style="--i: 10; height: 33px"></span><span style="--i: 11; height: 40px"></span><span style="--i: 12; height: 44px"></span><span style="--i: 13; height: 34px"></span><span style="--i: 14; height: 29px"></span><span style="--i: 15; height: 34px"></span><span style="--i: 16; height: 34px"></span><span style="--i: 17; height: 39px"></span><span style="--i: 18; height: 30px"></span><span style="--i: 19; height: 48px"></span><span style="--i: 20; height: 27px"></span><span style="--i: 21; height: 50px"></span><span style="--i: 22; height: 25px"></span><span style="--i: 23; height: 35px"></span><span style="--i: 24; height: 41px"></span><span style="--i: 25; height: 45px"></span><span style="--i: 26; height: 48px"></span><span style="--i: 27; height: 51px"></span><span style="--i: 28; height: 55px"></span><span style="--i: 29; height: 41px"></span><span style="--i: 30; height: 61px"></span><span style="--i: 31; height: 29px"></span><span style="--i: 32; height: 30px"></span><span style="--i: 33; height: 45px"></span><span style="--i: 34; height: 66px"></span><span style="--i: 35; height: 32px"></span><span style="--i: 36; height: 64px"></span><span style="--i: 37; height: 58px"></span><span style="--i: 38; height: 68px"></span><span style="--i: 39; height: 47px"></span><span style="--i: 40; height: 66px"></span><span style="--i: 41; height: 67px"></span><span style="--i: 42; height: 59px"></span><span style="--i: 43; height: 63px"></span><span style="--i: 44; height: 45px"></span><span style="--i: 45; height: 74px"></span><span style="--i: 46; height: 69px"></span><span style="--i: 47; height: 72px"></span><span style="--i: 48; height: 63px"></span><span style="--i: 49; height: 55px"></span><span style="--i: 50; height: 69px"></span><span style="--i: 51; height: 46px"></span><span style="--i: 52; height: 42px"></span><span style="--i: 53; height: 58px"></span><span style="--i: 54; height: 43px"></span><span style="--i: 55; height: 51px"></span><span style="--i: 56; height: 58px"></span><span style="--i: 57; height: 78px"></span><span style="--i: 58; height: 53px"></span><span style="--i: 59; height: 41px"></span><span style="--i: 60; height: 67px"></span><span style="--i: 61; height: 69px"></span><span style="--i: 62; height: 80px"></span><span style="--i: 63; height: 34px"></span><span style="--i: 64; height: 69px"></span><span style="--i: 65; height: 41px"></span><span style="--i: 66; height: 50px"></span><span style="--i: 67; height: 74px"></span><span style="--i: 68; height: 49px"></span><span style="--i: 69; height: 35px"></span><span style="--i: 70; height: 55px"></span><span style="--i: 71; height: 73px"></span><span style="--i: 72; height: 60px"></span><span style="--i: 73; height: 33px"></span><span style="--i: 74; height: 35px"></span><span style="--i: 75; height: 46px"></span><span style="--i: 76; height: 77px"></span><span style="--i: 77; height: 53px"></span><span style="--i: 78; height: 62px"></span><span style="--i: 79; height: 62px"></span><span style="--i: 80; height: 51px"></span><span style="--i: 81; height: 34px"></span><span style="--i: 82; height: 55px"></span><span style="--i: 83; height: 49px"></span><span style="--i: 84; height: 72px"></span><span style="--i: 85; height: 32px"></span><span style="--i: 86; height: 64px"></span><span style="--i: 87; height: 60px"></span><span style="--i: 88; height: 53px"></span><span style="--i: 89; height: 30px"></span><span style="--i: 90; height: 61px"></span><span style="--i: 91; height: 50px"></span><span style="--i: 92; height: 47px"></span><span style="--i: 93; height: 50px"></span><span style="--i: 94; height: 42px"></span><span style="--i: 95; height: 50px"></span><span style="--i: 96; height: 45px"></span><span style="--i: 97; height: 43px"></span><span style="--i: 98; height: 55px"></span><span style="--i: 99; height: 26px"></span><span style="--i: 100; height: 34px"></span><span style="--i: 101; height: 42px"></span><span style="--i: 102; height: 38px"></span><span style="--i: 103; height: 30px"></span><span style="--i: 104; height: 29px"></span><span style="--i: 105; height: 31px"></span><span style="--i: 106; height: 39px"></span><span style="--i: 107; height: 26px"></span><span style="--i: 108; height: 20px"></span><span style="--i: 109; height: 21px"></span><span style="--i: 110; height: 40px"></span><span style="--i: 111; height: 37px"></span><span style="--i: 112; height: 34px"></span><span style="--i: 113; height: 33px"></span><span style="--i: 114; height: 24px"></span><span style="--i: 115; height: 22px"></span><span style="--i: 116; height: 20px"></span><span style="--i: 117; height: 30px"></span><span style="--i: 118; height: 15px"></span><span style="--i: 119; height: 24px"></span></div>
+<div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 12px; letter-spacing: 0.04em; color: rgba(58,56,53,0.55)"><span>Work in progress</span><span>Melodic electronic</span></div>
+</section>
+
+<section id="contact" style="background: #3a3835; color: #FFFFFF">
+<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.55); font-weight: 500">Say hello</div>
+<h2 class="serif sec-h2" style="margin: 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 820px; color: #FFFFFF">Need someone who sees the whole picture? Let’s talk.</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a class="btn btn-hero" href="mailto:connect@nikita.page" style="background: #FFFFFF; color: #3a3835">connect@nikita.page</a>
+<a class="btn btn-hero" href="Resume.dc.html" style="background: transparent; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35)">View resume</a>
+</div>
+<div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.55)">
+<span>Nikita Page · Denver, Colorado</span>
+<span>www.nikita.page</span>
+</div>
+</div>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"paperOpacity":{"editor":"range","default":0.55,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  setRoot = (el) => { this.root = el; };
+  setTrack = (el) => { this.track = el; };
+  setZoom = (el) => { this.zoom = el; };
+  setVideo = (el) => { this.video = el; };
+  setHero = (el) => { this.hero = el; };
+  setPanel = (el) => { this.panel = el; };
+  setIntro = (el) => { this.intro = el; };
+  setPath = (el) => { this.path = el; };
+  setNav = (el) => { this.nav = el; };
+  setChips = (el) => { this.chips = el; };
+  setQuote = (el) => { this.quote = el; };
+
+  onScroll = () => {
+    if (this.scrollRaf) return;
+    this.scrollRaf = requestAnimationFrame(() => { this.scrollRaf = 0; this.applyScroll(); });
+  };
+
+  applyScroll() {
+    const root = this.root, track = this.track;
+    if (!root || !track) return;
+    const clamp = (x) => Math.max(0, Math.min(1, x));
+    const easeOut = (x) => 1 - Math.pow(1 - x, 3);
+    const easeInOut = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    if (this.path) {
+      const vh = root.clientHeight;
+      const top = this.path.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      this.path.style.setProperty('--t', String(clamp((vh * 0.92 - top) / (vh * 0.55))));
+    }
+    const total = Math.max(1, track.offsetHeight - root.clientHeight);
+    if (this.nav) {
+      const solid = root.scrollTop > total + root.clientHeight * 0.6;
+      this.nav.style.backgroundColor = solid ? 'rgba(255,255,255,0.92)' : 'transparent';
+      this.nav.style.boxShadow = solid ? '0 1px 0 #e5e7eb' : 'none';
+      this.nav.style.backdropFilter = solid ? 'blur(8px)' : 'none';
+    }
+    const p = clamp(root.scrollTop / total);
+    const depth = this.props.zoomDepth ?? 1.9;
+
+    if (this.zoom) this.zoom.style.transform = 'scale(' + (1 + (depth - 1) * easeInOut(p)) + ')';
+
+    const out = clamp(p / 0.35);
+    if (this.hero) {
+      this.hero.style.opacity = String(1 - out);
+      this.hero.style.transform = 'translateY(' + (-60 * easeOut(out)) + 'px)';
+    }
+    if (this.panel) {
+      this.panel.style.opacity = String(1 - clamp(p / 0.3));
+      this.panel.style.transform = 'translateY(' + (140 * easeOut(clamp(p / 0.4))) + 'px)';
+    }
+    const enter = (el, q, dx, dy) => {
+      if (!el) return;
+      el.style.opacity = String(q);
+      el.style.transform = 'translate(' + (dx * (1 - q)) + 'px,' + (dy * (1 - q)) + 'px) scale(' + (0.6 + 0.4 * q) + ')';
+    };
+    enter(this.intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
+    if (this.chips) this.chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
+    enter(this.quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
+  }
+
+  startLoop() {
+    const v = this.video;
+    if (!v) return;
+    v.muted = true;
+    const play = () => { if (v.paused) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); } };
+    v.addEventListener('canplay', play);
+    document.addEventListener('visibilitychange', play);
+    play();
+  }
+
+  componentDidMount() {
+    this.startLoop();
+    this.applyScroll();
+    window.addEventListener('resize', this.onScroll);
+  }
+
+  componentDidUpdate() { this.applyScroll(); }
+
+  componentWillUnmount() {
+    this.dead = true;
+    cancelAnimationFrame(this.scrollRaf);
+    window.removeEventListener('resize', this.onScroll);
+  }
+
+  renderVals() {
+    return {
+      yes: true,
+      setRoot: this.setRoot, setTrack: this.setTrack, setZoom: this.setZoom,
+      setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.55, setHero: this.setHero,
+      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, onScroll: this.onScroll
+    };
+  }
+}
+</script>
+</body>
+</html>
