@@ -17,6 +17,7 @@ const BLOBS = {
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
   "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
   "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp",
+  "3f5c8a8555059b0b40c4b5fbf9d8ec85": "assets/logo-signature.webp",
   "037b59ccffbaf6bee1fac4662a5de4a2": "assets/paper-white.webp",
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
   "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp"
