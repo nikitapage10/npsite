@@ -51,10 +51,13 @@ const script = `<script>
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path');
-    if (path) {
-      var vh = root.clientHeight, top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      path.style.setProperty('--t', String(clamp((vh * 0.92 - top) / (vh * 0.55))));
+    var path = $('path'), hzRow = $('hzrow');
+    if (path && hzRow) {
+      var hvh = root.clientHeight, htop = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      var hp = clamp(-htop / Math.max(1, path.offsetHeight - hvh));
+      path.style.setProperty('--p', String(hp));
+      var hmax = Math.max(0, hzRow.scrollWidth - hzRow.clientWidth);
+      hzRow.style.transform = window.innerWidth >= 768 ? 'translateX(' + (-hmax * hp) + 'px)' : 'none';
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
     var p = clamp(root.scrollTop / total);

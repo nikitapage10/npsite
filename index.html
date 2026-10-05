@@ -52,6 +52,40 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .tl-logo{height:30px;display:flex;align-items:center;color:#3a3835;opacity:.85;transition:opacity .2s}
 .tl-item:hover .tl-logo{opacity:1}
 .tl-year{font-size:40px;line-height:1;letter-spacing:-0.03em}
+.hz-head{padding:96px 24px 24px}
+.hz-row{padding:0 24px 40px}
+.hz-panel{position:relative;flex:0 0 min(86vw, 460px);box-sizing:border-box;padding:28px;background:#F4F3F3;overflow:hidden}
+.hz-panel:nth-child(even){background:#ECE5D8}
+.hz-num{position:absolute;right:-12px;bottom:-0.18em;font-size:180px;line-height:1;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1.2px rgba(58,56,53,0.32);pointer-events:none;transform:translateX(calc((var(--p) - var(--c)) * -320px))}
+.hz-line{font-size:28px}
+.hz-fill{transform-origin:left;transform:scaleX(var(--p))}
+.hz-step{position:absolute;top:0;transform:translateX(-50%)}
+.hz-first{transform:none}
+.hz-last{transform:translateX(-100%);text-align:right}
+.hz-dot{position:relative;display:block;width:13px;height:13px;border-radius:50%;box-sizing:border-box;border:1px solid #3a3835;background:#fff;margin:0 auto}
+.hz-dot::after{content:"";position:absolute;inset:2px;border-radius:50%;background:#3a3835;opacity:clamp(0, calc((var(--p) - var(--c)) * 30 + 1), 1)}
+.hz-first .hz-dot{margin:0}
+.hz-last .hz-dot{margin:0 0 0 auto}
+.hz-step-label{display:block;margin-top:6px;font-size:12px;white-space:nowrap;color:rgba(58,56,53,0.72);opacity:clamp(0.35, calc((var(--p) - var(--c)) * 30 + 1), 1)}
+@media (max-width:767px){
+.hz{height:auto !important}
+.hz-sticky{position:static !important;height:auto !important}
+.hz-row{flex-direction:column;transform:none !important}
+.hz-panel{flex:none;min-height:360px}
+.hz-track{display:none}
+}
+@media (min-width:768px){
+.hz-head{padding:112px 56px 28px}
+.hz-row{padding:0 max(56px, calc((100% - 1280px) / 2)) 48px}
+.hz-panel{flex-basis:clamp(420px, 46vw, 680px);padding:40px 44px}
+.hz-num{font-size:clamp(260px, 46vh, 520px)}
+.hz-line{font-size:clamp(28px, 3.6vh, 40px)}
+}
+@media (min-width:768px) and (max-height:860px){
+.hz-head{padding-top:92px;padding-bottom:16px}
+.hz-track{margin-top:20px !important}
+.hz-panel{padding:28px 36px}
+}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -297,39 +331,72 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="path" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-top: 0">
+<section id="path" data-np="path" class="hz" style="position: relative; height: 420vh; --p: 0">
+<div class="hz-sticky" style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box">
+<div class="hz-head" style="max-width: 1392px; width: 100%; margin: 0 auto; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 48px">
+<div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 48px; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 760px">How I got here</h2>
-<p class="serif lede" style="margin: -28px 0 72px; max-width: 640px; line-height: 1.45; color: rgba(58,56,53,0.85)">Four chapters, each adding a new language I can speak.</p>
-<div data-np="path" class="tl">
-<span class="tl-line" aria-hidden="true"></span>
-<div class="tl-item" style="--i: 1">
-<span class="tl-dot" aria-hidden="true"></span>
-<div class="serif tl-year">Education</div>
-<div class="tl-logo"><svg viewBox="0 0 150 30" aria-label="Penn State" role="img" style="height: 30px; width: auto"><path d="M3 3 H21 V15 C21 22 12 27 12 27 C12 27 3 22 3 15 Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8 11 L12 7 L16 11 M12 7 V20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><text x="30" y="20.5" font-family="'Newsreader', Georgia, serif" font-size="16" letter-spacing="1.6" fill="currentColor">PENN STATE</text></svg></div>
-<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where technology became a direction.</p>
-<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">B.S., Information Sciences &amp; Technology</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I got here</h2>
 </div>
-<div class="tl-item" style="--i: 2">
-<span class="tl-dot" aria-hidden="true"></span>
-<div class="serif tl-year">2017</div>
-<div class="tl-logo"><svg viewBox="0 0 84 30" aria-label="KPMG" role="img" style="height: 30px; width: auto"><text x="0" y="23" font-family="Inter, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="currentColor">KPMG</text></svg></div>
-<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where I learned to translate between business and technology.</p>
-<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Banks, insurers, and fashion, beauty, and grocery brands</div>
+<p class="serif" style="margin: 0; max-width: 420px; font-size: 19px; line-height: 1.45; color: rgba(58,56,53,0.85)">Four chapters, each adding a new language I can speak.</p>
 </div>
-<div class="tl-item" style="--i: 3">
-<span class="tl-dot" aria-hidden="true"></span>
-<div class="serif tl-year">2019</div>
-<div class="tl-logo"><svg viewBox="0 0 118 30" aria-label="Verizon" role="img" style="height: 30px; width: auto"><text x="0" y="22" font-family="Inter, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.6" fill="currentColor">verizon</text><path d="M101 12 L106 18 L115 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"></path></svg></div>
-<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where I learned what operating at scale really means.</p>
-<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Telecom infrastructure, engineering, and cloud</div>
+<div class="hz-track" aria-hidden="true" style="position: relative; height: 40px; margin-top: 36px">
+<div style="position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: rgba(58,56,53,0.18)"></div>
+<div class="hz-fill" style="position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: #3a3835"></div>
+<div class="hz-step hz-first" style="--c: 0; left: 0%"><span class="hz-dot"></span><span class="hz-step-label">Education</span></div><div class="hz-step" style="--c: 0.3333333333333333; left: 33.33333333333333%"><span class="hz-dot"></span><span class="hz-step-label">KPMG</span></div><div class="hz-step" style="--c: 0.6666666666666666; left: 66.66666666666666%"><span class="hz-dot"></span><span class="hz-step-label">Verizon</span></div><div class="hz-step hz-last" style="--c: 1; left: 100%"><span class="hz-dot"></span><span class="hz-step-label">Today</span></div>
 </div>
-<div class="tl-item tl-now" style="--i: 4">
-<span class="tl-dot" aria-hidden="true"></span>
-<div class="serif tl-year">Today</div>
-<div class="tl-logo"><svg viewBox="0 0 222 30" aria-label="Microsoft and independent ventures" role="img" style="height: 30px; width: auto"><rect x="1" y="4" width="10" height="10" fill="currentColor"></rect><rect x="12" y="4" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="1" y="15" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="12" y="15" width="10" height="10" fill="currentColor" opacity="0.55"></rect><text x="30" y="21.5" font-family="Inter, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.3" fill="currentColor">Microsoft</text><text x="128" y="21.5" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="19" fill="currentColor">+ ventures</text></svg></div>
-<p class="serif" style="margin: 4px 0 0; font-size: 21px; line-height: 1.3; letter-spacing: -0.015em">Where security, AI, systems, and leadership began to converge.</p>
-<div style="font-size: 13px; line-height: 1.5; color: rgba(58,56,53,0.68)">Since 2020: LinkedIn, Xbox, and Copilot, plus independent ventures</div>
+</div>
+<div data-np="hzrow" class="hz-row" style="flex: 1; min-height: 0; display: flex; gap: 24px; box-sizing: border-box; will-change: transform">
+<article class="hz-panel" style="--c: 0">
+<div class="serif hz-num" aria-hidden="true">PSU</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>01 / 04</span><span>Penn State</span></div>
+<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 150 30" aria-label="Penn State" role="img" style="height: 30px; width: auto"><path d="M3 3 H21 V15 C21 22 12 27 12 27 C12 27 3 22 3 15 Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8 11 L12 7 L16 11 M12 7 V20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><text x="30" y="20.5" font-family="'Newsreader', Georgia, serif" font-size="16" letter-spacing="1.6" fill="currentColor">PENN STATE</text></svg></div>
+<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where technology became a direction.</h3>
+<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
+<li>B.S., Information Sciences &amp; Technology</li>
+<li>People, systems, and data, studied as one thing</li>
+</ul>
+</div>
+</article>
+<article class="hz-panel" style="--c: 0.3333333333333333">
+<div class="serif hz-num" aria-hidden="true">’17</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>02 / 04</span><span>2017 – 2019</span></div>
+<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 84 30" aria-label="KPMG" role="img" style="height: 30px; width: auto"><text x="0" y="23" font-family="Inter, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="currentColor">KPMG</text></svg></div>
+<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where I learned to translate between business and technology.</h3>
+<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
+<li>Banks, insurers, and fashion, beauty, and grocery brands</li>
+<li>Databases, ERP rollouts, and regulatory requirements</li>
+</ul>
+</div>
+</article>
+<article class="hz-panel" style="--c: 0.6666666666666666">
+<div class="serif hz-num" aria-hidden="true">’19</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>03 / 04</span><span>2019 – 2020</span></div>
+<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 118 30" aria-label="Verizon" role="img" style="height: 30px; width: auto"><text x="0" y="22" font-family="Inter, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.6" fill="currentColor">verizon</text><path d="M101 12 L106 18 L115 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"></path></svg></div>
+<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where I learned what operating at scale really means.</h3>
+<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
+<li>Telecom infrastructure, engineering processes, and cloud</li>
+<li>Built the tracking that kept fixes moving</li>
+</ul>
+</div>
+</article>
+<article class="hz-panel" style="--c: 1">
+<div class="serif hz-num" aria-hidden="true">Now</div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
+<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>04 / 04</span><span>2020 – now</span></div>
+<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 222 30" aria-label="Microsoft and independent ventures" role="img" style="height: 30px; width: auto"><rect x="1" y="4" width="10" height="10" fill="currentColor"></rect><rect x="12" y="4" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="1" y="15" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="12" y="15" width="10" height="10" fill="currentColor" opacity="0.55"></rect><text x="30" y="21.5" font-family="Inter, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.3" fill="currentColor">Microsoft</text><text x="128" y="21.5" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="19" fill="currentColor">+ ventures</text></svg></div>
+<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where security, AI, systems, and leadership began to converge.</h3>
+<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
+<li>About 12 engagements a year across LinkedIn, Xbox, and Copilot</li>
+<li>Teams of 8–12, presenting to corporate vice presidents</li>
+<li>Independent ventures through Nikita Page Productions</li>
+</ul>
+</div>
+</article>
 </div>
 </div>
 </section>
@@ -339,18 +406,18 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div class="chapter">
 <div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Roots</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">Somewhere between Ukraine and Denver.</h2>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">Ukraine, New York, Denver.</h2>
 </div>
-<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">Ukraine is where I’m from, and it comes with me everywhere. Denver is home now. Everything on this page happened somewhere along the line between the two.</p>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">Ukraine is where I’m from, and it comes with me everywhere. New York came next, and Denver is home now. Everything on this page happened somewhere along that line.</p>
 </div>
 <div data-np="roots" style="margin-top: 48px">
-<svg viewBox="0 0 1280 480" role="img" aria-label="Globe with a route drawn from Ukraine to Denver, Colorado" style="display: block; width: 100%; height: auto">
+<svg viewBox="0 0 1280 480" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
 <defs>
 <radialGradient id="np-globe-glow" cx="50%" cy="100%" r="62%"><stop offset="0" stop-color="#d9c9a8" stop-opacity="0.55"></stop><stop offset="1" stop-color="#d9c9a8" stop-opacity="0"></stop></radialGradient>
 <linearGradient id="np-globe-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0.25" stop-color="#3a3835" stop-opacity="0.07"></stop><stop offset="0.75" stop-color="#3a3835" stop-opacity="0"></stop></linearGradient>
 <linearGradient id="np-globe-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.55" stop-color="#F4F3F3" stop-opacity="0"></stop><stop offset="1" stop-color="#F4F3F3" stop-opacity="1"></stop></linearGradient>
 <clipPath id="np-globe-clip"><circle cx="640" cy="560" r="560"></circle></clipPath>
-<mask id="np-route-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="480"><path data-np="arcmask" d="M 981.8 167.2 L 975.1 162.9 L 968.2 158.8 L 961.3 154.7 L 954.4 150.8 L 947.3 146.9 L 940.2 143.1 L 933 139.4 L 925.7 135.9 L 918.4 132.4 L 911 129 L 903.6 125.7 L 896.1 122.5 L 888.5 119.4 L 880.9 116.5 L 873.2 113.6 L 865.4 110.8 L 857.7 108.1 L 849.8 105.6 L 841.9 103.1 L 834 100.7 L 826 98.5 L 818 96.3 L 809.9 94.3 L 801.8 92.4 L 793.7 90.5 L 785.5 88.8 L 777.3 87.2 L 769.1 85.7 L 760.8 84.3 L 752.5 83 L 744.2 81.9 L 735.8 80.8 L 727.5 79.8 L 719.1 79 L 710.7 78.3 L 702.2 77.6 L 693.8 77.1 L 685.4 76.7 L 676.9 76.5 L 668.4 76.3 L 660 76.2 L 651.5 76.3 L 643 76.4 L 634.5 76.7 L 626 77.1 L 617.5 77.6 L 609.1 78.2 L 600.6 78.9 L 592.1 79.7 L 583.7 80.7 L 575.3 81.7 L 566.8 82.9 L 558.4 84.1 L 550.1 85.5 L 541.7 87 L 533.4 88.6 L 525 90.3 L 516.8 92.1 L 508.5 94 L 500.3 96.1 L 492.1 98.2 L 483.9 100.4 L 475.8 102.8 L 467.7 105.2 L 459.6 107.8 L 451.6 110.5 L 443.7 113.2 L 435.7 116.1 L 427.9 119.1 L 420 122.1 L 412.3 125.3 L 404.5 128.6 L 396.9 131.9 L 389.3 135.4 L 381.7 139 L 374.2 142.6 L 366.8 146.4 L 359.4 150.3 L 352.1 154.2 L 344.9 158.3 L 337.7 162.4 L 330.6 166.6 L 323.6 170.9 L 316.6 175.3 L 309.7 179.8 L 302.9 184.4 L 296.2 189.1 L 289.5 193.9 L 283 198.7 L 276.5 203.6 L 270.1 208.6 L 263.8 213.7 L 257.5 218.9 L 251.4 224.1 L 245.3 229.4 L 239.4 234.8" fill="none" stroke="#fff" stroke-width="10" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></path></mask>
+<mask id="np-route-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="480"><path data-np="arcmask" d="M 981.8 167.2 L 975.7 164.6 L 969.4 162.1 L 963.1 159.7 L 956.7 157.4 L 950.2 155.2 L 943.7 153.1 L 937.1 151.1 L 930.4 149.2 L 923.6 147.4 L 916.8 145.6 L 910 144 L 903 142.4 L 896 141 L 889 139.6 L 881.9 138.4 L 874.7 137.2 L 867.5 136.1 L 860.2 135.2 L 852.9 134.3 L 845.5 133.5 L 838.1 132.8 L 830.7 132.2 L 823.2 131.7 L 815.6 131.4 L 808 131.1 L 800.4 130.9 L 792.8 130.8 L 785.1 130.8 L 777.3 130.9 L 769.6 131.1 L 761.8 131.4 L 754 131.8 L 746.1 132.3 L 738.3 132.8 L 730.4 133.5 L 722.5 134.3 L 714.5 135.2 L 706.6 136.2 L 698.6 137.2 L 690.7 138.4 L 682.7 139.7 L 674.7 141 L 666.7 142.5 L 658.7 144.1 L 650.7 145.7 L 642.7 147.4 L 634.6 149.3 L 626.6 151.2 L 618.6 153.2 L 610.6 155.3 L 602.6 157.6 L 594.6 159.9 L 586.6 162.2 L 578.7 164.7 L 570.7 167.3 L 562.8 170 L 554.8 172.7 L 546.9 175.5 L 539.1 178.5 L 531.2 181.5 L 523.4 184.6 L 515.6 187.8 L 507.8 191 L 500 194.4 L 492.3 197.8 L 484.6 201.3 L 477 204.9 L 469.4 208.6 L 461.8 212.4 L 454.3 216.2 L 446.8 220.1 L 439.4 224.1 L 432 228.2 L 424.6 232.4 L 417.3 236.6 L 410 240.9 L 402.9 245.2 L 395.7 249.7 L 388.6 254.2 L 381.6 258.8 L 374.6 256.7 L 367.7 254.8 L 360.9 252.9 L 354.1 251.1 L 347.5 249.4 L 340.9 247.8 L 334.4 246.3 L 328 244.8 L 321.7 243.5 L 315.5 242.3 L 309.4 241.1 L 303.4 240.1 L 297.5 239.1 L 291.7 238.3 L 285.9 237.5 L 280.3 236.8 L 274.8 236.2 L 269.4 235.7 L 264.1 235.4 L 259 235.1 L 253.9 234.9 L 248.9 234.8 L 244.1 234.8 L 239.4 234.8" fill="none" stroke="#fff" stroke-width="10" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></path></mask>
 </defs>
 <ellipse cx="640" cy="480" rx="644" ry="432" fill="url(#np-globe-glow)"></ellipse>
 <circle cx="640" cy="560" r="560" fill="url(#np-globe-fill)" stroke="rgba(58,56,53,0.25)" stroke-width="1.2"></circle>
@@ -384,12 +451,15 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <path d="M 645.9 0 L 644.8 0.4 L 643.6 1.4 L 642.4 3.1 L 641.2 5.5 L 640 8.5"></path>
 <path d="M 612.4 0.7 L 617.9 0.9 L 623.4 1.8 L 628.9 3.3 L 634.4 5.6 L 640 8.5"></path>
 </g>
-<path data-np="arc" d="M 981.8 167.2 L 975.1 162.9 L 968.2 158.8 L 961.3 154.7 L 954.4 150.8 L 947.3 146.9 L 940.2 143.1 L 933 139.4 L 925.7 135.9 L 918.4 132.4 L 911 129 L 903.6 125.7 L 896.1 122.5 L 888.5 119.4 L 880.9 116.5 L 873.2 113.6 L 865.4 110.8 L 857.7 108.1 L 849.8 105.6 L 841.9 103.1 L 834 100.7 L 826 98.5 L 818 96.3 L 809.9 94.3 L 801.8 92.4 L 793.7 90.5 L 785.5 88.8 L 777.3 87.2 L 769.1 85.7 L 760.8 84.3 L 752.5 83 L 744.2 81.9 L 735.8 80.8 L 727.5 79.8 L 719.1 79 L 710.7 78.3 L 702.2 77.6 L 693.8 77.1 L 685.4 76.7 L 676.9 76.5 L 668.4 76.3 L 660 76.2 L 651.5 76.3 L 643 76.4 L 634.5 76.7 L 626 77.1 L 617.5 77.6 L 609.1 78.2 L 600.6 78.9 L 592.1 79.7 L 583.7 80.7 L 575.3 81.7 L 566.8 82.9 L 558.4 84.1 L 550.1 85.5 L 541.7 87 L 533.4 88.6 L 525 90.3 L 516.8 92.1 L 508.5 94 L 500.3 96.1 L 492.1 98.2 L 483.9 100.4 L 475.8 102.8 L 467.7 105.2 L 459.6 107.8 L 451.6 110.5 L 443.7 113.2 L 435.7 116.1 L 427.9 119.1 L 420 122.1 L 412.3 125.3 L 404.5 128.6 L 396.9 131.9 L 389.3 135.4 L 381.7 139 L 374.2 142.6 L 366.8 146.4 L 359.4 150.3 L 352.1 154.2 L 344.9 158.3 L 337.7 162.4 L 330.6 166.6 L 323.6 170.9 L 316.6 175.3 L 309.7 179.8 L 302.9 184.4 L 296.2 189.1 L 289.5 193.9 L 283 198.7 L 276.5 203.6 L 270.1 208.6 L 263.8 213.7 L 257.5 218.9 L 251.4 224.1 L 245.3 229.4 L 239.4 234.8" fill="none" stroke="#3a3835" stroke-width="1.6" stroke-dasharray="6 6" mask="url(#np-route-reveal)"></path>
+<path data-np="arc" d="M 981.8 167.2 L 975.7 164.6 L 969.4 162.1 L 963.1 159.7 L 956.7 157.4 L 950.2 155.2 L 943.7 153.1 L 937.1 151.1 L 930.4 149.2 L 923.6 147.4 L 916.8 145.6 L 910 144 L 903 142.4 L 896 141 L 889 139.6 L 881.9 138.4 L 874.7 137.2 L 867.5 136.1 L 860.2 135.2 L 852.9 134.3 L 845.5 133.5 L 838.1 132.8 L 830.7 132.2 L 823.2 131.7 L 815.6 131.4 L 808 131.1 L 800.4 130.9 L 792.8 130.8 L 785.1 130.8 L 777.3 130.9 L 769.6 131.1 L 761.8 131.4 L 754 131.8 L 746.1 132.3 L 738.3 132.8 L 730.4 133.5 L 722.5 134.3 L 714.5 135.2 L 706.6 136.2 L 698.6 137.2 L 690.7 138.4 L 682.7 139.7 L 674.7 141 L 666.7 142.5 L 658.7 144.1 L 650.7 145.7 L 642.7 147.4 L 634.6 149.3 L 626.6 151.2 L 618.6 153.2 L 610.6 155.3 L 602.6 157.6 L 594.6 159.9 L 586.6 162.2 L 578.7 164.7 L 570.7 167.3 L 562.8 170 L 554.8 172.7 L 546.9 175.5 L 539.1 178.5 L 531.2 181.5 L 523.4 184.6 L 515.6 187.8 L 507.8 191 L 500 194.4 L 492.3 197.8 L 484.6 201.3 L 477 204.9 L 469.4 208.6 L 461.8 212.4 L 454.3 216.2 L 446.8 220.1 L 439.4 224.1 L 432 228.2 L 424.6 232.4 L 417.3 236.6 L 410 240.9 L 402.9 245.2 L 395.7 249.7 L 388.6 254.2 L 381.6 258.8 L 374.6 256.7 L 367.7 254.8 L 360.9 252.9 L 354.1 251.1 L 347.5 249.4 L 340.9 247.8 L 334.4 246.3 L 328 244.8 L 321.7 243.5 L 315.5 242.3 L 309.4 241.1 L 303.4 240.1 L 297.5 239.1 L 291.7 238.3 L 285.9 237.5 L 280.3 236.8 L 274.8 236.2 L 269.4 235.7 L 264.1 235.4 L 259 235.1 L 253.9 234.9 L 248.9 234.8 L 244.1 234.8 L 239.4 234.8" fill="none" stroke="#3a3835" stroke-width="1.6" stroke-dasharray="6 6" mask="url(#np-route-reveal)"></path>
 <circle data-np="arcdot" cx="981.8" cy="167.2" r="4.5" fill="#3a3835" opacity="0"></circle>
 <g class="globe-pin"><circle cx="981.8" cy="167.2" r="14" fill="#0057B7" opacity="0.18"></circle><circle cx="981.8" cy="167.2" r="7" fill="#FFD500" stroke="#0057B7" stroke-width="3"></circle></g>
-<g class="globe-pin"><circle cx="239.4" cy="234.8" r="14" fill="#3a3835" opacity="0.15"></circle><circle cx="239.4" cy="234.8" r="5" fill="#3a3835"></circle></g>
-<text x="1005.8" y="149.2" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Ukraine</text>
-<text x="1005.8" y="175.2" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Україна · where I’m from</text>
+<g class="globe-pin"><circle cx="381.6" cy="258.8" r="14" fill="#3a3835" opacity="0.18"></circle><circle cx="381.6" cy="258.8" r="5" fill="#3a3835"></circle></g>
+<g class="globe-pin"><circle cx="239.4" cy="234.8" r="14" fill="#3a3835" opacity="0.18"></circle><circle cx="239.4" cy="234.8" r="5" fill="#3a3835"></circle></g>
+<text x="1005.8" y="149.2" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Ukraine</text>
+<text x="1005.8" y="175.2" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Україна · where I’m from</text>
+<text x="403.6" y="298.8" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">New York</text>
+<text x="403.6" y="324.8" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">next stop</text>
 <text x="215.4" y="216.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Denver</text>
 <text x="215.4" y="242.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Colorado · home now</text>
 <rect x="0" y="0" width="1280" height="480" fill="url(#np-globe-fade)" pointer-events="none"></rect>
@@ -441,10 +511,13 @@ a{color:#3a3835}a:hover{color:#3a3835}
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path');
-    if (path) {
-      var vh = root.clientHeight, top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      path.style.setProperty('--t', String(clamp((vh * 0.92 - top) / (vh * 0.55))));
+    var path = $('path'), hzRow = $('hzrow');
+    if (path && hzRow) {
+      var hvh = root.clientHeight, htop = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      var hp = clamp(-htop / Math.max(1, path.offsetHeight - hvh));
+      path.style.setProperty('--p', String(hp));
+      var hmax = Math.max(0, hzRow.scrollWidth - hzRow.clientWidth);
+      hzRow.style.transform = window.innerWidth >= 768 ? 'translateX(' + (-hmax * hp) + 'px)' : 'none';
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
     var p = clamp(root.scrollTop / total);
