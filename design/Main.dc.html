@@ -240,6 +240,13 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .appr-art{display:flex;justify-content:center;align-items:center;margin:-8px -8px 4px;aspect-ratio:1.35;overflow:hidden}
 .appr-art img{width:82%;height:auto;display:block;transition:transform .6s cubic-bezier(0.2,0.8,0.2,1)}
 .appr-card:hover .appr-art img{transform:scale(1.04) rotate(-1deg)}
+.work-art{position:absolute;top:24px;right:24px;width:112px;height:auto;pointer-events:none}
+.deck-card > .proof-line,.deck-card > h3{margin-right:124px}
+@media (min-width:900px){.work-art{width:136px;top:28px;right:32px}.deck-card > .proof-line,.deck-card > h3{margin-right:156px}}
+@media (max-width:599px){.work-art{width:72px;top:20px;right:20px}.deck-card > h3{margin-right:80px}.deck-card > .proof-line{margin-right:0}}
+.tlx-logo[alt="Microsoft"]{height:80px;margin:-12px 0 -12px -6px}
+.hstat-row img[alt="Microsoft"]{height:54px;margin:-7px 0}
+@media (min-width:768px) and (max-height:860px){.hstat-row img[alt="Microsoft"]{height:44px;margin:-6px 0}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -434,7 +441,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <div class="deck-main">
 <div class="deck-stack">
-<article class="work-card deck-card" data-pos="0" aria-hidden="false">
+<article class="work-card deck-card" data-pos="0" aria-hidden="false"><img class="work-art" src="/_blob/3415aa425ddd9e431d0abaa0a737ff9a" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
 <div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
@@ -443,7 +450,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
 
 </article>
-<article class="work-card deck-card" data-pos="1" aria-hidden="true">
+<article class="work-card deck-card" data-pos="1" aria-hidden="true"><img class="work-art" src="/_blob/31432c3e8a34120a2325c508c727bb9d" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for 200 colleagues</h3>
 <div class="proof-line"><span>13 contributors</span><span>2 months</span><span>~200 participants</span></div>
@@ -451,7 +458,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
-<article class="work-card deck-card" data-pos="2" aria-hidden="true">
+<article class="work-card deck-card" data-pos="2" aria-hidden="true"><img class="work-art" src="/_blob/4cefba8785268eb628d6f7fdc83338a0" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
 <div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
@@ -460,7 +467,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
 
 </article>
-<article class="work-card deck-card" data-pos="3" aria-hidden="true">
+<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/7bdd5f0eaca0940a9cea751541684b90" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
 <div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
