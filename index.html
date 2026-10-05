@@ -211,16 +211,16 @@ a{color:#3a3835}a:hover{color:#3a3835}
 }
 @keyframes deck-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @media (prefers-reduced-motion: reduce){.deck-card{transition:opacity .3s}.deck.autoplay .deck-tab[aria-selected="true"] .deck-tab-bar{animation:none}}
-.hstats{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:28px}
+.hstats{display:flex;justify-content:space-between;align-items:center;gap:24px}
 .hstat{display:flex;align-items:center;gap:12px}
 .hstat-n{font-size:64px;line-height:0.9;letter-spacing:-0.04em;color:#3a3835;font-variant-numeric:lining-nums}
 .hstat-c{font-size:12.5px;line-height:1.35;letter-spacing:0.02em;color:rgba(58,56,53,0.72)}
 .hstat-k{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.6);font-weight:500;margin-bottom:6px}
-.hstat-logos{padding-left:28px;border-left:1px solid rgba(58,56,53,0.18)}
-.hstat-row{display:flex;align-items:center;gap:14px}
-.hstat-row img{height:34px;width:auto;display:block;transition:transform .3s}
+.hstat-logos{padding-left:32px;border-left:1px solid rgba(58,56,53,0.18)}
+.hstat-row{display:flex;align-items:center;gap:20px}
+.hstat-row img{height:40px;width:auto;display:block;transition:transform .3s}
 .hstat-row img:hover{transform:translateY(-2px) rotate(-2deg)}
-.hstat-place{display:flex;align-items:center;gap:12px;padding-left:28px;border-left:1px solid rgba(58,56,53,0.18)}
+.hstat-place{display:flex;align-items:center;gap:14px;padding-left:32px;border-left:1px solid rgba(58,56,53,0.18)}
 .hstat-place img{width:76px;height:auto;display:block}
 .hstat-city{display:block;font-size:19px;letter-spacing:-0.01em}
 .feat{position:relative;overflow:hidden}
@@ -231,8 +231,11 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .feat:hover,.feat:hover span,.feat:hover .feat-d{color:#fff !important}
 .feat svg{position:relative;z-index:1}
 .feat:hover svg{color:#fff}
-@media (max-width:1100px){.hstats{grid-template-columns:auto auto minmax(0,1fr)}.hstat-place{display:none}}
-@media (min-width:768px) and (max-height:860px){.hstat-n{font-size:52px}.hstat-row img{height:28px}.hstat-place img{width:60px}}
+@media (max-width:1100px){.hstat-place{display:none}}
+@media (min-width:768px) and (max-height:860px){.hstat-n{font-size:52px}.hstat-row img{height:32px}.hstat-place img{width:60px}}
+.appr-art{display:flex;justify-content:center;align-items:center;margin:-8px -8px 4px;aspect-ratio:1.35;overflow:hidden}
+.appr-art img{width:82%;height:auto;display:block;transition:transform .6s cubic-bezier(0.2,0.8,0.2,1)}
+.appr-card:hover .appr-art img{transform:scale(1.04) rotate(-1deg)}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -483,17 +486,20 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <div class="appr-grid">
 <article class="appr-card">
-<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">01</div>
+<div class="appr-art"><img src="assets/approach-system.webp" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I get close to the technical detail, ask questions and work with engineers on their own terms. That can mean reviewing code, developing KQL test plans or learning how a new infrastructure environment operates. Understanding the system helps me ask better questions about the risks around it.</p>
 </article>
 <article class="appr-card">
-<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">02</div>
+<div class="appr-art"><img src="assets/approach-shared.webp" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I lead rotating engagement teams of 8–12 and coordinate with engineering and business stakeholders. I make scope, responsibilities and dependencies clear so people understand how their work fits together. Listening to the people closest to the work is an important part of that process.</p>
 </article>
 <article class="appr-card">
-<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">03</div>
+<div class="appr-art"><img src="assets/approach-decision.webp" alt=""></div>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.6); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I explain risks through their likelihood and potential financial and reputational impact. Then I work with directors and corporate vice presidents to secure commitment to remediation. The goal is a decision people understand and can act on.</p>
 </article>
