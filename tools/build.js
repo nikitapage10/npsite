@@ -58,6 +58,15 @@ const script = `<script>
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
     var p = clamp(root.scrollTop / total);
+    var roots = $('roots'), arc = $('arc'), arcMask = $('arcmask'), arcDot = $('arcdot');
+    if (roots) {
+      var rvh = root.clientHeight, rtop = roots.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      var r = easeInOut(clamp((rvh * 0.85 - rtop) / (rvh * 0.55)));
+      arcMask.style.strokeDashoffset = String(1 - r);
+      var pt = arc.getPointAtLength(arc.getTotalLength() * r);
+      arcDot.setAttribute('cx', pt.x); arcDot.setAttribute('cy', pt.y);
+      arcDot.setAttribute('opacity', r > 0.02 && r < 0.98 ? '1' : '0');
+    }
     var nav = $('nav'), solid = root.scrollTop > total + root.clientHeight * 0.6;
     nav.style.backgroundColor = solid ? 'rgba(255,255,255,0.92)' : 'transparent';
     nav.style.boxShadow = solid ? '0 1px 0 #e5e7eb' : 'none';
