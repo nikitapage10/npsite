@@ -319,7 +319,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .xl-note{margin:16px 0 0;font-size:12.5px;color:rgba(58,56,53,0.6)}
 @media (min-width:900px){.xl-pane{padding:40px 48px}.xl-what{font-size:34px}.xl-obs,.xl-fix{font-size:14.5px}}
 .track-wrap{margin-top:8px}
-@media (min-width:768px){#roots .chapter{grid-template-rows:auto 1fr}#roots .roots-text{grid-column:2;grid-row:1 / span 2}#roots .roots-track{grid-column:1;grid-row:2;align-self:start;margin-top:12px}}
+@media (min-width:768px){#roots .chapter{grid-template-rows:auto 1fr;row-gap:36px}#roots .roots-text{grid-column:2;grid-row:1 / span 2;align-self:start !important;padding-top:44px}#roots .roots-track{grid-column:1;grid-row:2;align-self:start;margin-top:0}}
 .track-label{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.6);font-weight:500;margin-bottom:8px}
 .track{display:flex;align-items:center;gap:16px;padding:12px 16px 12px 12px;background:#FCFBF7;border:1px solid #e7e2d8;text-decoration:none;color:#3a3835;max-width:440px;transition:transform .3s,box-shadow .3s}
 .track:hover{transform:translateY(-2px);box-shadow:0 18px 30px -18px rgba(58,56,53,0.45);color:#3a3835}
@@ -805,12 +805,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div class="track-wrap roots-track"><div class="track-label">A track of mine</div>
 <iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/5ZnSNUn3uN0RKTC6wocgWa?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
 </div>
-<div data-np="roots" style="margin-top: 48px; position: relative; --r: 0">
-<svg viewBox="0 0 1280 480" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
+<div data-np="roots" style="margin-top: 8px; position: relative; --r: 0">
+<svg viewBox="0 0 1280 400" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
 <defs>
 <radialGradient id="np-globe-glow" cx="50%" cy="100%" r="62%"><stop offset="0" stop-color="#d9c9a8" stop-opacity="0.55"></stop><stop offset="1" stop-color="#d9c9a8" stop-opacity="0"></stop></radialGradient>
 <linearGradient id="np-globe-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0.25" stop-color="#3a3835" stop-opacity="0.07"></stop><stop offset="0.75" stop-color="#3a3835" stop-opacity="0"></stop></linearGradient>
-<linearGradient id="np-globe-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.55" stop-color="#F4F3F3" stop-opacity="0"></stop><stop offset="1" stop-color="#F4F3F3" stop-opacity="1"></stop></linearGradient>
+<linearGradient id="np-globe-fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0.42" stop-color="#F4F3F3" stop-opacity="0"></stop><stop offset="0.83" stop-color="#F4F3F3" stop-opacity="1"></stop></linearGradient>
 <clipPath id="np-globe-clip"><circle cx="640" cy="560" r="560"></circle></clipPath>
 <mask id="np-route-reveal" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="480"><path data-np="arcmask" d="M 981.8 167.2 L 975.7 164.6 L 969.4 162.1 L 963.1 159.7 L 956.7 157.4 L 950.2 155.2 L 943.7 153.1 L 937.1 151.1 L 930.4 149.2 L 923.6 147.4 L 916.8 145.6 L 910 144 L 903 142.4 L 896 141 L 889 139.6 L 881.9 138.4 L 874.7 137.2 L 867.5 136.1 L 860.2 135.2 L 852.9 134.3 L 845.5 133.5 L 838.1 132.8 L 830.7 132.2 L 823.2 131.7 L 815.6 131.4 L 808 131.1 L 800.4 130.9 L 792.8 130.8 L 785.1 130.8 L 777.3 130.9 L 769.6 131.1 L 761.8 131.4 L 754 131.8 L 746.1 132.3 L 738.3 132.8 L 730.4 133.5 L 722.5 134.3 L 714.5 135.2 L 706.6 136.2 L 698.6 137.2 L 690.7 138.4 L 682.7 139.7 L 674.7 141 L 666.7 142.5 L 658.7 144.1 L 650.7 145.7 L 642.7 147.4 L 634.6 149.3 L 626.6 151.2 L 618.6 153.2 L 610.6 155.3 L 602.6 157.6 L 594.6 159.9 L 586.6 162.2 L 578.7 164.7 L 570.7 167.3 L 562.8 170 L 554.8 172.7 L 546.9 175.5 L 539.1 178.5 L 531.2 181.5 L 523.4 184.6 L 515.6 187.8 L 507.8 191 L 500 194.4 L 492.3 197.8 L 484.6 201.3 L 477 204.9 L 469.4 208.6 L 461.8 212.4 L 454.3 216.2 L 446.8 220.1 L 439.4 224.1 L 432 228.2 L 424.6 232.4 L 417.3 236.6 L 410 240.9 L 402.9 245.2 L 395.7 249.7 L 388.6 254.2 L 381.6 258.8 L 374.6 256.7 L 367.7 254.8 L 360.9 252.9 L 354.1 251.1 L 347.5 249.4 L 340.9 247.8 L 334.4 246.3 L 328 244.8 L 321.7 243.5 L 315.5 242.3 L 309.4 241.1 L 303.4 240.1 L 297.5 239.1 L 291.7 238.3 L 285.9 237.5 L 280.3 236.8 L 274.8 236.2 L 269.4 235.7 L 264.1 235.4 L 259 235.1 L 253.9 234.9 L 248.9 234.8 L 244.1 234.8 L 239.4 234.8" fill="none" stroke="#fff" stroke-width="10" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"></path></mask>
 </defs>
@@ -859,9 +859,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <text x="226" y="300.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Colorado · home now</text>
 <rect x="0" y="0" width="1280" height="480" fill="url(#np-globe-fade)" pointer-events="none"></rect>
 </svg>
-<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-ukraine.webp" alt="" aria-hidden="true" style="--at: 0.02; --tx: -50%; left: 76.70%; top: 34.83%">
-<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-newyork.webp" alt="" aria-hidden="true" style="--at: 0.8; --tx: -22%; left: 29.81%; top: 53.92%">
-<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-denver.webp" alt="" aria-hidden="true" style="--at: 0.97; --tx: -80%; left: 18.70%; top: 48.92%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-ukraine.webp" alt="" aria-hidden="true" style="--at: 0.02; --tx: -50%; left: 76.70%; top: 41.80%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-newyork.webp" alt="" aria-hidden="true" style="--at: 0.8; --tx: -22%; left: 29.81%; top: 64.70%">
+<img loading="lazy" decoding="async" class="globe-emb" src="assets/place-denver.webp" alt="" aria-hidden="true" style="--at: 0.97; --tx: -80%; left: 18.70%; top: 58.70%">
 </div>
 </div>
 </section>
