@@ -403,8 +403,10 @@ const script = `<script>
 
   video.muted = true;
   if (video.getAttribute('data-src') && !video.getAttribute('src')) {
+    var portrait = window.innerWidth < 768 && window.innerHeight > window.innerWidth;
     var small = window.innerWidth < 900 || (navigator.connection && navigator.connection.saveData);
-    video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
+    if (portrait) { video.classList.add('is-portrait'); video.poster = 'assets/hero-poster-portrait.webp'; video.src = 'hero-loop-portrait.mp4'; }
+    else video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
   }
   function play() { if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }
   video.addEventListener('canplay', play);

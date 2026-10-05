@@ -452,9 +452,18 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .look-hint{display:none}
 #look .look-text{background:linear-gradient(to top, rgba(252,251,247,0.96) 0, rgba(252,251,247,0.88) 26%, rgba(252,251,247,0) 52%)}
 }
+@supports (height:100dvh){.np-root,.hero-stage{height:100dvh !important}}
+@media (max-width:767px){
+.hero-video.is-portrait{object-position:50% 0 !important}
+.hero-content{padding-bottom:max(32px, env(safe-area-inset-bottom))}
+.roots-globe{margin-top:72px !important}
+#roots .chapter{row-gap:32px}
+#roots svg text[x="381.6"]{transform:translate(84px, 34px)}
+#roots svg text[x="226"]{transform:translate(0, -6px)}
+}
 </style>
 </helmet>
-<div ref="{{setRoot}}" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #3a3835; font-family: 'Inter', sans-serif; position: relative">
+<div ref="{{setRoot}}" class="np-root" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #3a3835; font-family: 'Inter', sans-serif; position: relative">
 
 <nav ref="{{setNav}}" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
 <a href="#top" aria-label="Nikita Page, back to top" style="display: flex; align-items: center; text-decoration: none">
@@ -480,7 +489,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 
 <div id="top" ref="{{setTrack}}" style="position: relative; height: 210vh">
-<section style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center">
+<section class="hero-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center">
 
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div ref="{{setZoom}}" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
@@ -877,7 +886,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div class="track-wrap roots-track"><div class="track-label">A track of mine</div>
 <a class="track" data-spotify="5ZnSNUn3uN0RKTC6wocgWa" href="https://open.spotify.com/track/5ZnSNUn3uN0RKTC6wocgWa" target="_blank" rel="noopener"><img src="/_blob/3b87fb250a686f592abddf1d7929424c" alt="Cover art for Take What You Want"><span class="track-meta"><span class="serif track-t">Take What You Want</span><span class="track-a">feat. Manno · Listen on Spotify</span></span><span class="track-play" aria-hidden="true"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></span></a></div>
 </div>
-<div ref="{{setRoots}}" style="margin-top: 8px; position: relative; --r: 0">
+<div ref="{{setRoots}}" class="roots-globe" style="margin-top: 8px; position: relative; --r: 0">
 <svg viewBox="0 0 1280 400" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
 <defs>
 <radialGradient id="np-globe-glow" cx="50%" cy="100%" r="62%"><stop offset="0" stop-color="#d9c9a8" stop-opacity="0.55"></stop><stop offset="1" stop-color="#d9c9a8" stop-opacity="0"></stop></radialGradient>
