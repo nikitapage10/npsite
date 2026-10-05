@@ -105,6 +105,7 @@ const script = `<script>
     panel.style.transform = 'translateY(' + (140 * easeOut(clamp(p / 0.4))) + 'px)';
     enter(intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
     chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
+    var collage = $('collage'); if (collage) collage.style.setProperty('--q2', String(clamp((p - 0.3) / 0.45)));
     enter(quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
   }
   function npInk(canvas, video) {

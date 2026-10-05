@@ -160,6 +160,12 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .appr-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .appr-card{padding:36px}
 }
+.collage{display:none}
+@media (min-width:768px){
+.collage{display:block;position:absolute;right:max(56px, calc((100% - 1280px) / 2));top:118px;width:min(46%, 640px);height:52%;pointer-events:none}
+.collage-piece{--e:clamp(0, calc(var(--q2) * 5 - var(--i)), 1);position:absolute;height:auto;opacity:var(--e);transform:translate(calc((1 - var(--e)) * -140px), calc((1 - var(--e)) * -100px)) rotate(var(--rot)) scale(calc(0.7 + 0.3 * var(--e)));transform-origin:top left;filter:drop-shadow(0 14px 22px rgba(58,56,53,0.12))}
+}
+@media (min-width:768px) and (max-height:860px){.collage{top:96px;height:46%}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -299,7 +305,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 
 <div aria-hidden="false" style="position: absolute; inset: 0; z-index: 20; pointer-events: none">
-<div class="intro-inner" style="height: 100%; box-sizing: border-box; max-width: 1392px; margin: 0 auto; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<div class="intro-inner" style="position: relative; height: 100%; box-sizing: border-box; max-width: 1392px; margin: 0 auto; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
 <div data-np="intro" class="intro-card" style="opacity: 0; transform-origin: top left; will-change: transform, opacity">
 <div style="background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 40px; display: flex; flex-direction: column; gap: 20px">
@@ -325,6 +331,12 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="chip" style="--i: 7">Cloud &amp; AI</span>
 <span class="chip" style="--i: 8">Hardware &amp; datacenters</span>
 </div>
+</div>
+<div data-np="collage" class="collage" aria-hidden="true" style="--q2: 0">
+<img class="collage-piece" src="assets/logo-microsoft.webp" alt="" style="--i: 0; --rot: -3deg; left: 2%; top: 0%; width: 44%">
+<img class="collage-piece" src="assets/logo-kpmg.webp" alt="" style="--i: 1; --rot: 4deg; left: 54%; top: 8%; width: 38%">
+<img class="collage-piece" src="assets/logo-verizon.webp" alt="" style="--i: 2; --rot: 2deg; left: 10%; top: 50%; width: 44%">
+<img class="collage-piece" src="assets/logo-pennstate.webp" alt="" style="--i: 3; --rot: -5deg; left: 64%; top: 46%; width: 27%">
 </div>
 <figure data-np="quote" class="intro-quote" style="margin: 0; align-self: flex-end; max-width: 560px; opacity: 0; transform-origin: top left; will-change: transform, opacity; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 36px 40px">
 <blockquote class="serif" style="margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -0.03em; color: #3a3835">“The problems rhyme, even when the vocabulary doesn’t.”</blockquote>
@@ -628,6 +640,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
     panel.style.transform = 'translateY(' + (140 * easeOut(clamp(p / 0.4))) + 'px)';
     enter(intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
     chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
+    var collage = $('collage'); if (collage) collage.style.setProperty('--q2', String(clamp((p - 0.3) / 0.45)));
     enter(quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
   }
   function npInk(canvas, video) {
