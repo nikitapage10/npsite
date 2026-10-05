@@ -8,10 +8,10 @@ const out = process.argv[2] || path.join(__dirname, '..');
 const BLOBS = {
   "f1ef867ba998411a2993a50cc89ab517": "hero-loop.mp4",
   "788ba417914b44bc1ffcae86b9596440": "assets/presenting.webp",
-  "ce92eccc23614ee1c71b298d6a12f44a": "assets/logo-kpmg.webp",
-  "3d996878badfad6c8243451dbf825020": "assets/logo-verizon.webp",
-  "4ed141a5261c97dba3677c75a365b2bc": "assets/logo-microsoft.webp",
-  "7e7a51649f9d47f92b0e130b4d7a41f3": "assets/logo-pennstate.webp",
+  "69bcc0f2cbdbc380f72e5818cb2568e0": "assets/logo-kpmg.webp",
+  "26bee8262bf1481e4decc1f906e60f6e": "assets/logo-verizon.webp",
+  "db1050991f56983ccfd09adedc1a08bd": "assets/logo-microsoft.webp",
+  "64f1445fea8ba8d46809934864d62ddd": "assets/logo-pennstate.webp",
   "6747b2e537495b8eb81140492364b6fa": "assets/place-ukraine.webp",
   "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
@@ -30,7 +30,7 @@ function convert(file, title, extraScript) {
     .replace(/playsInline="\{\{yes\}\}"/g, 'playsinline')
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
-    .replace(/\{\{paperOpacity\}\}/g, '0.45')
+    .replace(/\{\{paperOpacity\}\}/g, '0.8')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);

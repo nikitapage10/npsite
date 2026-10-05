@@ -91,7 +91,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .hs-roll{--L:56px;position:relative;height:calc(var(--L) * 3);margin-top:20px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%);mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%)}
 .hs-roll-inner{will-change:transform}
 .hs-name{height:var(--L);display:flex;align-items:center;font-size:calc(var(--L) * 0.84)}
-.hs-name img{display:block;height:calc(var(--L) * 0.86);width:auto;max-width:100%;object-fit:contain;object-position:left center}
+.hs-name img{display:block;height:calc(var(--L) * 0.92);width:auto;max-width:100%;object-fit:contain;object-position:left center;transform-origin:left center;transform:scale(calc(1.12 - min(max(var(--r) - var(--c), var(--c) - var(--r)), 1) * 0.4))}
 .hs-ticks{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px}
 .hs-tick{display:flex;align-items:center;gap:8px;opacity:clamp(0.4, calc(1.6 - max(var(--r) - var(--c), var(--c) - var(--r)) * 1.6), 1)}
 .hs-bar{display:block;width:22px;height:2px;background:#3a3835;transform-origin:left;transform:scaleX(clamp(0.25, calc(1 - max(var(--r) - var(--c), var(--c) - var(--r))), 1))}
@@ -109,7 +109,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 }
 @media (min-width:768px){
 .hs-inner{padding:96px 56px 56px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px}
-.hs-roll{--L:clamp(150px, 21vh, 250px);margin-top:20px}
+.hs-roll{--L:clamp(120px, 16vh, 190px);margin-top:28px}
 .hs-line{font-size:clamp(32px, 3vw, 46px)}
 }
 .hs-logo{height:72px}
@@ -211,11 +211,10 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <video data-np="video" src="hero-loop.mp4" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
-<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(251,249,244,0.42); pointer-events: none"></div>
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.45; pointer-events: none">
-<filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.33  1.6 0 0 0 -0.62"></feColorMatrix></filter>
-<filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.38  -1 0 0 0 0.36"></feColorMatrix></filter>
-<filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.44  0.9 0 0 0 -0.32"></feColorMatrix></filter>
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.8; pointer-events: none">
+<filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.74  0 0 0 0 0.70  0 0 0 0 0.64  1.6 0 0 0 -0.62"></feColorMatrix></filter>
+<filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.76  0 0 0 0 0.72  0 0 0 0 0.66  -1.1 0 0 0 0.5"></feColorMatrix></filter>
+<filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.88  0 0 0 0 0.84  0 0 0 0 0.77  0.9 0 0 0 -0.32"></feColorMatrix></filter>
 <rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect>
 <rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect>
 <rect width="100%" height="100%" filter="url(#np-canvas-weave)"></rect>
@@ -370,7 +369,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div style="display: flex; flex-direction: column; min-width: 0">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
 <h2 class="serif" style="margin: 10px 0 0; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 400">How I got here</h2>
-<div class="hs-roll" aria-hidden="true"><div data-np="hsroll" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="hs-name"><img src="assets/logo-pennstate.webp" alt="Penn State"></div><div class="hs-name"><img src="assets/logo-kpmg.webp" alt="KPMG"></div><div class="hs-name"><img src="assets/logo-verizon.webp" alt="Verizon"></div><div class="hs-name"><img src="assets/logo-microsoft.webp" alt="Microsoft"></div><div class="serif hs-name">&nbsp;</div></div></div>
+<div class="hs-roll" aria-hidden="true"><div data-np="hsroll" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="hs-name" style="--c: 0"><img src="assets/logo-pennstate.webp" alt="Penn State"></div><div class="hs-name" style="--c: 1"><img src="assets/logo-kpmg.webp" alt="KPMG"></div><div class="hs-name" style="--c: 2"><img src="assets/logo-verizon.webp" alt="Verizon"></div><div class="hs-name" style="--c: 3"><img src="assets/logo-microsoft.webp" alt="Microsoft"></div><div class="serif hs-name">&nbsp;</div></div></div>
 <ol class="hs-ticks" aria-hidden="true"><li class="hs-tick" style="--c: 0"><span class="hs-bar"></span>Penn State</li><li class="hs-tick" style="--c: 1"><span class="hs-bar"></span>KPMG</li><li class="hs-tick" style="--c: 2"><span class="hs-bar"></span>Verizon</li><li class="hs-tick" style="--c: 3"><span class="hs-bar"></span>Microsoft</li></ol>
 </div>
 <div class="hs-blocks" style="position: relative">
