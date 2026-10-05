@@ -170,6 +170,11 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .collage-piece{--e:clamp(0, calc(var(--q2) * 5 - var(--i)), 1);position:absolute;height:auto;opacity:var(--e);transform:translate(calc((1 - var(--e)) * -140px), calc((1 - var(--e)) * -100px)) rotate(var(--rot)) scale(calc(0.7 + 0.3 * var(--e)));transform-origin:top left;filter:drop-shadow(0 14px 22px rgba(58,56,53,0.12))}
 }
 @media (min-width:768px) and (max-height:860px){.collage{top:96px;height:46%}}
+.ind-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;max-width:640px}
+.chip.ind-label{grid-column:1 / -1;background:transparent !important;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;padding:0 0 4px;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;font-weight:500;white-space:normal}
+.chip.ind{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:12px 6px 10px;white-space:normal;text-align:center;font-size:12.5px;line-height:1.25}
+.chip.ind img{display:block;width:56px;height:56px;object-fit:contain}
+@media (min-width:768px) and (max-height:860px){.chip.ind img{width:44px;height:44px}.chip.ind{padding:8px 6px}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -323,16 +328,16 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </div>
 </div>
-<div ref="{{setChips}}" style="--q: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; max-width: 680px">
-<span class="chip" style="--i: 0; background: transparent; border-color: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; padding-left: 0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; font-weight: 500">Rooms I’ve worked in</span>
-<span class="chip" style="--i: 0">Banking</span>
-<span class="chip" style="--i: 1">Insurance</span>
-<span class="chip" style="--i: 2">Fashion &amp; beauty</span>
-<span class="chip" style="--i: 3">Grocery retail</span>
-<span class="chip" style="--i: 5">Telecom</span>
-<span class="chip" style="--i: 6">Gaming</span>
-<span class="chip" style="--i: 7">Cloud &amp; AI</span>
-<span class="chip" style="--i: 8">Hardware &amp; datacenters</span>
+<div ref="{{setChips}}" class="ind-grid" style="--q: 0">
+<span class="chip ind-label" style="--i: 0">Industries I’ve worked in</span>
+<span class="chip ind" style="--i: 0"><img src="/_blob/2d8607db39b3308f61d413a6845bde88" alt=""><span>Banking</span></span>
+<span class="chip ind" style="--i: 1"><img src="/_blob/dc18bd209393014f1ee6f209f4a6d8f5" alt=""><span>Insurance</span></span>
+<span class="chip ind" style="--i: 2"><img src="/_blob/6e757c3502ea6cf78701968c4eb19057" alt=""><span>Fashion &amp; beauty</span></span>
+<span class="chip ind" style="--i: 3"><img src="/_blob/c78eaef20efca6b30d9d0c6e8460ea92" alt=""><span>Grocery retail</span></span>
+<span class="chip ind" style="--i: 4"><img src="/_blob/74f109ea85044b85cdd8095db588e1d4" alt=""><span>Telecom</span></span>
+<span class="chip ind" style="--i: 5"><img src="/_blob/3159d5df4b3c4d8f53a8ac761598dc3a" alt=""><span>Gaming</span></span>
+<span class="chip ind" style="--i: 6"><img src="/_blob/21f5931d4f7e4063d56095fecdfc613c" alt=""><span>Cloud &amp; AI</span></span>
+<span class="chip ind" style="--i: 7"><img src="/_blob/8442f3ca21abf64702488e3d67ce399d" alt=""><span>Hardware &amp; datacenters</span></span>
 </div>
 </div>
 <div ref="{{setCollage}}" class="collage" aria-hidden="true" style="--q2: 0">
