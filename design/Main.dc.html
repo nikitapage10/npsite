@@ -250,8 +250,10 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.76  0 0 0 0 0.72  0 0 0 0 0.66  -1.1 0 0 0 0.5"></feColorMatrix></filter>
 <filter id="np-parchment" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.0035 0.006" numOctaves="5" seed="21" result="m"></feTurbulence><feColorMatrix in="m" type="matrix" values="0 0 0 0 0.95  0 0 0 0 0.87  0 0 0 0 0.70  1.3 0 0 0 -0.2" result="mt"></feColorMatrix><feTurbulence type="fractalNoise" baseFrequency="0.018 0.22" numOctaves="3" seed="5" result="fb"></feTurbulence><feColorMatrix in="fb" type="matrix" values="0 0 0 0 0.82  0 0 0 0 0.74  0 0 0 0 0.58  1.5 0 0 0 -0.82" result="ft"></feColorMatrix><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2" result="gr"></feTurbulence><feColorMatrix in="gr" type="matrix" values="0 0 0 0 0.98  0 0 0 0 0.95  0 0 0 0 0.88  1.2 0 0 0 -0.55" result="gt"></feColorMatrix><feMerge><feMergeNode in="mt"></feMergeNode><feMergeNode in="ft"></feMergeNode><feMergeNode in="gt"></feMergeNode></feMerge></filter>
 <filter id="np-coldpress" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="4" seed="11" result="n"></feTurbulence><feDiffuseLighting in="n" surfaceScale="2.4" diffuseConstant="1.08" lighting-color="#fffaf0" result="l"><feDistantLight azimuth="235" elevation="52"></feDistantLight></feDiffuseLighting><feColorMatrix in="l" type="saturate" values="0.35"></feColorMatrix></filter>
+<filter id="np-micro" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="2.2" numOctaves="1" seed="3" stitchTiles="stitch"></feTurbulence><feColorMatrix type="saturate" values="0"></feColorMatrix></filter>
 <filter id="np-linen" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.9" numOctaves="3" seed="4" result="h"></feTurbulence><feTurbulence type="fractalNoise" baseFrequency="0.9 0.006" numOctaves="3" seed="8" result="v"></feTurbulence><feComposite in="h" in2="v" operator="arithmetic" k1="0" k2="0.5" k3="0.5" k4="0" result="m"></feComposite><feColorMatrix in="m" type="matrix" values="0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 0 1" result="g"></feColorMatrix><feComponentTransfer in="g"><feFuncR type="linear" slope="2.6" intercept="-0.62"></feFuncR><feFuncG type="linear" slope="2.6" intercept="-0.64"></feFuncG><feFuncB type="linear" slope="2.6" intercept="-0.7"></feFuncB><feFuncA type="identity"></feFuncA></feComponentTransfer></filter>
 <filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.88  0 0 0 0 0.84  0 0 0 0 0.77  0.9 0 0 0 -0.32"></feColorMatrix></filter>
+<rect width="100%" height="100%" filter="url(#np-micro)" opacity="{{microOp}}"></rect>
 <rect width="100%" height="100%" filter="url(#np-parchment)" opacity="{{parchOp}}"></rect>
 <rect width="100%" height="100%" filter="url(#np-coldpress)" opacity="{{coldOp}}"></rect>
 <rect width="100%" height="100%" filter="url(#np-linen)" opacity="{{linenOp}}"></rect>
@@ -624,7 +626,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"paperTexture":{"editor":"enum","options":["Rice paper","Parchment","Cold-press paper","Linen","Fine grain","None"],"default":"Rice paper","section":"Texture"},"paperOpacity":{"editor":"range","default":0.75,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"paperTexture":{"editor":"enum","options":["Micro grain","Rice paper","Parchment","Cold-press paper","Linen","Fine grain","None"],"default":"Micro grain","section":"Texture"},"paperOpacity":{"editor":"range","default":0.35,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   setRoot = (el) => { this.root = el; };
   setTrack = (el) => { this.track = el; };
@@ -824,8 +826,9 @@ class Component extends DCLogic {
     return {
       yes: true,
       setRoot: this.setRoot, setTrack: this.setTrack, setZoom: this.setZoom,
-      setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.75,
-      washiOp: (this.props.paperTexture ?? 'Rice paper') === 'Rice paper' ? 1 : 0,
+      setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.35,
+      microOp: (this.props.paperTexture ?? 'Micro grain') === 'Micro grain' ? 1 : 0,
+      washiOp: this.props.paperTexture === 'Rice paper' ? 1 : 0,
       parchOp: this.props.paperTexture === 'Parchment' ? 1 : 0,
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
