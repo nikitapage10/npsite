@@ -272,6 +272,71 @@ const script = `<script>
     setTimeout(function () { requestAnimationFrame(step); }, 500);
   }
   npCount(panel);
+  function npBloom(canvas) {
+    if (!canvas || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return function () {};
+    var area = canvas.parentElement, ctx = canvas.getContext('2d');
+    var PIGMENTS = [[176, 141, 76], [138, 112, 82], [122, 138, 112], [196, 168, 128], [150, 128, 104]];
+    var LIFE = 2200, STEP = 26, MAX = 90, SEG = 28;
+    var blooms = [], last = null, running = false, dead = false, w = 0, h = 0, hue = 0;
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = area.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function add(x, y, speed) {
+      if (blooms.length >= MAX) blooms.shift();
+      hue = (hue + (Math.random() < 0.18 ? 1 : 0)) % PIGMENTS.length;
+      blooms.push({ x: x + (Math.random() - 0.5) * 14, y: y + (Math.random() - 0.5) * 14, born: performance.now(),
+        seed: Math.random() * 6.283, rmax: 26 + Math.random() * 34 + Math.min(40, speed * 0.35), c: PIGMENTS[hue], a: 0.32 + Math.random() * 0.18 });
+    }
+    function shape(b, r) {
+      ctx.beginPath();
+      for (var i = 0; i <= SEG; i++) {
+        var t = (i / SEG) * 6.283;
+        var k = 0.8 + 0.12 * Math.sin(t * 3 + b.seed) + 0.07 * Math.sin(t * 5 + b.seed * 1.7) + 0.05 * Math.sin(t * 9 + b.seed * 0.4);
+        var px = b.x + Math.cos(t) * r * k, py = b.y + Math.sin(t) * r * k;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    }
+    function frame(now) {
+      if (dead) return;
+      ctx.clearRect(0, 0, w, h);
+      for (var i = blooms.length - 1; i >= 0; i--) {
+        var b = blooms[i], t = (now - b.born) / LIFE;
+        if (t >= 1) { blooms.splice(i, 1); continue; }
+        var r = 8 + (b.rmax - 8) * (1 - Math.pow(1 - Math.min(1, t * 1.6), 3));
+        var alpha = b.a * Math.pow(1 - t, 1.4), c = b.c.join(',');
+        var g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
+        g.addColorStop(0, 'rgba(' + c + ',' + (alpha * 0.28) + ')');
+        g.addColorStop(0.68, 'rgba(' + c + ',' + (alpha * 0.5) + ')');
+        g.addColorStop(0.9, 'rgba(' + c + ',' + (alpha * 0.85) + ')');
+        g.addColorStop(1, 'rgba(' + c + ',0)');
+        ctx.fillStyle = g; shape(b, r); ctx.fill();
+      }
+      if (blooms.length) requestAnimationFrame(frame); else running = false;
+    }
+    function onMove(e) {
+      var rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
+      if (x < 0 || y < 0 || x > w || y > h) return;
+      if (!last) { last = { x: x, y: y }; add(x, y, 0); }
+      var dx = x - last.x, dy = y - last.y, d = Math.hypot(dx, dy);
+      if (d >= STEP) {
+        var n = Math.min(4, Math.floor(d / STEP));
+        for (var k = 1; k <= n; k++) add(last.x + dx * k / n, last.y + dy * k / n, d);
+        last = { x: x, y: y };
+      }
+      if (!running) { running = true; requestAnimationFrame(frame); }
+    }
+    function onLeave() { last = null; }
+    area.addEventListener('pointermove', onMove);
+    area.addEventListener('pointerleave', onLeave);
+    var ro = new ResizeObserver(resize); ro.observe(area);
+    resize();
+    return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
+  }
+  npBloom($('bloom'));
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
