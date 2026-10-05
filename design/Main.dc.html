@@ -94,7 +94,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .hs-inner{padding:96px 24px 40px;grid-template-columns:minmax(0,1fr);gap:24px}
 .hs-roll{--L:56px;position:relative;height:calc(var(--L) * 3);margin-top:20px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%);mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%)}
 .hs-roll-inner{will-change:transform}
-.hs-name{height:var(--L);line-height:var(--L);font-size:calc(var(--L) * 0.84);letter-spacing:-0.04em;white-space:nowrap}
+.hs-name{height:var(--L);display:flex;align-items:center;font-size:calc(var(--L) * 0.84)}
+.hs-name img{display:block;height:calc(var(--L) * 0.86);width:auto;max-width:100%;object-fit:contain;object-position:left center}
 .hs-ticks{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px}
 .hs-tick{display:flex;align-items:center;gap:8px;opacity:clamp(0.4, calc(1.6 - max(var(--r) - var(--c), var(--c) - var(--r)) * 1.6), 1)}
 .hs-bar{display:block;width:22px;height:2px;background:#3a3835;transform-origin:left;transform:scaleX(clamp(0.25, calc(1 - max(var(--r) - var(--c), var(--c) - var(--r))), 1))}
@@ -112,12 +113,12 @@ a{color:#3a3835}a:hover{color:#3a3835}
 }
 @media (min-width:768px){
 .hs-inner{padding:96px 56px 56px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px}
-.hs-roll{--L:clamp(72px, 8.4vw, 136px);margin-top:36px}
+.hs-roll{--L:clamp(150px, 21vh, 250px);margin-top:20px}
 .hs-line{font-size:clamp(32px, 3vw, 46px)}
 }
 .hs-logo{height:72px}
 @media (min-width:768px){.hs-logo{height:clamp(72px, 10vh, 112px)}}
-.globe-emb{--e:clamp(0, calc((var(--r) - var(--at)) * 10 + 1), 1);position:absolute;width:18%;height:auto;pointer-events:none;opacity:var(--e);transform:translate(var(--tx), calc(-100% - 22px)) scale(calc(0.8 + 0.2 * var(--e)));transform-origin:50% 100%}
+.globe-emb{--e:clamp(0, calc((var(--r) - var(--at)) * 10 + 1), 1);position:absolute;width:10.5%;height:auto;pointer-events:none;opacity:var(--e);transform:translate(var(--tx), calc(-100% - 16px)) scale(calc(0.8 + 0.2 * var(--e)));transform-origin:50% 100%}
 #translation{background:#F4F3F3 url(/_blob/c235aa94a0af30c07212e4d57f2261d5) center bottom / cover no-repeat}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
@@ -372,14 +373,13 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div style="display: flex; flex-direction: column; min-width: 0">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
 <h2 class="serif" style="margin: 10px 0 0; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 400">How I got here</h2>
-<div class="hs-roll" aria-hidden="true"><div ref="{{setHsRoll}}" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="serif hs-name">Penn State</div><div class="serif hs-name">KPMG</div><div class="serif hs-name">Verizon</div><div class="serif hs-name">Microsoft</div><div class="serif hs-name">&nbsp;</div></div></div>
+<div class="hs-roll" aria-hidden="true"><div ref="{{setHsRoll}}" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="hs-name"><img src="/_blob/7e7a51649f9d47f92b0e130b4d7a41f3" alt="Penn State"></div><div class="hs-name"><img src="/_blob/ce92eccc23614ee1c71b298d6a12f44a" alt="KPMG"></div><div class="hs-name"><img src="/_blob/3d996878badfad6c8243451dbf825020" alt="Verizon"></div><div class="hs-name"><img src="/_blob/4ed141a5261c97dba3677c75a365b2bc" alt="Microsoft"></div><div class="serif hs-name">&nbsp;</div></div></div>
 <ol class="hs-ticks" aria-hidden="true"><li class="hs-tick" style="--c: 0"><span class="hs-bar"></span>Penn State</li><li class="hs-tick" style="--c: 1"><span class="hs-bar"></span>KPMG</li><li class="hs-tick" style="--c: 2"><span class="hs-bar"></span>Verizon</li><li class="hs-tick" style="--c: 3"><span class="hs-bar"></span>Microsoft</li></ol>
 </div>
 <div class="hs-blocks" style="position: relative">
 <article ref="{{setHsBlock0}}" class="hs-block" style="--n: 5; --lp: 0; opacity: 1">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>01 / 04</span><span>Education</span></div>
-<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="/_blob/7e7a51649f9d47f92b0e130b4d7a41f3" alt="Penn State" style="display: block; height: 100%; width: auto"></div>
-<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">technology</span> <span class="hw" style="--w: 2">became</span> <span class="hw" style="--w: 3">a</span> <span class="hw" style="--w: 4">direction.</span></h3>
+<h3 class="serif hs-line" style="margin: 28px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">technology</span> <span class="hw" style="--w: 2">became</span> <span class="hw" style="--w: 3">a</span> <span class="hw" style="--w: 4">direction.</span></h3>
 <ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
 <li class="hf" style="--k: 0">B.S., Information Sciences &amp; Technology</li>
 <li class="hf" style="--k: 1">People, systems, and data, studied as one thing</li>
@@ -387,7 +387,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </article>
 <article ref="{{setHsBlock1}}" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>02 / 04</span><span>2017 – 2019</span></div>
-<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="/_blob/ce92eccc23614ee1c71b298d6a12f44a" alt="KPMG" style="display: block; height: 100%; width: auto"></div>
 <h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">to</span> <span class="hw" style="--w: 4">translate</span> <span class="hw" style="--w: 5">between</span> <span class="hw" style="--w: 6">business</span> <span class="hw" style="--w: 7">and</span> <span class="hw" style="--w: 8">technology.</span></h3>
 <ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
 <li class="hf" style="--k: 0">Banks, insurers, and fashion, beauty, and grocery brands</li>
@@ -396,7 +395,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </article>
 <article ref="{{setHsBlock2}}" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>03 / 04</span><span>2019 – 2020</span></div>
-<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="/_blob/3d996878badfad6c8243451dbf825020" alt="Verizon" style="display: block; height: 100%; width: auto"></div>
 <h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">what</span> <span class="hw" style="--w: 4">operating</span> <span class="hw" style="--w: 5">at</span> <span class="hw" style="--w: 6">scale</span> <span class="hw" style="--w: 7">really</span> <span class="hw" style="--w: 8">means.</span></h3>
 <ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
 <li class="hf" style="--k: 0">Telecom infrastructure, engineering processes, and cloud</li>
@@ -405,7 +403,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </article>
 <article ref="{{setHsBlock3}}" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>04 / 04</span><span>2021 – now</span></div>
-<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="/_blob/4ed141a5261c97dba3677c75a365b2bc" alt="Microsoft" style="display: block; height: 100%; width: auto"></div>
 <h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">security,</span> <span class="hw" style="--w: 2">AI,</span> <span class="hw" style="--w: 3">systems,</span> <span class="hw" style="--w: 4">and</span> <span class="hw" style="--w: 5">leadership</span> <span class="hw" style="--w: 6">began</span> <span class="hw" style="--w: 7">to</span> <span class="hw" style="--w: 8">converge.</span></h3>
 <ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
 <li class="hf" style="--k: 0">About 12 engagements a year across LinkedIn, Xbox, and Copilot</li>
