@@ -148,7 +148,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .tlx-card::before{content:"";position:absolute;top:44px;width:56px;height:1px;background:rgba(58,56,53,0.35);right:-57px}
 .flip .tlx-card::before{right:auto;left:-57px}
 }
-.panel,.intro-card > div,.intro-quote,.chip:not(:first-child),.proof > div,.tlx-card{background:#FCFBF7 url(/_blob/211e591e421c5c5c08823a7c8d88f671) repeat !important;background-size:320px 320px !important}
+.panel,.intro-card > div,.intro-quote,.chip:not(:first-child),.proof > div,.tlx-card{background:#FCFBF7 url(/_blob/037b59ccffbaf6bee1fac4662a5de4a2) repeat !important;background-size:256px 256px !important}
+.hero-washi{background:url(/_blob/b3a1907df41a6bf570eb5a69b37ebbfc) repeat;background-size:512px 512px}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -243,6 +244,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <video ref="{{setVideo}}" src="/_blob/f1ef867ba998411a2993a50cc89ab517" muted="{{yes}}" playsInline="{{yes}}" autoPlay="{{yes}}" loop="{{yes}}" preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
+<div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: {{washiOp}}; pointer-events: none"></div>
 <svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: soft-light; opacity: {{paperOpacity}}; pointer-events: none">
 <filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.74  0 0 0 0 0.70  0 0 0 0 0.64  1.6 0 0 0 -0.62"></feColorMatrix></filter>
 <filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.76  0 0 0 0 0.72  0 0 0 0 0.66  -1.1 0 0 0 0.5"></feColorMatrix></filter>
@@ -390,7 +392,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 <section id="look" aria-label="Interactive illustration: move across it to reveal Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
 <img src="/_blob/788ba417914b44bc1ffcae86b9596440" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
-<canvas ref="{{setInk}}" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
+<canvas ref="{{setInk}}" data-tex="/_blob/9bdec23150a5e336244130a3dc3de770" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
 <svg aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none"><rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect><rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect></svg>
 <div class="sec" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Look closer</div>
@@ -622,7 +624,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"paperTexture":{"editor":"enum","options":["Parchment","Cold-press paper","Linen","Fine grain","None"],"default":"Parchment","section":"Texture"},"paperOpacity":{"editor":"range","default":0.75,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"paperTexture":{"editor":"enum","options":["Rice paper","Parchment","Cold-press paper","Linen","Fine grain","None"],"default":"Rice paper","section":"Texture"},"paperOpacity":{"editor":"range","default":0.75,"min":0,"max":1,"step":0.05,"section":"Texture"},"zoomDepth":{"editor":"range","default":1.9,"min":1.2,"max":3,"step":0.1,"section":"Scroll"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   setRoot = (el) => { this.root = el; };
   setTrack = (el) => { this.track = el; };
@@ -725,7 +727,10 @@ class Component extends DCLogic {
     var WOB = [0.14, 0.08, 0.05], INNER = 0.2, STOPS = [0.95, 0.88, 0];
     var band = canvas.parentElement, ctx = canvas.getContext('2d');
     var stamps = [], running = false, last = null, w = 0, h = 0, brush = 120, lastUser = 0, inView = false, dead = false;
-    function paper() { ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgb(' + MASK.join(',') + ')'; ctx.fillRect(0, 0, w, h); }
+    function paper() { ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = pattern || 'rgb(' + MASK.join(',') + ')'; ctx.fillRect(0, 0, w, h); }
+    var pattern = null, tex = new Image();
+    tex.onload = function () { pattern = ctx.createPattern(tex, 'repeat'); if (!running) paper(); };
+    if (canvas.getAttribute('data-tex')) tex.src = canvas.getAttribute('data-tex');
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = band.getBoundingClientRect();
       w = rect.width; h = rect.height; brush = Math.max(80, Math.min(160, w * 0.08));
@@ -820,7 +825,8 @@ class Component extends DCLogic {
       yes: true,
       setRoot: this.setRoot, setTrack: this.setTrack, setZoom: this.setZoom,
       setVideo: this.setVideo, paperOpacity: this.props.paperOpacity ?? 0.75,
-      parchOp: (this.props.paperTexture ?? 'Parchment') === 'Parchment' ? 1 : 0,
+      washiOp: (this.props.paperTexture ?? 'Rice paper') === 'Rice paper' ? 1 : 0,
+      parchOp: this.props.paperTexture === 'Parchment' ? 1 : 0,
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
       grainOp: this.props.paperTexture === 'Fine grain' ? 0.6 : 0, setHero: this.setHero,

@@ -17,7 +17,9 @@ const BLOBS = {
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
   "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
   "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp",
-  "211e591e421c5c5c08823a7c8d88f671": "assets/linen-white.webp"
+  "037b59ccffbaf6bee1fac4662a5de4a2": "assets/paper-white.webp",
+  "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
+  "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp"
 };
 
 function convert(file, title, extraScript) {
@@ -32,7 +34,7 @@ function convert(file, title, extraScript) {
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
     .replace(/\{\{paperOpacity\}\}/g, '0.75')
-    .replace(/\{\{parchOp\}\}/g, '1').replace(/\{\{coldOp\}\}/g, '0').replace(/\{\{linenOp\}\}/g, '0').replace(/\{\{grainOp\}\}/g, '0')
+    .replace(/\{\{washiOp\}\}/g, '1').replace(/\{\{parchOp\}\}/g, '0').replace(/\{\{coldOp\}\}/g, '0').replace(/\{\{linenOp\}\}/g, '0').replace(/\{\{grainOp\}\}/g, '0')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
@@ -109,7 +111,10 @@ const script = `<script>
     var WOB = [0.14, 0.08, 0.05], INNER = 0.2, STOPS = [0.95, 0.88, 0];
     var band = canvas.parentElement, ctx = canvas.getContext('2d');
     var stamps = [], running = false, last = null, w = 0, h = 0, brush = 120, lastUser = 0, inView = false, dead = false;
-    function paper() { ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = 'rgb(' + MASK.join(',') + ')'; ctx.fillRect(0, 0, w, h); }
+    function paper() { ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = pattern || 'rgb(' + MASK.join(',') + ')'; ctx.fillRect(0, 0, w, h); }
+    var pattern = null, tex = new Image();
+    tex.onload = function () { pattern = ctx.createPattern(tex, 'repeat'); if (!running) paper(); };
+    if (canvas.getAttribute('data-tex')) tex.src = canvas.getAttribute('data-tex');
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = band.getBoundingClientRect();
       w = rect.width; h = rect.height; brush = Math.max(80, Math.min(160, w * 0.08));
