@@ -125,7 +125,7 @@ const script = `<script>
     enter(intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
     chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
     enter(quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
-    var testi = $('testi'); if (testi) { var qt = easeOut(clamp((p - 0.42) / 0.38)); testi.style.opacity = String(qt); testi.style.transform = 'translate(' + (-320 * (1 - qt)) + 'px,' + (-240 * (1 - qt)) + 'px) scale(' + (0.6 + 0.4 * qt) + ') rotate(' + (1.6 * qt) + 'deg)'; }
+    var testis = $('testis'); if (testis) { var tilt = [1.8, -2.4, 1.1]; testis.querySelectorAll('.testi').forEach((el, k) => { var qt = easeOut(clamp((p - 0.34 - k * 0.14) / 0.24)); el.style.opacity = String(qt); el.style.transform = 'translate(' + (-300 * (1 - qt)) + 'px,' + (-220 * (1 - qt)) + 'px) scale(' + (0.6 + 0.4 * qt) + ') rotate(' + (tilt[k] * qt) + 'deg)'; }); }
   }
   function npInk(canvas, video) {
     var MASK = [239, 233, 223], LIFETIME = 1100, R_START = 10, R_VARY = 0.45, STEP = 10, MAX = 240, SEG = 36;
