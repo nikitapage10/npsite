@@ -8,10 +8,10 @@ const out = process.argv[2] || path.join(__dirname, '..');
 const BLOBS = {
   "f1ef867ba998411a2993a50cc89ab517": "hero-loop.mp4",
   "788ba417914b44bc1ffcae86b9596440": "assets/presenting.webp",
-  "69bcc0f2cbdbc380f72e5818cb2568e0": "assets/logo-kpmg.webp",
-  "26bee8262bf1481e4decc1f906e60f6e": "assets/logo-verizon.webp",
-  "db1050991f56983ccfd09adedc1a08bd": "assets/logo-microsoft.webp",
-  "64f1445fea8ba8d46809934864d62ddd": "assets/logo-pennstate.webp",
+  "b5360270dc6eb750d2b86e9442880db9": "assets/logo-kpmg.webp",
+  "5c7caef4d028e1be7162fe6600842a59": "assets/logo-verizon.webp",
+  "6e6e4ee7241539803da1c1f1ca6c7815": "assets/logo-microsoft.webp",
+  "04f85a432abd15b9cac3cce0bba4b0e4": "assets/logo-pennstate.webp",
   "6747b2e537495b8eb81140492364b6fa": "assets/place-ukraine.webp",
   "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
@@ -30,7 +30,7 @@ function convert(file, title, extraScript) {
     .replace(/playsInline="\{\{yes\}\}"/g, 'playsinline')
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
-    .replace(/\{\{paperOpacity\}\}/g, '0.8')
+    .replace(/\{\{paperOpacity\}\}/g, '0.9')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
@@ -65,25 +65,15 @@ const script = `<script>
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path'), hsStage = $('hsstage'), hsRoll = $('hsroll');
-    var hsBlocks = [$('hsblock0'), $('hsblock1'), $('hsblock2'), $('hsblock3')];
-    if (path && hsStage && window.innerWidth >= 768) {
-      var vh = root.clientHeight;
-      var top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      var f = clamp(-top / Math.max(1, path.offsetHeight - vh)) * 4 - 0.0001;
-      var i = Math.max(0, Math.min(3, Math.floor(f)));
-      var t = i < 3 ? easeInOut(clamp((f - i - 0.8) / 0.2)) : 0;
-      var r = i + t;
-      hsStage.style.setProperty('--r', String(r));
-      if (hsRoll) hsRoll.style.transform = 'translateY(' + (-r * (hsRoll.firstElementChild ? hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
-      for (var j = 0; j < 4; j++) {
-        var el = hsBlocks[j];
-        if (!el) continue;
-        var local = f - j;
-        var exit = j < 3 ? clamp((local - 0.82) / 0.16) : 0;
-        el.style.setProperty('--lp', String(clamp(local / 0.55)));
-        el.style.opacity = String(local < 0 ? 0 : 1 - exit);
-        el.style.transform = 'translateY(' + (-48 * exit) + 'px)';
+    var path = $('path');
+    if (path) {
+      var vh = root.clientHeight, rootTop = root.getBoundingClientRect().top;
+      var box = path.getBoundingClientRect();
+      path.style.setProperty('--t', String(clamp((vh * 0.6 - (box.top - rootTop)) / box.height)));
+      var items = path.querySelectorAll('.tlx-item');
+      for (var j = 0; j < items.length; j++) {
+        var top = items[j].getBoundingClientRect().top - rootTop;
+        items[j].style.setProperty('--e', String(easeOut(clamp((vh * 0.9 - top) / (vh * 0.35)))));
       }
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);

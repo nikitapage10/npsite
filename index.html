@@ -116,6 +116,34 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:768px){.hs-logo{height:clamp(72px, 10vh, 112px)}}
 .globe-emb{--e:clamp(0, calc((var(--r) - var(--at)) * 10 + 1), 1);position:absolute;width:10.5%;height:auto;pointer-events:none;opacity:var(--e);transform:translate(var(--tx), calc(-100% - 16px)) scale(calc(0.8 + 0.2 * var(--e)));transform-origin:50% 100%}
 #translation{background:#F4F3F3 url(assets/bg-topo.webp) center bottom / cover no-repeat}
+.tlx{--t:0;position:relative;margin-top:64px}
+.tlx-spine{position:absolute;left:11px;top:0;bottom:0;width:2px;background:rgba(58,56,53,0.12)}
+.tlx-fill{position:absolute;inset:0;background:#3a3835;transform-origin:top;transform:scaleY(var(--t))}
+.tlx-item{--e:0;position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:20px;padding-left:44px;margin-bottom:56px}
+.tlx-item:last-child{margin-bottom:0}
+.tlx-node{position:absolute;left:3px;top:30px;width:18px;height:18px;border-radius:50%;box-sizing:border-box;border:2px solid #3a3835;background:#fff;transform:scale(calc(0.4 + 0.6 * var(--e)));z-index:1}
+.tlx-node::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#3a3835;opacity:var(--e)}
+.tlx-now .tlx-node::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid #3a3835;animation:tl-pulse 2.4s ease-out infinite}
+.tlx-card{position:relative;background:#fff;border:1px solid #e7e2d8;box-shadow:0 18px 40px -24px rgba(58,56,53,0.35);padding:28px;opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 36px))}
+.tlx-logo{display:block;height:56px;width:auto;max-width:60%;object-fit:contain;object-position:left center}
+.tlx-list{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;line-height:1.55;color:rgba(58,56,53,0.85)}
+.tlx-list li{--b:clamp(0, calc(var(--e) * 7 - 3 - var(--k) * 0.7), 1);position:relative;padding-left:20px;opacity:var(--b);transform:translateX(calc((1 - var(--b)) * 18px))}
+.tlx-list li::before{content:"";position:absolute;left:0;top:0.7em;width:10px;height:1px;background:#3a3835}
+.tlx-tag{font-size:12px;padding:5px 10px;background:#F3EFE8;color:rgba(58,56,53,0.85)}
+.tlx-side{opacity:var(--e);transform:translateY(calc((1 - var(--e)) * 24px))}
+.tlx-year{font-size:56px;line-height:1;letter-spacing:-0.04em}
+@media (min-width:900px){
+.tlx-spine{left:50%;margin-left:-1px}
+.tlx-item{grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr);gap:0;padding-left:0;margin-bottom:88px;align-items:start}
+.tlx-node{left:50%;margin-left:-9px;top:36px}
+.tlx-card{grid-column:1;grid-row:1;padding:36px 40px;transform:translateX(calc((1 - var(--e)) * -80px))}
+.tlx-side{grid-column:3;grid-row:1;padding-top:14px;transform:translateX(calc((1 - var(--e)) * 60px))}
+.flip .tlx-card{grid-column:3;transform:translateX(calc((1 - var(--e)) * 80px))}
+.flip .tlx-side{grid-column:1;text-align:right;transform:translateX(calc((1 - var(--e)) * -60px))}
+.tlx-year{font-size:clamp(72px, 7vw, 120px);color:transparent;-webkit-text-stroke:1.2px #3a3835}
+.tlx-card::before{content:"";position:absolute;top:44px;width:56px;height:1px;background:rgba(58,56,53,0.35);right:-57px}
+.flip .tlx-card::before{right:auto;left:-57px}
+}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -211,13 +239,12 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <video data-np="video" src="hero-loop.mp4" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.8; pointer-events: none">
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: soft-light; opacity: 0.9; pointer-events: none">
 <filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.74  0 0 0 0 0.70  0 0 0 0 0.64  1.6 0 0 0 -0.62"></feColorMatrix></filter>
 <filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.76  0 0 0 0 0.72  0 0 0 0 0.66  -1.1 0 0 0 0.5"></feColorMatrix></filter>
+<filter id="np-linen" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.9" numOctaves="3" seed="4" result="h"></feTurbulence><feTurbulence type="fractalNoise" baseFrequency="0.9 0.006" numOctaves="3" seed="8" result="v"></feTurbulence><feComposite in="h" in2="v" operator="arithmetic" k1="0" k2="0.5" k3="0.5" k4="0" result="m"></feComposite><feColorMatrix in="m" type="matrix" values="0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0.33 0.33 0.33 0 0  0 0 0 0 1" result="g"></feColorMatrix><feComponentTransfer in="g"><feFuncR type="linear" slope="2.6" intercept="-0.62"></feFuncR><feFuncG type="linear" slope="2.6" intercept="-0.64"></feFuncG><feFuncB type="linear" slope="2.6" intercept="-0.7"></feFuncB><feFuncA type="identity"></feFuncA></feComponentTransfer></filter>
 <filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.88  0 0 0 0 0.84  0 0 0 0 0.77  0.9 0 0 0 -0.32"></feColorMatrix></filter>
-<rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect>
-<rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect>
-<rect width="100%" height="100%" filter="url(#np-canvas-weave)"></rect>
+<rect width="100%" height="100%" filter="url(#np-linen)"></rect>
 </svg>
 </div>
 
@@ -363,49 +390,125 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="path" data-np="path" class="hs" style="position: relative; height: 480vh">
-<div data-np="hsstage" class="hs-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: #F3EFE8; --r: 0">
-<div class="hs-inner" style="height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: grid; align-items: center">
-<div style="display: flex; flex-direction: column; min-width: 0">
+<section id="path" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 48px">
+<div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
-<h2 class="serif" style="margin: 10px 0 0; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 400">How I got here</h2>
-<div class="hs-roll" aria-hidden="true"><div data-np="hsroll" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="hs-name" style="--c: 0"><img src="assets/logo-pennstate.webp" alt="Penn State"></div><div class="hs-name" style="--c: 1"><img src="assets/logo-kpmg.webp" alt="KPMG"></div><div class="hs-name" style="--c: 2"><img src="assets/logo-verizon.webp" alt="Verizon"></div><div class="hs-name" style="--c: 3"><img src="assets/logo-microsoft.webp" alt="Microsoft"></div><div class="serif hs-name">&nbsp;</div></div></div>
-<ol class="hs-ticks" aria-hidden="true"><li class="hs-tick" style="--c: 0"><span class="hs-bar"></span>Penn State</li><li class="hs-tick" style="--c: 1"><span class="hs-bar"></span>KPMG</li><li class="hs-tick" style="--c: 2"><span class="hs-bar"></span>Verizon</li><li class="hs-tick" style="--c: 3"><span class="hs-bar"></span>Microsoft</li></ol>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I got here</h2>
 </div>
-<div class="hs-blocks" style="position: relative">
-<article data-np="hsblock0" class="hs-block" style="--n: 5; --lp: 0; opacity: 1">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>01 / 04</span><span>Education</span></div>
-<h3 class="serif hs-line" style="margin: 28px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">technology</span> <span class="hw" style="--w: 2">became</span> <span class="hw" style="--w: 3">a</span> <span class="hw" style="--w: 4">direction.</span></h3>
-<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
-<li class="hf" style="--k: 0">B.S., Information Sciences &amp; Technology</li>
-<li class="hf" style="--k: 1">People, systems, and data, studied as one thing</li>
+<p class="serif" style="margin: 0; max-width: 460px; font-size: 19px; line-height: 1.45; color: rgba(58,56,53,0.85)">Five chapters across education, consulting, telecom, my own practice, and Microsoft. Each one added a new language I can speak.</p>
+</div>
+<div data-np="path" class="tlx">
+<div class="tlx-spine" aria-hidden="true"><div class="tlx-fill"></div></div>
+<div class="tlx-item">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-pennstate.webp" alt="Penn State">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">Undergraduate</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">B.S., Information Sciences &amp; Technology</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Penn State University</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">A degree built around how people, systems, and data fit together, which is still how I look at every problem.</p>
+<ul class="tlx-list">
+<li style="--k: 0">Studied information systems, data, and the human side of technology together</li>
+<li style="--k: 1">Started thinking in systems: what connects to what, and what breaks when it changes</li>
 </ul>
+<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Information systems</span><span class="tlx-tag">Data</span><span class="tlx-tag">Human-centered tech</span></div>
 </article>
-<article data-np="hsblock1" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>02 / 04</span><span>2017 – 2019</span></div>
-<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">to</span> <span class="hw" style="--w: 4">translate</span> <span class="hw" style="--w: 5">between</span> <span class="hw" style="--w: 6">business</span> <span class="hw" style="--w: 7">and</span> <span class="hw" style="--w: 8">technology.</span></h3>
-<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
-<li class="hf" style="--k: 0">Banks, insurers, and fashion, beauty, and grocery brands</li>
-<li class="hf" style="--k: 1">Databases, ERP rollouts, and regulatory requirements</li>
+<div class="tlx-side">
+<div class="serif tlx-year">Education</div>
+<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where technology became a direction.</p>
+</div>
+</div>
+<div class="tlx-item flip">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-kpmg.webp" alt="KPMG">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">June 2017 – May 2019</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Advisory Associate</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">KPMG</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Technology-risk and control work across very different clients, which meant learning a new business every few months.</p>
+<ul class="tlx-list">
+<li style="--k: 0">Delivered technology-risk and control assessments for small and large banks, insurers, and fashion, beauty, and grocery-retail clients</li>
+<li style="--k: 1">Evaluated databases, ERP implementations, and regulatory compliance requirements across varied environments</li>
+<li style="--k: 2">Learned to explain technical findings to business owners in their own terms</li>
 </ul>
+<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Banking</span><span class="tlx-tag">Insurance</span><span class="tlx-tag">Retail</span><span class="tlx-tag">ERP</span><span class="tlx-tag">Compliance</span></div>
 </article>
-<article data-np="hsblock2" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>03 / 04</span><span>2019 – 2020</span></div>
-<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">what</span> <span class="hw" style="--w: 4">operating</span> <span class="hw" style="--w: 5">at</span> <span class="hw" style="--w: 6">scale</span> <span class="hw" style="--w: 7">really</span> <span class="hw" style="--w: 8">means.</span></h3>
-<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
-<li class="hf" style="--k: 0">Telecom infrastructure, engineering processes, and cloud</li>
-<li class="hf" style="--k: 1">Built the tracking that kept fixes moving</li>
+<div class="tlx-side">
+<div class="serif tlx-year">2017</div>
+<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned to translate between business and technology.</p>
+</div>
+</div>
+<div class="tlx-item">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-verizon.webp" alt="Verizon">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">April 2019 – May 2020</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Audit Consultant</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Verizon</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Security and operational risk across one of the largest telecom networks in the country.</p>
+<ul class="tlx-list">
+<li style="--k: 0">Assessed telecommunications infrastructure, engineering processes, and cloud environments for security, operational, and control risk</li>
+<li style="--k: 1">Built tracking and reporting tools that gave stakeholders visibility into open issues</li>
+<li style="--k: 2">Drove remediation follow-through with the teams who owned the fixes</li>
 </ul>
+<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Telecom</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Infrastructure</span><span class="tlx-tag">Reporting tools</span></div>
 </article>
-<article data-np="hsblock3" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
-<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>04 / 04</span><span>2021 – now</span></div>
-<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">security,</span> <span class="hw" style="--w: 2">AI,</span> <span class="hw" style="--w: 3">systems,</span> <span class="hw" style="--w: 4">and</span> <span class="hw" style="--w: 5">leadership</span> <span class="hw" style="--w: 6">began</span> <span class="hw" style="--w: 7">to</span> <span class="hw" style="--w: 8">converge.</span></h3>
-<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
-<li class="hf" style="--k: 0">About 12 engagements a year across LinkedIn, Xbox, and Copilot</li>
-<li class="hf" style="--k: 1">Teams of 8–12, presenting to corporate vice presidents</li>
-<li class="hf" style="--k: 2">Building independently since 2020</li>
+<div class="tlx-side">
+<div class="serif tlx-year">2019</div>
+<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned what operating at scale really means.</p>
+</div>
+</div>
+<div class="tlx-item flip">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-wordmark.webp" alt="Nikita Page Productions">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">May 2020 – present</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Founder &amp; Principal Consultant</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Nikita Page Productions LLC</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">My own practice: working directly with founders on the earliest, messiest stage of a product.</p>
+<ul class="tlx-list">
+<li style="--k: 0">Advise startups and small businesses on technology strategy, architecture, and early-stage product requirements</li>
+<li style="--k: 1">Lead discovery, workflow design, and prototyping with founders</li>
+<li style="--k: 2">Turn early ideas into plans a team can actually build</li>
 </ul>
+<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Strategy</span><span class="tlx-tag">Architecture</span><span class="tlx-tag">Prototyping</span><span class="tlx-tag">Product</span></div>
 </article>
+<div class="tlx-side">
+<div class="serif tlx-year">2020</div>
+<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned to build from zero.</p>
+</div>
+</div>
+<div class="tlx-item tlx-now">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-microsoft.webp" alt="Microsoft">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">March 2021 – present</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Senior IT Audit Manager</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Microsoft · Remote</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Security, AI, and operational-risk engagements across Microsoft’s product, engineering, and infrastructure organizations, from scoping to executive reporting. Reports go to the CFO.</p>
+<ul class="tlx-list">
+<li style="--k: 0">Run about 12 engagements a year across LinkedIn, Xbox, and Copilot, leading rotating teams of 8–12</li>
+<li style="--k: 1">Turn issues into business cases framed by likelihood and financial and reputational impact, and win commitment from directors and CVPs to invest in fixes</li>
+<li style="--k: 2">Set the secure-development baseline for the $75.4B Activision Blizzard acquisition, across ABK, ZeniMax, and Minecraft</li>
+<li style="--k: 3">Designed and built an AI evidence review hub (Copilot Studio, Microsoft Foundry, Azure) that maps evidence to controls and keeps risk narratives current</li>
+<li style="--k: 4">Led AI enablement for about 200 audit, risk, and compliance professionals; directed 13 contributors and built the demo chatbots myself</li>
+</ul>
+<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Security</span><span class="tlx-tag">AI governance</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Program leadership</span><span class="tlx-tag">KQL</span><span class="tlx-tag">Power BI</span></div>
+</article>
+<div class="tlx-side">
+<div class="serif tlx-year">2021</div>
+<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where security, AI, systems, and leadership began to converge.</p>
 </div>
 </div>
 </div>
@@ -524,25 +627,15 @@ a{color:#3a3835}a:hover{color:#3a3835}
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path'), hsStage = $('hsstage'), hsRoll = $('hsroll');
-    var hsBlocks = [$('hsblock0'), $('hsblock1'), $('hsblock2'), $('hsblock3')];
-    if (path && hsStage && window.innerWidth >= 768) {
-      var vh = root.clientHeight;
-      var top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      var f = clamp(-top / Math.max(1, path.offsetHeight - vh)) * 4 - 0.0001;
-      var i = Math.max(0, Math.min(3, Math.floor(f)));
-      var t = i < 3 ? easeInOut(clamp((f - i - 0.8) / 0.2)) : 0;
-      var r = i + t;
-      hsStage.style.setProperty('--r', String(r));
-      if (hsRoll) hsRoll.style.transform = 'translateY(' + (-r * (hsRoll.firstElementChild ? hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
-      for (var j = 0; j < 4; j++) {
-        var el = hsBlocks[j];
-        if (!el) continue;
-        var local = f - j;
-        var exit = j < 3 ? clamp((local - 0.82) / 0.16) : 0;
-        el.style.setProperty('--lp', String(clamp(local / 0.55)));
-        el.style.opacity = String(local < 0 ? 0 : 1 - exit);
-        el.style.transform = 'translateY(' + (-48 * exit) + 'px)';
+    var path = $('path');
+    if (path) {
+      var vh = root.clientHeight, rootTop = root.getBoundingClientRect().top;
+      var box = path.getBoundingClientRect();
+      path.style.setProperty('--t', String(clamp((vh * 0.6 - (box.top - rootTop)) / box.height)));
+      var items = path.querySelectorAll('.tlx-item');
+      for (var j = 0; j < items.length; j++) {
+        var top = items[j].getBoundingClientRect().top - rootTop;
+        items[j].style.setProperty('--e', String(easeOut(clamp((vh * 0.9 - top) / (vh * 0.35)))));
       }
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
