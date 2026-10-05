@@ -30,7 +30,8 @@ function convert(file, title, extraScript) {
     .replace(/playsInline="\{\{yes\}\}"/g, 'playsinline')
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
-    .replace(/\{\{paperOpacity\}\}/g, '0.9')
+    .replace(/\{\{paperOpacity\}\}/g, '0.75')
+    .replace(/\{\{parchOp\}\}/g, '1').replace(/\{\{coldOp\}\}/g, '0').replace(/\{\{linenOp\}\}/g, '0').replace(/\{\{grainOp\}\}/g, '0')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
