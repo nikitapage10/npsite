@@ -145,6 +145,8 @@ const script = `<script>
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = band.getBoundingClientRect();
       w = rect.width; h = rect.height; brush = Math.max(80, Math.min(160, w * 0.08));
+      var art = band.querySelector('.look-art');
+      if (art) { var sc = Math.max(w / 1672, h / 941), aw = 1672 * sc, ah = 941 * sc; art.style.width = aw + 'px'; art.style.height = ah + 'px'; art.style.left = ((w - aw) * 0.5) + 'px'; art.style.top = ((h - ah) * 0.28) + 'px'; }
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); paper();
     }
@@ -198,6 +200,8 @@ const script = `<script>
     var idle = setInterval(function () {
       if (!inView || Date.now() - lastUser < 3000) return;
       var x0 = w * (0.15 + Math.random() * 0.7), y0 = h * (0.25 + Math.random() * 0.5), dir = Math.random() < 0.5 ? -1 : 1;
+      var spots = band.querySelectorAll('.ann');
+      if (spots.length && Math.random() < 0.65) { var sp = spots[Math.floor(Math.random() * spots.length)].getBoundingClientRect(), bb = band.getBoundingClientRect(); x0 = sp.left - bb.left - dir * w * 0.12; y0 = sp.top - bb.top; }
       last = null;
       for (var i = 0; i < 22; i++) (function (i) {
         setTimeout(function () { if (!dead) stampAlong(x0 + dir * i * w * 0.012, y0 + Math.sin(i / 3.5) * h * 0.06); }, i * 28);
