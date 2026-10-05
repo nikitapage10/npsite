@@ -174,6 +174,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:768px){
 .nav{padding:20px max(56px, calc((100% - 1280px) / 2))}
 .nav-links{display:flex}
+.nav-group{margin-left:72px;margin-right:auto}
 .brand-logo{height:84px}
 .hero-content{padding:clamp(150px, 25vh, 250px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
 .hero-sub{max-width:420px}
@@ -221,8 +222,9 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 <nav data-np="nav" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
 <a href="#top" aria-label="Nikita Page, back to top" style="display: flex; align-items: center; text-decoration: none">
-<img class="brand-logo" src="assets/logo-signature.webp" alt="Nikita Page" style="display: block; width: auto">
+<img data-np="brand" class="brand-logo" src="assets/logo-signature.webp" alt="Nikita Page" style="display: block; width: auto">
 </a>
+<div class="nav-group" style="display: flex; align-items: center; gap: 36px">
 <div class="nav-links" style="align-items: center; gap: 32px">
 <a class="nav-link" href="#range">Range</a>
 <a class="nav-link" href="#translation">Translation</a>
@@ -230,6 +232,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <a class="nav-link" href="#path">Path</a>
 </div>
 <a class="btn btn-nav" href="mailto:connect@nikita.page">Say hello</a>
+</div>
 </nav>
 
 <div id="top" data-np="track" style="position: relative; height: 320vh">
@@ -756,6 +759,18 @@ a{color:#3a3835}a:hover{color:#3a3835}
     };
   }
   if ($('ink')) npInk($('ink'), $('inkvideo'));
+  var brand = $('brand');
+  function alignBrand() {
+    var img = brand;
+    if (!img || !root || !img.naturalWidth) return;
+    var W = root.clientWidth, H = root.clientHeight;
+    var lineY = 1.15 * 72 * Math.max(W / 1920, H / 1080);
+    img.style.transform = 'none';
+    var box = img.getBoundingClientRect();
+    var baseline = box.top - root.getBoundingClientRect().top + box.height * 0.667;
+    img.style.transform = 'translateY(' + (lineY - baseline).toFixed(1) + 'px)';
+  }
+  if (brand) { brand.addEventListener('load', alignBrand); window.addEventListener('resize', alignBrand); alignBrand(); }
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });

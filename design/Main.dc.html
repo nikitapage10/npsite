@@ -178,6 +178,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:768px){
 .nav{padding:20px max(56px, calc((100% - 1280px) / 2))}
 .nav-links{display:flex}
+.nav-group{margin-left:72px;margin-right:auto}
 .brand-logo{height:84px}
 .hero-content{padding:clamp(150px, 25vh, 250px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
 .hero-sub{max-width:420px}
@@ -224,8 +225,9 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 <nav ref="{{setNav}}" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
 <a href="#top" aria-label="Nikita Page, back to top" style="display: flex; align-items: center; text-decoration: none">
-<img class="brand-logo" src="/_blob/3f5c8a8555059b0b40c4b5fbf9d8ec85" alt="Nikita Page" style="display: block; width: auto">
+<img ref="{{setBrand}}" class="brand-logo" src="/_blob/3f5c8a8555059b0b40c4b5fbf9d8ec85" alt="Nikita Page" style="display: block; width: auto">
 </a>
+<div class="nav-group" style="display: flex; align-items: center; gap: 36px">
 <div class="nav-links" style="align-items: center; gap: 32px">
 <a class="nav-link" href="#range">Range</a>
 <a class="nav-link" href="#translation">Translation</a>
@@ -233,6 +235,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <a class="nav-link" href="#path">Path</a>
 </div>
 <a class="btn btn-nav" href="mailto:connect@nikita.page">Say hello</a>
+</div>
 </nav>
 
 <div id="top" ref="{{setTrack}}" style="position: relative; height: 320vh">
@@ -635,6 +638,20 @@ class Component extends DCLogic {
   setHero = (el) => { this.hero = el; };
   setPanel = (el) => { this.panel = el; };
   setIntro = (el) => { this.intro = el; };
+  setBrand = (el) => {
+    this.brand = el;
+    if (el) el.addEventListener('load', () => this.alignBrand());
+  };
+  alignBrand = () => {
+    const img = this.brand, root = this.root;
+    if (!img || !root || !img.naturalWidth) return;
+    const W = root.clientWidth, H = root.clientHeight;
+    const lineY = 1.15 * 72 * Math.max(W / 1920, H / 1080);
+    img.style.transform = 'none';
+    const box = img.getBoundingClientRect();
+    const baseline = box.top - root.getBoundingClientRect().top + box.height * 0.667;
+    img.style.transform = 'translateY(' + (lineY - baseline).toFixed(1) + 'px)';
+  };
   setPath = (el) => { this.path = el; };
   setHsStage = (el) => { this.hsStage = el; };
   setHsRoll = (el) => { this.hsRoll = el; };
@@ -811,6 +828,8 @@ class Component extends DCLogic {
     this.startLoop();
     this.applyScroll();
     window.addEventListener('resize', this.onScroll);
+    window.addEventListener('resize', this.alignBrand);
+    this.alignBrand();
   }
 
   componentDidUpdate() { this.applyScroll(); }
@@ -820,6 +839,7 @@ class Component extends DCLogic {
     if (this.stopInk) this.stopInk();
     cancelAnimationFrame(this.scrollRaf);
     window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('resize', this.alignBrand);
   }
 
   renderVals() {
@@ -833,7 +853,7 @@ class Component extends DCLogic {
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
       grainOp: this.props.paperTexture === 'Fine grain' ? 0.6 : 0, setHero: this.setHero,
-      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, onScroll: this.onScroll
+      setPanel: this.setPanel, setIntro: this.setIntro, setBrand: this.setBrand, setPath: this.setPath, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, onScroll: this.onScroll
     };
   }
 }

@@ -189,6 +189,18 @@ const script = `<script>
     };
   }
   if ($('ink')) npInk($('ink'), $('inkvideo'));
+  var brand = $('brand');
+  function alignBrand() {
+    var img = brand;
+    if (!img || !root || !img.naturalWidth) return;
+    var W = root.clientWidth, H = root.clientHeight;
+    var lineY = 1.15 * 72 * Math.max(W / 1920, H / 1080);
+    img.style.transform = 'none';
+    var box = img.getBoundingClientRect();
+    var baseline = box.top - root.getBoundingClientRect().top + box.height * 0.667;
+    img.style.transform = 'translateY(' + (lineY - baseline).toFixed(1) + 'px)';
+  }
+  if (brand) { brand.addEventListener('load', alignBrand); window.addEventListener('resize', alignBrand); alignBrand(); }
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
