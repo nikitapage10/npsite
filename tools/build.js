@@ -4,10 +4,23 @@ const fs = require('fs');
 const path = require('path');
 const src = path.join(__dirname, '..', 'design') + '/';
 const out = process.argv[2] || path.join(__dirname, '..');
+// Canvas asset ids -> files in this repo.
+const BLOBS = {
+  "f1ef867ba998411a2993a50cc89ab517": "hero-loop.mp4",
+  "788ba417914b44bc1ffcae86b9596440": "assets/presenting.webp",
+  "ce92eccc23614ee1c71b298d6a12f44a": "assets/logo-kpmg.webp",
+  "3d996878badfad6c8243451dbf825020": "assets/logo-verizon.webp",
+  "4ed141a5261c97dba3677c75a365b2bc": "assets/logo-microsoft.webp",
+  "7e7a51649f9d47f92b0e130b4d7a41f3": "assets/logo-pennstate.webp",
+  "6747b2e537495b8eb81140492364b6fa": "assets/place-ukraine.webp",
+  "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
+  "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
+  "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp"
+};
 
 function convert(file, title, extraScript) {
   let s = fs.readFileSync(src + file, 'utf8');
-  const helmet = s.match(/<helmet>([\s\S]*?)<\/helmet>/)[1];
+  const helmet = s.match(/<helmet>([\s\S]*?)<\/helmet>/)[1].replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => BLOBS[id] || _);
   let body = s.match(/<x-dc>([\s\S]*?)<\/x-dc>/)[1].replace(/<helmet>[\s\S]*?<\/helmet>/, '');
   body = body
     .replace(/ref="\{\{set(\w+)\}\}"/g, (_, n) => `data-np="${n.toLowerCase()}"`)
@@ -16,8 +29,8 @@ function convert(file, title, extraScript) {
     .replace(/playsInline="\{\{yes\}\}"/g, 'playsinline')
     .replace(/autoPlay="\{\{yes\}\}"/g, 'autoplay')
     .replace(/loop="\{\{yes\}\}"/g, 'loop')
-    .replace(/\{\{paperOpacity\}\}/g, '0.55')
-    .replace(/src="\/_blob\/[0-9a-f]+"/g, 'src="hero-loop.mp4"')
+    .replace(/\{\{paperOpacity\}\}/g, '0.85')
+    .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
   return `<!doctype html>
@@ -51,13 +64,29 @@ const script = `<script>
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path'), hzRow = $('hzrow');
-    if (path && hzRow) {
-      var hvh = root.clientHeight, htop = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      var hp = clamp(-htop / Math.max(1, path.offsetHeight - hvh));
-      path.style.setProperty('--p', String(hp));
-      var hmax = Math.max(0, hzRow.scrollWidth - hzRow.clientWidth);
-      hzRow.style.transform = window.innerWidth >= 768 ? 'translateX(' + (-hmax * hp) + 'px)' : 'none';
+    var path = $('path'), hsStage = $('hsstage'), hsRoll = $('hsroll');
+    var hsBlocks = [$('hsblock0'), $('hsblock1'), $('hsblock2'), $('hsblock3')];
+    if (path && hsStage && window.innerWidth >= 768) {
+      var vh = root.clientHeight;
+      var top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      var f = clamp(-top / Math.max(1, path.offsetHeight - vh)) * 4 - 0.0001;
+      var i = Math.max(0, Math.min(3, Math.floor(f)));
+      var t = i < 3 ? easeInOut(clamp((f - i - 0.8) / 0.2)) : 0;
+      var r = i + t;
+      hsStage.style.setProperty('--r', String(r));
+      if (hsRoll) hsRoll.style.transform = 'translateY(' + (-r * (hsRoll.firstElementChild ? hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
+      var pal = [[243, 239, 232], [236, 229, 216], [231, 233, 227], [237, 230, 223]];
+      var a = pal[Math.floor(r)], b = pal[Math.min(3, Math.floor(r) + 1)], k = r - Math.floor(r);
+      hsStage.style.backgroundColor = 'rgb(' + a.map((v, q) => Math.round(v + (b[q] - v) * k)).join(',') + ')';
+      for (var j = 0; j < 4; j++) {
+        var el = hsBlocks[j];
+        if (!el) continue;
+        var local = f - j;
+        var exit = j < 3 ? clamp((local - 0.82) / 0.16) : 0;
+        el.style.setProperty('--lp', String(clamp(local / 0.55)));
+        el.style.opacity = String(local < 0 ? 0 : 1 - exit);
+        el.style.transform = 'translateY(' + (-48 * exit) + 'px)';
+      }
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
     var p = clamp(root.scrollTop / total);
@@ -66,6 +95,7 @@ const script = `<script>
       var rvh = root.clientHeight, rtop = roots.getBoundingClientRect().top - root.getBoundingClientRect().top;
       var r = easeInOut(clamp((rvh * 0.85 - rtop) / (rvh * 0.55)));
       arcMask.style.strokeDashoffset = String(1 - r);
+      roots.style.setProperty('--r', String(r));
       var pt = arc.getPointAtLength(arc.getTotalLength() * r);
       arcDot.setAttribute('cx', pt.x); arcDot.setAttribute('cy', pt.y);
       arcDot.setAttribute('opacity', r > 0.02 && r < 0.98 ? '1' : '0');

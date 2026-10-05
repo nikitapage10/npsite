@@ -86,6 +86,34 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .hz-track{margin-top:20px !important}
 .hz-panel{padding:28px 36px}
 }
+.hs-inner{padding:96px 24px 40px;grid-template-columns:minmax(0,1fr);gap:24px}
+.hs-roll{--L:56px;position:relative;height:calc(var(--L) * 3);margin-top:20px;overflow:hidden;-webkit-mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%);mask-image:linear-gradient(to bottom, transparent 0, #000 34%, #000 66%, transparent 100%)}
+.hs-roll-inner{will-change:transform}
+.hs-name{height:var(--L);line-height:var(--L);font-size:calc(var(--L) * 0.84);letter-spacing:-0.04em;white-space:nowrap}
+.hs-ticks{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13px}
+.hs-tick{display:flex;align-items:center;gap:8px;opacity:clamp(0.4, calc(1.6 - max(var(--r) - var(--c), var(--c) - var(--r)) * 1.6), 1)}
+.hs-bar{display:block;width:22px;height:2px;background:#3a3835;transform-origin:left;transform:scaleX(clamp(0.25, calc(1 - max(var(--r) - var(--c), var(--c) - var(--r))), 1))}
+.hs-blocks{min-height:420px}
+.hs-block{position:absolute;inset:0 0 auto 0;will-change:transform, opacity}
+.hs-line{font-size:30px}
+.hw{--e:clamp(0, calc(var(--lp) * (var(--n) + 3) - var(--w)), 1);display:inline-block;opacity:var(--e);filter:blur(calc((1 - var(--e)) * 10px));transform:translateY(calc((1 - var(--e)) * 0.35em))}
+.hf{--e:clamp(0, calc(var(--lp) * 5 - 3.2 - var(--k) * 0.45), 1);opacity:var(--e);transform:translateX(calc((1 - var(--e)) * 24px))}
+@media (max-width:767px){
+.hs{height:auto !important}
+.hs-stage{position:static !important;height:auto !important}
+.hs-roll,.hs-ticks{display:none}
+.hs-blocks{min-height:0}
+.hs-block{position:static !important;opacity:1 !important;transform:none !important;--lp:1 !important;margin-bottom:56px}
+}
+@media (min-width:768px){
+.hs-inner{padding:96px 56px 56px;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px}
+.hs-roll{--L:clamp(72px, 8.4vw, 136px);margin-top:36px}
+.hs-line{font-size:clamp(32px, 3vw, 46px)}
+}
+.hs-logo{height:72px}
+@media (min-width:768px){.hs-logo{height:clamp(72px, 10vh, 112px)}}
+.globe-emb{--e:clamp(0, calc((var(--r) - var(--at)) * 10 + 1), 1);position:absolute;width:18%;height:auto;pointer-events:none;opacity:var(--e);transform:translate(var(--tx), calc(-100% - 22px)) scale(calc(0.8 + 0.2 * var(--e)));transform-origin:50% 100%}
+#translation{background:#F4F3F3 url(assets/bg-topo.webp) center bottom / cover no-repeat}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -181,11 +209,13 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <video data-np="video" src="hero-loop.mp4" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
 </div>
 </div>
-<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.55; pointer-events: none">
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.85; pointer-events: none">
 <filter id="np-paper-grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" seed="7" stitchTiles="stitch"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.45  0 0 0 0 0.40  0 0 0 0 0.33  1.6 0 0 0 -0.62"></feColorMatrix></filter>
+<filter id="np-canvas-weave" x="0" y="0" width="100%" height="100%"><feTurbulence type="turbulence" baseFrequency="0.9 0.035" numOctaves="2" seed="5" result="h"></feTurbulence><feTurbulence type="turbulence" baseFrequency="0.035 0.9" numOctaves="2" seed="9" result="v"></feTurbulence><feBlend in="h" in2="v" mode="multiply" result="w"></feBlend><feColorMatrix in="w" type="matrix" values="0 0 0 0 0.42  0 0 0 0 0.37  0 0 0 0 0.30  -1.2 0 0 0 0.62"></feColorMatrix></filter>
 <filter id="np-paper-mottle" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.012" numOctaves="4" seed="3"></feTurbulence><feColorMatrix type="matrix" values="0 0 0 0 0.62  0 0 0 0 0.55  0 0 0 0 0.44  0.9 0 0 0 -0.32"></feColorMatrix></filter>
 <rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect>
 <rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect>
+<rect width="100%" height="100%" filter="url(#np-canvas-weave)"></rect>
 </svg>
 </div>
 
@@ -274,7 +304,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="translation" style="background: #F4F3F3">
+<section id="translation">
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
@@ -320,8 +350,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="look" aria-label="Interactive image: move across it to reveal the landscape" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
-<video data-np="inkvideo" src="hero-loop.mp4" muted playsinline autoplay loop preload="auto" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 85% 72%; transform: scale(1.3); transform-origin: 85% 72%"></video>
+<section id="look" aria-label="Interactive illustration: move across it to reveal Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
+<img src="assets/presenting.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 28%">
 <canvas data-np="ink" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
 <svg aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none"><rect width="100%" height="100%" filter="url(#np-paper-mottle)"></rect><rect width="100%" height="100%" filter="url(#np-paper-grain)"></rect></svg>
 <div class="sec" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
@@ -331,72 +361,54 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="path" data-np="path" class="hz" style="position: relative; height: 420vh; --p: 0">
-<div class="hz-sticky" style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box">
-<div class="hz-head" style="max-width: 1392px; width: 100%; margin: 0 auto; box-sizing: border-box">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 48px">
-<div>
+<section id="path" data-np="path" class="hs" style="position: relative; height: 480vh">
+<div data-np="hsstage" class="hs-stage" style="position: sticky; top: 0; height: 100vh; overflow: hidden; background: #F3EFE8; --r: 0">
+<div class="hs-inner" style="height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: grid; align-items: center">
+<div style="display: flex; flex-direction: column; min-width: 0">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I got here</h2>
+<h2 class="serif" style="margin: 10px 0 0; font-size: 28px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 400">How I got here</h2>
+<div class="hs-roll" aria-hidden="true"><div data-np="hsroll" class="hs-roll-inner"><div class="serif hs-name">&nbsp;</div><div class="serif hs-name">Penn State</div><div class="serif hs-name">KPMG</div><div class="serif hs-name">Verizon</div><div class="serif hs-name">Microsoft</div><div class="serif hs-name">&nbsp;</div></div></div>
+<ol class="hs-ticks" aria-hidden="true"><li class="hs-tick" style="--c: 0"><span class="hs-bar"></span>Penn State</li><li class="hs-tick" style="--c: 1"><span class="hs-bar"></span>KPMG</li><li class="hs-tick" style="--c: 2"><span class="hs-bar"></span>Verizon</li><li class="hs-tick" style="--c: 3"><span class="hs-bar"></span>Microsoft</li></ol>
 </div>
-<p class="serif" style="margin: 0; max-width: 420px; font-size: 19px; line-height: 1.45; color: rgba(58,56,53,0.85)">Four chapters, each adding a new language I can speak.</p>
-</div>
-<div class="hz-track" aria-hidden="true" style="position: relative; height: 40px; margin-top: 36px">
-<div style="position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: rgba(58,56,53,0.18)"></div>
-<div class="hz-fill" style="position: absolute; left: 0; right: 0; top: 6px; height: 1px; background: #3a3835"></div>
-<div class="hz-step hz-first" style="--c: 0; left: 0%"><span class="hz-dot"></span><span class="hz-step-label">Education</span></div><div class="hz-step" style="--c: 0.3333333333333333; left: 33.33333333333333%"><span class="hz-dot"></span><span class="hz-step-label">KPMG</span></div><div class="hz-step" style="--c: 0.6666666666666666; left: 66.66666666666666%"><span class="hz-dot"></span><span class="hz-step-label">Verizon</span></div><div class="hz-step hz-last" style="--c: 1; left: 100%"><span class="hz-dot"></span><span class="hz-step-label">Today</span></div>
-</div>
-</div>
-<div data-np="hzrow" class="hz-row" style="flex: 1; min-height: 0; display: flex; gap: 24px; box-sizing: border-box; will-change: transform">
-<article class="hz-panel" style="--c: 0">
-<div class="serif hz-num" aria-hidden="true">PSU</div>
-<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
-<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>01 / 04</span><span>Penn State</span></div>
-<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 150 30" aria-label="Penn State" role="img" style="height: 30px; width: auto"><path d="M3 3 H21 V15 C21 22 12 27 12 27 C12 27 3 22 3 15 Z" fill="none" stroke="currentColor" stroke-width="1.6"></path><path d="M8 11 L12 7 L16 11 M12 7 V20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path><text x="30" y="20.5" font-family="'Newsreader', Georgia, serif" font-size="16" letter-spacing="1.6" fill="currentColor">PENN STATE</text></svg></div>
-<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where technology became a direction.</h3>
-<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
-<li>B.S., Information Sciences &amp; Technology</li>
-<li>People, systems, and data, studied as one thing</li>
+<div class="hs-blocks" style="position: relative">
+<article data-np="hsblock0" class="hs-block" style="--n: 5; --lp: 0; opacity: 1">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>01 / 04</span><span>Education</span></div>
+<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="assets/logo-pennstate.webp" alt="Penn State" style="display: block; height: 100%; width: auto"></div>
+<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">technology</span> <span class="hw" style="--w: 2">became</span> <span class="hw" style="--w: 3">a</span> <span class="hw" style="--w: 4">direction.</span></h3>
+<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
+<li class="hf" style="--k: 0">B.S., Information Sciences &amp; Technology</li>
+<li class="hf" style="--k: 1">People, systems, and data, studied as one thing</li>
 </ul>
-</div>
 </article>
-<article class="hz-panel" style="--c: 0.3333333333333333">
-<div class="serif hz-num" aria-hidden="true">’17</div>
-<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
-<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>02 / 04</span><span>2017 – 2019</span></div>
-<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 84 30" aria-label="KPMG" role="img" style="height: 30px; width: auto"><text x="0" y="23" font-family="Inter, sans-serif" font-size="25" font-weight="800" letter-spacing="-0.5" fill="currentColor">KPMG</text></svg></div>
-<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where I learned to translate between business and technology.</h3>
-<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
-<li>Banks, insurers, and fashion, beauty, and grocery brands</li>
-<li>Databases, ERP rollouts, and regulatory requirements</li>
+<article data-np="hsblock1" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>02 / 04</span><span>2017 – 2019</span></div>
+<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="assets/logo-kpmg.webp" alt="KPMG" style="display: block; height: 100%; width: auto"></div>
+<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">to</span> <span class="hw" style="--w: 4">translate</span> <span class="hw" style="--w: 5">between</span> <span class="hw" style="--w: 6">business</span> <span class="hw" style="--w: 7">and</span> <span class="hw" style="--w: 8">technology.</span></h3>
+<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
+<li class="hf" style="--k: 0">Banks, insurers, and fashion, beauty, and grocery brands</li>
+<li class="hf" style="--k: 1">Databases, ERP rollouts, and regulatory requirements</li>
 </ul>
-</div>
 </article>
-<article class="hz-panel" style="--c: 0.6666666666666666">
-<div class="serif hz-num" aria-hidden="true">’19</div>
-<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
-<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>03 / 04</span><span>2019 – 2020</span></div>
-<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 118 30" aria-label="Verizon" role="img" style="height: 30px; width: auto"><text x="0" y="22" font-family="Inter, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.6" fill="currentColor">verizon</text><path d="M101 12 L106 18 L115 4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"></path></svg></div>
-<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where I learned what operating at scale really means.</h3>
-<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
-<li>Telecom infrastructure, engineering processes, and cloud</li>
-<li>Built the tracking that kept fixes moving</li>
+<article data-np="hsblock2" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>03 / 04</span><span>2019 – 2020</span></div>
+<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="assets/logo-verizon.webp" alt="Verizon" style="display: block; height: 100%; width: auto"></div>
+<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">I</span> <span class="hw" style="--w: 2">learned</span> <span class="hw" style="--w: 3">what</span> <span class="hw" style="--w: 4">operating</span> <span class="hw" style="--w: 5">at</span> <span class="hw" style="--w: 6">scale</span> <span class="hw" style="--w: 7">really</span> <span class="hw" style="--w: 8">means.</span></h3>
+<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
+<li class="hf" style="--k: 0">Telecom infrastructure, engineering processes, and cloud</li>
+<li class="hf" style="--k: 1">Built the tracking that kept fixes moving</li>
 </ul>
-</div>
 </article>
-<article class="hz-panel" style="--c: 1">
-<div class="serif hz-num" aria-hidden="true">Now</div>
-<div style="position: relative; display: flex; flex-direction: column; gap: 18px; height: 100%">
-<div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>04 / 04</span><span>2020 – now</span></div>
-<div class="tl-logo" style="height: 34px"><svg viewBox="0 0 222 30" aria-label="Microsoft and independent ventures" role="img" style="height: 30px; width: auto"><rect x="1" y="4" width="10" height="10" fill="currentColor"></rect><rect x="12" y="4" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="1" y="15" width="10" height="10" fill="currentColor" opacity="0.75"></rect><rect x="12" y="15" width="10" height="10" fill="currentColor" opacity="0.55"></rect><text x="30" y="21.5" font-family="Inter, sans-serif" font-size="19" font-weight="600" letter-spacing="-0.3" fill="currentColor">Microsoft</text><text x="128" y="21.5" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="19" fill="currentColor">+ ventures</text></svg></div>
-<h3 class="serif hz-line" style="margin: 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; max-width: 560px">Where security, AI, systems, and leadership began to converge.</h3>
-<ul style="margin: auto 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.18); display: flex; flex-direction: column; gap: 8px; font-size: 14px; line-height: 1.5; color: rgba(58,56,53,0.75)">
-<li>About 12 engagements a year across LinkedIn, Xbox, and Copilot</li>
-<li>Teams of 8–12, presenting to corporate vice presidents</li>
-<li>Independent ventures through Nikita Page Productions</li>
+<article data-np="hsblock3" class="hs-block" style="--n: 9; --lp: 0; opacity: 0">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(58,56,53,0.68); font-weight: 500"><span>04 / 04</span><span>2021 – now</span></div>
+<div class="hf hs-logo" style="--k: -1; margin-top: 18px"><img src="assets/logo-microsoft.webp" alt="Microsoft" style="display: block; height: 100%; width: auto"></div>
+<h3 class="serif hs-line" style="margin: 22px 0 0; font-weight: 400; letter-spacing: -0.025em; line-height: 1.14"><span class="hw" style="--w: 0">Where</span> <span class="hw" style="--w: 1">security,</span> <span class="hw" style="--w: 2">AI,</span> <span class="hw" style="--w: 3">systems,</span> <span class="hw" style="--w: 4">and</span> <span class="hw" style="--w: 5">leadership</span> <span class="hw" style="--w: 6">began</span> <span class="hw" style="--w: 7">to</span> <span class="hw" style="--w: 8">converge.</span></h3>
+<ul style="margin: 28px 0 0; padding: 18px 0 0; list-style: none; border-top: 1px solid rgba(58,56,53,0.2); display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.5; color: rgba(58,56,53,0.78)">
+<li class="hf" style="--k: 0">About 12 engagements a year across LinkedIn, Xbox, and Copilot</li>
+<li class="hf" style="--k: 1">Teams of 8–12, presenting to corporate vice presidents</li>
+<li class="hf" style="--k: 2">Building independently since 2020</li>
 </ul>
-</div>
 </article>
+</div>
 </div>
 </div>
 </section>
@@ -410,7 +422,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">Ukraine is where I’m from, and it comes with me everywhere. New York came next, and Denver is home now. Everything on this page happened somewhere along that line.</p>
 </div>
-<div data-np="roots" style="margin-top: 48px">
+<div data-np="roots" style="margin-top: 48px; position: relative; --r: 0">
 <svg viewBox="0 0 1280 480" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
 <defs>
 <radialGradient id="np-globe-glow" cx="50%" cy="100%" r="62%"><stop offset="0" stop-color="#d9c9a8" stop-opacity="0.55"></stop><stop offset="1" stop-color="#d9c9a8" stop-opacity="0"></stop></radialGradient>
@@ -456,14 +468,17 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <g class="globe-pin"><circle cx="981.8" cy="167.2" r="14" fill="#0057B7" opacity="0.18"></circle><circle cx="981.8" cy="167.2" r="7" fill="#FFD500" stroke="#0057B7" stroke-width="3"></circle></g>
 <g class="globe-pin"><circle cx="381.6" cy="258.8" r="14" fill="#3a3835" opacity="0.18"></circle><circle cx="381.6" cy="258.8" r="5" fill="#3a3835"></circle></g>
 <g class="globe-pin"><circle cx="239.4" cy="234.8" r="14" fill="#3a3835" opacity="0.18"></circle><circle cx="239.4" cy="234.8" r="5" fill="#3a3835"></circle></g>
-<text x="1005.8" y="149.2" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Ukraine</text>
-<text x="1005.8" y="175.2" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Україна · where I’m from</text>
-<text x="403.6" y="298.8" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">New York</text>
-<text x="403.6" y="324.8" text-anchor="start" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">next stop</text>
-<text x="215.4" y="216.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Denver</text>
-<text x="215.4" y="242.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Colorado · home now</text>
+<text x="981.8" y="209.2" text-anchor="middle" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Ukraine</text>
+<text x="981.8" y="233.2" text-anchor="middle" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Україна · where I’m from</text>
+<text x="381.6" y="300.8" text-anchor="middle" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">New York</text>
+<text x="381.6" y="324.8" text-anchor="middle" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">next stop</text>
+<text x="226" y="276.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="30" fill="#3a3835">Denver</text>
+<text x="226" y="300.8" text-anchor="end" font-family="'P22 Mackinac W01 Book', 'Newsreader', Georgia, serif" font-size="17" font-style="italic" fill="rgba(58,56,53,0.7)">Colorado · home now</text>
 <rect x="0" y="0" width="1280" height="480" fill="url(#np-globe-fade)" pointer-events="none"></rect>
 </svg>
+<img class="globe-emb" src="assets/place-ukraine.webp" alt="" aria-hidden="true" style="--at: 0.02; --tx: -50%; left: 76.70%; top: 34.83%">
+<img class="globe-emb" src="assets/place-newyork.webp" alt="" aria-hidden="true" style="--at: 0.8; --tx: -22%; left: 29.81%; top: 53.92%">
+<img class="globe-emb" src="assets/place-denver.webp" alt="" aria-hidden="true" style="--at: 0.97; --tx: -80%; left: 18.70%; top: 48.92%">
 </div>
 </div>
 </section>
@@ -511,13 +526,29 @@ a{color:#3a3835}a:hover{color:#3a3835}
   var easeInOut = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
   function applyScroll() {
-    var path = $('path'), hzRow = $('hzrow');
-    if (path && hzRow) {
-      var hvh = root.clientHeight, htop = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
-      var hp = clamp(-htop / Math.max(1, path.offsetHeight - hvh));
-      path.style.setProperty('--p', String(hp));
-      var hmax = Math.max(0, hzRow.scrollWidth - hzRow.clientWidth);
-      hzRow.style.transform = window.innerWidth >= 768 ? 'translateX(' + (-hmax * hp) + 'px)' : 'none';
+    var path = $('path'), hsStage = $('hsstage'), hsRoll = $('hsroll');
+    var hsBlocks = [$('hsblock0'), $('hsblock1'), $('hsblock2'), $('hsblock3')];
+    if (path && hsStage && window.innerWidth >= 768) {
+      var vh = root.clientHeight;
+      var top = path.getBoundingClientRect().top - root.getBoundingClientRect().top;
+      var f = clamp(-top / Math.max(1, path.offsetHeight - vh)) * 4 - 0.0001;
+      var i = Math.max(0, Math.min(3, Math.floor(f)));
+      var t = i < 3 ? easeInOut(clamp((f - i - 0.8) / 0.2)) : 0;
+      var r = i + t;
+      hsStage.style.setProperty('--r', String(r));
+      if (hsRoll) hsRoll.style.transform = 'translateY(' + (-r * (hsRoll.firstElementChild ? hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
+      var pal = [[243, 239, 232], [236, 229, 216], [231, 233, 227], [237, 230, 223]];
+      var a = pal[Math.floor(r)], b = pal[Math.min(3, Math.floor(r) + 1)], k = r - Math.floor(r);
+      hsStage.style.backgroundColor = 'rgb(' + a.map((v, q) => Math.round(v + (b[q] - v) * k)).join(',') + ')';
+      for (var j = 0; j < 4; j++) {
+        var el = hsBlocks[j];
+        if (!el) continue;
+        var local = f - j;
+        var exit = j < 3 ? clamp((local - 0.82) / 0.16) : 0;
+        el.style.setProperty('--lp', String(clamp(local / 0.55)));
+        el.style.opacity = String(local < 0 ? 0 : 1 - exit);
+        el.style.transform = 'translateY(' + (-48 * exit) + 'px)';
+      }
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
     var p = clamp(root.scrollTop / total);
@@ -526,6 +557,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
       var rvh = root.clientHeight, rtop = roots.getBoundingClientRect().top - root.getBoundingClientRect().top;
       var r = easeInOut(clamp((rvh * 0.85 - rtop) / (rvh * 0.55)));
       arcMask.style.strokeDashoffset = String(1 - r);
+      roots.style.setProperty('--r', String(r));
       var pt = arc.getPointAtLength(arc.getTotalLength() * r);
       arcDot.setAttribute('cx', pt.x); arcDot.setAttribute('cy', pt.y);
       arcDot.setAttribute('opacity', r > 0.02 && r < 0.98 ? '1' : '0');
