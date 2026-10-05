@@ -166,7 +166,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 }
 .collage{display:none}
 @media (min-width:768px){
-.collage{display:block;position:absolute;right:max(56px, calc((100% - 1280px) / 2));top:118px;width:min(46%, 640px);height:52%;pointer-events:none}
+.collage{display:block;position:absolute;left:calc(max(56px, calc((100% - 1280px) / 2)) + 700px);right:max(56px, calc((100% - 1280px) / 2));top:118px;height:52%;pointer-events:none}
 .collage-piece{--e:clamp(0, calc(var(--q2) * 5 - var(--i)), 1);position:absolute;height:auto;opacity:var(--e);transform:translate(calc((1 - var(--e)) * -140px), calc((1 - var(--e)) * -100px)) rotate(var(--rot)) scale(calc(0.7 + 0.3 * var(--e)));transform-origin:top left;filter:drop-shadow(0 14px 22px rgba(58,56,53,0.12))}
 }
 @media (min-width:768px) and (max-height:860px){.collage{top:96px;height:46%}}
@@ -175,6 +175,13 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .chip.ind{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;padding:12px 6px 10px;white-space:normal;text-align:center;font-size:12.5px;line-height:1.25}
 .chip.ind img{display:block;width:56px;height:56px;object-fit:contain}
 @media (min-width:768px) and (max-height:860px){.chip.ind img{width:44px;height:44px}.chip.ind{padding:8px 6px}}
+@media (max-width:1259px){.collage{display:none !important}}
+.proof-line{display:flex;flex-wrap:wrap;gap:6px;margin-top:-2px}
+.proof-line span{font-size:12.5px;font-weight:600;letter-spacing:0.01em;padding:5px 10px;color:#3a3835;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.35);background:rgba(255,255,255,0.55)}
+.hero-facts-m{display:none}
+@media (max-width:767px){.panel-outer{display:none !important}.hero-facts-m{display:block;margin-top:20px;font-size:13px;line-height:1.6;color:rgba(58,56,53,0.72)}}
+@media (max-width:767px){.intro-card > div{padding:24px !important;gap:12px !important}.intro-h{font-size:26px}.ind-grid{gap:6px}.chip.ind{padding:8px 4px 6px;font-size:10.5px;gap:4px}.chip.ind img{width:34px;height:34px}}
+@media (max-width:899px){.tlx-side{order:-1}.tlx-year{font-size:44px}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -219,7 +226,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .panel-body{font-size:15px}
 .intro-inner{padding:120px 56px 56px}
 .intro-h{font-size:44px}
-.intro-quote{display:block}
+.intro-quote{display:block;position:absolute;right:56px;bottom:48px;box-sizing:border-box}
 .chapter{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:80px}
 .path{grid-template-columns:repeat(4,minmax(0,1fr))}
 .tl{grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;padding-left:0;padding-top:48px}
@@ -263,7 +270,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </nav>
 
-<div id="top" ref="{{setTrack}}" style="position: relative; height: 320vh">
+<div id="top" ref="{{setTrack}}" style="position: relative; height: 210vh">
 <section style="position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; align-items: center">
 
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
@@ -294,6 +301,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <h1 class="serif hero-h1" style="margin: 0; max-width: 12.5em; line-height: 1.08; letter-spacing: -0.035em; color: #3a3835; font-weight: 400">I bring clarity to complex technology decisions.</h1>
 <p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’m a security and technology-risk leader at Microsoft. I work with engineers to understand complex systems, bring stakeholders together around the risks, and help leaders decide what needs to happen next. My work spans LinkedIn, Xbox and Copilot, with hands-on experience building AI tools that support the people doing the work.</p>
 <div class="hero-cta" style="display: flex; flex-wrap: wrap; gap: 12px"><a class="btn btn-hero" href="#work">Explore my work</a><a class="btn btn-hero btn-ghost" href="Resume.dc.html">View my resume</a></div>
+<div class="hero-facts-m">10 years across 8 industry sectors · Microsoft · Verizon · KPMG · Based in Denver</div>
 </div>
 
 <div ref="{{setPanel}}" class="panel-outer" style="margin-top: auto; align-self: center; width: 100%; box-sizing: border-box; position: relative; z-index: 10; will-change: transform, opacity">
@@ -318,8 +326,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div ref="{{setIntro}}" class="intro-card" style="opacity: 0; transform-origin: top left; will-change: transform, opacity">
 <div style="background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 40px; display: flex; flex-direction: column; gap: 20px">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Background</div>
-<h2 class="serif intro-h" style="margin: 0; line-height: 1.12; letter-spacing: -0.03em; font-weight: 400">Ten years across eight industry sectors</h2>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.7)">They’ve taught me to learn unfamiliar systems quickly and understand the business around them. My experience now reaches from application security and cloud environments to AI governance, custom-silicon R&amp;D and datacenter infrastructure.</p>
+<h2 class="serif intro-h" style="margin: 0; line-height: 1.12; letter-spacing: -0.03em; font-weight: 400">Learning unfamiliar systems quickly</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.7)">Working across very different industries has taught me to understand the business around each system. My experience now reaches from application security and cloud environments to AI governance, custom-silicon R&amp;D and datacenter infrastructure.</p>
 <div style="height: 1px; background: #e5e7eb"></div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: rgba(58,56,53,0.6)">
 <span>From Ukraine</span>
@@ -340,15 +348,9 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <span class="chip ind" style="--i: 7"><img src="/_blob/8442f3ca21abf64702488e3d67ce399d" alt=""><span>Hardware &amp; datacenters</span></span>
 </div>
 </div>
-<div ref="{{setCollage}}" class="collage" aria-hidden="true" style="--q2: 0">
-<img class="collage-piece" src="/_blob/6e6e4ee7241539803da1c1f1ca6c7815" alt="" style="--i: 0; --rot: -3deg; left: 2%; top: 0%; width: 44%">
-<img class="collage-piece" src="/_blob/b5360270dc6eb750d2b86e9442880db9" alt="" style="--i: 1; --rot: 4deg; left: 54%; top: 8%; width: 38%">
-<img class="collage-piece" src="/_blob/5c7caef4d028e1be7162fe6600842a59" alt="" style="--i: 2; --rot: 2deg; left: 10%; top: 50%; width: 44%">
-<img class="collage-piece" src="/_blob/04f85a432abd15b9cac3cce0bba4b0e4" alt="" style="--i: 3; --rot: -5deg; left: 64%; top: 46%; width: 27%">
-</div>
 <figure ref="{{setQuote}}" class="intro-quote" style="margin: 0; align-self: flex-end; max-width: 560px; opacity: 0; transform-origin: top left; will-change: transform, opacity; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 36px 40px">
 <blockquote class="serif" style="margin: 0; font-size: 34px; line-height: 1.15; letter-spacing: -0.03em; color: #3a3835">“The problems rhyme, even when the vocabulary doesn’t.”</blockquote>
-<figcaption style="margin-top: 16px; font-size: 13px; color: rgba(58,56,53,0.68)">What ten years across eight industries taught me</figcaption>
+<figcaption style="margin-top: 16px; font-size: 13px; color: rgba(58,56,53,0.68)">What working across industries taught me</figcaption>
 </figure>
 </div>
 </div>
@@ -367,7 +369,8 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div class="work-grid">
 <article class="work-card">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
-<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Building AI into the evidence review process</h3>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
+<div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Audit evidence needs to connect clearly to the controls being tested and the risks being assessed. I designed and built a review hub using Copilot Studio, Microsoft Foundry and Azure to bring that work together.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The hub maps submitted evidence to controls and risks and updates risk narratives for an auditor to review. Agent access is scoped to data-loss-prevention rules, keeping the workflow within defined data boundaries.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
@@ -375,14 +378,16 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </article>
 <article class="work-card">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
-<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Helping people put AI to work</h3>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for 200 colleagues</h3>
+<div class="proof-line"><span>13 contributors</span><span>2 months</span><span>~200 participants</span></div>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Building useful AI tools also means helping people understand how to use them. I led 13 contributors over two months to develop a one-hour enablement session for approximately 200 audit, risk and compliance professionals.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
 <article class="work-card">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
-<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Clarifying readiness for a move to Azure</h3>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
+<div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">When services from two acquisitions were moving to Azure, teams needed a clearer view of responsibilities and readiness.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I structured the advisory work and built the planning matrix from scratch. I ran weekly technical learning sessions and worked with stakeholders and a senior executive to align recommendations on who owned what and what needed to be ready.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
@@ -391,6 +396,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <article class="work-card">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
+<div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Following Microsoft’s Activision Blizzard acquisition, future audit planning needed a clearer understanding of secure-development practices across a varied gaming portfolio.</p>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I coordinated discovery with security and engineering leaders across ABK, ZeniMax and Minecraft, adapting the work to their development cycles. I brought the findings together in a landscape assessment that established a baseline for subsequent gaming audit planning.</p>
 
@@ -584,7 +590,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.55); font-weight: 500">Contact</div>
 <h2 class="serif sec-h2" style="margin: 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 820px; color: #FFFFFF">Let’s talk about what comes next.</h2>
-<p style="margin: 0; max-width: 620px; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.78)">I’m interested in opportunities that bring together technology, risk and cross-functional leadership. If that sounds like the work your team is doing, I’d welcome a conversation.</p>
+<p style="margin: 0; max-width: 620px; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.78)">I’m interested in security and technology-risk leadership, as well as technical program roles that draw on my experience with complex systems and cross-team coordination. If that sounds like the work your team is doing, I’d welcome a conversation.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
 <a class="btn btn-hero" href="mailto:connect@nikita.page" style="background: #FFFFFF; color: #3a3835">Get in touch</a>
 <a href="mailto:connect@nikita.page" style="color: #FFFFFF; font-size: 15px">connect@nikita.page</a>
@@ -685,7 +691,6 @@ class Component extends DCLogic {
     };
     enter(this.intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
     if (this.chips) this.chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
-    if (this.collage) this.collage.style.setProperty('--q2', String(clamp((p - 0.3) / 0.45)));
     enter(this.quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
   }
 
