@@ -535,9 +535,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
       var r = i + t;
       hsStage.style.setProperty('--r', String(r));
       if (hsRoll) hsRoll.style.transform = 'translateY(' + (-r * (hsRoll.firstElementChild ? hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
-      var pal = [[243, 239, 232], [236, 229, 216], [231, 233, 227], [237, 230, 223]];
-      var a = pal[Math.floor(r)], b = pal[Math.min(3, Math.floor(r) + 1)], k = r - Math.floor(r);
-      hsStage.style.backgroundColor = 'rgb(' + a.map((v, q) => Math.round(v + (b[q] - v) * k)).join(',') + ')';
       for (var j = 0; j < 4; j++) {
         var el = hsBlocks[j];
         if (!el) continue;

@@ -558,9 +558,6 @@ class Component extends DCLogic {
       const r = i + t;
       this.hsStage.style.setProperty('--r', String(r));
       if (this.hsRoll) this.hsRoll.style.transform = 'translateY(' + (-r * (this.hsRoll.firstElementChild ? this.hsRoll.firstElementChild.offsetHeight : 0)) + 'px)';
-      const pal = [[243, 239, 232], [236, 229, 216], [231, 233, 227], [237, 230, 223]];
-      const a = pal[Math.floor(r)], b = pal[Math.min(3, Math.floor(r) + 1)], k = r - Math.floor(r);
-      this.hsStage.style.backgroundColor = 'rgb(' + a.map((v, q) => Math.round(v + (b[q] - v) * k)).join(',') + ')';
       for (let j = 0; j < 4; j++) {
         const el = this.hsBlocks[j];
         if (!el) continue;
