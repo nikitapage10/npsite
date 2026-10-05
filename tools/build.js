@@ -16,7 +16,7 @@ const BLOBS = {
   "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
   "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
-  "035e867d91cf354a165c1e00cba24dcf": "assets/logo-wordmark.webp"
+  "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp"
 };
 
 function convert(file, title, extraScript) {
