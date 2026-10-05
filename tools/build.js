@@ -53,6 +53,8 @@ function convert(file, title, extraScript) {
     .replace(/\{\{microOp\}\}/g, '1').replace(/\{\{washiOp\}\}/g, '0').replace(/\{\{parchOp\}\}/g, '0').replace(/\{\{coldOp\}\}/g, '0').replace(/\{\{linenOp\}\}/g, '0').replace(/\{\{grainOp\}\}/g, '0')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
     .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
+  // Drafts (e.g. unapproved testimonials) live on the design canvas only.
+  body = body.replace(/<figure [^>]*data-draft="true"[^>]*>[\s\S]*?<\/figure>\n?/g, '');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
   const opens = (body.match(/<div[\s>]/g) || []).length, closes = (body.match(/<\/div>/g) || []).length;
   if (opens !== closes) throw new Error(file + ': ' + opens + ' <div> vs ' + closes + ' </div>, markup is unbalanced');
@@ -123,6 +125,7 @@ const script = `<script>
     enter(intro, easeOut(clamp((p - 0.2) / 0.4)), -280, -220);
     chips.style.setProperty('--q', String(clamp((p - 0.4) / 0.4)));
     enter(quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
+    var testi = $('testi'); if (testi) { var qt = easeOut(clamp((p - 0.42) / 0.38)); testi.style.opacity = String(qt); testi.style.transform = 'translate(' + (-320 * (1 - qt)) + 'px,' + (-240 * (1 - qt)) + 'px) scale(' + (0.6 + 0.4 * qt) + ') rotate(' + (1.6 * qt) + 'deg)'; }
   }
   function npInk(canvas, video) {
     var MASK = [239, 233, 223], LIFETIME = 1100, R_START = 10, R_VARY = 0.45, STEP = 10, MAX = 240, SEG = 36;
