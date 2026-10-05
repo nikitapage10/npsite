@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nikita Page</title>
+<title>Nikita Page | Security and technology leadership</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap">
 <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/9d4d074c9335825a23cce178ee03b498?family=P22+Mackinac+W01+Book">
@@ -18,10 +18,12 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .nav-link:hover{color:#3a3835}
 .btn{display:inline-flex;align-items:center;justify-content:center;background:#3a3835;color:#fff;font-size:14px;font-weight:500;border-radius:8px;text-decoration:none;transition:background-color .2s;min-height:44px;box-sizing:border-box}
 .btn:hover{background:rgba(58,56,53,.9);color:#fff}
+.btn-ghost{background:transparent;color:#3a3835;box-shadow:inset 0 0 0 1px rgba(58,56,53,0.45)}
+.btn-ghost:hover{background:rgba(58,56,53,0.06);color:#3a3835}
 .btn-nav{padding:10px 20px}
 .btn-hero{padding:12px 24px}
 .hero-content{padding:96px 16px 0}
-.hero-h1{font-size:36px}
+.hero-h1{font-size:34px}
 .hero-sub{margin-top:20px;max-width:384px}
 .hero-cta{margin-top:24px}
 .panel-outer{padding:0 16px}
@@ -115,7 +117,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .hs-logo{height:72px}
 @media (min-width:768px){.hs-logo{height:clamp(72px, 10vh, 112px)}}
 .globe-emb{--e:clamp(0, calc((var(--r) - var(--at)) * 10 + 1), 1);position:absolute;width:10.5%;height:auto;pointer-events:none;opacity:var(--e);transform:translate(var(--tx), calc(-100% - 16px)) scale(calc(0.8 + 0.2 * var(--e)));transform-origin:50% 100%}
-#translation{background:#F4F3F3 url(assets/bg-topo.webp) center bottom / cover no-repeat}
+#work{background:#F4F3F3 url(assets/bg-topo.webp) center bottom / cover no-repeat}
 .tlx{--t:0;position:relative;margin-top:64px}
 .tlx-spine{position:absolute;left:11px;top:0;bottom:0;width:2px;background:rgba(58,56,53,0.12)}
 .tlx-fill{position:absolute;inset:0;background:#3a3835;transform-origin:top;transform:scaleY(var(--t))}
@@ -144,8 +146,20 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .tlx-card::before{content:"";position:absolute;top:44px;width:56px;height:1px;background:rgba(58,56,53,0.35);right:-57px}
 .flip .tlx-card::before{right:auto;left:-57px}
 }
-.panel,.intro-card > div,.intro-quote,.chip:not(:first-child),.proof > div,.tlx-card{background:#FCFBF7 url(assets/paper-white.webp) repeat !important;background-size:256px 256px !important}
+.panel,.work-card,.appr-card,.intro-card > div,.intro-quote,.chip:not(:first-child),.proof > div,.tlx-card{background:#FCFBF7 url(assets/paper-white.webp) repeat !important;background-size:256px 256px !important}
 .hero-washi{background:url(assets/washi.webp) repeat;background-size:512px 512px}
+.facts{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.facts > div{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-size:19px;line-height:1.3;letter-spacing:-0.01em;padding-left:16px;border-left:1px solid rgba(58,56,53,0.25)}
+.work-grid{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.work-card,.appr-card{display:flex;flex-direction:column;gap:14px;padding:32px;border:1px solid #e7e2d8;box-shadow:0 18px 40px -28px rgba(58,56,53,0.35)}
+.appr-grid{margin-top:48px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+@media (min-width:768px){
+.facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.work-card{padding:40px 44px}
+.appr-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.appr-card{padding:36px}
+}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -157,7 +171,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (min-width:640px){
 .nav{padding:20px 40px}
 .hero-content{padding:104px 24px 0}
-.hero-h1{font-size:48px}
+.hero-h1{font-size:44px}
 .hero-sub{margin-top:24px;max-width:448px}
 .hero-cta{margin-top:32px}
 .btn-hero{padding:14px 32px}
@@ -176,11 +190,11 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .nav-links{display:flex}
 .nav-group{margin-left:72px;margin-right:auto}
 .brand-logo{height:84px}
-.hero-content{padding:clamp(150px, 25vh, 250px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
-.hero-sub{max-width:420px}
+.hero-content{padding:clamp(128px, 19vh, 210px) 56px 0;max-width:1392px;margin:0 auto;width:100%}
+.hero-sub{max-width:560px}
 .panel-outer{padding:0 56px;max-width:1392px}
 .panel{max-width:760px}
-.hero-h1{font-size:72px}
+.hero-h1{font-size:58px}
 .hero-sub{margin-top:32px;font-size:16px}
 .hero-cta{margin-top:40px}
 .panel{padding:64px 48px 0}
@@ -202,11 +216,11 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .lede{font-size:24px}
 }
 @media (min-width:1024px){
-.hero-h1{font-size:96px}
+.hero-h1{font-size:72px}
 }
 @media (min-width:768px) and (max-height:860px){
-.hero-content{padding-top:clamp(150px, 23vh, 250px)}
-.hero-h1{font-size:clamp(60px, 10.5vh, 96px)}
+.hero-content{padding-top:clamp(112px, 14vh, 140px)}
+.hero-h1{font-size:clamp(40px, 6.6vh, 66px)}
 .hero-sub{margin-top:20px}
 .hero-cta{margin-top:24px}
 .panel{padding-top:32px}
@@ -222,16 +236,16 @@ a{color:#3a3835}a:hover{color:#3a3835}
 
 <nav data-np="nav" class="nav" aria-label="Main" style="transition: background-color .3s, box-shadow .3s; position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; box-sizing: border-box">
 <a href="#top" aria-label="Nikita Page, back to top" style="display: flex; align-items: center; text-decoration: none">
-<img data-np="brand" class="brand-logo" src="assets/logo-signature.webp" alt="Nikita Page" style="display: block; width: auto">
+<img class="brand-logo" src="assets/logo-signature.webp" alt="Nikita Page" style="display: block; width: auto">
 </a>
 <div class="nav-group" style="display: flex; align-items: center; gap: 36px">
 <div class="nav-links" style="align-items: center; gap: 32px">
-<a class="nav-link" href="#range">Range</a>
-<a class="nav-link" href="#translation">Translation</a>
-<a class="nav-link" href="#building">Building</a>
-<a class="nav-link" href="#path">Path</a>
+<a class="nav-link" href="#work">Work</a>
+<a class="nav-link" href="#approach">Approach</a>
+<a class="nav-link" href="#background">Background</a>
+<a class="nav-link" href="#contact">Contact</a>
 </div>
-<a class="btn btn-nav" href="mailto:connect@nikita.page">Say hello</a>
+<a class="btn btn-nav" href="resume.html">View resume</a>
 </div>
 </nav>
 
@@ -262,27 +276,24 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 
 <div data-np="hero" class="hero-content" style="position: relative; z-index: 10; align-self: stretch; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; text-align: left; will-change: transform, opacity">
-<h1 class="serif hero-h1" style="margin: 0; line-height: 1.1; letter-spacing: -0.05em; color: #3a3835; font-weight: 400">Hi, I’m<br>Nikita Page.</h1>
-<p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I connect business and technology. Ten years across eight industries taught me to see the whole system and explain it to anyone in the room. From Ukraine, based in Denver, currently at Microsoft.</p>
-<a class="btn btn-hero hero-cta" href="#range">Read my story</a>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500; margin-bottom: 18px">Nikita Page <span style="margin: 0 8px; opacity: 0.5">|</span> Security and technology leadership</div>
+<h1 class="serif hero-h1" style="margin: 0; max-width: 12.5em; line-height: 1.08; letter-spacing: -0.035em; color: #3a3835; font-weight: 400">I bring clarity to complex technology decisions.</h1>
+<p class="hero-sub" style="margin-bottom: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’m a security and technology-risk leader at Microsoft. I work with engineers to understand complex systems, bring stakeholders together around the risks, and help leaders decide what needs to happen next. My work spans LinkedIn, Xbox and Copilot, with hands-on experience building AI tools that support the people doing the work.</p>
+<div class="hero-cta" style="display: flex; flex-wrap: wrap; gap: 12px"><a class="btn btn-hero" href="#work">Explore my work</a><a class="btn btn-hero btn-ghost" href="resume.html">View my resume</a></div>
 </div>
 
 <div data-np="panel" class="panel-outer" style="margin-top: auto; align-self: center; width: 100%; box-sizing: border-box; position: relative; z-index: 10; will-change: transform, opacity">
 <div class="panel" style="background: rgba(252,250,246,0.96); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid #e5e7eb; border-bottom: 0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding-bottom: 24px">
-<div class="panel-grid">
-<div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Who is Nikita?</div>
-<h2 class="serif panel-h2" style="margin: 12px 0 0; line-height: 1.25; letter-spacing: -0.025em; font-weight: 400">Business fluent,<br>tech native</h2>
-</div>
-<div style="display: flex; align-items: flex-end">
-<p class="panel-body" style="margin: 0; font-size: 14px; color: rgba(58,56,53,0.7); line-height: 1.625">I’ve worked across banking, retail, telecom, gaming, and AI. I bring that high-level view to every problem: how the pieces connect, what actually matters, and how to get engineers and executives moving in the same direction.</p>
-</div>
+<div class="facts">
+<div>10 years across 8 industry sectors</div>
+<div>Microsoft · Verizon · KPMG</div>
+<div>Based in Denver</div>
 </div>
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
-<a class="feat" href="#range"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Range</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-<a class="feat" href="#translation"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Translation</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-<a class="feat" href="#building"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Building</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#work"><span><span style="color: rgba(58,56,53,0.55)">01</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Work</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#approach"><span><span style="color: rgba(58,56,53,0.55)">02</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Approach</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#background"><span><span style="color: rgba(58,56,53,0.55)">03</span><span style="margin: 0 8px; color: rgba(58,56,53,0.4)">/</span><span style="font-weight: 500">Background</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 </div>
 </div>
 </div>
@@ -292,9 +303,9 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
 <div data-np="intro" class="intro-card" style="opacity: 0; transform-origin: top left; will-change: transform, opacity">
 <div style="background: rgba(255,255,255,0.92); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 40px; display: flex; flex-direction: column; gap: 20px">
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">A quick introduction</div>
-<h2 class="serif intro-h" style="margin: 0; line-height: 1.12; letter-spacing: -0.03em; font-weight: 400">I’m the person in the room who speaks both engineer and executive.</h2>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.7)">For ten years, across eight industries (from banks and beauty brands to telecom, gaming, and AI), I’ve been the one connecting the dots. I see how the pieces fit, work out what actually matters, and help both sides act on it.</p>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Background</div>
+<h2 class="serif intro-h" style="margin: 0; line-height: 1.12; letter-spacing: -0.03em; font-weight: 400">Ten years across eight industry sectors</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.7)">They’ve taught me to learn unfamiliar systems quickly and understand the business around them. My experience now reaches from application security and cloud environments to AI governance, custom-silicon R&amp;D and datacenter infrastructure.</p>
 <div style="height: 1px; background: #e5e7eb"></div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 13px; color: rgba(58,56,53,0.6)">
 <span>From Ukraine</span>
@@ -324,71 +335,74 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </section>
 </div>
 
-<section id="range" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
-<div class="chapter">
-<div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01 / Range</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I’ve worked in more rooms than most.</h2>
-</div>
-<div style="display: flex; flex-direction: column; gap: 28px">
-<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">Banks, insurers, fashion, beauty, grocery, telecom, and now LinkedIn, Xbox, and Copilot. Ten years across eight industries taught me that the problems rhyme even when the vocabulary doesn’t. That’s what lets me walk into a new domain and see the whole picture quickly.</p>
-<div class="proof">
-<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">Three studios, one baseline</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">After Microsoft’s $75.4B Activision Blizzard acquisition, I worked with security and engineering leaders across ABK, ZeniMax, and Minecraft. I adapted to each studio’s rhythm and wrote the landscape assessment the next phase of planning was built on.</p>
-</div>
-<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">Cloud to custom silicon</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">Cloud, identity, privacy, AI, secure development, supply chain, custom-silicon R&amp;D, and datacenter energy and capacity. That’s more than ten domains, and in each one I learned to talk with engineers on their own terms.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<section id="translation">
+<section id="work">
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02 / Translation</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I speak business to tech, and tech to business.</h2>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Selected work</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">What that looks like in practice</h2>
 </div>
-<div style="display: flex; flex-direction: column; gap: 28px">
-<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">Engineers want precision. Executives want a decision. I work between them, aligning dozens of engineering and business stakeholders and turning a technical problem into a business case: how likely it is, and what it could cost. Then I get directors and corporate vice presidents to commit.</p>
-<div class="proof">
-<div style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">Two acquisitions, one migration plan</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">When services from two acquisitions moved to Azure, I built the planning matrix from scratch, ran weekly technical learning sessions, and aligned a senior executive on who owns what and when each piece is ready.</p>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">My work brings together technical investigation, cross-team coordination and clear recommendations. Each project starts with a different problem and requires understanding both the system and the people responsible for it.</p>
 </div>
-<div style="background: #FFFFFF; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">Making AI make sense to 200 people</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">I led AI enablement for a department of about 200 professionals, showing them how to apply AI to their everyday work. I directed 13 contributors and built the demo chatbots myself.</p>
-</div>
-</div>
-</div>
+<div class="work-grid">
+<article class="work-card">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Building AI into the evidence review process</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Audit evidence needs to connect clearly to the controls being tested and the risks being assessed. I designed and built a review hub using Copilot Studio, Microsoft Foundry and Azure to bring that work together.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The hub maps submitted evidence to controls and risks and updates risk narratives for an auditor to review. Agent access is scoped to data-loss-prevention rules, keeping the workflow within defined data boundaries.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
+
+</article>
+<article class="work-card">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Helping people put AI to work</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Building useful AI tools also means helping people understand how to use them. I led 13 contributors over two months to develop a one-hour enablement session for approximately 200 audit, risk and compliance professionals.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
+</article>
+<article class="work-card">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Clarifying readiness for a move to Azure</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">When services from two acquisitions were moving to Azure, teams needed a clearer view of responsibilities and readiness.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I structured the advisory work and built the planning matrix from scratch. I ran weekly technical learning sessions and worked with stakeholders and a senior executive to align recommendations on who owned what and what needed to be ready.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
+
+</article>
+<article class="work-card">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Following Microsoft’s Activision Blizzard acquisition, future audit planning needed a clearer understanding of secure-development practices across a varied gaming portfolio.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I coordinated discovery with security and engineering leaders across ABK, ZeniMax and Minecraft, adapting the work to their development cycles. I brought the findings together in a landscape assessment that established a baseline for subsequent gaming audit planning.</p>
+
+</article>
 </div>
 </div>
 </section>
 
-<section id="building" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<section id="approach" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03 / Building</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">I don’t just advise. I build.</h2>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Approach</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I work with people</h2>
 </div>
-<div style="display: flex; flex-direction: column; gap: 28px">
-<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">A high-level view only helps if it reaches the ground. So I build the tools: AI workflows, dashboards, and prototypes. Through my own company, Nikita Page Productions, I help founders turn early ideas into plans they can actually build.</p>
-<div class="proof">
-<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">An AI hub that keeps the story current</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">Built in Copilot Studio, Microsoft Foundry, and Azure. It connects evidence to risks, keeps the narrative up to date on its own, and limits each agent’s access to what data-loss-prevention rules allow.</p>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">My background is in security and risk. A large part of my contribution is helping people with different responsibilities reach a shared understanding and decide how to respond.</p>
 </div>
-<div style="background: #F4F3F3; padding: 28px; display: flex; flex-direction: column; gap: 10px">
-<h3 style="margin: 0; font-size: 15px; font-weight: 600">From idea to buildable plan</h3>
-<p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(58,56,53,0.7)">With startups and small businesses I lead discovery, workflow design, and prototyping, along with technology strategy and architecture.</p>
-</div>
-</div>
-</div>
+<div class="appr-grid">
+<article class="appr-card">
+<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">01</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I get close to the technical detail, ask questions and work with engineers on their own terms. That can mean reviewing code, developing KQL test plans or learning how a new infrastructure environment operates. Understanding the system helps me ask better questions about the risks around it.</p>
+</article>
+<article class="appr-card">
+<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">02</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I lead rotating engagement teams of 8–12 and coordinate with engineering and business stakeholders. I make scope, responsibilities and dependencies clear so people understand how their work fits together. Listening to the people closest to the work is an important part of that process.</p>
+</article>
+<article class="appr-card">
+<div class="serif" style="font-size: 56px; line-height: 1; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.2px #3a3835">03</div>
+<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I explain risks through their likelihood and potential financial and reputational impact. Then I work with directors and corporate vice presidents to secure commitment to remediation. The goal is a decision people understand and can act on.</p>
+</article>
 </div>
 </section>
 
@@ -403,138 +417,87 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="path" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 48px">
-<div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">The path so far</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">How I got here</h2>
-</div>
-<p class="serif" style="margin: 0; max-width: 460px; font-size: 19px; line-height: 1.45; color: rgba(58,56,53,0.85)">Five chapters across education, consulting, telecom, my own practice, and Microsoft. Each one added a new language I can speak.</p>
-</div>
+<section id="background" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Background</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 820px">A career built across different kinds of technology</h2>
 <div data-np="path" class="tlx">
 <div class="tlx-spine" aria-hidden="true"><div class="tlx-fill"></div></div>
-<div class="tlx-item">
-<span class="tlx-node" aria-hidden="true"></span>
-<article class="tlx-card">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-pennstate.webp" alt="Penn State">
-<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">Undergraduate</span>
-</div>
-<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">B.S., Information Sciences &amp; Technology</h3>
-<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Penn State University</div>
-<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">A degree built around how people, systems, and data fit together, which is still how I look at every problem.</p>
-<ul class="tlx-list">
-<li style="--k: 0">Studied information systems, data, and the human side of technology together</li>
-<li style="--k: 1">Started thinking in systems: what connects to what, and what breaks when it changes</li>
-</ul>
-<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Information systems</span><span class="tlx-tag">Data</span><span class="tlx-tag">Human-centered tech</span></div>
-</article>
-<div class="tlx-side">
-<div class="serif tlx-year">Education</div>
-<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where technology became a direction.</p>
-</div>
-</div>
-<div class="tlx-item flip">
-<span class="tlx-node" aria-hidden="true"></span>
-<article class="tlx-card">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-kpmg.webp" alt="KPMG">
-<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">June 2017 – May 2019</span>
-</div>
-<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Advisory Associate</h3>
-<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">KPMG</div>
-<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Technology-risk and control work across very different clients, which meant learning a new business every few months.</p>
-<ul class="tlx-list">
-<li style="--k: 0">Delivered technology-risk and control assessments for small and large banks, insurers, and fashion, beauty, and grocery-retail clients</li>
-<li style="--k: 1">Evaluated databases, ERP implementations, and regulatory compliance requirements across varied environments</li>
-<li style="--k: 2">Learned to explain technical findings to business owners in their own terms</li>
-</ul>
-<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Banking</span><span class="tlx-tag">Insurance</span><span class="tlx-tag">Retail</span><span class="tlx-tag">ERP</span><span class="tlx-tag">Compliance</span></div>
-</article>
-<div class="tlx-side">
-<div class="serif tlx-year">2017</div>
-<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned to translate between business and technology.</p>
-</div>
-</div>
-<div class="tlx-item">
-<span class="tlx-node" aria-hidden="true"></span>
-<article class="tlx-card">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-verizon.webp" alt="Verizon">
-<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">April 2019 – May 2020</span>
-</div>
-<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Audit Consultant</h3>
-<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Verizon</div>
-<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Security and operational risk across one of the largest telecom networks in the country.</p>
-<ul class="tlx-list">
-<li style="--k: 0">Assessed telecommunications infrastructure, engineering processes, and cloud environments for security, operational, and control risk</li>
-<li style="--k: 1">Built tracking and reporting tools that gave stakeholders visibility into open issues</li>
-<li style="--k: 2">Drove remediation follow-through with the teams who owned the fixes</li>
-</ul>
-<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Telecom</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Infrastructure</span><span class="tlx-tag">Reporting tools</span></div>
-</article>
-<div class="tlx-side">
-<div class="serif tlx-year">2019</div>
-<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned what operating at scale really means.</p>
-</div>
-</div>
-<div class="tlx-item flip">
-<span class="tlx-node" aria-hidden="true"></span>
-<article class="tlx-card">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
-<img class="tlx-logo" src="assets/logo-mountain.webp" alt="Nikita Page Productions">
-<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">May 2020 – present</span>
-</div>
-<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Founder &amp; Principal Consultant</h3>
-<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Nikita Page Productions LLC</div>
-<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">My own practice: working directly with founders on the earliest, messiest stage of a product.</p>
-<ul class="tlx-list">
-<li style="--k: 0">Advise startups and small businesses on technology strategy, architecture, and early-stage product requirements</li>
-<li style="--k: 1">Lead discovery, workflow design, and prototyping with founders</li>
-<li style="--k: 2">Turn early ideas into plans a team can actually build</li>
-</ul>
-<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Strategy</span><span class="tlx-tag">Architecture</span><span class="tlx-tag">Prototyping</span><span class="tlx-tag">Product</span></div>
-</article>
-<div class="tlx-side">
-<div class="serif tlx-year">2020</div>
-<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where I learned to build from zero.</p>
-</div>
-</div>
 <div class="tlx-item tlx-now">
 <span class="tlx-node" aria-hidden="true"></span>
 <article class="tlx-card">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
 <img class="tlx-logo" src="assets/logo-microsoft.webp" alt="Microsoft">
-<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">March 2021 – present</span>
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">March 2021–present</span>
 </div>
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Senior IT Audit Manager</h3>
-<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Microsoft · Remote</div>
-<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: rgba(58,56,53,0.85)">Security, AI, and operational-risk engagements across Microsoft’s product, engineering, and infrastructure organizations, from scoping to executive reporting. Reports go to the CFO.</p>
-<ul class="tlx-list">
-<li style="--k: 0">Run about 12 engagements a year across LinkedIn, Xbox, and Copilot, leading rotating teams of 8–12</li>
-<li style="--k: 1">Turn issues into business cases framed by likelihood and financial and reputational impact, and win commitment from directors and CVPs to invest in fixes</li>
-<li style="--k: 2">Set the secure-development baseline for the $75.4B Activision Blizzard acquisition, across ABK, ZeniMax, and Minecraft</li>
-<li style="--k: 3">Designed and built an AI evidence review hub (Copilot Studio, Microsoft Foundry, Azure) that maps evidence to controls and keeps risk narratives current</li>
-<li style="--k: 4">Led AI enablement for about 200 audit, risk, and compliance professionals; directed 13 contributors and built the demo chatbots myself</li>
-</ul>
-<div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px"><span class="tlx-tag">Security</span><span class="tlx-tag">AI governance</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Program leadership</span><span class="tlx-tag">KQL</span><span class="tlx-tag">Power BI</span></div>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Microsoft</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.85)">I lead security, AI and operational-risk engagements across Microsoft’s product, engineering and infrastructure organizations, from scoping through executive reporting. My work includes LinkedIn, Xbox and Copilot, alongside advisory and assessment work across cloud, hardware and datacenters.</p>
 </article>
 <div class="tlx-side">
 <div class="serif tlx-year">2021</div>
-<p class="serif" style="margin: 10px 0 0; font-size: 22px; line-height: 1.3; letter-spacing: -0.015em; font-style: italic; color: rgba(58,56,53,0.85)">Where security, AI, systems, and leadership began to converge.</p>
+</div>
+</div>
+<div class="tlx-item flip">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-verizon.webp" alt="Verizon">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">April 2019–May 2020</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Audit Consultant</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Verizon</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.85)">I assessed telecommunications infrastructure, engineering processes and cloud environments. I also built tracking and reporting tools that helped stakeholders see open issues and follow remediation through.</p>
+</article>
+<div class="tlx-side">
+<div class="serif tlx-year">2019</div>
+</div>
+</div>
+<div class="tlx-item">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-kpmg.webp" alt="KPMG">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right">June 2017–May 2019</span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Advisory Associate</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">KPMG</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.85)">I delivered technology-risk and control assessments for banks, insurers, and businesses in fashion, beauty and grocery retail. The work covered databases, ERP implementations and regulatory requirements across varied client environments.</p>
+</article>
+<div class="tlx-side">
+<div class="serif tlx-year">2017</div>
+</div>
+</div>
+<div class="tlx-item flip">
+<span class="tlx-node" aria-hidden="true"></span>
+<article class="tlx-card">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px">
+<img class="tlx-logo" src="assets/logo-pennstate.webp" alt="Penn State">
+<span style="font-size: 12px; letter-spacing: 0.08em; color: rgba(58,56,53,0.68); text-align: right"></span>
+</div>
+<h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">B.S. in Information Sciences and Technology</h3>
+<div style="margin-top: 4px; font-size: 14px; color: rgba(58,56,53,0.68)">Penn State University</div>
+
+</article>
+<div class="tlx-side">
+<div class="serif tlx-year">Education</div>
 </div>
 </div>
 </div>
+<div style="margin-top: 64px; display: flex; justify-content: center"><a class="btn btn-hero" href="resume.html">View my full resume</a></div>
 </section>
 
 <section id="roots" style="background: #F4F3F3; overflow: hidden">
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; padding-bottom: 0">
 <div class="chapter">
 <div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Roots</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">Ukraine, New York, Denver.</h2>
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Roots and life beyond work</div>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">From Ukraine, now at home in Denver</h2>
 </div>
-<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">Ukraine is where I’m from, and it comes with me everywhere. New York came next, and Denver is home now. Everything on this page happened somewhere along that line.</p>
+<div style="display: flex; flex-direction: column; gap: 16px; align-self: end">
+<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">I’m from Ukraine, have lived in New York, and now call Denver home. My Ukrainian heritage remains an important part of who I am.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Music is another part of my life. I’ve spent nearly two decades DJing and several years producing melodic electronic music. I also enjoy designing interfaces and experimenting with product ideas.</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">Through Nikita Page Productions, I’ve helped founders work through technology decisions, workflows and early prototypes. It’s another way I put my technical experience and curiosity to work.</p>
+</div>
 </div>
 <div data-np="roots" style="margin-top: 48px; position: relative; --r: 0">
 <svg viewBox="0 0 1280 480" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
@@ -597,25 +560,15 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 </section>
 
-<section id="beyond" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
-<div class="chapter">
-<div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Beyond the résumé</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">Music, making, and whatever comes next.</h2>
-</div>
-<p class="serif lede" style="margin: 0; line-height: 1.45; color: rgba(58,56,53,0.85)">I’ve been a DJ for nearly two decades and a producer for the past several years. When I’m not working, I’m usually making music, prototyping a product, designing an interface, or finding some unnecessarily complicated way to turn an idea into something real.</p>
-</div>
-<div class="wave" aria-hidden="true" style="margin-top: 72px; height: 96px; display: flex; align-items: center; gap: 3px; overflow: hidden"><span style="--i: 0; height: 22px"></span><span style="--i: 1; height: 27px"></span><span style="--i: 2; height: 19px"></span><span style="--i: 3; height: 17px"></span><span style="--i: 4; height: 20px"></span><span style="--i: 5; height: 30px"></span><span style="--i: 6; height: 21px"></span><span style="--i: 7; height: 24px"></span><span style="--i: 8; height: 35px"></span><span style="--i: 9; height: 26px"></span><span style="--i: 10; height: 33px"></span><span style="--i: 11; height: 40px"></span><span style="--i: 12; height: 44px"></span><span style="--i: 13; height: 34px"></span><span style="--i: 14; height: 29px"></span><span style="--i: 15; height: 34px"></span><span style="--i: 16; height: 34px"></span><span style="--i: 17; height: 39px"></span><span style="--i: 18; height: 30px"></span><span style="--i: 19; height: 48px"></span><span style="--i: 20; height: 27px"></span><span style="--i: 21; height: 50px"></span><span style="--i: 22; height: 25px"></span><span style="--i: 23; height: 35px"></span><span style="--i: 24; height: 41px"></span><span style="--i: 25; height: 45px"></span><span style="--i: 26; height: 48px"></span><span style="--i: 27; height: 51px"></span><span style="--i: 28; height: 55px"></span><span style="--i: 29; height: 41px"></span><span style="--i: 30; height: 61px"></span><span style="--i: 31; height: 29px"></span><span style="--i: 32; height: 30px"></span><span style="--i: 33; height: 45px"></span><span style="--i: 34; height: 66px"></span><span style="--i: 35; height: 32px"></span><span style="--i: 36; height: 64px"></span><span style="--i: 37; height: 58px"></span><span style="--i: 38; height: 68px"></span><span style="--i: 39; height: 47px"></span><span style="--i: 40; height: 66px"></span><span style="--i: 41; height: 67px"></span><span style="--i: 42; height: 59px"></span><span style="--i: 43; height: 63px"></span><span style="--i: 44; height: 45px"></span><span style="--i: 45; height: 74px"></span><span style="--i: 46; height: 69px"></span><span style="--i: 47; height: 72px"></span><span style="--i: 48; height: 63px"></span><span style="--i: 49; height: 55px"></span><span style="--i: 50; height: 69px"></span><span style="--i: 51; height: 46px"></span><span style="--i: 52; height: 42px"></span><span style="--i: 53; height: 58px"></span><span style="--i: 54; height: 43px"></span><span style="--i: 55; height: 51px"></span><span style="--i: 56; height: 58px"></span><span style="--i: 57; height: 78px"></span><span style="--i: 58; height: 53px"></span><span style="--i: 59; height: 41px"></span><span style="--i: 60; height: 67px"></span><span style="--i: 61; height: 69px"></span><span style="--i: 62; height: 80px"></span><span style="--i: 63; height: 34px"></span><span style="--i: 64; height: 69px"></span><span style="--i: 65; height: 41px"></span><span style="--i: 66; height: 50px"></span><span style="--i: 67; height: 74px"></span><span style="--i: 68; height: 49px"></span><span style="--i: 69; height: 35px"></span><span style="--i: 70; height: 55px"></span><span style="--i: 71; height: 73px"></span><span style="--i: 72; height: 60px"></span><span style="--i: 73; height: 33px"></span><span style="--i: 74; height: 35px"></span><span style="--i: 75; height: 46px"></span><span style="--i: 76; height: 77px"></span><span style="--i: 77; height: 53px"></span><span style="--i: 78; height: 62px"></span><span style="--i: 79; height: 62px"></span><span style="--i: 80; height: 51px"></span><span style="--i: 81; height: 34px"></span><span style="--i: 82; height: 55px"></span><span style="--i: 83; height: 49px"></span><span style="--i: 84; height: 72px"></span><span style="--i: 85; height: 32px"></span><span style="--i: 86; height: 64px"></span><span style="--i: 87; height: 60px"></span><span style="--i: 88; height: 53px"></span><span style="--i: 89; height: 30px"></span><span style="--i: 90; height: 61px"></span><span style="--i: 91; height: 50px"></span><span style="--i: 92; height: 47px"></span><span style="--i: 93; height: 50px"></span><span style="--i: 94; height: 42px"></span><span style="--i: 95; height: 50px"></span><span style="--i: 96; height: 45px"></span><span style="--i: 97; height: 43px"></span><span style="--i: 98; height: 55px"></span><span style="--i: 99; height: 26px"></span><span style="--i: 100; height: 34px"></span><span style="--i: 101; height: 42px"></span><span style="--i: 102; height: 38px"></span><span style="--i: 103; height: 30px"></span><span style="--i: 104; height: 29px"></span><span style="--i: 105; height: 31px"></span><span style="--i: 106; height: 39px"></span><span style="--i: 107; height: 26px"></span><span style="--i: 108; height: 20px"></span><span style="--i: 109; height: 21px"></span><span style="--i: 110; height: 40px"></span><span style="--i: 111; height: 37px"></span><span style="--i: 112; height: 34px"></span><span style="--i: 113; height: 33px"></span><span style="--i: 114; height: 24px"></span><span style="--i: 115; height: 22px"></span><span style="--i: 116; height: 20px"></span><span style="--i: 117; height: 30px"></span><span style="--i: 118; height: 15px"></span><span style="--i: 119; height: 24px"></span></div>
-<div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 12px; letter-spacing: 0.04em; color: rgba(58,56,53,0.55)"><span>Work in progress</span><span>Melodic electronic</span></div>
-</section>
-
 <section id="contact" style="background: #3a3835; color: #FFFFFF">
-<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.55); font-weight: 500">Say hello</div>
-<h2 class="serif sec-h2" style="margin: 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 820px; color: #FFFFFF">Need someone who sees the whole picture? Let’s talk.</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 12px">
-<a class="btn btn-hero" href="mailto:connect@nikita.page" style="background: #FFFFFF; color: #3a3835">connect@nikita.page</a>
-<a class="btn btn-hero" href="resume.html" style="background: transparent; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35)">View resume</a>
+<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(255,255,255,0.55); font-weight: 500">Contact</div>
+<h2 class="serif sec-h2" style="margin: 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400; max-width: 820px; color: #FFFFFF">Let’s talk about what comes next.</h2>
+<p style="margin: 0; max-width: 620px; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.78)">I’m interested in opportunities that bring together technology, risk and cross-functional leadership. If that sounds like the work your team is doing, I’d welcome a conversation.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<a class="btn btn-hero" href="mailto:connect@nikita.page" style="background: #FFFFFF; color: #3a3835">Get in touch</a>
+<a href="mailto:connect@nikita.page" style="color: #FFFFFF; font-size: 15px">connect@nikita.page</a>
+<a class="btn btn-hero" href="resume.html" style="background: transparent; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35)">View my resume</a>
 </div>
 <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.55)">
 <span>Nikita Page · Denver, Colorado</span>
@@ -759,18 +712,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
     };
   }
   if ($('ink')) npInk($('ink'), $('inkvideo'));
-  var brand = $('brand');
-  function alignBrand() {
-    var img = brand;
-    if (!img || !root || !img.naturalWidth) return;
-    var W = root.clientWidth, H = root.clientHeight;
-    var lineY = 1.15 * 72 * Math.max(W / 1920, H / 1080);
-    img.style.transform = 'none';
-    var box = img.getBoundingClientRect();
-    var baseline = box.top - root.getBoundingClientRect().top + box.height * 0.667;
-    img.style.transform = 'translateY(' + (lineY - baseline).toFixed(1) + 'px)';
-  }
-  if (brand) { brand.addEventListener('load', alignBrand); window.addEventListener('resize', alignBrand); alignBrand(); }
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
