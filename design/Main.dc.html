@@ -182,6 +182,39 @@ a{color:#3a3835}a:hover{color:#3a3835}
 @media (max-width:767px){.panel-outer{display:none !important}.hero-facts-m{display:block;margin-top:20px;font-size:13px;line-height:1.6;color:rgba(58,56,53,0.72)}}
 @media (max-width:767px){.intro-card > div{padding:24px !important;gap:12px !important}.intro-h{font-size:26px}.ind-grid{gap:6px}.chip.ind{padding:8px 4px 6px;font-size:10.5px;gap:4px}.chip.ind img{width:34px;height:34px}}
 @media (max-width:899px){.tlx-side{order:-1}.tlx-year{font-size:44px}}
+.deck{margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr);gap:24px}
+.deck-tabs{display:none}
+.deck-stack{position:relative;padding:0 18px 30px 0;touch-action:pan-y}
+.deck-card{position:absolute;top:0;left:0;right:18px;box-sizing:border-box;transform-origin:50% 100%;transition:transform 0.75s cubic-bezier(0.2,0.8,0.2,1),opacity 0.55s ease,box-shadow 0.4s ease;cursor:pointer}
+.deck-card > *{transition:opacity 0.4s ease}
+.deck-card[data-pos="0"]{transform:none;opacity:1;z-index:4;cursor:default;box-shadow:0 30px 60px -30px rgba(58,56,53,0.45)}
+.deck-card[data-pos="1"]{transform:translate(12px, 14px) scale(0.965) rotate(1.2deg);opacity:0.95;z-index:3}
+.deck-card[data-pos="2"]{transform:translate(22px, 26px) scale(0.93) rotate(2.4deg);opacity:0.8;z-index:2}
+.deck-card[data-pos="3"]{transform:translate(-112%, 10px) rotate(-9deg);opacity:0;z-index:5;pointer-events:none}
+.deck-card:not([data-pos="0"]) > *{opacity:0.25}
+.deck-controls{display:flex;align-items:center;gap:16px;margin-top:8px}
+.deck-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(58,56,53,0.35);background:rgba(255,255,255,0.6);color:#3a3835;cursor:pointer;transition:background-color .2s, transform .2s}
+.deck-btn:hover{background:#3a3835;color:#fff}
+.deck-btn:active{transform:scale(0.94)}
+.deck-count{font-size:13px;letter-spacing:0.12em;color:rgba(58,56,53,0.7);min-width:56px;text-align:center}
+@media (min-width:900px){
+.deck{grid-template-columns:minmax(0,0.42fr) minmax(0,1fr);gap:56px;align-items:start}
+.deck-tabs{display:flex;flex-direction:column;gap:4px;padding-top:6px}
+.deck-tab{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 8px;align-items:baseline;text-align:left;padding:16px 4px 18px 0;border:0;border-top:1px solid rgba(58,56,53,0.15);background:none;color:rgba(58,56,53,0.55);cursor:pointer;font:inherit;transition:color .25s}
+.deck-tab:hover{color:#3a3835}
+.deck-tab[aria-selected="true"]{color:#3a3835}
+.deck-tab-n{font-size:12px;letter-spacing:0.14em}
+.deck-tab-t{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-size:21px;line-height:1.25;letter-spacing:-0.015em}
+.deck-tab-bar{position:absolute;left:0;right:0;top:-1px;height:2px;background:#3a3835;transform-origin:left;transform:scaleX(0)}
+.deck-tab[aria-selected="true"] .deck-tab-bar{transform:scaleX(1)}
+.deck.autoplay .deck-tab[aria-selected="true"] .deck-tab-bar{animation:deck-progress 7s linear}
+.deck-stack{padding:0 44px 52px 0}
+.deck-card{right:44px}
+.deck-card[data-pos="1"]{transform:translate(24px, 20px) scale(0.96) rotate(1.4deg)}
+.deck-card[data-pos="2"]{transform:translate(44px, 38px) scale(0.92) rotate(2.8deg)}
+}
+@keyframes deck-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media (prefers-reduced-motion: reduce){.deck-card{transition:opacity .3s}.deck.autoplay .deck-tab[aria-selected="true"] .deck-tab-bar{animation:none}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -366,8 +399,16 @@ a{color:#3a3835}a:hover{color:#3a3835}
 </div>
 <p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(58,56,53,0.85)">My work brings together technical investigation, cross-team coordination and clear recommendations. Each project starts with a different problem and requires understanding both the system and the people responsible for it.</p>
 </div>
-<div class="work-grid">
-<article class="work-card">
+<div ref="{{setDeck}}" class="deck">
+<div class="deck-tabs" role="tablist" aria-label="Projects">
+<button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">An AI hub for evidence review</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">02</span><span class="deck-tab-t">AI enablement for 200 colleagues</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">03</span><span class="deck-tab-t">Azure migration readiness across two acquisitions</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">04</span><span class="deck-tab-t">Establishing a shared view of secure development</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+</div>
+<div class="deck-main">
+<div class="deck-stack">
+<article class="work-card deck-card" data-pos="0" aria-hidden="false">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
 <div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
@@ -376,7 +417,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I’ve applied the hub on an audit, connecting evidence mapping and narrative updates in a single review workflow.</p>
 
 </article>
-<article class="work-card">
+<article class="work-card deck-card" data-pos="1" aria-hidden="true">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for 200 colleagues</h3>
 <div class="proof-line"><span>13 contributors</span><span>2 months</span><span>~200 participants</span></div>
@@ -384,7 +425,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I built the demo chatbots and interactive audit myself, showing practical applications across planning, fieldwork and reporting. The session gave colleagues concrete examples of how AI could support their everyday work.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
-<article class="work-card">
+<article class="work-card deck-card" data-pos="2" aria-hidden="true">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
 <div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
@@ -393,7 +434,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">The advisory gave leadership a structured view of responsibilities and readiness to inform migration decisions.</p>
 
 </article>
-<article class="work-card">
+<article class="work-card deck-card" data-pos="3" aria-hidden="true">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
 <div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
@@ -401,6 +442,14 @@ a{color:#3a3835}a:hover{color:#3a3835}
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I coordinated discovery with security and engineering leaders across ABK, ZeniMax and Minecraft, adapting the work to their development cycles. I brought the findings together in a landscape assessment that established a baseline for subsequent gaming audit planning.</p>
 
 </article>
+</div>
+<div class="deck-controls">
+<button class="deck-btn deck-prev" type="button" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg></button>
+<span class="deck-count" aria-live="polite">01 / 04</span>
+<button class="deck-btn deck-next" type="button" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 18px; height: 18px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></button>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -615,6 +664,7 @@ class Component extends DCLogic {
   setPanel = (el) => { this.panel = el; };
   setIntro = (el) => { this.intro = el; };
   setPath = (el) => { this.path = el; };
+  setDeck = (el) => { this.deck = el; };
   setHsStage = (el) => { this.hsStage = el; };
   setHsRoll = (el) => { this.hsRoll = el; };
   setHsBlock0 = (el) => { (this.hsBlocks = this.hsBlocks || [])[0] = el; };
@@ -786,7 +836,60 @@ class Component extends DCLogic {
     };
   }
 
+  npDeck(container) {
+    var cards = [].slice.call(container.querySelectorAll('.deck-card'));
+    var tabs = [].slice.call(container.querySelectorAll('.deck-tab'));
+    var stack = container.querySelector('.deck-stack'), count = container.querySelector('.deck-count');
+    var n = cards.length, active = 0, auto = true, hover = false, inView = false, timer = 0, dead = false;
+    function pad(x) { return (x < 10 ? '0' : '') + x; }
+    function fit() {
+      var h = 0;
+      cards.forEach(function (c) { c.style.minHeight = '0'; h = Math.max(h, c.offsetHeight); });
+      cards.forEach(function (c) { c.style.minHeight = h + 'px'; });
+      stack.style.height = h + 'px';
+    }
+    function set(i, user) {
+      active = (i + n) % n;
+      cards.forEach(function (c, k) {
+        var pos = (k - active + n) % n;
+        c.setAttribute('data-pos', String(Math.min(pos, 3) === 3 || pos === n - 1 ? 3 : pos));
+        c.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+      });
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
+      if (count) count.textContent = pad(active + 1) + ' / ' + pad(n);
+      if (user) { auto = false; container.classList.remove('autoplay'); }
+      restart();
+    }
+    function restart() {
+      clearTimeout(timer);
+      if (!auto) return;
+      var bar = tabs[active] && tabs[active].querySelector('.deck-tab-bar');
+      if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      timer = setTimeout(function () { if (!dead && auto && inView && !hover) set(active + 1); else restart(); }, 7000);
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { set(k, true); }); });
+    cards.forEach(function (c, k) { c.addEventListener('click', function () { if (k !== active) set(k, true); }); });
+    container.querySelector('.deck-prev').addEventListener('click', function () { set(active - 1, true); });
+    container.querySelector('.deck-next').addEventListener('click', function () { set(active + 1, true); });
+    container.addEventListener('mouseenter', function () { hover = true; });
+    container.addEventListener('mouseleave', function () { hover = false; });
+    var sx = null;
+    stack.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    stack.addEventListener('pointerup', function (e) {
+      if (sx === null) return;
+      var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) set(active + (dx < 0 ? 1 : -1), true);
+    });
+    var io = new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }, { threshold: 0.35 });
+    io.observe(container);
+    var ro = new ResizeObserver(fit); ro.observe(stack.parentNode);
+    container.classList.add('autoplay');
+    fit(); set(0);
+    return function () { dead = true; clearTimeout(timer); io.disconnect(); ro.disconnect(); };
+  }
+
   componentDidMount() {
+    if (this.deck) this.stopDeck = this.npDeck(this.deck);
     if (this.ink) this.stopInk = this.npInk(this.ink, null);
     this.startLoop();
     this.applyScroll();
@@ -797,6 +900,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     this.dead = true;
+    if (this.stopDeck) this.stopDeck();
     if (this.stopInk) this.stopInk();
     cancelAnimationFrame(this.scrollRaf);
     window.removeEventListener('resize', this.onScroll);
@@ -813,7 +917,7 @@ class Component extends DCLogic {
       coldOp: this.props.paperTexture === 'Cold-press paper' ? 1 : 0,
       linenOp: this.props.paperTexture === 'Linen' ? 1 : 0,
       grainOp: this.props.paperTexture === 'Fine grain' ? 0.6 : 0, setHero: this.setHero,
-      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, setCollage: this.setCollage, onScroll: this.onScroll
+      setPanel: this.setPanel, setIntro: this.setIntro, setPath: this.setPath, setDeck: this.setDeck, setHsStage: this.setHsStage, setHsRoll: this.setHsRoll, setHsBlock0: this.setHsBlock0, setHsBlock1: this.setHsBlock1, setHsBlock2: this.setHsBlock2, setHsBlock3: this.setHsBlock3, setInk: this.setInk, setRoots: this.setRoots, setArc: this.setArc, setArcMask: this.setArcMask, setArcDot: this.setArcDot, setNav: this.setNav, setChips: this.setChips, setQuote: this.setQuote, setCollage: this.setCollage, onScroll: this.onScroll
     };
   }
 }

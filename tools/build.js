@@ -197,6 +197,58 @@ const script = `<script>
     };
   }
   if ($('ink')) npInk($('ink'), $('inkvideo'));
+  function npDeck(container) {
+    var cards = [].slice.call(container.querySelectorAll('.deck-card'));
+    var tabs = [].slice.call(container.querySelectorAll('.deck-tab'));
+    var stack = container.querySelector('.deck-stack'), count = container.querySelector('.deck-count');
+    var n = cards.length, active = 0, auto = true, hover = false, inView = false, timer = 0, dead = false;
+    function pad(x) { return (x < 10 ? '0' : '') + x; }
+    function fit() {
+      var h = 0;
+      cards.forEach(function (c) { c.style.minHeight = '0'; h = Math.max(h, c.offsetHeight); });
+      cards.forEach(function (c) { c.style.minHeight = h + 'px'; });
+      stack.style.height = h + 'px';
+    }
+    function set(i, user) {
+      active = (i + n) % n;
+      cards.forEach(function (c, k) {
+        var pos = (k - active + n) % n;
+        c.setAttribute('data-pos', String(Math.min(pos, 3) === 3 || pos === n - 1 ? 3 : pos));
+        c.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+      });
+      tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === active ? 'true' : 'false'); });
+      if (count) count.textContent = pad(active + 1) + ' / ' + pad(n);
+      if (user) { auto = false; container.classList.remove('autoplay'); }
+      restart();
+    }
+    function restart() {
+      clearTimeout(timer);
+      if (!auto) return;
+      var bar = tabs[active] && tabs[active].querySelector('.deck-tab-bar');
+      if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      timer = setTimeout(function () { if (!dead && auto && inView && !hover) set(active + 1); else restart(); }, 7000);
+    }
+    tabs.forEach(function (t, k) { t.addEventListener('click', function () { set(k, true); }); });
+    cards.forEach(function (c, k) { c.addEventListener('click', function () { if (k !== active) set(k, true); }); });
+    container.querySelector('.deck-prev').addEventListener('click', function () { set(active - 1, true); });
+    container.querySelector('.deck-next').addEventListener('click', function () { set(active + 1, true); });
+    container.addEventListener('mouseenter', function () { hover = true; });
+    container.addEventListener('mouseleave', function () { hover = false; });
+    var sx = null;
+    stack.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+    stack.addEventListener('pointerup', function (e) {
+      if (sx === null) return;
+      var dx = e.clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) set(active + (dx < 0 ? 1 : -1), true);
+    });
+    var io = new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }, { threshold: 0.35 });
+    io.observe(container);
+    var ro = new ResizeObserver(fit); ro.observe(stack.parentNode);
+    container.classList.add('autoplay');
+    fit(); set(0);
+    return function () { dead = true; clearTimeout(timer); io.disconnect(); ro.disconnect(); };
+  }
+  if ($('deck')) npDeck($('deck'));
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
