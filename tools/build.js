@@ -57,7 +57,7 @@ function convert(file, title, extraScript) {
     .replace(/\{\{paperOpacity\}\}/g, '0.35')
     .replace(/\{\{microOp\}\}/g, '1').replace(/\{\{washiOp\}\}/g, '0').replace(/\{\{parchOp\}\}/g, '0').replace(/\{\{coldOp\}\}/g, '0').replace(/\{\{linenOp\}\}/g, '0').replace(/\{\{grainOp\}\}/g, '0')
     .replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => { if (!BLOBS[id]) throw new Error('unmapped blob ' + id); return BLOBS[id]; })
-    .replace(/href="Resume\.dc\.html"/g, 'href="resume.html"');
+    .replace(/href="Resume\.dc\.html"/g, 'href="Nikita-Page-Resume.pdf" target="_blank" rel="noopener"');   // the designed PDF resume
   // Drafts (e.g. unapproved testimonials) live on the design canvas only.
   body = body.replace(/<figure [^>]*data-draft="true"[^>]*>[\s\S]*?<\/figure>\n?/g, '');
   body = body.replace(/<a class="track" data-spotify="([^"]+)"[\s\S]*?<\/a>/g, (_, id) => '<iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/' + id + '?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>');
@@ -353,5 +353,7 @@ ${heroInk}
 
 fs.mkdirSync(out, { recursive: true });
 fs.writeFileSync(out + '/index.html', convert('Main.dc.html', 'Nikita Page | Security and technology leadership', script));
-fs.writeFileSync(out + '/resume.html', convert('Resume.dc.html', 'Nikita Page — Resume', ''));
+// Older links to resume.html forward to the PDF resume.
+fs.writeFileSync(out + '/resume.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Nikita Page - Resume</title>' +
+  '<meta http-equiv="refresh" content="0; url=Nikita-Page-Resume.pdf"></head><body><p><a href="Nikita-Page-Resume.pdf">Open the resume (PDF)</a></p></body></html>\n');
 console.log('wrote index.html and resume.html');
