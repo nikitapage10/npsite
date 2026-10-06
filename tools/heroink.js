@@ -5,8 +5,10 @@
 // sketch's top construction line is placed just below it); sketchSrc/paintSrc: aligned images;
 // opts: optional style overrides (see the defaults below) plus demo: true for a self-drawing stroke when idle.
 function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
+  // The plain sketch always sits behind the effect, so the hero still shows if WebGL is unavailable or blocked.
+  canvas.style.background = '#F3EEE4 url(' + sketchSrc + ') 78% 0 / cover no-repeat';
   var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
-  if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
+  if (!gl) return function () {};
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
   // Defaults: watercolor bleed (feathered, wicking edges) with a moderate spread.
   var O = { brush: 0.08, flow: 0.04, spread: 0.034, life: 5.0, grow: 0.32, stretch: 0.3, warp: 0.6, ragged: 0.3,
@@ -67,7 +69,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
   var SIM = prog(simFS, ['prev', 'asp', 't', 'dt', 'flow', 'spread', 'life', 'st']);
   var SHOW = prog(showFS, ['sketch', 'paint', 'mask', 'sc', 'off', 'ia', 't', 'tx']);
   if (!gl.getProgramParameter(SHOW.p, gl.LINK_STATUS) || !gl.getProgramParameter(SIM.p, gl.LINK_STATUS)) {
-    canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {};
+    return function () {};
   }
   var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
@@ -87,7 +89,9 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
   function image(src, cb) {
     var tx = gl.createTexture(), im = new Image();
     im.onload = function () {
-      gl.bindTexture(gl.TEXTURE_2D, tx); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+      gl.bindTexture(gl.TEXTURE_2D, tx);
+      try { gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im); }
+      catch (err) { dead = true; gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); return; }   // e.g. a cross-origin image: keep the CSS sketch
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       cb(tx);
