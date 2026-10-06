@@ -250,13 +250,15 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .testis{display:none}
 @media (min-width:1380px){
 .testis{display:block;position:absolute;top:104px;right:max(56px, calc((100% - 1280px) / 2));width:600px;height:640px;pointer-events:none}
-.testis-k{position:absolute;top:-30px;right:0;font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(58,56,53,0.65);font-weight:500}
 .testi{position:absolute;width:300px;box-sizing:border-box;margin:0;padding:30px 28px 28px;border:0;box-shadow:0 2px 3px rgba(58,56,53,0.08),0 26px 40px -22px rgba(58,56,53,0.45);transform-origin:top left;pointer-events:auto;transition:box-shadow .3s}
 .testi:nth-of-type(1){top:0;right:0;background:#F2E8D7}
 .testi:nth-of-type(2){top:150px;right:300px;background:#FBF8F1}
 .testi:nth-of-type(3){top:292px;right:18px;background:#E8DAC3}
 .testi::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;margin-left:-35px;background:rgba(255,255,255,0.55);box-shadow:0 1px 2px rgba(58,56,53,0.12);transform:rotate(-3deg)}
 .testi blockquote{font-size:16.5px;line-height:1.42;letter-spacing:-0.012em;color:#33312e}
+#approach.paper-band{position:relative;background:#EFE7DA url(assets/paper-white.webp) repeat;background-size:420px;background-blend-mode:multiply;border-top:1px solid rgba(154,122,63,0.18);border-bottom:1px solid rgba(154,122,63,0.18)}
+#approach .appr-card{background:rgba(247,241,230,0.45);border-color:rgba(154,122,63,0.2);box-shadow:0 1px 0 rgba(255,255,255,0.5) inset,0 22px 40px -32px rgba(58,56,53,0.4)}
+#approach .appr-art img{mix-blend-mode:multiply}
 .testi-by{margin-top:12px;padding-top:9px;border-top:1px solid rgba(58,56,53,0.14);font-size:11px;letter-spacing:0.02em;color:rgba(58,56,53,0.68)}
 .testi-tag{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;font-weight:600;color:#8a6a2c;margin-bottom:10px}
 .testi .hl{background:linear-gradient(transparent 58%, rgba(176,141,76,0.38) 58%, rgba(176,141,76,0.38) 92%, transparent 92%);color:inherit;padding:0 2px}
@@ -538,7 +540,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </div>
 <div data-np="testis" class="testis">
-<div class="testis-k" style="opacity: 0">Manager feedback</div>
 <figure class="testi" style="--n: 0; opacity: 0">
 <div class="testi-tag">Communication</div>
 <blockquote class="serif" style="margin: 0">Nikita makes <mark class="hl">complicated conversations feel manageable</mark>. He understands the technical detail and helps everyone see what matters, what needs a decision, and what comes next.</blockquote>
@@ -547,7 +548,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <figure class="testi" style="--n: 1; opacity: 0">
 <div class="testi-tag">Judgment</div>
 <blockquote class="serif" style="margin: 0">Nikita asks <mark class="hl">thoughtful questions</mark> and connects details that might otherwise be missed. When the path isn’t obvious, he helps the team weigh the risks and find a practical way forward.</blockquote>
-<figcaption class="testi-by">Principal Technical Program Manager, Microsoft</figcaption>
+<figcaption class="testi-by">Technical Program Manager, Microsoft</figcaption>
 </figure>
 <figure class="testi" style="--n: 2; opacity: 0">
 <div class="testi-tag">Collaboration</div>
@@ -727,7 +728,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </section>
 
-<section id="approach" style="background: #EFE7DA; border-top: 1px solid #e3d8c3; border-bottom: 1px solid #e3d8c3">
+<section id="approach" class="paper-band">
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
