@@ -26,7 +26,7 @@ body{margin:0}
 <div style="margin-top: 6px; font-size: 14px; color: rgba(58,56,53,0.72)">Each panel draws a slow stroke on its own. Move your cursor over any panel to paint with that style.</div>
 </div>
 <div ref="{{setGrid}}" class="grid">
-<figure class="opt"><div class="frame"><canvas data-style="current"></canvas></div><figcaption class="cap"><strong>A · Current</strong>Separate irregular blots that keep spreading, crisp edges with a pigment rim.</figcaption></figure>
+<figure class="opt"><div class="frame"><canvas data-style="current"></canvas></div><figcaption class="cap"><strong>A · Live now</strong>Watercolor bleed at a size between E and B: soft, feathered edges that uncover a good chunk of the painting.</figcaption></figure>
 <figure class="opt"><div class="frame"><canvas data-style="wash"></canvas></div><figcaption class="cap"><strong>B · Broad wash</strong>Fewer, much larger blooms that open wide and soft, like a loaded brush.</figcaption></figure>
 <figure class="opt"><div class="frame"><canvas data-style="droplets"></canvas></div><figcaption class="cap"><strong>C · Fine droplets</strong>Many small drops and speckles that gather into the image as you move.</figcaption></figure>
 <figure class="opt"><div class="frame"><canvas data-style="sumi"></canvas></div><figcaption class="cap"><strong>D · Sumi ink</strong>Ragged, dramatic edges with dark pooled pigment and no soft bleed.</figcaption></figure>
@@ -52,8 +52,9 @@ class Component extends DCLogic {
   var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
   if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
-  var O = { brush: 0.07, flow: 0.03, spread: 0.022, life: 6.0, grow: 0.34, stretch: 0.35, warp: 0.9, ragged: 0.55,
-    gap: 1.2, sat: 0.6, rim: 0.55, halo: 0.5, soft: 0.04, demo: false };
+  // Defaults: watercolor bleed (feathered, wicking edges) at a size between it and the broad wash.
+  var O = { brush: 0.1, flow: 0.05, spread: 0.05, life: 7.0, grow: 0.42, stretch: 0.3, warp: 0.6, ragged: 0.3,
+    gap: 1.4, sat: 0.4, rim: 0.2, halo: 1.0, soft: 0.14, demo: false };
   for (var key in (opts || {})) O[key] = opts[key];
   function f(x) { return (+x).toFixed(3); }   // number literal for GLSL
   var BRUSH = O.brush, FLOW = O.flow, SPREAD = O.spread, LIFE = O.life, SIM_SCALE = 0.5, MAXS = 48;
