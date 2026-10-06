@@ -1077,7 +1077,7 @@ class Component extends DCLogic {
   if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
   // Defaults: watercolor bleed (feathered, wicking edges) with a moderate spread.
-  var O = { brush: 0.065, flow: 0.04, spread: 0.022, life: 3.5, grow: 0.16, stretch: 0.3, warp: 0.6, ragged: 0.3,
+  var O = { brush: 0.075, flow: 0.04, spread: 0.026, life: 4.8, grow: 0.21, stretch: 0.3, warp: 0.6, ragged: 0.3,
     gap: 0.8, sat: 0.4, rim: 0.2, halo: 1.0, soft: 0.14, demo: false };
   for (var key in (opts || {})) O[key] = opts[key];
   function f(x) { return (+x).toFixed(3); }   // number literal for GLSL
@@ -1101,9 +1101,9 @@ class Component extends DCLogic {
     'float fib=fbm(P*38.)*.65+fbm(P*9.+5.)*.35;m=max(m,nb*mix(.80,.995,smoothstep(.35,.7,fib))*smoothstep(.05,.5,nb));' +
     'm-=dt/life*(.55+.9*fbm(P*5.));' +
     'for(int i=0;i<' + MAXS + ';i++){if(st[i].z<0.)continue;float age=t-st[i].z;if(age<0.)continue;' +
-    'float g2=1.-pow(1.-clamp(age/2.,0.,1.),2.2);float R=st[i].w*(g2+' + f(O.grow) + '*min(age,4.));' +   // opens out from the cursor over ~2s, then creeps a little further
-    'float amt=1.-smoothstep(2.8,4.2,age);' +   // stop feeding ink after ~3s so it can dry and fade
-    'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+' + f(O.grow) + '*min(t-st[i].z,4.))*(1.6+' + f(O.stretch + O.warp * 0.4) + '))continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
+    'float g2=1.-pow(1.-clamp(age/2.,0.,1.),2.2);float R=st[i].w*(g2+' + f(O.grow) + '*min(age,5.5));' +   // opens out from the cursor over ~2s, then creeps a little further
+    'float amt=1.-smoothstep(4.3,5.8,age);' +   // stop feeding ink after ~4.5s so it can dry and fade
+    'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+' + f(O.grow) + '*min(t-st[i].z,5.5))*(1.6+' + f(O.stretch + O.warp * 0.4) + '))continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
     'float ang=h(vec2(sd,1.))*6.283,str=1.+h(vec2(sd,2.))*' + f(O.stretch) + ';' +
     'vec2 lp=(P-c)/st[i].w;lp=mat2(cos(ang),-sin(ang),sin(ang),cos(ang))*lp;lp.x/=str;' +
     'lp+=(vec2(fbm(lp*1.7+sd),fbm(lp*1.7+sd+31.))-.5)*' + f(O.warp) + ';' +
