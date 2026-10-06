@@ -257,6 +257,7 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .testi:nth-of-type(3){top:292px;right:18px;background:#E8DAC3}
 .testi::before{content:"";position:absolute;top:-10px;left:50%;width:70px;height:20px;margin-left:-35px;background:rgba(255,255,255,0.55);box-shadow:0 1px 2px rgba(58,56,53,0.12);transform:rotate(-3deg)}
 .testi blockquote{font-size:16.5px;line-height:1.42;letter-spacing:-0.012em;color:#33312e}
+.testi-by{margin-top:12px;padding-top:9px;border-top:1px solid rgba(58,56,53,0.14);font-size:11px;letter-spacing:0.02em;color:rgba(58,56,53,0.68)}
 .testi-tag{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;font-weight:600;color:#8a6a2c;margin-bottom:10px}
 .testi .hl{background:linear-gradient(transparent 58%, rgba(176,141,76,0.38) 58%, rgba(176,141,76,0.38) 92%, transparent 92%);color:inherit;padding:0 2px}
 .testi{transition:box-shadow .3s, translate .35s cubic-bezier(0.2,0.8,0.2,1), scale .35s cubic-bezier(0.2,0.8,0.2,1)}
@@ -331,17 +332,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .track-play{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#3a3835;color:#fff;flex-shrink:0}
 .track-embed{display:block;width:100%;max-width:520px;height:152px;border:0;border-radius:12px}
 @media (max-width:767px){#roots svg text[font-size="30"]{font-size:56px}#roots svg text[font-size="17"]{display:none}.globe-emb{width:17%}}
-.look-art{position:absolute;left:0;top:0;width:100%;height:100%}
-.ann{position:absolute;left:var(--x);top:var(--y);width:0;height:0}
-.ann-dot{position:absolute;left:-7px;top:-7px;width:14px;height:14px;border-radius:50%;background:#b08d4c;box-shadow:0 0 0 5px rgba(176,141,76,0.25)}
-.ann-line{position:absolute;top:0;height:1px;width:46px;background:#3a3835}
-.ann-label{position:absolute;top:-24px;width:250px;padding:12px 16px 13px;box-sizing:border-box;background:#FCFBF7;border:1px solid #e7e2d8;border-top:2px solid #b08d4c;box-shadow:0 16px 30px -16px rgba(58,56,53,0.5);display:flex;flex-direction:column;gap:4px;color:#3a3835}
-.ann-k{font-size:10px;text-transform:uppercase;letter-spacing:0.2em;font-weight:600;color:#8a6a2c}
-.ann-h{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-weight:400;font-size:19px;line-height:1.2;letter-spacing:-0.01em}
-.ann-c{font-size:12.5px;line-height:1.45;color:rgba(58,56,53,0.75)}
-.ann-r .ann-line{left:7px}.ann-r .ann-label{left:52px}
-.ann-l .ann-line{right:7px}.ann-l .ann-label{right:52px}
-@media (max-width:767px){.ann-label{width:160px;padding:8px 10px;top:-16px}.ann-h{font-size:14px}.ann-c{display:none}.ann-line{width:24px}.ann-r .ann-label{left:30px}.ann-l .ann-label{right:30px}.ann:nth-of-type(2){display:none}}
 .wave span{flex:1 0 2px;min-width:2px;background:#3a3835;opacity:.7;border-radius:2px;transform-origin:center;animation:wv 1.8s ease-in-out infinite alternate;animation-delay:calc(var(--i) * -0.07s)}
 .globe-pin circle:first-child{transform-box:fill-box;transform-origin:center;animation:np-pin 2.4s ease-in-out infinite}
 @keyframes np-pin{0%,100%{transform:scale(.7);opacity:.35}50%{transform:scale(1.25);opacity:.12}}
@@ -443,11 +433,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .hero-h1{font-size:32px}
 .hero-sub{margin-top:16px}
 .hide-m{display:none}
-}
-@media (hover:none), (max-width:767px){
-#look canvas{display:none}
-.look-hint{display:none}
-#look .look-text{background:linear-gradient(to top, rgba(252,251,247,0.96) 0, rgba(252,251,247,0.88) 26%, rgba(252,251,247,0) 52%)}
 }
 @supports (height:100dvh){.np-root,.hero-stage{height:100dvh !important}}
 @media (max-width:767px){
@@ -553,18 +538,21 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </div>
 <div data-np="testis" class="testis">
-<div class="testis-k" style="opacity: 0">From manager feedback</div>
+<div class="testis-k" style="opacity: 0">Manager feedback</div>
 <figure class="testi" style="--n: 0; opacity: 0">
 <div class="testi-tag">Communication</div>
 <blockquote class="serif" style="margin: 0">Nikita makes <mark class="hl">complicated conversations feel manageable</mark>. He understands the technical detail and helps everyone see what matters, what needs a decision, and what comes next.</blockquote>
+<figcaption class="testi-by">Audit Director, Microsoft</figcaption>
 </figure>
 <figure class="testi" style="--n: 1; opacity: 0">
 <div class="testi-tag">Judgment</div>
 <blockquote class="serif" style="margin: 0">Nikita asks <mark class="hl">thoughtful questions</mark> and connects details that might otherwise be missed. When the path isn’t obvious, he helps the team weigh the risks and find a practical way forward.</blockquote>
+<figcaption class="testi-by">Principal Technical Program Manager, Microsoft</figcaption>
 </figure>
 <figure class="testi" style="--n: 2; opacity: 0">
 <div class="testi-tag">Collaboration</div>
 <blockquote class="serif" style="margin: 0">Nikita takes the time to understand what different teams care about. He <mark class="hl">builds trust</mark>, works through competing priorities, and helps people reach decisions they can genuinely support.</blockquote>
+<figcaption class="testi-by">Senior Audit Manager, Microsoft</figcaption>
 </figure>
 </div>
 <figure data-np="quote" class="intro-quote" style="margin: 0; align-self: flex-end; max-width: 560px; opacity: 0; transform-origin: top left; will-change: transform, opacity; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border: 1px solid #e5e7eb; box-shadow: 0 24px 60px rgba(58,56,53,0.12); padding: 36px 40px">
@@ -739,7 +727,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 </section>
 
-<section id="approach" class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
+<section id="approach" style="background: #EFE7DA; border-top: 1px solid #e3d8c3; border-bottom: 1px solid #e3d8c3">
+<div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
 <div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Approach</div>
@@ -767,21 +756,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(58,56,53,0.8)">I frame risks by likelihood and financial and reputational impact, then work with directors and corporate vice presidents to commit to remediation.</p>
 </article>
 </div>
-</section>
-
-<section id="look" aria-label="Illustration of Nikita presenting to a team" style="position: relative; height: 72vh; min-height: 420px; overflow: hidden; background: #3a3835">
-<div class="look-art">
-<img src="assets/presenting.webp" loading="eager" alt="Illustration of Nikita presenting to a team" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
-<div class="ann ann-r" style="--x: 5.0%; --y: 24.0%; --i: 0"><span class="ann-dot"></span><span class="ann-line"></span><span class="ann-label"><span class="ann-k">Ask me about</span><strong class="ann-h">Working onsite at LinkedIn</strong><span class="ann-c">Frequent trips to partner directly with its security and infrastructure teams.</span></span></div>
-<div class="ann ann-r" style="--x: 21.0%; --y: 38.0%; --i: 1"><span class="ann-dot"></span><span class="ann-line"></span><span class="ann-label"><span class="ann-k">Ask me about</span><strong class="ann-h">Coaching the team</strong><span class="ann-c">Helping newer auditors connect technical detail to business priorities.</span></span></div>
-<div class="ann ann-l" style="--x: 90.5%; --y: 20.0%; --i: 2"><span class="ann-dot"></span><span class="ann-line"></span><span class="ann-label"><span class="ann-k">Ask me about</span><strong class="ann-h">Turning logs into answers</strong><span class="ann-c">KQL test plans and dashboards that show what’s actually happening.</span></span></div>
-</div>
-<canvas data-np="ink" data-tex="assets/paper-mask.webp" style="position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; cursor: crosshair; touch-action: pan-y"></canvas>
-<img src="assets/look-paper.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none">
-<div class="sec look-text" style="position: relative; z-index: 3; height: 100%; max-width: 1392px; margin: 0 auto; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; pointer-events: none">
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500">Look closer</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; max-width: 720px; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">There’s always more under the surface.</h2>
-<p class="look-hint" style="margin: 16px 0 0; font-size: 14px; color: rgba(58,56,53,0.72)">Move across the page to see it.</p>
 </div>
 </section>
 
@@ -1210,92 +1184,6 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
     enter(quote, easeOut(clamp((p - 0.58) / 0.36)), -360, -280);
     var testis = $('testis'); if (testis) { var tilt = [1.8, -2.4, 1.1]; testis.querySelectorAll('.testi').forEach((el, k) => { var qt = easeOut(clamp((p - 0.34 - k * 0.14) / 0.24)); el.style.opacity = String(qt); el.style.transform = 'translate(' + (-300 * (1 - qt)) + 'px,' + (-220 * (1 - qt)) + 'px) scale(' + (0.6 + 0.4 * qt) + ') rotate(' + (tilt[k] * qt) + 'deg)'; }); var lbl = testis.querySelector('.testis-k'); if (lbl) lbl.style.opacity = String(easeOut(clamp((p - 0.34) / 0.24))); }
   }
-  function npInk(canvas, video) {
-    var MASK = [239, 233, 223], LIFETIME = 1100, R_START = 10, R_VARY = 0.45, STEP = 10, MAX = 140, SEG = 24;
-    var WOB = [0.14, 0.08, 0.05], INNER = 0.2, STOPS = [0.95, 0.88, 0];
-    var band = canvas.parentElement, ctx = canvas.getContext('2d');
-    var stamps = [], running = false, last = null, w = 0, h = 0, brush = 120, lastUser = 0, inView = false, dead = false;
-    function paper() { ctx.globalCompositeOperation = 'source-over'; ctx.fillStyle = pattern || 'rgb(' + MASK.join(',') + ')'; ctx.fillRect(0, 0, w, h); }
-    var pattern = null, tex = new Image();
-    tex.onload = function () { pattern = ctx.createPattern(tex, 'repeat'); if (!running) paper(); };
-    if (canvas.getAttribute('data-tex')) tex.src = canvas.getAttribute('data-tex');
-    function resize() {
-      var dpr = 1, rect = band.getBoundingClientRect();   // soft ink edges do not need high-density pixels
-      w = rect.width; h = rect.height; brush = Math.max(80, Math.min(160, w * 0.08));
-      var art = band.querySelector('.look-art');
-      if (art) { var sc = Math.max(w / 1672, h / 941), aw = 1672 * sc, ah = 941 * sc; art.style.width = aw + 'px'; art.style.height = ah + 'px'; art.style.left = ((w - aw) * 0.5) + 'px'; art.style.top = ((h - ah) * 0.28) + 'px'; }
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); paper();
-    }
-    function carve(x, y, r, seed, alpha) {
-      var g = ctx.createRadialGradient(x, y, r * INNER, x, y, r);
-      g.addColorStop(0, 'rgba(0,0,0,' + STOPS[0] * alpha + ')');
-      g.addColorStop(0.5, 'rgba(0,0,0,' + STOPS[1] * alpha + ')');
-      g.addColorStop(1, 'rgba(0,0,0,' + STOPS[2] * alpha + ')');
-      ctx.fillStyle = g; ctx.beginPath();
-      for (var i = 0; i <= SEG; i++) {
-        var a = (i / SEG) * Math.PI * 2;
-        var wob = 0.78 + WOB[0] * Math.sin(a * 3 + seed) + WOB[1] * Math.sin(a * 5 + seed * 2.1) + WOB[2] * Math.sin(a * 7 + seed * 0.7);
-        var px = x + Math.cos(a) * r * wob, py = y + Math.sin(a) * r * wob;
-        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-      }
-      ctx.closePath(); ctx.fill();
-    }
-    function addStamp(x, y) {
-      if (stamps.length >= MAX) stamps.shift();
-      stamps.push({ x: x, y: y, born: performance.now(), seed: Math.random() * Math.PI * 2, rmax: brush * (1 - R_VARY + Math.random() * R_VARY) });
-    }
-    function stampAlong(x, y) {
-      if (!last) addStamp(x, y);
-      else {
-        var dx = x - last.x, dy = y - last.y, steps = Math.max(1, Math.ceil(Math.hypot(dx, dy) / STEP));
-        for (var i = 1; i <= steps; i++) addStamp(last.x + dx * i / steps, last.y + dy * i / steps);
-      }
-      last = { x: x, y: y };
-      if (!running) { running = true; requestAnimationFrame(loop); }
-    }
-    function loop() {
-      if (dead) return;
-      var now = performance.now();
-      paper(); ctx.globalCompositeOperation = 'destination-out';
-      for (var i = stamps.length - 1; i >= 0; i--) {
-        var t = (now - stamps[i].born) / LIFETIME;
-        if (t >= 1) { stamps.splice(i, 1); continue; }
-        var r = R_START + (stamps[i].rmax - R_START) * (1 - Math.pow(1 - t, 3));
-        carve(stamps[i].x, stamps[i].y, r, stamps[i].seed, 1 - t * t);
-      }
-      if (stamps.length) requestAnimationFrame(loop); else running = false;
-    }
-    function pos(e) { var r = canvas.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
-    function onEnter(e) { var p = pos(e); last = p; lastUser = Date.now(); stampAlong(p.x, p.y); }
-    function onMove(e) { var p = pos(e); lastUser = Date.now(); stampAlong(p.x, p.y); }
-    function onLeave() { last = null; }
-    canvas.addEventListener('pointerenter', onEnter);
-    canvas.addEventListener('pointermove', onMove);
-    canvas.addEventListener('pointerleave', onLeave);
-    // Idle strokes, so touch screens and still cursors still see the effect.
-    var idle = setInterval(function () {
-      if (!inView || Date.now() - lastUser < 3000) return;
-      var x0 = w * (0.15 + Math.random() * 0.7), y0 = h * (0.25 + Math.random() * 0.5), dir = Math.random() < 0.5 ? -1 : 1;
-      var spots = band.querySelectorAll('.ann');
-      if (spots.length && Math.random() < 0.65) { var sp = spots[Math.floor(Math.random() * spots.length)].getBoundingClientRect(), bb = band.getBoundingClientRect(); x0 = sp.left - bb.left - dir * w * 0.12; y0 = sp.top - bb.top; }
-      last = null;
-      for (var i = 0; i < 22; i++) (function (i) {
-        setTimeout(function () { if (!dead) stampAlong(x0 + dir * i * w * 0.012, y0 + Math.sin(i / 3.5) * h * 0.06); }, i * 28);
-      })(i);
-      setTimeout(function () { last = null; }, 22 * 28 + 10);
-    }, 2600);
-    var io = new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView && video && video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }, { threshold: 0.2 });
-    io.observe(band);
-    var ro = new ResizeObserver(resize); ro.observe(band);
-    resize();
-    if (video) { video.muted = true; var pr0 = video.play(); if (pr0 && pr0.catch) pr0.catch(function () {}); }
-    return function () {
-      dead = true; clearInterval(idle); io.disconnect(); ro.disconnect();
-      canvas.removeEventListener('pointerenter', onEnter); canvas.removeEventListener('pointermove', onMove); canvas.removeEventListener('pointerleave', onLeave);
-    };
-  }
-  if ($('ink')) npInk($('ink'), $('inkvideo'));
   function npDeck(container) {
     var cards = [].slice.call(container.querySelectorAll('.deck-card'));
     var tabs = [].slice.call(container.querySelectorAll('.deck-tab'));
