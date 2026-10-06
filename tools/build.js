@@ -244,7 +244,9 @@ ${heroInk}
       fetch('https://formsubmit.co/ajax/connect@nikita.page', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
         .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) === 'false') throw new Error(j.message || 'failed'); }); })
         .then(function () { form.reset(); status.className = 'ct-status ok'; status.textContent = 'Thanks, your message is on its way.'; })
-        .catch(function () { status.className = 'ct-status err'; status.innerHTML = 'That didn’t send. Please email <a href="mailto:connect@nikita.page">connect@nikita.page</a>.'; })
+        .catch(function (err) {   // show the service's own message (e.g. the one-time activation notice) when there is one
+          var why = err && err.message && err.message !== 'failed' && !/fetch/i.test(err.message) ? err.message + ' ' : '';
+          status.className = 'ct-status err'; status.textContent = why + 'You can also email connect@nikita.page.'; })
         .then(function () { btn.disabled = false; });
     }
     form.addEventListener('submit', onSubmit);
