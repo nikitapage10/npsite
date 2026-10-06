@@ -7,7 +7,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
   var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
   if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
-  var BRUSH = 0.07, FLOW = 0.03, SPREAD = 0.022, LIFE = 7.0, SIM_SCALE = 0.5, MAXS = 48;
+  var BRUSH = 0.07, FLOW = 0.03, SPREAD = 0.022, LIFE = 6.0, SIM_SCALE = 0.5, MAXS = 48;
   var half = gl.getExtension('OES_texture_half_float'), halfLin = gl.getExtension('OES_texture_half_float_linear');
   var TYPE = half && halfLin ? half.HALF_FLOAT_OES : gl.UNSIGNED_BYTE;
 
@@ -27,9 +27,9 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     'float fib=fbm(P*38.)*.65+fbm(P*9.+5.)*.35;m=max(m,nb*mix(.80,.995,smoothstep(.35,.7,fib))*smoothstep(.05,.5,nb));' +
     'm-=dt/life*(.55+.9*fbm(P*5.));' +
     'for(int i=0;i<' + MAXS + ';i++){if(st[i].z<0.)continue;float age=t-st[i].z;if(age<0.)continue;' +
-    'float g2=1.-pow(1.-clamp(age/.7,0.,1.),3.);float R=st[i].w*(g2+.2*min(age,6.5));' +   // grows from nothing, fast at first, then eases   // quick bloom, then keeps creeping outward
-    'float amt=1.-smoothstep(5.5,7.5,age);' +   // stop feeding ink after ~6s so it can dry and fade
-    'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+.2*min(t-st[i].z,6.5))*1.9)continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
+    'float g2=1.-pow(1.-clamp(age/.7,0.,1.),3.);float R=st[i].w*(g2+.34*min(age,7.5));' +   // grows from nothing, fast at first, then eases   // quick bloom, then keeps creeping outward
+    'float amt=1.-smoothstep(6.5,8.5,age);' +   // stop feeding ink after ~6s so it can dry and fade
+    'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+.34*min(t-st[i].z,7.5))*1.9)continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
     'float ang=h(vec2(sd,1.))*6.283,str=1.+h(vec2(sd,2.))*.35;' +
     'vec2 lp=(P-c)/st[i].w;lp=mat2(cos(ang),-sin(ang),sin(ang),cos(ang))*lp;lp.x/=str;' +
     'lp+=(vec2(fbm(lp*1.7+sd),fbm(lp*1.7+sd+31.))-.5)*.9;' +

@@ -62,6 +62,12 @@ function convert(file, title, extraScript) {
   body = body.replace(/<figure [^>]*data-draft="true"[^>]*>[\s\S]*?<\/figure>\n?/g, '');
   body = body.replace(/<a class="track" data-spotify="([^"]+)"[\s\S]*?<\/a>/g, (_, id) => '<iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/' + id + '?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>');
   body = body.replace(/<img (?![^>]*\bloading=)(?![^>]*class="brand-logo")/g, '<img loading="lazy" decoding="async" ');
+  // Live SVG turbulence filters repaint every frame under the animated canvases; use pre-rendered images instead
+  // (assets/grain-tile.webp and assets/look-paper.webp are renders of the np-micro and np-paper-mottle/grain filters).
+  body = body.replace(/<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: soft-light;[\s\S]*?<\/svg>/,
+    '<div aria-hidden="true" style="position: absolute; inset: 0; background: url(assets/grain-tile.webp) repeat; background-size: 512px; mix-blend-mode: soft-light; opacity: 0.35; pointer-events: none"></div>');
+  body = body.replace(/<svg aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none">[\s\S]*?<\/svg>/,
+    '<img src="assets/look-paper.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: multiply; opacity: 0.5; pointer-events: none">');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
   const opens = (body.match(/<div[\s>]/g) || []).length, closes = (body.match(/<\/div>/g) || []).length;
   if (opens !== closes) throw new Error(file + ': ' + opens + ' <div> vs ' + closes + ' </div>, markup is unbalanced');
@@ -139,7 +145,7 @@ ${heroInk}
     var testis = $('testis'); if (testis) { var tilt = [1.8, -2.4, 1.1]; testis.querySelectorAll('.testi').forEach((el, k) => { var qt = easeOut(clamp((p - 0.34 - k * 0.14) / 0.24)); el.style.opacity = String(qt); el.style.transform = 'translate(' + (-300 * (1 - qt)) + 'px,' + (-220 * (1 - qt)) + 'px) scale(' + (0.6 + 0.4 * qt) + ') rotate(' + (tilt[k] * qt) + 'deg)'; }); var lbl = testis.querySelector('.testis-k'); if (lbl) lbl.style.opacity = String(easeOut(clamp((p - 0.34) / 0.24))); }
   }
   function npInk(canvas, video) {
-    var MASK = [239, 233, 223], LIFETIME = 1100, R_START = 10, R_VARY = 0.45, STEP = 10, MAX = 240, SEG = 36;
+    var MASK = [239, 233, 223], LIFETIME = 1100, R_START = 10, R_VARY = 0.45, STEP = 10, MAX = 140, SEG = 24;
     var WOB = [0.14, 0.08, 0.05], INNER = 0.2, STOPS = [0.95, 0.88, 0];
     var band = canvas.parentElement, ctx = canvas.getContext('2d');
     var stamps = [], running = false, last = null, w = 0, h = 0, brush = 120, lastUser = 0, inView = false, dead = false;
@@ -148,7 +154,7 @@ ${heroInk}
     tex.onload = function () { pattern = ctx.createPattern(tex, 'repeat'); if (!running) paper(); };
     if (canvas.getAttribute('data-tex')) tex.src = canvas.getAttribute('data-tex');
     function resize() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = band.getBoundingClientRect();
+      var dpr = 1, rect = band.getBoundingClientRect();   // soft ink edges do not need high-density pixels
       w = rect.width; h = rect.height; brush = Math.max(80, Math.min(160, w * 0.08));
       var art = band.querySelector('.look-art');
       if (art) { var sc = Math.max(w / 1672, h / 941), aw = 1672 * sc, ah = 941 * sc; art.style.width = aw + 'px'; art.style.height = ah + 'px'; art.style.left = ((w - aw) * 0.5) + 'px'; art.style.top = ((h - ah) * 0.28) + 'px'; }
