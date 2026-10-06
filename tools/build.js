@@ -43,6 +43,26 @@ const BLOBS = {
   "5db6549ef343e29132bd97ed73ca7dfd": "assets/hero-paint.webp"
 };
 
+// Link previews (LinkedIn, Slack, iMessage, email) and the browser-tab icon.
+const SITE = 'https://www.nikita.page/';
+const SHARE_DESC = 'Security and technology-risk leader at Microsoft. I bring clarity to complex technology decisions, working with engineers, aligning stakeholders, and helping leaders decide what happens next.';
+const SHARE = `
+<meta name="description" content="${SHARE_DESC}">
+<link rel="canonical" href="${SITE}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${SITE}">
+<meta property="og:site_name" content="Nikita Page">
+<meta property="og:title" content="Nikita Page | Security and technology leadership">
+<meta property="og:description" content="${SHARE_DESC}">
+<meta property="og:image" content="${SITE}assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pencil sketch of Nikita Page beside the title I bring clarity to complex technology decisions.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${SITE}assets/og-image.jpg">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">`;
+
 function convert(file, title, extraScript) {
   let s = fs.readFileSync(src + file, 'utf8');
   const helmet = s.match(/<helmet>([\s\S]*?)<\/helmet>/)[1].replace(/\/_blob\/([0-9a-f]{32})/g, (_, id) => BLOBS[id] || _);
@@ -75,7 +95,7 @@ function convert(file, title, extraScript) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">${file === 'Main.dc.html' ? SHARE : ''}
 <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>${file === 'Main.dc.html' ? '\n<link rel="preload" as="image" href="assets/hero-sketch.webp">\n<link rel="preload" as="image" href="assets/hero-paint.webp">' : ''}
 <title>${title}</title>
 ${helmet.trim()}
