@@ -234,6 +234,23 @@ ${heroInk}
     return function () { btn.removeEventListener('click', onBtn); menu.removeEventListener('click', onMenu); document.removeEventListener('keydown', onKey); };
   }
   npMenu($('nav'), $('menu'));
+  function npContact(form) {
+    var btn = form.querySelector('.ct-btn'), status = form.querySelector('.ct-status');
+    function onSubmit(e) {
+      e.preventDefault();
+      if (form._honey && form._honey.value) return;
+      var data = {}; [].forEach.call(form.elements, function (el) { if (el.name) data[el.name] = el.value; });
+      btn.disabled = true; status.className = 'ct-status'; status.textContent = 'Sending…';
+      fetch('https://formsubmit.co/ajax/connect@nikita.page', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) === 'false') throw new Error(j.message || 'failed'); }); })
+        .then(function () { form.reset(); status.className = 'ct-status ok'; status.textContent = 'Thanks, your message is on its way.'; })
+        .catch(function () { status.className = 'ct-status err'; status.innerHTML = 'That didn’t send. Please email <a href="mailto:connect@nikita.page">connect@nikita.page</a>.'; })
+        .then(function () { btn.disabled = false; });
+    }
+    form.addEventListener('submit', onSubmit);
+    return function () { form.removeEventListener('submit', onSubmit); };
+  }
+  if ($('contact')) npContact($('contact'));
   function npCount(scope) {
     var els = [].slice.call(scope.querySelectorAll('[data-count]')), t0 = performance.now(), D = 1400;
     function step(now) {
