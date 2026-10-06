@@ -490,8 +490,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div data-np="zoom" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
-<div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
-<canvas data-np="heroink" class="hero-ink" data-scale="1.15" data-sketch="assets/hero-sketch.webp" data-paint="assets/hero-paint.webp" style="width: 100%; height: 100%; display: block; background: #F3EEE4"></canvas>
+<div style="position: absolute; inset: 0; overflow: hidden">
+<canvas data-np="heroink" class="hero-ink" data-scale="1" data-sketch="assets/hero-sketch.webp" data-paint="assets/hero-paint.webp" style="width: 100%; height: 100%; display: block; background: #F3EEE4"></canvas>
 </div>
 </div>
 <div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0; pointer-events: none"></div>
@@ -983,7 +983,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
   var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
   if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
-  var BRUSH = 0.06, FLOW = 0.03, SPREAD = 0.022, LIFE = 7.0, SIM_SCALE = 0.4, MAXS = 48;
+  var BRUSH = 0.07, FLOW = 0.03, SPREAD = 0.022, LIFE = 7.0, SIM_SCALE = 0.5, MAXS = 48;
   var half = gl.getExtension('OES_texture_half_float'), halfLin = gl.getExtension('OES_texture_half_float_linear');
   var TYPE = half && halfLin ? half.HALF_FLOAT_OES : gl.UNSIGNED_BYTE;
 
@@ -1003,9 +1003,9 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     'float fib=fbm(P*38.)*.65+fbm(P*9.+5.)*.35;m=max(m,nb*mix(.80,.995,smoothstep(.35,.7,fib))*smoothstep(.05,.5,nb));' +
     'm-=dt/life*(.55+.9*fbm(P*5.));' +
     'for(int i=0;i<' + MAXS + ';i++){if(st[i].z<0.)continue;float age=t-st[i].z;if(age<0.)continue;' +
-    'float g2=1.-pow(1.-clamp(age/1.1,0.,1.),3.);float R=st[i].w*(.25+.75*g2+.11*min(age,6.5));' +   // quick bloom, then keeps creeping outward
-    'float amt=1.-smoothstep(5.,7.,age);' +   // stop feeding ink after ~6s so it can dry and fade
-    'vec2 c=st[i].xy*s;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
+    'float g2=1.-pow(1.-clamp(age/.45,0.,1.),3.);float R=st[i].w*(.55+.45*g2+.2*min(age,6.5));' +   // quick bloom, then keeps creeping outward
+    'float amt=1.-smoothstep(5.5,7.5,age);' +   // stop feeding ink after ~6s so it can dry and fade
+    'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+.2*min(t-st[i].z,6.5))*1.9)continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
     'float ang=h(vec2(sd,1.))*6.283,str=1.+h(vec2(sd,2.))*.35;' +
     'vec2 lp=(P-c)/st[i].w;lp=mat2(cos(ang),-sin(ang),sin(ang),cos(ang))*lp;lp.x/=str;' +
     'lp+=(vec2(fbm(lp*1.7+sd),fbm(lp*1.7+sd+31.))-.5)*.9;' +
@@ -1014,7 +1014,8 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
 
   // Display: sketch at rest, painting under the ink, darker pigment at the rim and a pale bleed just past it.
   var showFS = 'precision highp float;varying vec2 v;' +
-    'uniform sampler2D sketch,paint,mask;uniform vec2 sc,off;uniform float ia,t;' + noise +
+    'uniform sampler2D sketch,paint,mask;uniform vec2 sc,off,tx;uniform float ia,t;' + noise +
+    'vec3 sharp(sampler2D s,vec2 p){vec3 c=texture2D(s,p).rgb;vec3 b=(texture2D(s,p+vec2(tx.x,0.)).rgb+texture2D(s,p-vec2(tx.x,0.)).rgb+texture2D(s,p+vec2(0.,tx.y)).rgb+texture2D(s,p-vec2(0.,tx.y)).rgb)*.25;return clamp(c+(c-b)*.6,0.,1.);}' +
     // Above the image top (the image sits lower so its construction line clears the nav), fill with a
     // mirror-tiled patch of blank paper from the sketch; the left frame line carries on upward.
     'float tri(float x){return 1.-abs(fract(x*.5)*2.-1.);}' +
@@ -1023,7 +1024,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     'float raw=texture2D(mask,v).r;float g=fbm(a*22.+vec2(t*.12,-t*.09))*.12+n(a*160.)*.05;' +
     'float m=smoothstep(.27,.31,raw+g-.06);float rim=m*(1.-smoothstep(.31,.46,raw+g-.06));' +
     'float halo=smoothstep(.16,.27,raw+g-.06)*(1.-m);' +
-    'vec3 sk=mix(texture2D(sketch,iq).rgb,texture2D(sketch,fq).rgb,fw),pt=mix(texture2D(paint,iq).rgb,texture2D(paint,fq).rgb,fw);float gran=n(a*420.)*.5+n(a*900.)*.5;' +
+    'vec3 sk=mix(sharp(sketch,iq),texture2D(sketch,fq).rgb,fw),pt=mix(texture2D(paint,iq).rgb,texture2D(paint,fq).rgb,fw);float gran=n(a*420.)*.5+n(a*900.)*.5;' +
     'vec3 ink=mix(pt,pt*pt*1.02,.55*rim)*(1.-.06*(gran-.5));vec3 col=mix(sk,ink,m);' +
     'col=mix(col,mix(sk,pt,.35),.5*halo);gl_FragColor=vec4(col,1.);}';
 
@@ -1034,7 +1035,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     var u = {}; names.forEach(function (k) { u[k] = gl.getUniformLocation(p, k); }); return { p: p, u: u };
   }
   var SIM = prog(simFS, ['prev', 'asp', 't', 'dt', 'flow', 'spread', 'life', 'st']);
-  var SHOW = prog(showFS, ['sketch', 'paint', 'mask', 'sc', 'off', 'ia', 't']);
+  var SHOW = prog(showFS, ['sketch', 'paint', 'mask', 'sc', 'off', 'ia', 't', 'tx']);
   if (!gl.getProgramParameter(SHOW.p, gl.LINK_STATUS) || !gl.getProgramParameter(SIM.p, gl.LINK_STATUS)) {
     canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {};
   }
@@ -1077,9 +1078,9 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     offv[1] = Math.min(1 - scv[1], LINE_Y - scv[1] * want / hgt);
   }
   function resize() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);   // full sharpness on high-density screens
     canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr);
-    var w = Math.max(64, Math.round(canvas.width * SIM_SCALE)), h = Math.max(64, Math.round(canvas.height * SIM_SCALE));
+    var w = Math.max(64, Math.round(canvas.clientWidth * SIM_SCALE)), h = Math.max(64, Math.round(canvas.clientHeight * SIM_SCALE));   // the ink mask stays cheap at any pixel density
     A = target(w, h); B = target(w, h); layout();
   }
 
@@ -1087,7 +1088,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
   var stamps = new Float32Array(MAXS * 4), si = 0, lastDrop = null, here = null, lastMove = 0, lastPool = 0, t0 = performance.now();
   for (var i = 0; i < MAXS; i++) stamps[i * 4 + 2] = -1;
   function clock() { return (performance.now() - t0) / 1000; }
-  function stamp(x, y, r, delay) { var o = si * 4; stamps[o] = x; stamps[o + 1] = y; stamps[o + 2] = clock() + (delay || 0); stamps[o + 3] = r; si = (si + 1) % MAXS; }
+  function stamp(x, y, r, delay) { var o = si * 4; stamps[o] = x; stamps[o + 1] = y; stamps[o + 2] = clock() + (delay || 0) - 0.03; stamps[o + 3] = r; si = (si + 1) % MAXS; }
   function blot(x, y) {
     var asp = canvas.width / canvas.height, r = BRUSH * (0.5 + Math.random() * 1.1);
     stamp(x + (Math.random() - 0.5) * r / asp * 1.2, y + (Math.random() - 0.5) * r * 1.2, r, 0);
@@ -1104,7 +1105,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     if (p[0] < 0 || p[0] > 1 || p[1] < 0 || p[1] > 1) return;
     here = p; lastMove = performance.now();
     if (!lastDrop) { lastDrop = p.slice(); blot(p[0], p[1]); return; }
-    var asp = canvas.width / canvas.height, gap = BRUSH * 2.1;   // wide spacing keeps blots distinct
+    var asp = canvas.width / canvas.height, gap = BRUSH * 1.6;   // wide spacing keeps blots distinct
     var d = Math.hypot((p[0] - lastDrop[0]) * asp, p[1] - lastDrop[1]);
     while (d >= gap) {
       var f = gap / d; lastDrop = [lastDrop[0] + (p[0] - lastDrop[0]) * f, lastDrop[1] + (p[1] - lastDrop[1]) * f]; blot(lastDrop[0], lastDrop[1]);
@@ -1135,7 +1136,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, A.t);
     gl.uniform1i(SHOW.u.sketch, 0); gl.uniform1i(SHOW.u.paint, 1); gl.uniform1i(SHOW.u.mask, 2);
     gl.uniform2f(SHOW.u.sc, scv[0], scv[1]); gl.uniform2f(SHOW.u.off, offv[0], offv[1]);
-    gl.uniform1f(SHOW.u.ia, IMG_W / IMG_H); gl.uniform1f(SHOW.u.t, t);
+    gl.uniform1f(SHOW.u.ia, IMG_W / IMG_H); gl.uniform1f(SHOW.u.t, t); gl.uniform2f(SHOW.u.tx, 1 / IMG_W, 1 / IMG_H);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     if (visible) raf = requestAnimationFrame(frame);
   }

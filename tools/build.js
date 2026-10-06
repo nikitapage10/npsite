@@ -39,7 +39,7 @@ const BLOBS = {
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
   "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp",
   "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf",
-  "4fcfad31cea8f318bb5b1dbc04fe2399": "assets/hero-sketch.webp",
+  "1304cfc3e2ce87a20acb009b002041a6": "assets/hero-sketch.webp",
   "5db6549ef343e29132bd97ed73ca7dfd": "assets/hero-paint.webp"
 };
 
