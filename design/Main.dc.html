@@ -1077,7 +1077,7 @@ class Component extends DCLogic {
   if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
   var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
   // Defaults: watercolor bleed (feathered, wicking edges) with a moderate spread.
-  var O = { brush: 0.075, flow: 0.04, spread: 0.026, life: 4.8, grow: 0.21, stretch: 0.3, warp: 0.6, ragged: 0.3,
+  var O = { brush: 0.08, flow: 0.04, spread: 0.034, life: 5.0, grow: 0.32, stretch: 0.3, warp: 0.6, ragged: 0.3,
     gap: 0.8, sat: 0.4, rim: 0.2, halo: 1.0, soft: 0.14, demo: false };
   for (var key in (opts || {})) O[key] = opts[key];
   function f(x) { return (+x).toFixed(3); }   // number literal for GLSL
