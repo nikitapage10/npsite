@@ -27,7 +27,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     'float fib=fbm(P*38.)*.65+fbm(P*9.+5.)*.35;m=max(m,nb*mix(.80,.995,smoothstep(.35,.7,fib))*smoothstep(.05,.5,nb));' +
     'm-=dt/life*(.55+.9*fbm(P*5.));' +
     'for(int i=0;i<' + MAXS + ';i++){if(st[i].z<0.)continue;float age=t-st[i].z;if(age<0.)continue;' +
-    'float g2=1.-pow(1.-clamp(age/.45,0.,1.),3.);float R=st[i].w*(.55+.45*g2+.2*min(age,6.5));' +   // quick bloom, then keeps creeping outward
+    'float g2=1.-pow(1.-clamp(age/.7,0.,1.),3.);float R=st[i].w*(g2+.2*min(age,6.5));' +   // grows from nothing, fast at first, then eases   // quick bloom, then keeps creeping outward
     'float amt=1.-smoothstep(5.5,7.5,age);' +   // stop feeding ink after ~6s so it can dry and fade
     'vec2 c=st[i].xy*s;if(length(P-c)>st[i].w*(1.2+.2*min(t-st[i].z,6.5))*1.9)continue;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
     'float ang=h(vec2(sd,1.))*6.283,str=1.+h(vec2(sd,2.))*.35;' +
@@ -112,7 +112,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
   var stamps = new Float32Array(MAXS * 4), si = 0, lastDrop = null, here = null, lastMove = 0, lastPool = 0, t0 = performance.now();
   for (var i = 0; i < MAXS; i++) stamps[i * 4 + 2] = -1;
   function clock() { return (performance.now() - t0) / 1000; }
-  function stamp(x, y, r, delay) { var o = si * 4; stamps[o] = x; stamps[o + 1] = y; stamps[o + 2] = clock() + (delay || 0) - 0.03; stamps[o + 3] = r; si = (si + 1) % MAXS; }
+  function stamp(x, y, r, delay) { var o = si * 4; stamps[o] = x; stamps[o + 1] = y; stamps[o + 2] = clock() + (delay || 0); stamps[o + 3] = r; si = (si + 1) % MAXS; }
   function blot(x, y) {
     var asp = canvas.width / canvas.height, r = BRUSH * (0.5 + Math.random() * 1.1);
     stamp(x + (Math.random() - 0.5) * r / asp * 1.2, y + (Math.random() - 0.5) * r * 1.2, r, 0);
@@ -129,7 +129,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
     if (p[0] < 0 || p[0] > 1 || p[1] < 0 || p[1] > 1) return;
     here = p; lastMove = performance.now();
     if (!lastDrop) { lastDrop = p.slice(); blot(p[0], p[1]); return; }
-    var asp = canvas.width / canvas.height, gap = BRUSH * 1.6;   // wide spacing keeps blots distinct
+    var asp = canvas.width / canvas.height, gap = BRUSH * 1.2;   // wide spacing keeps blots distinct
     var d = Math.hypot((p[0] - lastDrop[0]) * asp, p[1] - lastDrop[1]);
     while (d >= gap) {
       var f = gap / d; lastDrop = [lastDrop[0] + (p[0] - lastDrop[0]) * f, lastDrop[1] + (p[1] - lastDrop[1]) * f]; blot(lastDrop[0], lastDrop[1]);
@@ -166,14 +166,17 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
   }
   function wake() { if (!raf && visible && sketchT && paintT && !dead) { last = performance.now(); raf = requestAnimationFrame(frame); } }
   // Only animate while the hero is on screen.
-  var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; wake(); }, { threshold: 0 });
+  var track = area.parentElement, onScreen = true;
+  function check() { var r = track.getBoundingClientRect(); visible = onScreen && r.top > -0.5 * window.innerHeight; wake(); }
+  var io = new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; check(); }, { threshold: 0 });
   io.observe(canvas);
+  document.addEventListener('scroll', check, { capture: true, passive: true });
   var ro = new ResizeObserver(function () { resize(); wake(); }); ro.observe(canvas);
   resize();
   image(sketchSrc, function (tx) { sketchT = tx; wake(); });
   image(paintSrc, function (tx) { paintT = tx; wake(); });
   return function () {
-    dead = true; io.disconnect(); ro.disconnect();
+    dead = true; io.disconnect(); ro.disconnect(); document.removeEventListener('scroll', check, true);
     area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave);
   };
 }
