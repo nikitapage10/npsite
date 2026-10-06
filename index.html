@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
+<link rel="preload" as="image" href="assets/hero-sketch.webp">
+<link rel="preload" as="image" href="assets/hero-paint.webp">
 <title>Nikita Page | Security and technology leadership</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&amp;display=swap">
@@ -268,8 +270,6 @@ a{color:#3a3835}a:hover{color:#3a3835}
 .testi blockquote{font-size:17.5px}
 }
 @media (min-width:1380px) and (max-height:900px){.testis{top:92px;height:560px}.testi{width:290px;padding:22px 22px 20px}.testi blockquote{font-size:15px}.testi:nth-of-type(2){top:128px;right:290px}.testi:nth-of-type(3){top:246px}}
-.bloom{position:absolute;inset:0;width:100%;height:100%;z-index:5;pointer-events:none;mix-blend-mode:multiply}
-@media (prefers-reduced-motion: reduce){.bloom{display:none}}
 .brand-logo{-webkit-mask-image:linear-gradient(90deg,#000 44%,transparent 56%);mask-image:linear-gradient(90deg,#000 44%,transparent 56%);-webkit-mask-size:250% 100%;mask-size:250% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:100% 0;mask-position:100% 0;animation:sig-write 2.4s cubic-bezier(0.55,0.1,0.35,1) 0.35s forwards}
 @keyframes sig-write{to{-webkit-mask-position:0 0;mask-position:0 0}}
 @media (prefers-reduced-motion: reduce){.brand-logo{animation:none;-webkit-mask-image:none;mask-image:none}}
@@ -438,7 +438,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 .mm-link{font-family:'P22 Mackinac W01 Book','Newsreader',Georgia,serif;font-size:30px;letter-spacing:-0.02em;line-height:1.2;padding:14px 0;border-bottom:1px solid #e7e2d8;color:#3a3835;text-decoration:none}
 .mm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .mm-actions .btn{padding:12px 20px}
-.hero-video{object-position:70% 0 !important}
 .hero-content{margin-top:auto;padding:0 20px 32px}
 .hero-content::before{content:"";position:absolute;z-index:-1;left:0;right:0;top:-110px;bottom:0;background:linear-gradient(to bottom, rgba(252,251,247,0) 0, rgba(252,251,247,0.92) 90px, #FCFBF7 130px)}
 .hero-h1{font-size:32px}
@@ -452,7 +451,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 }
 @supports (height:100dvh){.np-root,.hero-stage{height:100dvh !important}}
 @media (max-width:767px){
-.hero-video.is-portrait{object-position:50% 0 !important}
 .hero-content{padding-bottom:max(32px, env(safe-area-inset-bottom))}
 .roots-globe{margin-top:72px !important}
 #roots .chapter{row-gap:32px}
@@ -493,7 +491,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; overflow: hidden">
 <div data-np="zoom" style="position: absolute; inset: 0; transform-origin: 16% 32%; will-change: transform">
 <div style="position: absolute; inset: 0; transform: scale(1.15); transform-origin: top; overflow: hidden">
-<video data-np="video" class="hero-video" data-src="hero-loop.mp4" data-src-small="hero-loop-960.mp4" preload="none" poster="assets/hero-poster.webp" muted playsinline autoplay loop preload="auto" style="width: 100%; height: 100%; object-fit: cover; object-position: top; display: block"></video>
+<canvas data-np="heroink" class="hero-ink" data-scale="1.15" data-sketch="assets/hero-sketch.webp" data-paint="assets/hero-paint.webp" style="width: 100%; height: 100%; display: block; background: #F3EEE4"></canvas>
 </div>
 </div>
 <div class="hero-washi" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0; pointer-events: none"></div>
@@ -513,7 +511,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </svg>
 </div>
 
-<canvas data-np="bloom" class="bloom" aria-hidden="true"></canvas>
 
 <div data-np="hero" class="hero-content" style="position: relative; z-index: 10; align-self: stretch; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; text-align: left; will-change: transform, opacity">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(58,56,53,0.68); font-weight: 500; margin-bottom: 18px">Nikita Page <span style="margin: 0 8px; opacity: 0.5">|</span> Security and technology leadership</div>
@@ -982,8 +979,182 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
 </div>
 <script>
 (function () {
+function npHeroInk(canvas, area, nav, sketchSrc, paintSrc) {
+  var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
+  if (!gl) { canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {}; }
+  var IMG_W = 1672, IMG_H = 941, LINE_Y = 0.069;   // image size and the y of the top construction line (fraction)
+  var BRUSH = 0.06, FLOW = 0.03, SPREAD = 0.022, LIFE = 7.0, SIM_SCALE = 0.4, MAXS = 48;
+  var half = gl.getExtension('OES_texture_half_float'), halfLin = gl.getExtension('OES_texture_half_float_linear');
+  var TYPE = half && halfLin ? half.HALF_FLOAT_OES : gl.UNSIGNED_BYTE;
+
+  var vs = 'attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  var noise = 'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}' +
+    'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}' +
+    'float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*n(p);p=p*2.07+17.1;a*=.5;}return s;}';
+
+  // Simulation: ink drifts in a slow current, soaks outward along the paper grain, dries unevenly; new blots bloom in.
+  var simFS = 'precision highp float;varying vec2 v;' +
+    'uniform sampler2D prev;uniform float asp,t,dt,flow,spread,life;uniform vec4 st[' + MAXS + '];' + noise +
+    'vec2 curl(vec2 p){float e=.01;return vec2(fbm(p+vec2(0.,e))-fbm(p-vec2(0.,e)),-(fbm(p+vec2(e,0.))-fbm(p-vec2(e,0.))))/(2.*e);}' +
+    'void main(){vec2 s=vec2(asp,1.);vec2 P=v*s;' +
+    'vec2 vel=(curl(P*2.4+vec2(t*.07,t*.05))+.6*curl(P*5.+vec2(-t*.11,t*.09)+40.))*flow;' +
+    'vec2 src=v-vel*dt/s;float m=texture2D(prev,src).r;float r=spread*dt;' +
+    'float nb=max(max(texture2D(prev,src+vec2(r,0.)/s).r,texture2D(prev,src-vec2(r,0.)/s).r),max(texture2D(prev,src+vec2(0.,r)/s).r,texture2D(prev,src-vec2(0.,r)/s).r));' +
+    'float fib=fbm(P*38.)*.65+fbm(P*9.+5.)*.35;m=max(m,nb*mix(.80,.995,smoothstep(.35,.7,fib))*smoothstep(.05,.5,nb));' +
+    'm-=dt/life*(.55+.9*fbm(P*5.));' +
+    'for(int i=0;i<' + MAXS + ';i++){if(st[i].z<0.)continue;float age=t-st[i].z;if(age<0.)continue;' +
+    'float g2=1.-pow(1.-clamp(age/1.1,0.,1.),3.);float R=st[i].w*(.25+.75*g2+.11*min(age,6.5));' +   // quick bloom, then keeps creeping outward
+    'float amt=1.-smoothstep(5.,7.,age);' +   // stop feeding ink after ~6s so it can dry and fade
+    'vec2 c=st[i].xy*s;float sd=fract(st[i].z*7.13+float(i)*.618)*100.;' +
+    'float ang=h(vec2(sd,1.))*6.283,str=1.+h(vec2(sd,2.))*.35;' +
+    'vec2 lp=(P-c)/st[i].w;lp=mat2(cos(ang),-sin(ang),sin(ang),cos(ang))*lp;lp.x/=str;' +
+    'lp+=(vec2(fbm(lp*1.7+sd),fbm(lp*1.7+sd+31.))-.5)*.9;' +
+    'float d=length(lp)*st[i].w*(1.+.55*(fbm(lp*3.2+sd+7.)-.5));m=max(m,amt*smoothstep(R,R*.6,d));}' +
+    'gl_FragColor=vec4(clamp(m,0.,1.),0.,0.,1.);}';
+
+  // Display: sketch at rest, painting under the ink, darker pigment at the rim and a pale bleed just past it.
+  var showFS = 'precision highp float;varying vec2 v;' +
+    'uniform sampler2D sketch,paint,mask;uniform vec2 sc,off;uniform float ia,t;' + noise +
+    // Above the image top (the image sits lower so its construction line clears the nav), fill with a
+    // mirror-tiled patch of blank paper from the sketch; the left frame line carries on upward.
+    'float tri(float x){return 1.-abs(fract(x*.5)*2.-1.);}' +
+    'vec2 fillUV(vec2 q){return vec2(q.x<.07?q.x:.10+.25*tri((q.x-.10)/.25),.09+.18*tri(-q.y/.18));}' +
+    'void main(){vec2 uv=vec2(v.x,1.-v.y);vec2 q=uv*sc+off;vec2 a=vec2(q.x*ia,q.y);vec2 iq=vec2(q.x,max(q.y,0.));vec2 fq=fillUV(q);float fw=1.-smoothstep(-.004,.03,q.y);' +
+    'float raw=texture2D(mask,v).r;float g=fbm(a*22.+vec2(t*.12,-t*.09))*.12+n(a*160.)*.05;' +
+    'float m=smoothstep(.27,.31,raw+g-.06);float rim=m*(1.-smoothstep(.31,.46,raw+g-.06));' +
+    'float halo=smoothstep(.16,.27,raw+g-.06)*(1.-m);' +
+    'vec3 sk=mix(texture2D(sketch,iq).rgb,texture2D(sketch,fq).rgb,fw),pt=mix(texture2D(paint,iq).rgb,texture2D(paint,fq).rgb,fw);float gran=n(a*420.)*.5+n(a*900.)*.5;' +
+    'vec3 ink=mix(pt,pt*pt*1.02,.55*rim)*(1.-.06*(gran-.5));vec3 col=mix(sk,ink,m);' +
+    'col=mix(col,mix(sk,pt,.35),.5*halo);gl_FragColor=vec4(col,1.);}';
+
+  function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  function prog(fsrc, names) {
+    var p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fsrc));
+    gl.bindAttribLocation(p, 0, 'p'); gl.linkProgram(p);
+    var u = {}; names.forEach(function (k) { u[k] = gl.getUniformLocation(p, k); }); return { p: p, u: u };
+  }
+  var SIM = prog(simFS, ['prev', 'asp', 't', 'dt', 'flow', 'spread', 'life', 'st']);
+  var SHOW = prog(showFS, ['sketch', 'paint', 'mask', 'sc', 'off', 'ia', 't']);
+  if (!gl.getProgramParameter(SHOW.p, gl.LINK_STATUS) || !gl.getProgramParameter(SIM.p, gl.LINK_STATUS)) {
+    canvas.style.background = 'url(' + sketchSrc + ') 78% 0 / cover'; return function () {};
+  }
+  var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  function target(w, h) {
+    var tx = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tx);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, TYPE, null);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    var f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tx, 0);
+    if (gl.checkFramebufferStatus(gl.FRAMEBUFFER) !== gl.FRAMEBUFFER_COMPLETE && TYPE !== gl.UNSIGNED_BYTE) { TYPE = gl.UNSIGNED_BYTE; return target(w, h); }
+    gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+    return { t: tx, f: f, w: w, h: h };
+  }
+  function image(src, cb) {
+    var tx = gl.createTexture(), im = new Image();
+    im.onload = function () {
+      gl.bindTexture(gl.TEXTURE_2D, tx); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      cb(tx);
+    };
+    im.src = src;
+  }
+
+  var A = null, B = null, sketchT = null, paintT = null, scv = [1, 1], offv = [0, 0];
+  // Cover-fit the image to the canvas, leaning right so the figure stays in frame on narrow screens,
+  // then shift it vertically so the sketch's top construction line lands just below the nav.
+  // Uses untransformed sizes so the scroll zoom never shifts the image; data-scale is the wrapper's resting scale.
+  function layout() {
+    var w = canvas.clientWidth, hgt = canvas.clientHeight; if (!w || !hgt) return;
+    var ra = w / hgt, ia = IMG_W / IMG_H, k = parseFloat(canvas.getAttribute('data-scale')) || 1;
+    scv = ra > ia ? [1, ia / ra] : [ra / ia, 1];
+    offv[0] = ra > ia ? 0 : (1 - scv[0]) * 0.78;
+    var want = (nav ? nav.offsetHeight - 16 : hgt * 0.12) / k;   // px below the canvas top, in canvas units
+    offv[1] = Math.min(1 - scv[1], LINE_Y - scv[1] * want / hgt);
+  }
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    canvas.width = Math.round(canvas.clientWidth * dpr); canvas.height = Math.round(canvas.clientHeight * dpr);
+    var w = Math.max(64, Math.round(canvas.width * SIM_SCALE)), h = Math.max(64, Math.round(canvas.height * SIM_SCALE));
+    A = target(w, h); B = target(w, h); layout();
+  }
+
+  // Blots are laid evenly along the cursor path; some get small satellite drops; a resting cursor slowly pools.
+  var stamps = new Float32Array(MAXS * 4), si = 0, lastDrop = null, here = null, lastMove = 0, lastPool = 0, t0 = performance.now();
+  for (var i = 0; i < MAXS; i++) stamps[i * 4 + 2] = -1;
+  function clock() { return (performance.now() - t0) / 1000; }
+  function stamp(x, y, r, delay) { var o = si * 4; stamps[o] = x; stamps[o + 1] = y; stamps[o + 2] = clock() + (delay || 0); stamps[o + 3] = r; si = (si + 1) % MAXS; }
+  function blot(x, y) {
+    var asp = canvas.width / canvas.height, r = BRUSH * (0.5 + Math.random() * 1.1);
+    stamp(x + (Math.random() - 0.5) * r / asp * 1.2, y + (Math.random() - 0.5) * r * 1.2, r, 0);
+    if (Math.random() < 0.6) {
+      for (var k = 0, nn = 1 + (Math.random() < 0.4 ? 1 : 0); k < nn; k++) {
+        var a = Math.random() * 6.283, d = r * (1.1 + Math.random() * 0.9);
+        stamp(x + Math.cos(a) * d / asp, y + Math.sin(a) * d, r * (0.18 + Math.random() * 0.22), 0.15 + Math.random() * 0.35);
+      }
+    }
+  }
+  function onMove(e) {
+    var r = canvas.getBoundingClientRect();
+    var p = [(e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height];
+    if (p[0] < 0 || p[0] > 1 || p[1] < 0 || p[1] > 1) return;
+    here = p; lastMove = performance.now();
+    if (!lastDrop) { lastDrop = p.slice(); blot(p[0], p[1]); return; }
+    var asp = canvas.width / canvas.height, gap = BRUSH * 2.1;   // wide spacing keeps blots distinct
+    var d = Math.hypot((p[0] - lastDrop[0]) * asp, p[1] - lastDrop[1]);
+    while (d >= gap) {
+      var f = gap / d; lastDrop = [lastDrop[0] + (p[0] - lastDrop[0]) * f, lastDrop[1] + (p[1] - lastDrop[1]) * f]; blot(lastDrop[0], lastDrop[1]);
+      d = Math.hypot((p[0] - lastDrop[0]) * asp, p[1] - lastDrop[1]);
+    }
+  }
+  function onLeave() { here = null; lastDrop = null; }
+  area.addEventListener('pointermove', onMove, { passive: true });
+  area.addEventListener('pointerleave', onLeave);
+
+  var raf = 0, last = performance.now(), visible = true, dead = false;
+  function frame(now) {
+    raf = 0; if (dead) return;
+    var dt = Math.min(0.05, (now - last) / 1000); last = now; var t = (now - t0) / 1000;
+    if (here && now - lastMove > 400 && now - lastPool > 900) { lastPool = now; stamp(here[0], here[1], BRUSH * (1 + Math.random() * 0.6), 0); }
+    gl.useProgram(SIM.p);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, null);   // never sample the texture being written
+    gl.bindFramebuffer(gl.FRAMEBUFFER, B.f); gl.viewport(0, 0, B.w, B.h);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, A.t); gl.uniform1i(SIM.u.prev, 0);
+    gl.uniform1f(SIM.u.asp, canvas.width / canvas.height); gl.uniform1f(SIM.u.t, t); gl.uniform1f(SIM.u.dt, dt);
+    gl.uniform1f(SIM.u.flow, FLOW); gl.uniform1f(SIM.u.spread, SPREAD); gl.uniform1f(SIM.u.life, LIFE); gl.uniform4fv(SIM.u.st, stamps);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    var tmp = A; A = B; B = tmp;
+    gl.useProgram(SHOW.p);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, sketchT);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D, paintT);
+    gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, A.t);
+    gl.uniform1i(SHOW.u.sketch, 0); gl.uniform1i(SHOW.u.paint, 1); gl.uniform1i(SHOW.u.mask, 2);
+    gl.uniform2f(SHOW.u.sc, scv[0], scv[1]); gl.uniform2f(SHOW.u.off, offv[0], offv[1]);
+    gl.uniform1f(SHOW.u.ia, IMG_W / IMG_H); gl.uniform1f(SHOW.u.t, t);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (visible) raf = requestAnimationFrame(frame);
+  }
+  function wake() { if (!raf && visible && sketchT && paintT && !dead) { last = performance.now(); raf = requestAnimationFrame(frame); } }
+  // Only animate while the hero is on screen.
+  var io = new IntersectionObserver(function (es) { visible = es[0].isIntersecting; wake(); }, { threshold: 0 });
+  io.observe(canvas);
+  var ro = new ResizeObserver(function () { resize(); wake(); }); ro.observe(canvas);
+  resize();
+  image(sketchSrc, function (tx) { sketchT = tx; wake(); });
+  image(paintSrc, function (tx) { paintT = tx; wake(); });
+  return function () {
+    dead = true; io.disconnect(); ro.disconnect();
+    area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave);
+  };
+}
+
   var $ = function (n) { return document.querySelector('[data-np="' + n + '"]'); };
-  var root = $('root'), track = $('track'), zoom = $('zoom'), video = $('video');
+  var root = $('root'), track = $('track'), zoom = $('zoom');
   var hero = $('hero'), panel = $('panel'), intro = $('intro'), chips = $('chips'), quote = $('quote');
   function enter(el, q, dx, dy) {
     el.style.opacity = String(q);
@@ -1200,71 +1371,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
     setTimeout(function () { requestAnimationFrame(step); }, 500);
   }
   npCount(panel);
-  function npBloom(canvas) {
-    if (!canvas || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return function () {};
-    var area = canvas.parentElement, ctx = canvas.getContext('2d');
-    var PIGMENTS = [[176, 141, 76], [138, 112, 82], [122, 138, 112], [196, 168, 128], [150, 128, 104]];
-    var LIFE = 2200, STEP = 26, MAX = 90, SEG = 28;
-    var blooms = [], last = null, running = false, dead = false, w = 0, h = 0, hue = 0;
-    function resize() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = area.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function add(x, y, speed) {
-      if (blooms.length >= MAX) blooms.shift();
-      hue = (hue + (Math.random() < 0.18 ? 1 : 0)) % PIGMENTS.length;
-      blooms.push({ x: x + (Math.random() - 0.5) * 14, y: y + (Math.random() - 0.5) * 14, born: performance.now(),
-        seed: Math.random() * 6.283, rmax: 26 + Math.random() * 34 + Math.min(40, speed * 0.35), c: PIGMENTS[hue], a: 0.32 + Math.random() * 0.18 });
-    }
-    function shape(b, r) {
-      ctx.beginPath();
-      for (var i = 0; i <= SEG; i++) {
-        var t = (i / SEG) * 6.283;
-        var k = 0.8 + 0.12 * Math.sin(t * 3 + b.seed) + 0.07 * Math.sin(t * 5 + b.seed * 1.7) + 0.05 * Math.sin(t * 9 + b.seed * 0.4);
-        var px = b.x + Math.cos(t) * r * k, py = b.y + Math.sin(t) * r * k;
-        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-    }
-    function frame(now) {
-      if (dead) return;
-      ctx.clearRect(0, 0, w, h);
-      for (var i = blooms.length - 1; i >= 0; i--) {
-        var b = blooms[i], t = (now - b.born) / LIFE;
-        if (t >= 1) { blooms.splice(i, 1); continue; }
-        var r = 8 + (b.rmax - 8) * (1 - Math.pow(1 - Math.min(1, t * 1.6), 3));
-        var alpha = b.a * Math.pow(1 - t, 1.4), c = b.c.join(',');
-        var g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
-        g.addColorStop(0, 'rgba(' + c + ',' + (alpha * 0.28) + ')');
-        g.addColorStop(0.68, 'rgba(' + c + ',' + (alpha * 0.5) + ')');
-        g.addColorStop(0.9, 'rgba(' + c + ',' + (alpha * 0.85) + ')');
-        g.addColorStop(1, 'rgba(' + c + ',0)');
-        ctx.fillStyle = g; shape(b, r); ctx.fill();
-      }
-      if (blooms.length) requestAnimationFrame(frame); else running = false;
-    }
-    function onMove(e) {
-      var rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
-      if (x < 0 || y < 0 || x > w || y > h) return;
-      if (!last) { last = { x: x, y: y }; add(x, y, 0); }
-      var dx = x - last.x, dy = y - last.y, d = Math.hypot(dx, dy);
-      if (d >= STEP) {
-        var n = Math.min(4, Math.floor(d / STEP));
-        for (var k = 1; k <= n; k++) add(last.x + dx * k / n, last.y + dy * k / n, d);
-        last = { x: x, y: y };
-      }
-      if (!running) { running = true; requestAnimationFrame(frame); }
-    }
-    function onLeave() { last = null; }
-    area.addEventListener('pointermove', onMove);
-    area.addEventListener('pointerleave', onLeave);
-    var ro = new ResizeObserver(resize); ro.observe(area);
-    resize();
-    return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
-  }
-  npBloom($('bloom'));
   function npXlat(container) {
     var tabs = [].slice.call(container.querySelectorAll('.xl-tab'));
     var views = [].slice.call(container.querySelectorAll('.xl-v'));
@@ -1300,17 +1406,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #b08d4c;outline-offset:3p
   window.addEventListener('resize', onScroll);
   applyScroll();
 
-  video.muted = true;
-  if (video.getAttribute('data-src') && !video.getAttribute('src')) {
-    var portrait = window.innerWidth < 768 && window.innerHeight > window.innerWidth;
-    var small = window.innerWidth < 900 || (navigator.connection && navigator.connection.saveData);
-    if (portrait) { video.classList.add('is-portrait'); video.poster = 'assets/hero-poster-portrait.webp'; video.src = 'hero-loop-portrait.mp4'; }
-    else video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
-  }
-  function play() { if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }
-  video.addEventListener('canplay', play);
-  document.addEventListener('visibilitychange', play);
-  play();
+  var heroInk = $('heroink');
+  if (heroInk) npHeroInk(heroInk, heroInk.closest('section'), $('nav'), heroInk.getAttribute('data-sketch'), heroInk.getAttribute('data-paint'));
 })();
 </script>
 </body>

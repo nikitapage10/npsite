@@ -38,7 +38,9 @@ const BLOBS = {
   "037b59ccffbaf6bee1fac4662a5de4a2": "assets/paper-white.webp",
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
   "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp",
-  "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf"
+  "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf",
+  "4fcfad31cea8f318bb5b1dbc04fe2399": "assets/hero-sketch.webp",
+  "5db6549ef343e29132bd97ed73ca7dfd": "assets/hero-paint.webp"
 };
 
 function convert(file, title, extraScript) {
@@ -59,7 +61,6 @@ function convert(file, title, extraScript) {
   // Drafts (e.g. unapproved testimonials) live on the design canvas only.
   body = body.replace(/<figure [^>]*data-draft="true"[^>]*>[\s\S]*?<\/figure>\n?/g, '');
   body = body.replace(/<a class="track" data-spotify="([^"]+)"[\s\S]*?<\/a>/g, (_, id) => '<iframe class="track-embed" title="Spotify player: Take What You Want (feat. Manno)" src="https://open.spotify.com/embed/track/' + id + '?utm_source=generator&amp;theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>');
-  body = body.replace('src="hero-loop.mp4" poster=', 'data-src="hero-loop.mp4" data-src-small="hero-loop-960.mp4" preload="none" poster=');
   body = body.replace(/<img (?![^>]*\bloading=)(?![^>]*class="brand-logo")/g, '<img loading="lazy" decoding="async" ');
   if (/\{\{/.test(body)) throw new Error('unconverted hole in ' + file);
   const opens = (body.match(/<div[\s>]/g) || []).length, closes = (body.match(/<\/div>/g) || []).length;
@@ -69,7 +70,7 @@ function convert(file, title, extraScript) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
+<link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>${file === 'Main.dc.html' ? '\n<link rel="preload" as="image" href="assets/hero-sketch.webp">\n<link rel="preload" as="image" href="assets/hero-paint.webp">' : ''}
 <title>${title}</title>
 ${helmet.trim()}
 </head>
@@ -81,10 +82,13 @@ ${extraScript || ''}
 `;
 }
 
+// The hero ink effect lives in its own module; strip its header comments before inlining.
+const heroInk = fs.readFileSync(path.join(__dirname, 'heroink.js'), 'utf8').replace(/^\/\/.*\n/gm, '');
 const script = `<script>
 (function () {
+${heroInk}
   var $ = function (n) { return document.querySelector('[data-np="' + n + '"]'); };
-  var root = $('root'), track = $('track'), zoom = $('zoom'), video = $('video');
+  var root = $('root'), track = $('track'), zoom = $('zoom');
   var hero = $('hero'), panel = $('panel'), intro = $('intro'), chips = $('chips'), quote = $('quote');
   function enter(el, q, dx, dy) {
     el.style.opacity = String(q);
@@ -301,71 +305,6 @@ const script = `<script>
     setTimeout(function () { requestAnimationFrame(step); }, 500);
   }
   npCount(panel);
-  function npBloom(canvas) {
-    if (!canvas || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return function () {};
-    var area = canvas.parentElement, ctx = canvas.getContext('2d');
-    var PIGMENTS = [[176, 141, 76], [138, 112, 82], [122, 138, 112], [196, 168, 128], [150, 128, 104]];
-    var LIFE = 2200, STEP = 26, MAX = 90, SEG = 28;
-    var blooms = [], last = null, running = false, dead = false, w = 0, h = 0, hue = 0;
-    function resize() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = area.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function add(x, y, speed) {
-      if (blooms.length >= MAX) blooms.shift();
-      hue = (hue + (Math.random() < 0.18 ? 1 : 0)) % PIGMENTS.length;
-      blooms.push({ x: x + (Math.random() - 0.5) * 14, y: y + (Math.random() - 0.5) * 14, born: performance.now(),
-        seed: Math.random() * 6.283, rmax: 26 + Math.random() * 34 + Math.min(40, speed * 0.35), c: PIGMENTS[hue], a: 0.32 + Math.random() * 0.18 });
-    }
-    function shape(b, r) {
-      ctx.beginPath();
-      for (var i = 0; i <= SEG; i++) {
-        var t = (i / SEG) * 6.283;
-        var k = 0.8 + 0.12 * Math.sin(t * 3 + b.seed) + 0.07 * Math.sin(t * 5 + b.seed * 1.7) + 0.05 * Math.sin(t * 9 + b.seed * 0.4);
-        var px = b.x + Math.cos(t) * r * k, py = b.y + Math.sin(t) * r * k;
-        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
-      }
-      ctx.closePath();
-    }
-    function frame(now) {
-      if (dead) return;
-      ctx.clearRect(0, 0, w, h);
-      for (var i = blooms.length - 1; i >= 0; i--) {
-        var b = blooms[i], t = (now - b.born) / LIFE;
-        if (t >= 1) { blooms.splice(i, 1); continue; }
-        var r = 8 + (b.rmax - 8) * (1 - Math.pow(1 - Math.min(1, t * 1.6), 3));
-        var alpha = b.a * Math.pow(1 - t, 1.4), c = b.c.join(',');
-        var g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, r);
-        g.addColorStop(0, 'rgba(' + c + ',' + (alpha * 0.28) + ')');
-        g.addColorStop(0.68, 'rgba(' + c + ',' + (alpha * 0.5) + ')');
-        g.addColorStop(0.9, 'rgba(' + c + ',' + (alpha * 0.85) + ')');
-        g.addColorStop(1, 'rgba(' + c + ',0)');
-        ctx.fillStyle = g; shape(b, r); ctx.fill();
-      }
-      if (blooms.length) requestAnimationFrame(frame); else running = false;
-    }
-    function onMove(e) {
-      var rect = canvas.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
-      if (x < 0 || y < 0 || x > w || y > h) return;
-      if (!last) { last = { x: x, y: y }; add(x, y, 0); }
-      var dx = x - last.x, dy = y - last.y, d = Math.hypot(dx, dy);
-      if (d >= STEP) {
-        var n = Math.min(4, Math.floor(d / STEP));
-        for (var k = 1; k <= n; k++) add(last.x + dx * k / n, last.y + dy * k / n, d);
-        last = { x: x, y: y };
-      }
-      if (!running) { running = true; requestAnimationFrame(frame); }
-    }
-    function onLeave() { last = null; }
-    area.addEventListener('pointermove', onMove);
-    area.addEventListener('pointerleave', onLeave);
-    var ro = new ResizeObserver(resize); ro.observe(area);
-    resize();
-    return function () { dead = true; ro.disconnect(); area.removeEventListener('pointermove', onMove); area.removeEventListener('pointerleave', onLeave); };
-  }
-  npBloom($('bloom'));
   function npXlat(container) {
     var tabs = [].slice.call(container.querySelectorAll('.xl-tab'));
     var views = [].slice.call(container.querySelectorAll('.xl-v'));
@@ -401,17 +340,8 @@ const script = `<script>
   window.addEventListener('resize', onScroll);
   applyScroll();
 
-  video.muted = true;
-  if (video.getAttribute('data-src') && !video.getAttribute('src')) {
-    var portrait = window.innerWidth < 768 && window.innerHeight > window.innerWidth;
-    var small = window.innerWidth < 900 || (navigator.connection && navigator.connection.saveData);
-    if (portrait) { video.classList.add('is-portrait'); video.poster = 'assets/hero-poster-portrait.webp'; video.src = 'hero-loop-portrait.mp4'; }
-    else video.src = video.getAttribute(small ? 'data-src-small' : 'data-src');
-  }
-  function play() { if (video.paused) { var pr = video.play(); if (pr && pr.catch) pr.catch(function () {}); } }
-  video.addEventListener('canplay', play);
-  document.addEventListener('visibilitychange', play);
-  play();
+  var heroInk = $('heroink');
+  if (heroInk) npHeroInk(heroInk, heroInk.closest('section'), $('nav'), heroInk.getAttribute('data-sketch'), heroInk.getAttribute('data-paint'));
 })();
 </script>`;
 
