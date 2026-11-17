@@ -19,10 +19,11 @@ const BLOBS = {
   "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp",
   "3b87fb250a686f592abddf1d7929424c": "assets/track-cover.webp",
   "a378f43a05d4124142e84b4ac01885fe": "assets/hero-poster.webp",
-  "3415aa425ddd9e431d0abaa0a737ff9a": "assets/work-evidence.webp",
-  "31432c3e8a34120a2325c508c727bb9d": "assets/work-enablement.webp",
-  "4cefba8785268eb628d6f7fdc83338a0": "assets/work-migration.webp",
-  "7bdd5f0eaca0940a9cea751541684b90": "assets/work-securedev.webp",
+  "81c4b773e75f956b1b89a53c21957579": "assets/work-evidence.webp",
+  "1b8ac6cf3539ea2abfee079108aeeb62": "assets/work-ai-standard.webp",
+  "75763187c55913a427f4e7496b55120a": "assets/work-enablement.webp",
+  "63a4e942c38523db37dcfd0c586c0d23": "assets/work-migration.webp",
+  "43f18def865be815a4cf272a68ab9c9c": "assets/work-securedev.webp",
   "1ca8eacf17c61511b80495ad3bfcfec2": "assets/approach-system.webp",
   "5a799255273e51b591df1fc25d8fe70b": "assets/approach-shared.webp",
   "81976d1b13c9fe451785a1a34783cfb9": "assets/approach-decision.webp",
@@ -45,7 +46,7 @@ const BLOBS = {
 
 // Link previews (LinkedIn, Slack, iMessage, email) and the browser-tab icon.
 const SITE = 'https://www.nikita.page/';
-const SHARE_DESC = 'Security and technology-risk leader at Microsoft. I bring clarity to complex technology decisions, working with engineers, aligning stakeholders, and helping leaders decide what happens next.';
+const SHARE_DESC = 'Technology and risk leader at Microsoft. I bring clarity to complex technology decisions, working with engineers, aligning stakeholders, and helping leaders decide what happens next.';
 const SHARE = `
 <meta name="description" content="${SHARE_DESC}">
 <link rel="canonical" href="${SITE}">
