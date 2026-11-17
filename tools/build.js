@@ -15,7 +15,7 @@ const BLOBS = {
   "6747b2e537495b8eb81140492364b6fa": "assets/place-ukraine.webp",
   "9cc050a7dc10fa2bfe350bce49462615": "assets/place-denver.webp",
   "7aa36a380905ff8f5c8903141063361a": "assets/place-newyork.webp",
-  "c235aa94a0af30c07212e4d57f2261d5": "assets/bg-topo.webp",
+  "010bacbf9d5036f7558695618084ce6c": "assets/bg-topo.webp",
   "99cb99de82ed61c988c9a80fe8f2fb90": "assets/logo-mountain.webp",
   "3b87fb250a686f592abddf1d7929424c": "assets/track-cover.webp",
   "a378f43a05d4124142e84b4ac01885fe": "assets/hero-poster.webp",
@@ -35,12 +35,12 @@ const BLOBS = {
   "21f5931d4f7e4063d56095fecdfc613c": "assets/icon-cloud.webp",
   "8442f3ca21abf64702488e3d67ce399d": "assets/icon-datacenter.webp",
   "3f5c8a8555059b0b40c4b5fbf9d8ec85": "assets/logo-signature.webp",
-  "037b59ccffbaf6bee1fac4662a5de4a2": "assets/paper-white.webp",
+  "11a29463c5a4146d4ba61944fded2723": "assets/paper-white.webp",
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
   "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp",
   "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf",
-  "1304cfc3e2ce87a20acb009b002041a6": "assets/hero-sketch.webp",
-  "5db6549ef343e29132bd97ed73ca7dfd": "assets/hero-paint.webp"
+  "fd6c4d19b1fd4c298d9684f30dfe05ee": "assets/hero-sketch.webp",
+  "92434a94f618a14baa1c6650adf268a0": "assets/hero-paint.webp"
 };
 
 // Link previews (LinkedIn, Slack, iMessage, email) and the browser-tab icon.
