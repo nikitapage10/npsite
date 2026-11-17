@@ -303,6 +303,31 @@ ${heroInk}
     els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
   }
   npReveal(root);
+  function npFlow(el) {
+    if (!el) return;
+    var steps = [].slice.call(el.querySelectorAll('.fl-step')), n = steps.length, cur = 1, auto = true, inView = false, timer = 0, dead = false;
+    function set(k, user) {
+      cur = k; el.setAttribute('data-step', String(k));
+      steps.forEach(function (st, i) { st.setAttribute('aria-selected', i + 1 === k ? 'true' : 'false'); });
+      if (user) { auto = false; el.classList.remove('fl-auto'); }
+      restart();
+    }
+    function restart() {
+      clearTimeout(timer);
+      if (!auto) return;
+      var bar = steps[cur - 1].querySelector('.fl-bar');
+      if (bar) { bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = ''; }
+      timer = setTimeout(function () { if (dead) return; if (auto && inView) set(cur % n + 1); else restart(); }, 6500);
+    }
+    steps.forEach(function (st, i) { st.addEventListener('click', function () { set(i + 1, true); }); });
+    el.classList.add('fl-armed', 'fl-auto');
+    var io = new IntersectionObserver(function (es) {
+      inView = es[0].isIntersecting;
+      if (inView && !el.classList.contains('fl-seen')) { el.classList.add('fl-seen'); set(cur); }
+    }, { threshold: 0.35 });
+    io.observe(el);
+  }
+  npFlow($('flow'));
   function npInd(grid) {
     if (!grid) return;
     document.addEventListener('click', function (e) { var pop = e.target.closest && e.target.closest('.ind-pop'); if (pop) { pop.parentNode.open = false; return; } if (!e.target.closest || !e.target.closest('.ind-d')) grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); });
