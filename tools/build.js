@@ -136,6 +136,7 @@ ${heroInk}
       for (var j = 0; j < items.length; j++) {
         var top = items[j].getBoundingClientRect().top - rootTop;
         items[j].style.setProperty('--e', String(easeOut(clamp((vh * 0.9 - top) / (vh * 0.35)))));
+        items[j].style.setProperty('--a', (1 - clamp(Math.abs(top + items[j].offsetHeight / 2 - vh * 0.5) / (vh * 0.45))).toFixed(3));
       }
     }
     var total = Math.max(1, track.offsetHeight - root.clientHeight);
@@ -279,6 +280,7 @@ ${heroInk}
         it.setAttribute('aria-hidden', k === f ? 'false' : 'true');
         it.querySelector('.xl-eng').classList.toggle('is-on', v === 'eng');
         it.querySelector('.xl-exec').classList.toggle('is-on', v === 'exec');
+        var pg = it.querySelector('.xl-prog'); if (pg) pg.classList.toggle('is-on', v === 'prog');
       });
     }
     tabs.forEach(function (t, k) { t.addEventListener('click', function () { touched = true; f = k; render(); }); });
@@ -287,13 +289,27 @@ ${heroInk}
     var io = new IntersectionObserver(function (es) {
       if (!es[0].isIntersecting || hinted) return;
       hinted = true;
-      setTimeout(function () { if (!touched) { v = 'exec'; render(); } }, 1600);
+      setTimeout(function () { if (!touched) { v = 'prog'; render(); } }, 1600);
     }, { threshold: 0.5 });
     io.observe(container);
     render();
     return function () { io.disconnect(); };
   }
   if ($('xlat')) npXlat($('xlat'));
+  function npReveal(scope) {
+    if (!scope || !('IntersectionObserver' in window)) return;
+    var els = [].slice.call(scope.querySelectorAll('[data-reveal]'));
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.2 });
+    els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
+  }
+  npReveal(root);
+  function npInd(grid) {
+    if (!grid) return;
+    document.addEventListener('click', function (e) { var pop = e.target.closest && e.target.closest('.ind-pop'); if (pop) { pop.parentNode.open = false; return; } if (!e.target.closest || !e.target.closest('.ind-d')) grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); });
+    grid.addEventListener('toggle', function (e) { var d = e.target; if (d.open) grid.querySelectorAll('.ind-d[open]').forEach(function (o) { if (o !== d) o.open = false; }); }, true);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); });
+  }
+  npInd(chips);
   var raf = 0;
   function onScroll() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; applyScroll(); }); }
   root.addEventListener('scroll', onScroll, { passive: true });
@@ -306,7 +322,7 @@ ${heroInk}
 </script>`;
 
 fs.mkdirSync(out, { recursive: true });
-fs.writeFileSync(out + '/index.html', convert('Main.dc.html', 'Nikita Page | Security and technology leadership', script));
+fs.writeFileSync(out + '/index.html', convert('Main.dc.html', 'Nikita Page | Technology programs, risk and applied AI', script));
 // Older links to resume.html forward to the PDF resume.
 fs.writeFileSync(out + '/resume.html', '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Nikita Page - Resume</title>' +
   '<meta http-equiv="refresh" content="0; url=Nikita-Page-Resume.pdf"></head><body><p><a href="Nikita-Page-Resume.pdf">Open the resume (PDF)</a></p></body></html>\n');

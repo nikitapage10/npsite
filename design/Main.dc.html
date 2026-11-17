@@ -512,6 +512,109 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 .panel-outer .hstat-dot{width:3px;height:3px;border-radius:50%;background:#7D8691;flex:none}
 .panel-outer .feat:hover > span > span:first-child{color:rgba(255,255,255,0.6) !important}
 .panel-outer .feat:hover svg{color:#FFFFFF}
+/* ---- How I work: connected flow ---- */
+.hw{position:relative;margin-top:56px;display:grid;grid-template-columns:minmax(0,1fr);gap:20px}
+.hw-rail{display:none}
+.hw-step{position:relative;display:flex;flex-direction:column;gap:12px;padding:32px;background:#FFFFFF;border:1px solid rgba(110,118,128,0.22);box-shadow:0 22px 40px -32px rgba(55,56,58,0.4);transition:transform .45s cubic-bezier(0.2,0.8,0.2,1),box-shadow .45s,border-color .3s}
+.hw-step:hover{transform:translateY(-6px);border-color:rgba(55,56,58,0.4);box-shadow:0 34px 60px -36px rgba(28,30,34,0.5)}
+.hw-node{display:none}
+.hw-art{margin:-8px -8px 4px;aspect-ratio:4 / 3;display:flex;align-items:center;justify-content:center}
+.hw-art svg{width:92%;height:auto;display:block;transition:transform .6s cubic-bezier(0.2,0.8,0.2,1)}
+.hw-step:hover .hw-art svg{transform:scale(1.04)}
+.hw-n{font-size:11px;letter-spacing:0.2em;color:#6E7782}
+.hw-h{margin:0;font-size:26px;line-height:1.2;letter-spacing:-0.02em;font-weight:400}
+.hw-p{margin:0;font-size:15px;line-height:1.65;color:rgba(55,56,58,0.8)}
+.hw-out{display:flex;flex-direction:column;gap:4px;margin-top:auto;padding-top:16px;border-top:1px solid rgba(55,56,58,0.1);font-size:14px;color:#37383A}
+.hw-k{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7782}
+.hw-ex summary{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;cursor:pointer;list-style:none;font-size:13.5px;font-weight:500;color:#37383A;border-top:1px solid rgba(55,56,58,0.1)}
+.hw-ex summary::-webkit-details-marker{display:none}
+.hw-ex summary svg{width:16px;height:16px;transition:transform .3s}
+.hw-ex[open] summary svg{transform:rotate(180deg)}
+.hw-ex p{margin:0 0 4px;font-size:14px;line-height:1.6;color:rgba(55,56,58,0.8);animation:hw-in .4s ease}
+@keyframes hw-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (min-width:900px){
+.hw{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;padding-top:44px}
+.hw-rail{display:block;position:absolute;top:13px;left:calc(100% / 6);right:calc(100% / 6);height:2px;background:rgba(55,56,58,0.12)}
+.hw-rail-fill{position:absolute;inset:0;background:#37383A;transform-origin:left}
+.hw-node{display:flex;position:absolute;top:-44px;left:50%;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:#FFFFFF;border:2px solid #37383A;align-items:center;justify-content:center;font-size:10px;letter-spacing:0.05em;color:#37383A;box-sizing:border-box;transition:background .3s,color .3s}
+.hw-step:hover .hw-node{background:#37383A;color:#FFFFFF}
+.hw-n{display:none}
+}
+/* scroll reveal (armed by script; without it everything simply shows) */
+.hw.rv .hw-rail-fill{transform:scaleX(0);transition:transform 1.4s cubic-bezier(0.65,0,0.35,1) .2s}
+.hw.rv.is-in .hw-rail-fill{transform:scaleX(1)}
+.hw.rv .hw-step{opacity:0;translate:0 28px;transition:opacity .7s ease calc(var(--s) * 220ms),translate .8s cubic-bezier(0.2,0.8,0.2,1) calc(var(--s) * 220ms),transform .45s cubic-bezier(0.2,0.8,0.2,1),box-shadow .45s,border-color .3s}
+.hw.rv.is-in .hw-step{opacity:1;translate:0 0}
+.hw.rv .hw-node{transform:scale(0.3);opacity:0;transition:transform .5s cubic-bezier(0.3,1.6,0.5,1) calc(var(--s) * 380ms + 200ms),opacity .3s calc(var(--s) * 380ms + 200ms),background .3s,color .3s}
+.hw.rv.is-in .hw-node{transform:none;opacity:1}
+.hw.rv .hw-art .d{stroke-dasharray:1;stroke-dashoffset:1;fill-opacity:0;transition:stroke-dashoffset 1.3s cubic-bezier(0.65,0,0.35,1) calc(var(--s) * 220ms + 300ms),fill-opacity .6s ease calc(var(--s) * 220ms + 1100ms)}
+.hw.rv.is-in .hw-art .d{stroke-dashoffset:0;fill-opacity:1}
+/* ---- Industries: tap for the work ---- */
+.ind-d{position:relative;display:block;pointer-events:auto}
+.ind-d > summary{list-style:none;cursor:pointer;height:100%;box-sizing:border-box;transition:transform .3s cubic-bezier(0.2,0.8,0.2,1),box-shadow .3s,border-color .3s}
+.ind-d > summary::-webkit-details-marker{display:none}
+.ind-d > .chip.ind{background:#FBFAF9 url(/_blob/11a29463c5a4146d4ba61944fded2723) repeat !important;background-size:256px 256px !important}
+.ind-d > summary:hover{box-shadow:0 10px 24px -14px rgba(28,30,34,0.45)}
+.ind-d[open]{z-index:6}
+.ind-d[open] > summary{border-color:#37383A !important;box-shadow:0 0 0 1px #37383A,0 14px 30px -16px rgba(28,30,34,0.5)}
+.ind-d[open] > summary img{animation:ind-bob .5s cubic-bezier(0.3,1.6,0.5,1)}
+@keyframes ind-bob{0%{transform:scale(0.85)}100%{transform:none}}
+.ind-pop{position:absolute;bottom:calc(100% + 10px);left:50%;width:min(260px, 72vw);margin-left:calc(min(260px, 72vw) / -2);display:flex;flex-direction:column;gap:4px;padding:16px 18px;background:#2D2E30;color:#E8E8E6;box-shadow:0 24px 48px -20px rgba(20,21,23,0.6);text-align:left;transform-origin:50% 100%;animation:ind-pop .38s cubic-bezier(0.2,0.9,0.25,1.15)}
+.ind-pop::after{content:"";position:absolute;top:100%;left:50%;margin-left:-7px;border:7px solid transparent;border-top-color:#2D2E30}
+.ind-d:nth-child(4n+2) .ind-pop{left:0;margin-left:0}.ind-d:nth-child(4n+2) .ind-pop::after{left:28px}
+.ind-d:nth-child(4n+1) .ind-pop{left:auto;right:0;margin-left:0}.ind-d:nth-child(4n+1) .ind-pop::after{left:auto;right:21px;margin-left:0}
+@keyframes ind-pop{from{opacity:0;transform:translateY(8px) scale(0.92)}to{opacity:1;transform:none}}
+.ind-pop-k{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:#BEC6CF}
+.ind-pop-h{font-size:19px;line-height:1.2;color:#FFFFFF}
+.ind-pop-p{font-size:13px;line-height:1.5;color:rgba(232,232,230,0.85)}
+.ind-hint{font-style:normal;text-transform:none;letter-spacing:0;margin-left:8px;color:#6E7782;font-size:12px}
+/* ---- Timeline: active role ---- */
+.tlx-card{transition:box-shadow .4s,border-color .4s}
+.tlx-item{--a:0}
+.tlx-card{border-color:rgba(55,56,58,calc(0.12 + 0.3 * var(--a))) !important;box-shadow:0 calc(18px + 16px * var(--a)) calc(40px + 20px * var(--a)) -24px rgba(28,30,34,calc(0.3 + 0.25 * var(--a)))}
+.tlx-node{box-shadow:0 0 0 calc(6px * var(--a)) rgba(125,134,145,0.25)}
+@media (min-width:900px){.tlx-year{color:rgba(55,56,58,var(--a))}}
+.tlx-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tlx-more{margin-top:14px;border-top:1px solid rgba(55,56,58,0.12)}
+.tlx-more summary{display:flex;align-items:center;justify-content:space-between;min-height:44px;cursor:pointer;list-style:none;font-size:14px;font-weight:500;color:#37383A}
+.tlx-more summary::-webkit-details-marker{display:none}
+.tlx-more summary svg{width:16px;height:16px;transition:transform .3s}
+.tlx-more[open] summary svg{transform:rotate(180deg)}
+.tlx-more .tlx-list{margin-top:4px}
+.tlx-more[open] .tlx-list li{animation:hw-in .45s ease both;animation-delay:calc(var(--k) * 70ms)}
+/* ---- Roots: beyond the day job ---- */
+.bey{margin-top:56px}
+.bey-k{font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:rgba(55,56,58,0.68);font-weight:500;margin-bottom:18px}
+.bey-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.bey-card{display:flex;flex-direction:column;gap:8px;padding:24px;background:#FFFFFF;border:1px solid rgba(55,56,58,0.1);box-shadow:0 18px 36px -30px rgba(28,30,34,0.45);transition:transform .4s cubic-bezier(0.2,0.8,0.2,1),box-shadow .4s}
+.bey-card:hover{transform:translateY(-5px) rotate(-0.4deg);box-shadow:0 30px 50px -32px rgba(28,30,34,0.55)}
+.bey-ico{width:40px;height:40px;fill:none;stroke:#4A4B4E;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px}
+.bey-ico .acc{stroke:#7D8691}
+.bey-ck{font-size:10.5px;text-transform:uppercase;letter-spacing:0.2em;color:#6E7782}
+.bey-h{margin:0;font-size:22px;line-height:1.2;letter-spacing:-0.015em;font-weight:400}
+.bey-p{margin:0;font-size:14px;line-height:1.6;color:rgba(55,56,58,0.8)}
+.bey.rv .bey-card{opacity:0;translate:0 24px;transition:opacity .6s ease calc(var(--s) * 120ms),translate .7s cubic-bezier(0.2,0.8,0.2,1) calc(var(--s) * 120ms),transform .4s cubic-bezier(0.2,0.8,0.2,1),box-shadow .4s}
+.bey.rv.is-in .bey-card{opacity:1;translate:0 0}
+/* ---- In practice: program view ---- */
+.xl-thumb{width:calc((100% - 8px) / 3) !important}
+.xlat[data-v="prog"] .xl-thumb{transform:translateX(100%);background:#5E6772}
+.xlat[data-v="exec"] .xl-thumb{transform:translateX(200%) !important}
+.xl-v{padding:10px 18px}
+.xl-prog{background:#FFFFFF;border:1px solid #E3E2DF;box-shadow:0 30px 60px -30px rgba(55,56,58,0.4)}
+.xl-prog .xl-k{color:rgba(55,56,58,0.6)}
+.xl-plan{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.xl-row{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1.5fr);gap:14px;align-items:center;font-size:13.5px;line-height:1.35}
+.xl-scale{font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(55,56,58,0.55);padding-bottom:6px;border-bottom:1px solid rgba(55,56,58,0.1)}
+.xl-wk{display:flex;justify-content:space-between}
+.xl-ws{color:#37383A}
+.xl-own{font-size:12.5px;color:rgba(55,56,58,0.65)}
+.xl-track{position:relative;height:10px;background:#F1F1EF;border-radius:2px}
+.xl-track i{position:absolute;top:0;bottom:0;left:calc(var(--s) / var(--n) * 100%);width:calc((var(--e) - var(--s)) / var(--n) * 100%);background:#7D8691;border-radius:2px;transform-origin:left;transform:scaleX(0);transition:transform .7s cubic-bezier(0.2,0.8,0.2,1) calc(var(--r, 0) * 110ms + 250ms)}
+.xl-track i.me{background:#37383A}
+.xl-pane.is-on .xl-track i{transform:scaleX(1)}
+.xl-deps{margin:0;font-size:13.5px;line-height:1.6;color:rgba(55,56,58,0.85)}
+@media (max-width:640px){.xl-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.xl-row .xl-track{grid-column:1 / -1}.xl-scale .xl-wk{display:none}.xl-v{padding:10px 12px;font-size:13px}}
+@media (prefers-reduced-motion: reduce){.hw.rv .hw-step,.bey.rv .bey-card{opacity:1;translate:0 0;transition:none}.hw.rv .hw-art .d{stroke-dashoffset:0;fill-opacity:1;transition:none}.hw.rv .hw-rail-fill{transform:none;transition:none}.ind-pop{animation:none}}
 </style>
 </helmet>
 <div ref="{{setRoot}}" class="np-root" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #37383A; font-family: 'Inter', sans-serif; position: relative">
@@ -609,15 +712,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 </div>
 <div ref="{{setChips}}" class="ind-grid" style="--q: 0">
-<span class="chip ind-label" style="--i: 0">Industries I’ve worked in</span>
-<span class="chip ind" style="--i: 0"><img src="/_blob/2d8607db39b3308f61d413a6845bde88" alt=""><span>Banking</span></span>
-<span class="chip ind" style="--i: 1"><img src="/_blob/dc18bd209393014f1ee6f209f4a6d8f5" alt=""><span>Insurance</span></span>
-<span class="chip ind" style="--i: 2"><img src="/_blob/6e757c3502ea6cf78701968c4eb19057" alt=""><span>Fashion &amp; beauty</span></span>
-<span class="chip ind" style="--i: 3"><img src="/_blob/c78eaef20efca6b30d9d0c6e8460ea92" alt=""><span>Grocery retail</span></span>
-<span class="chip ind" style="--i: 4"><img src="/_blob/74f109ea85044b85cdd8095db588e1d4" alt=""><span>Telecom</span></span>
-<span class="chip ind" style="--i: 5"><img src="/_blob/3159d5df4b3c4d8f53a8ac761598dc3a" alt=""><span>Gaming</span></span>
-<span class="chip ind" style="--i: 6"><img src="/_blob/21f5931d4f7e4063d56095fecdfc613c" alt=""><span>Cloud &amp; AI</span></span>
-<span class="chip ind" style="--i: 7"><img src="/_blob/8442f3ca21abf64702488e3d67ce399d" alt=""><span>Hardware &amp; datacenters</span></span>
+<span class="chip ind-label" style="--i: 0">Industries I’ve worked in <em class="ind-hint">Tap one to see the work</em></span>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 0"><img src="/_blob/2d8607db39b3308f61d413a6845bde88" alt=""><span>Banking</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">KPMG</span><span class="ind-pop-h serif">Banking</span><span class="ind-pop-p">Technology-risk and control assessments for small and large banks, covering databases, ERP implementations and regulatory requirements.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 1"><img src="/_blob/dc18bd209393014f1ee6f209f4a6d8f5" alt=""><span>Insurance</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">KPMG</span><span class="ind-pop-h serif">Insurance</span><span class="ind-pop-p">Control assessments for insurers across varied client environments and their regulatory requirements.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 2"><img src="/_blob/6e757c3502ea6cf78701968c4eb19057" alt=""><span>Fashion &amp; beauty</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">KPMG</span><span class="ind-pop-h serif">Fashion &amp; beauty</span><span class="ind-pop-p">Technology-risk and control assessments for fashion and beauty brands.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 3"><img src="/_blob/c78eaef20efca6b30d9d0c6e8460ea92" alt=""><span>Grocery retail</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">KPMG</span><span class="ind-pop-h serif">Grocery retail</span><span class="ind-pop-p">Technology-risk and control assessments for grocery retailers, including ERP and database reviews.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 4"><img src="/_blob/74f109ea85044b85cdd8095db588e1d4" alt=""><span>Telecom</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">Verizon</span><span class="ind-pop-h serif">Telecom</span><span class="ind-pop-p">Assessed telecommunications infrastructure, engineering processes and cloud environments, and built tracking tools that drove remediation.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 5"><img src="/_blob/3159d5df4b3c4d8f53a8ac761598dc3a" alt=""><span>Gaming</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">Microsoft</span><span class="ind-pop-h serif">Gaming</span><span class="ind-pop-p">Xbox engagements and a secure-development baseline across ABK, ZeniMax and Minecraft after the Activision Blizzard acquisition.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 6"><img src="/_blob/21f5931d4f7e4063d56095fecdfc613c" alt=""><span>Cloud &amp; AI</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">Microsoft</span><span class="ind-pop-h serif">Cloud &amp; AI</span><span class="ind-pop-p">Azure migration readiness, Copilot and AI governance work, AI enablement for the department and an AI hub for evidence review.</span></div></details>
+<details class="ind-d" name="ind"><summary class="chip ind" style="--i: 7"><img src="/_blob/8442f3ca21abf64702488e3d67ce399d" alt=""><span>Hardware &amp; datacenters</span></summary><div class="ind-pop" role="note"><span class="ind-pop-k">Microsoft</span><span class="ind-pop-h serif">Hardware &amp; datacenters</span><span class="ind-pop-p">Custom-silicon R&amp;D and datacenter energy and capacity reviews, ramping into each to evaluate controls with engineering teams.</span></div></details>
 </div>
 </div>
 <div ref="{{setTestis}}" class="testis">
@@ -751,9 +854,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="chapter">
 <div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">In practice</div>
-<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">One finding, two audiences</h2>
+<h2 class="serif sec-h2" style="margin: 12px 0 0; line-height: 1.08; letter-spacing: -0.03em; font-weight: 400">One finding, three audiences</h2>
 </div>
-<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(55,56,58,0.85)">The same issue has to work for the engineer who fixes it and the executive who funds the fix. Switch views to see how I translate between them.</p>
+<p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(55,56,58,0.85)">The same issue has to work for the engineer who fixes it, the program that delivers the fix and the executive who funds it. Switch views to see how I translate between them.</p>
 </div>
 <div ref="{{setXlat}}" class="xlat">
 <div class="xl-bar">
@@ -764,8 +867,9 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <div class="xl-switch" role="group" aria-label="Audience">
 <span class="xl-thumb" aria-hidden="true"></span>
-<button class="xl-v" type="button" aria-pressed="true" data-v="eng">Engineer view</button>
-<button class="xl-v" type="button" aria-pressed="false" data-v="exec">Executive view</button>
+<button class="xl-v" type="button" aria-pressed="true" data-v="eng">Engineer</button>
+<button class="xl-v" type="button" aria-pressed="false" data-v="prog">Program</button>
+<button class="xl-v" type="button" aria-pressed="false" data-v="exec">Executive</button>
 </div>
 </div>
 <div class="xl-stage">
@@ -790,6 +894,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div></div>
 <div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Approve two sprints of engineering time to narrow its access before the wider rollout.</p></div>
 </div>
+<div class="xl-pane xl-prog">
+<div class="xl-k" style="--k: 0">The plan</div>
+<p class="serif xl-what" style="--k: 0">Narrow the assistant’s access in two sprints, before the wider rollout.</p>
+<div class="xl-plan" style="--k: 1; --n: 6"><div class="xl-row xl-scale"><span>Workstream</span><span>Owner</span><span class="xl-wk"><span>Week 1</span><span>Week 6</span></span></div><div class="xl-row" style="--r: 0"><span class="xl-ws">Scope access to the evidence library</span><span class="xl-own">Identity engineering</span><span class="xl-track"><i class="" style="--s: 0; --e: 2"></i></span></div><div class="xl-row" style="--r: 1"><span class="xl-ws">Enroll in quarterly access reviews</span><span class="xl-own">Identity operations</span><span class="xl-track"><i class="" style="--s: 1; --e: 3"></i></span></div><div class="xl-row" style="--r: 2"><span class="xl-ws">Stream sign-in logs with an alert</span><span class="xl-own">Security operations</span><span class="xl-track"><i class="" style="--s: 2; --e: 4"></i></span></div><div class="xl-row" style="--r: 3"><span class="xl-ws">Verify the fix and close the issue</span><span class="xl-own">Audit (me)</span><span class="xl-track"><i class="me" style="--s: 4; --e: 6"></i></span></div></div>
+<div class="xl-k" style="--k: 2">Dependencies</div>
+<p class="xl-deps" style="--k: 2">The rollout date set by the product team, and onboarding to the access-review tool.</p>
+<div class="xl-k" style="--k: 3">Tracking</div>
+<p class="xl-deps" style="--k: 3">Weekly check-in with the owners; status goes to the sponsoring director.</p>
+</div>
 </article>
 <article class="xl-f" aria-hidden="true">
 <div class="xl-pane xl-eng is-on">
@@ -811,6 +924,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <p class="xl-why" style="--k: 1">If that key leaked, someone could ship a fake update that players’ devices would trust: a direct hit to player safety and brand trust.</p>
 <div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot"></span><span class="xl-dot"></span><em>Low</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>Severe</em></div></div>
 <div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Fund a shared signing service and set a 90-day migration target for every studio.</p></div>
+</div>
+<div class="xl-pane xl-prog">
+<div class="xl-k" style="--k: 0">The plan</div>
+<p class="serif xl-what" style="--k: 0">Move every studio to managed signing within 90 days.</p>
+<div class="xl-plan" style="--k: 1; --n: 12"><div class="xl-row xl-scale"><span>Workstream</span><span>Owner</span><span class="xl-wk"><span>Week 1</span><span>Week 12</span></span></div><div class="xl-row" style="--r: 0"><span class="xl-ws">Stand up a managed signing service</span><span class="xl-own">Platform engineering</span><span class="xl-track"><i class="" style="--s: 0; --e: 4"></i></span></div><div class="xl-row" style="--r: 1"><span class="xl-ws">Issue per-studio keys</span><span class="xl-own">Studio build leads</span><span class="xl-track"><i class="" style="--s: 3; --e: 6"></i></span></div><div class="xl-row" style="--r: 2"><span class="xl-ws">Send signing events to the SIEM</span><span class="xl-own">Security operations</span><span class="xl-track"><i class="" style="--s: 4; --e: 6"></i></span></div><div class="xl-row" style="--r: 3"><span class="xl-ws">Migrate all five pipelines</span><span class="xl-own">Studio build leads</span><span class="xl-track"><i class="" style="--s: 5; --e: 12"></i></span></div></div>
+<div class="xl-k" style="--k: 2">Dependencies</div>
+<p class="xl-deps" style="--k: 2">Hardware security module procurement, and each studio’s release calendar.</p>
+<div class="xl-k" style="--k: 3">Tracking</div>
+<p class="xl-deps" style="--k: 3">Biweekly review across studios; slips escalate to the security director.</p>
 </div>
 </article>
 <article class="xl-f" aria-hidden="true">
@@ -834,6 +956,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="xl-meters" style="--k: 1"><div><span>Likelihood</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot on"></span><em>High</em></div><div><span>Impact</span><span class="xl-dot on"></span><span class="xl-dot on"></span><span class="xl-dot"></span><em>Moderate</em></div></div>
 <div class="xl-ask" style="--k: 2"><div class="xl-k">Decision needed</div><p class="serif">Name one accountable owner and automate the data feed this quarter.</p></div>
 </div>
+<div class="xl-pane xl-prog">
+<div class="xl-k" style="--k: 0">The plan</div>
+<p class="serif xl-what" style="--k: 0">Restore a complete, owned forecast before the next planning cycle.</p>
+<div class="xl-plan" style="--k: 1; --n: 6"><div class="xl-row xl-scale"><span>Workstream</span><span>Owner</span><span class="xl-wk"><span>Week 1</span><span>Week 6</span></span></div><div class="xl-row" style="--r: 0"><span class="xl-ws">Name an accountable owner</span><span class="xl-own">Capacity planning lead</span><span class="xl-track"><i class="" style="--s: 0; --e: 1"></i></span></div><div class="xl-row" style="--r: 1"><span class="xl-ws">Automate the feed from telemetry</span><span class="xl-own">Data engineering</span><span class="xl-track"><i class="" style="--s: 0; --e: 3"></i></span></div><div class="xl-row" style="--r: 2"><span class="xl-ws">Backfill the two missing regions</span><span class="xl-own">Data engineering</span><span class="xl-track"><i class="" style="--s: 1; --e: 3"></i></span></div><div class="xl-row" style="--r: 3"><span class="xl-ws">Add a weekly forecast-vs-actuals check</span><span class="xl-own">Capacity planning</span><span class="xl-track"><i class="" style="--s: 3; --e: 6"></i></span></div></div>
+<div class="xl-k" style="--k: 2">Dependencies</div>
+<p class="xl-deps" style="--k: 2">Telemetry access for the planning team, and ownership settled after the reorg.</p>
+<div class="xl-k" style="--k: 3">Tracking</div>
+<p class="xl-deps" style="--k: 3">Variance against actuals reported weekly to the infrastructure lead.</p>
+</div>
 </article>
 </div>
 <p class="xl-note">Illustrative examples drawn from the kinds of systems I assess. They are not findings from a real engagement.</p>
@@ -849,24 +980,34 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(55,56,58,0.85)">Much of my contribution is helping people with different responsibilities reach a shared understanding and decide how to respond.</p>
 </div>
-<div class="appr-grid">
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/2fa6abb27397ba5aa2222c98759fc44c" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">01</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I work with engineers on their own terms, from code review to KQL test plans. Understanding the system leads to better questions about its risks.</p>
+<div class="hw" data-reveal="">
+<div class="hw-rail" aria-hidden="true"><span class="hw-rail-fill"></span></div>
+<article class="hw-step" style="--s: 0">
+<div class="hw-node" aria-hidden="true"><span>01</span></div>
+<div class="hw-art"><svg role="img" aria-label="Understand the system" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="hw-h1" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E9E9E7" stop-opacity=".9"></stop><stop offset="1" stop-color="#E9E9E7" stop-opacity="0"></stop></radialGradient></defs><g stroke="#C9CACC" stroke-width="1" fill="none"><line x1="0" y1="150.0" x2="400" y2="150.0" stroke-dasharray="2 5"></line><line x1="200.0" y1="0" x2="200.0" y2="300" stroke-dasharray="2 5"></line><circle cx="200.0" cy="150.0" r="128.6" stroke-dasharray="3 6"></circle><circle cx="200.0" cy="150.0" r="96.0"></circle></g><circle cx="200.0" cy="150.0" r="102.7" fill="url(#hw-h1)"></circle><circle cx="36" cy="150" r="3" fill="#7D8691"></circle><circle cx="364" cy="150" r="3" fill="#7D8691"></circle><rect class="d" pathLength="1" x="183" y="29" width="34" height="34" rx="4" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.4"></rect><circle cx="200" cy="46" r="5" fill="#7D8691"></circle><rect class="d" pathLength="1" x="183" y="237" width="34" height="34" rx="4" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.4"></rect><circle cx="200" cy="254" r="5" fill="#7D8691"></circle><rect class="d" pathLength="1" x="61" y="133" width="34" height="34" rx="4" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.4"></rect><circle cx="78" cy="150" r="5" fill="#7D8691"></circle><rect class="d" pathLength="1" x="305" y="133" width="34" height="34" rx="4" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.4"></rect><circle cx="322" cy="150" r="5" fill="#7D8691"></circle><path class="d" pathLength="1" d="M200 63 V96" stroke="#7D8691" stroke-width="2.2"></path><path class="d" pathLength="1" d="M200 204 V237" stroke="#7D8691" stroke-width="2.2"></path><path class="d" pathLength="1" d="M95 150 H146" stroke="#7D8691" stroke-width="2.2"></path><path class="d" pathLength="1" d="M254 150 H305" stroke="#7D8691" stroke-width="2.2"></path><circle class="d" pathLength="1" cx="200" cy="96" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="200" cy="204" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="146" cy="150" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="254" cy="150" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="200" cy="150" r="54" fill="#F1F1EF" stroke="#4A4B4E" stroke-width="2.6"></circle><path class="d" pathLength="1" d="M200 114 l30 12 l-30 12 l-30 -12 z" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.2"></path><path class="d" pathLength="1" d="M200 136 l30 12 l-30 12 l-30 -12 z" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.2"></path><path class="d" pathLength="1" d="M200 158 l30 12 l-30 12 l-30 -12 z" fill="#FFFFFF" stroke="#7D8691" stroke-width="2.2"></path><path class="d" pathLength="1" d="M238 188 l34 34" stroke="#4A4B4E" stroke-width="7" fill="none"></path><path class="d" pathLength="1" d="M238 188 l34 34" stroke="#4A4B4E" stroke-width="3" fill="none"></path></svg></div>
+<div class="hw-n">01</div>
+<h3 class="serif hw-h">Understand the system</h3>
+<p class="hw-p">I work with engineers on their own terms, from code review to KQL test plans. Understanding the system leads to better questions about its risks.</p>
+<div class="hw-out"><span class="hw-k">Outcome</span><span>Questions grounded in how the system really works</span></div>
+<details class="hw-ex"><summary><span>See it in a project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><p>On the AI evidence hub, I mapped which data the agent could reach before building anything, then scoped its access to data-loss-prevention rules.</p></details>
 </article>
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/5b745b5941d122c68afaff451fade4f8" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">02</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I lead rotating teams of 8–12 and make scope, ownership and dependencies clear, so everyone can see how their work fits together.</p>
+<article class="hw-step" style="--s: 1">
+<div class="hw-node" aria-hidden="true"><span>02</span></div>
+<div class="hw-art"><svg role="img" aria-label="Find the shared picture" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="hw-h2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E9E9E7" stop-opacity=".9"></stop><stop offset="1" stop-color="#E9E9E7" stop-opacity="0"></stop></radialGradient></defs><g stroke="#C9CACC" stroke-width="1" fill="none"><line x1="0" y1="150.0" x2="400" y2="150.0" stroke-dasharray="2 5"></line><line x1="200.0" y1="0" x2="200.0" y2="300" stroke-dasharray="2 5"></line><circle cx="200.0" cy="150.0" r="123.3" stroke-dasharray="3 6"></circle><circle cx="200.0" cy="150.0" r="92.0"></circle></g><circle cx="200.0" cy="150.0" r="98.4" fill="url(#hw-h2)"></circle><circle cx="36" cy="150" r="3" fill="#7D8691"></circle><circle cx="364" cy="150" r="3" fill="#7D8691"></circle><circle cx="200" cy="22" r="3" fill="#7D8691"></circle><circle cx="200" cy="278" r="3" fill="#7D8691"></circle><circle class="d" pathLength="1" cx="84" cy="86" r="30" fill="#F1F1EF" stroke="#4A4B4E" stroke-width="2.4"></circle><path class="d" pathLength="1" d="M84 78 m-7 0 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><path class="d" pathLength="1" d="M71 101 c0 -9 6 -14 13 -14 s13 5 13 14" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><circle class="d" pathLength="1" cx="316" cy="86" r="30" fill="#F1F1EF" stroke="#4A4B4E" stroke-width="2.4"></circle><path class="d" pathLength="1" d="M316 78 m-7 0 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><path class="d" pathLength="1" d="M303 101 c0 -9 6 -14 13 -14 s13 5 13 14" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><circle class="d" pathLength="1" cx="200" cy="252" r="30" fill="#F1F1EF" stroke="#4A4B4E" stroke-width="2.4"></circle><path class="d" pathLength="1" d="M200 244 m-7 0 a7 7 0 1 0 14 0 a7 7 0 1 0 -14 0" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><path class="d" pathLength="1" d="M187 267 c0 -9 6 -14 13 -14 s13 5 13 14" stroke="#4A4B4E" stroke-width="2.2" fill="#FBFBFA"></path><path d="M112 100 L150 120" stroke="#7D8691" stroke-width="2.2" stroke-dasharray="5 5"></path><path d="M288 100 L250 120" stroke="#7D8691" stroke-width="2.2" stroke-dasharray="5 5"></path><path d="M200 222 L200 196" stroke="#7D8691" stroke-width="2.2" stroke-dasharray="5 5"></path><circle class="d" pathLength="1" cx="150" cy="120" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="250" cy="120" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><circle class="d" pathLength="1" cx="200" cy="196" r="4.5" fill="#FFFFFF" stroke="#7D8691" stroke-width="2"></circle><rect class="d" pathLength="1" x="138" y="98" width="124" height="98" rx="6" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.6"></rect><rect class="d" pathLength="1" x="152" y="112" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></rect><rect class="d" pathLength="1" x="218" y="112" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></rect><rect class="d" pathLength="1" x="185" y="160" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#7D8691" stroke-width="2.2"></rect><path class="d" pathLength="1" d="M167 132 C167 150 185 150 192 160 M233 132 C233 150 215 150 208 160" stroke="#7D8691" stroke-width="2"></path></svg></div>
+<div class="hw-n">02</div>
+<h3 class="serif hw-h">Find the shared picture</h3>
+<p class="hw-p">I lead rotating teams of 8–12 and make scope, ownership and dependencies clear, so everyone can see how their work fits together.</p>
+<div class="hw-out"><span class="hw-k">Outcome</span><span>One view of scope, owners and dependencies</span></div>
+<details class="hw-ex"><summary><span>See it in a project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><p>For the gaming baseline, I coordinated discovery across ABK, ZeniMax and Minecraft and adapted the plan to each studio’s development cycle.</p></details>
 </article>
-<article class="appr-card">
-<div class="appr-art"><img src="/_blob/22de51a210b6659b1f93a221fb84cc8e" alt=""></div>
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">03</div>
-<h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I frame risks by likelihood and financial and reputational impact, then work with directors and corporate vice presidents to commit to remediation.</p>
+<article class="hw-step" style="--s: 2">
+<div class="hw-node" aria-hidden="true"><span>03</span></div>
+<div class="hw-art"><svg role="img" aria-label="Make the decision clear" viewBox="0 0 400 300" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><radialGradient id="hw-h3" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#E9E9E7" stop-opacity=".9"></stop><stop offset="1" stop-color="#E9E9E7" stop-opacity="0"></stop></radialGradient></defs><g stroke="#C9CACC" stroke-width="1" fill="none"><line x1="0" y1="150" x2="400" y2="150" stroke-dasharray="2 5"></line><line x1="200" y1="0" x2="200" y2="300" stroke-dasharray="2 5"></line><circle cx="200" cy="150" r="147.4" stroke-dasharray="3 6"></circle><circle cx="200" cy="150" r="110.0"></circle></g><circle cx="200" cy="150" r="117.7" fill="url(#hw-h3)"></circle><rect class="d" pathLength="1" x="70" y="62" width="172" height="172" fill="#FBFBFA" stroke="#4A4B4E" stroke-width="2.4"></rect><path class="d" pathLength="1" d="M156.0 62 V234 M70 148.0 H242" stroke="#4A4B4E" stroke-width="1.6" fill="none"></path><rect x="156.0" y="62" width="86.0" height="86.0" fill="#E4E6E9" stroke="none"></rect><path class="d" pathLength="1" d="M156.0 62 V148.0 M156.0 148.0 H242" stroke="#4A4B4E" stroke-width="1.6" fill="none"></path><path class="d" pathLength="1" d="M56 242 V54 M52 60 l4 -6 l4 6 M62 248 H250 M244 244 l6 4 l-6 4" stroke="#4A4B4E" stroke-width="1.8" fill="none"></path><circle class="d" pathLength="1" cx="104" cy="200" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle class="d" pathLength="1" cx="132" cy="170" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle class="d" pathLength="1" cx="178" cy="206" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle class="d" pathLength="1" cx="118" cy="118" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle class="d" pathLength="1" cx="196" cy="150" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle class="d" pathLength="1" cx="162" cy="96" r="5" fill="#FFFFFF" stroke="#4A4B4E" stroke-width="2"></circle><circle cx="212" cy="92" r="7" fill="#7D8691"></circle><circle class="d" pathLength="1" cx="212" cy="92" r="14" stroke="#7D8691" stroke-width="2"></circle><path class="d" pathLength="1" d="M228 92 C 262 92, 278 104, 290 122" stroke="#7D8691" stroke-width="2.2"></path><path class="d" pathLength="1" d="M282 118 l9 6 l1 -11" stroke="#7D8691" stroke-width="2.2"></path><circle class="d" pathLength="1" cx="322" cy="150" r="38" fill="#F1F1EF" stroke="#4A4B4E" stroke-width="2.4"></circle><path class="d" pathLength="1" d="M305 151 l11 11 l22 -24" stroke="#7D8691" stroke-width="3.4"></path></svg></div>
+<div class="hw-n">03</div>
+<h3 class="serif hw-h">Make the decision clear</h3>
+<p class="hw-p">I frame risks by likelihood and financial and reputational impact, then work with directors and corporate vice presidents to commit to remediation.</p>
+<div class="hw-out"><span class="hw-k">Outcome</span><span>A decision with owners, dates and funding</span></div>
+<details class="hw-ex"><summary><span>See it in a project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary><p>Engagements end with leaders committing to remediation they own, and the reports go on to the CFO.</p></details>
 </article>
 </div>
 </div>
@@ -887,6 +1028,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Senior IT Audit Manager</h3>
 <div style="margin-top: 4px; font-size: 14px; color: rgba(55,56,58,0.68)">Microsoft</div>
 <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.85)">I lead security, AI and operational-risk engagements across Microsoft’s product, engineering and infrastructure organizations, from scoping through executive reporting. I run about a dozen engagements a year, and engagement reports are distributed to the CFO. My work includes LinkedIn, Xbox and Copilot, alongside AI governance, advisory and assessment work across cloud, hardware and datacenters.</p>
+<details class="tlx-more"><summary><span>Key work</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg></summary>
+<ul class="tlx-list">
+<li style="--k: 0">Assessing alignment with a strategic AI partner’s privacy and security standard for model access and use</li>
+<li style="--k: 1">Led AI enablement for about 200 audit, risk and compliance professionals, with 13 contributors</li>
+<li style="--k: 2">Designed and built an AI hub for evidence review, scoped to data-loss-prevention rules</li>
+<li style="--k: 3">Set a secure-development baseline across ABK, ZeniMax and Minecraft</li>
+<li style="--k: 4">Structured Azure migration-readiness advisory for services from two acquisitions</li>
+</ul></details>
+<div class="tlx-tags"><span class="tlx-tag">AI governance</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Secure development</span><span class="tlx-tag">Hardware &amp; datacenters</span></div>
 </article>
 <div class="tlx-side">
 <div class="serif tlx-year">2021</div>
@@ -902,6 +1052,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Founder &amp; Principal Consultant</h3>
 <div style="margin-top: 4px; font-size: 14px; color: rgba(55,56,58,0.68)">Nikita Page Productions LLC</div>
 <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.85)">I advise startups and small businesses on technology strategy, architecture and early-stage product requirements. I lead discovery, workflow design and prototyping with founders to turn early ideas into buildable plans.</p>
+<div class="tlx-tags"><span class="tlx-tag">Technology strategy</span><span class="tlx-tag">Product requirements</span><span class="tlx-tag">Prototyping</span></div>
 </article>
 <div class="tlx-side">
 <div class="serif tlx-year">2020</div>
@@ -917,6 +1068,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Audit Consultant</h3>
 <div style="margin-top: 4px; font-size: 14px; color: rgba(55,56,58,0.68)">Verizon</div>
 <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.85)">I assessed telecommunications infrastructure, engineering processes and cloud environments. I also built tracking and reporting tools that helped stakeholders see open issues and follow remediation through.</p>
+<div class="tlx-tags"><span class="tlx-tag">Telecom infrastructure</span><span class="tlx-tag">Cloud</span><span class="tlx-tag">Issue tracking</span></div>
 </article>
 <div class="tlx-side">
 <div class="serif tlx-year">2019</div>
@@ -932,6 +1084,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <h3 class="serif" style="margin: 20px 0 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">IT Advisory Associate</h3>
 <div style="margin-top: 4px; font-size: 14px; color: rgba(55,56,58,0.68)">KPMG</div>
 <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.85)">I delivered technology-risk and control assessments for banks, insurers, and businesses in fashion, beauty and grocery retail. The work covered databases, ERP implementations and regulatory requirements across varied client environments.</p>
+<div class="tlx-tags"><span class="tlx-tag">Banking</span><span class="tlx-tag">Insurance</span><span class="tlx-tag">Retail</span><span class="tlx-tag">ERP</span></div>
 </article>
 <div class="tlx-side">
 <div class="serif tlx-year">2017</div>
@@ -971,6 +1124,15 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <div class="track-wrap roots-track"><div class="track-label">A track of mine</div>
 <a class="track" data-spotify="5ZnSNUn3uN0RKTC6wocgWa" href="https://open.spotify.com/track/5ZnSNUn3uN0RKTC6wocgWa" target="_blank" rel="noopener"><img src="/_blob/3b87fb250a686f592abddf1d7929424c" alt="Cover art for Take What You Want"><span class="track-meta"><span class="serif track-t">Take What You Want</span><span class="track-a">feat. Manno · Listen on Spotify</span></span><span class="track-play" aria-hidden="true"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px"><path d="M8 5v14l11-7z" fill="currentColor"></path></svg></span></a></div>
+</div>
+<div class="bey" data-reveal="">
+<div class="bey-k">Beyond the day job</div>
+<div class="bey-grid">
+<article class="bey-card" style="--s: 0"><svg class="bey-ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8a6 6 0 0 1 6 6v8a6 6 0 0 1-12 0v-8a6 6 0 0 1 6-6z"></path><path d="M14 22a10 10 0 0 0 20 0M24 32v8M18 40h12"></path></svg><div class="bey-ck">On stage</div><h3 class="serif bey-h">Spoke at MONO 2026</h3><p class="bey-p">The MONO music conference in San Francisco, November 2026.</p></article>
+<article class="bey-card" style="--s: 1"><svg class="bey-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="10" width="34" height="28" rx="4"></rect><path d="M7 17h34"></path><path d="M13 31v-6M19 31v-9M25 31v-4M31 31v-8M37 31v-5" class="acc"></path></svg><div class="bey-ck">Designed and shipped</div><h3 class="serif bey-h">Tempo</h3><p class="bey-p">A project-management app for musicians: songs move from idea to release, with sessions, versions and stems in one place.</p></article>
+<article class="bey-card" style="--s: 2"><svg class="bey-ico" viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="9" width="34" height="30" rx="4"></rect><path d="M7 17h34M19 17v22"></path><circle cx="30" cy="27" r="5" class="acc"></circle><path d="M11 23h4M11 28h4M11 33h4"></path></svg><div class="bey-ck">Building now</div><h3 class="serif bey-h">C.E.O.</h3><p class="bey-p">My all-in-one personal AI dashboard, including a view that surfaces the emails I need to review.</p></article>
+<article class="bey-card" style="--s: 3"><svg class="bey-ico" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="16"></circle><circle cx="24" cy="24" r="5" class="acc"></circle><path d="M24 8v4M24 36v4M8 24h4M36 24h4"></path></svg><div class="bey-ck">In the studio</div><h3 class="serif bey-h">Edits and remixes</h3><p class="bey-p">Original melodic electronic tracks, plus an ongoing series of edit packs.</p></article>
+</div>
 </div>
 <div ref="{{setRoots}}" class="roots-globe" style="margin-top: 8px; position: relative; --r: 0">
 <svg viewBox="0 0 1280 400" role="img" aria-label="Globe with a route from Ukraine to New York to Denver, Colorado" style="display: block; width: 100%; height: auto">
@@ -1121,6 +1283,7 @@ class Component extends DCLogic {
       for (let j = 0; j < items.length; j++) {
         const top = items[j].getBoundingClientRect().top - rootTop;
         items[j].style.setProperty('--e', String(easeOut(clamp((vh * 0.9 - top) / (vh * 0.35)))));
+        items[j].style.setProperty('--a', (1 - clamp(Math.abs(top + items[j].offsetHeight / 2 - vh * 0.5) / (vh * 0.45))).toFixed(3));
       }
     }
     const total = Math.max(1, track.offsetHeight - root.clientHeight);
@@ -1478,6 +1641,7 @@ class Component extends DCLogic {
         it.setAttribute('aria-hidden', k === f ? 'false' : 'true');
         it.querySelector('.xl-eng').classList.toggle('is-on', v === 'eng');
         it.querySelector('.xl-exec').classList.toggle('is-on', v === 'exec');
+        var pg = it.querySelector('.xl-prog'); if (pg) pg.classList.toggle('is-on', v === 'prog');
       });
     }
     tabs.forEach(function (t, k) { t.addEventListener('click', function () { touched = true; f = k; render(); }); });
@@ -1486,14 +1650,32 @@ class Component extends DCLogic {
     var io = new IntersectionObserver(function (es) {
       if (!es[0].isIntersecting || hinted) return;
       hinted = true;
-      setTimeout(function () { if (!touched) { v = 'exec'; render(); } }, 1600);
+      setTimeout(function () { if (!touched) { v = 'prog'; render(); } }, 1600);
     }, { threshold: 0.5 });
     io.observe(container);
     render();
     return function () { io.disconnect(); };
   }
 
+  npReveal(scope) {
+    if (!scope || !('IntersectionObserver' in window)) return function () {};
+    var els = [].slice.call(scope.querySelectorAll('[data-reveal]'));
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.2 });
+    els.forEach(function (el) { el.classList.add('rv'); io.observe(el); });
+    return function () { io.disconnect(); };
+  }
+  npInd(grid) {
+    if (!grid) return function () {};
+    function onDoc(e) { var pop = e.target.closest && e.target.closest('.ind-pop'); if (pop) { pop.parentNode.open = false; return; } if (!e.target.closest || !e.target.closest('.ind-d')) grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); }
+    function onToggle(e) { var d = e.target; if (d.open) grid.querySelectorAll('.ind-d[open]').forEach(function (o) { if (o !== d) o.open = false; }); }
+    function onKey(e) { if (e.key === 'Escape') grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); }
+    document.addEventListener('click', onDoc); grid.addEventListener('toggle', onToggle, true); document.addEventListener('keydown', onKey);
+    return function () { document.removeEventListener('click', onDoc); grid.removeEventListener('toggle', onToggle, true); document.removeEventListener('keydown', onKey); };
+  }
+
   componentDidMount() {
+    this.stopReveal = this.npReveal(this.root);
+    this.stopInd = this.npInd(this.chips);
     if (this.xlat) this.stopXlat = this.npXlat(this.xlat);
     if (this.heroInk) this.stopHeroInk = this.npHeroInk(this.heroInk, this.heroInk.closest('section'), this.nav, this.heroInk.getAttribute('data-sketch'), this.heroInk.getAttribute('data-paint'));
     if (this.panel) this.npCount(this.panel);
@@ -1509,6 +1691,8 @@ class Component extends DCLogic {
   componentWillUnmount() {
     this.dead = true;
     if (this.stopXlat) this.stopXlat();
+    if (this.stopReveal) this.stopReveal();
+    if (this.stopInd) this.stopInd();
     if (this.stopHeroInk) this.stopHeroInk();
     if (this.stopDeck) this.stopDeck();
     if (this.stopMenu) this.stopMenu();
