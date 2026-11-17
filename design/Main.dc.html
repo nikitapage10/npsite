@@ -495,6 +495,26 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 #roots svg text[x="381.6"]{transform:translate(84px, 34px)}
 #roots svg text[x="226"]{transform:translate(0, -6px)}
 }
+/* Hero stats card: crisp white panel in the cool palette */
+.panel-outer .panel{background:#FFFFFF !important;background-image:none !important;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid rgba(55,56,58,0.09) !important;border-bottom:0 !important;box-shadow:0 -28px 56px -36px rgba(28,30,34,0.38) !important;position:relative}
+.panel-outer .panel::before{content:"";position:absolute;left:-1px;top:-1px;width:72px;height:2px;background:#37383A}
+.panel-outer .hstat-n{color:#2A2B2D}
+.panel-outer .hstat-c{color:rgba(55,56,58,0.66)}
+.panel-outer .hstat-k{color:#6E7782;letter-spacing:0.22em}
+.panel-outer .hstat-logos,.panel-outer .hstat-place{border-left-color:rgba(55,56,58,0.12)}
+.panel-outer .hstat-row img,.panel-outer .hstat-place img{filter:grayscale(1) contrast(1.08);opacity:0.8;transition:filter .3s,opacity .3s,transform .3s}
+.panel-outer .hstat-row img:hover,.panel-outer .hstat-place:hover img{filter:none;opacity:1}
+.panel-outer .panel-divider{background:rgba(55,56,58,0.09) !important}
+.panel-outer .feat{background:#FFFFFF;border:1px solid rgba(55,56,58,0.14)}
+.panel-outer .feat > span > span:first-child{color:#6E7782 !important}
+.panel-outer .feat svg{color:#7D8691}
+.panel-outer .feat:hover{border-color:#37383A}
+.panel-outer .hstat-cos{gap:12px;align-items:center}
+.panel-outer .hstat-cos .serif{font-size:19px;line-height:1.2;letter-spacing:-0.01em;color:#2A2B2D}
+.panel-outer .hstat-dot{width:3px;height:3px;border-radius:50%;background:#7D8691;flex:none}
+.panel-outer .hstat-pin{width:26px;height:26px;color:#6E7782;flex:none}
+.panel-outer .feat:hover > span > span:first-child{color:rgba(255,255,255,0.6) !important}
+.panel-outer .feat:hover svg{color:#FFFFFF}
 </style>
 </helmet>
 <div ref="{{setRoot}}" class="np-root" onScroll="{{onScroll}}" style="height: 100vh; overflow-y: auto; overflow-x: hidden; background: #FFFFFF; color: #37383A; font-family: 'Inter', sans-serif; position: relative">
@@ -563,8 +583,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="hstats">
 <div class="hstat"><span class="serif hstat-n" data-count="10">10</span><span class="hstat-c">years of<br>experience</span></div>
 <div class="hstat"><span class="serif hstat-n" data-count="8">8</span><span class="hstat-c">industry<br>sectors</span></div>
-<div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row"><img src="/_blob/6e6e4ee7241539803da1c1f1ca6c7815" alt="Microsoft"><img src="/_blob/5c7caef4d028e1be7162fe6600842a59" alt="Verizon"><img src="/_blob/b5360270dc6eb750d2b86e9442880db9" alt="KPMG"></div></div>
-<div class="hstat-place"><img src="/_blob/9cc050a7dc10fa2bfe350bce49462615" alt=""><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
+<div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row hstat-cos"><span class="serif">Microsoft</span><span class="hstat-dot" aria-hidden="true"></span><span class="serif">Verizon</span><span class="hstat-dot" aria-hidden="true"></span><span class="serif">KPMG</span></div></div>
+<div class="hstat-place"><svg class="hstat-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
 </div>
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
