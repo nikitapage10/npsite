@@ -502,8 +502,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 .panel-outer .hstat-c{color:rgba(55,56,58,0.66)}
 .panel-outer .hstat-k{color:#6E7782;letter-spacing:0.22em}
 .panel-outer .hstat-logos,.panel-outer .hstat-place{border-left-color:rgba(55,56,58,0.12)}
-.panel-outer .hstat-row img,.panel-outer .hstat-place img{filter:grayscale(1) contrast(1.08);opacity:0.8;transition:filter .3s,opacity .3s,transform .3s}
-.panel-outer .hstat-row img:hover,.panel-outer .hstat-place:hover img{filter:none;opacity:1}
 .panel-outer .panel-divider{background:rgba(55,56,58,0.09) !important}
 .panel-outer .feat{background:#FFFFFF;border:1px solid rgba(55,56,58,0.14)}
 .panel-outer .feat > span > span:first-child{color:#6E7782 !important}
@@ -512,7 +510,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 .panel-outer .hstat-cos{gap:12px;align-items:center}
 .panel-outer .hstat-cos .serif{font-size:19px;line-height:1.2;letter-spacing:-0.01em;color:#2A2B2D}
 .panel-outer .hstat-dot{width:3px;height:3px;border-radius:50%;background:#7D8691;flex:none}
-.panel-outer .hstat-pin{width:26px;height:26px;color:#6E7782;flex:none}
 .panel-outer .feat:hover > span > span:first-child{color:rgba(255,255,255,0.6) !important}
 .panel-outer .feat:hover svg{color:#FFFFFF}
 </style>
@@ -584,11 +581,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="hstat"><span class="serif hstat-n" data-count="10">10</span><span class="hstat-c">years of<br>experience</span></div>
 <div class="hstat"><span class="serif hstat-n" data-count="8">8</span><span class="hstat-c">industry<br>sectors</span></div>
 <div class="hstat-logos"><span class="hstat-k">Most recently</span><div class="hstat-row hstat-cos"><span class="serif">Microsoft</span><span class="hstat-dot" aria-hidden="true"></span><span class="serif">Verizon</span><span class="hstat-dot" aria-hidden="true"></span><span class="serif">KPMG</span></div></div>
-<div class="hstat-place"><svg class="hstat-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
+<div class="hstat-place"><img src="/_blob/9cc050a7dc10fa2bfe350bce49462615" alt=""><div><span class="hstat-k">Based in</span><span class="serif hstat-city">Denver, Colorado</span></div></div>
 </div>
 <div class="panel-divider" style="margin: 32px 0 24px; height: 1px; background: #e5e7eb; width: 100%"></div>
 <div class="rows">
-<a class="feat" href="#work"><span><span style="color: rgba(55,56,58,0.55)">01</span><span style="margin: 0 8px; color: rgba(55,56,58,0.4)">/</span><span style="font-weight: 500">Work</span><span class="feat-d">Four projects</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+<a class="feat" href="#work"><span><span style="color: rgba(55,56,58,0.55)">01</span><span style="margin: 0 8px; color: rgba(55,56,58,0.4)">/</span><span style="font-weight: 500">Work</span><span class="feat-d">Five projects</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 <a class="feat" href="#approach"><span><span style="color: rgba(55,56,58,0.55)">02</span><span style="margin: 0 8px; color: rgba(55,56,58,0.4)">/</span><span style="font-weight: 500">Approach</span><span class="feat-d">How I work</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 <a class="feat" href="#background"><span><span style="color: rgba(55,56,58,0.55)">03</span><span style="margin: 0 8px; color: rgba(55,56,58,0.4)">/</span><span style="font-weight: 500">Background</span><span class="feat-d">Career timeline</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width: 16px; height: 16px"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
 </div>
@@ -680,16 +677,26 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <div ref="{{setDeck}}" class="deck">
 <div class="deck-tabs" role="tablist" aria-label="Projects">
-<button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">Azure migration readiness across two acquisitions</span><span class="deck-tab-s">Azure migration</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
-<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">02</span><span class="deck-tab-t">AI enablement for our entire department</span><span class="deck-tab-s">AI enablement</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
-<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">03</span><span class="deck-tab-t">Aligning to an AI partner’s model-use standard</span><span class="deck-tab-s">AI governance</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">Aligning to an AI partner’s model-use standard</span><span class="deck-tab-s">AI governance</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">02</span><span class="deck-tab-t">Azure migration readiness across two acquisitions</span><span class="deck-tab-s">Azure migration</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
+<button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">03</span><span class="deck-tab-t">AI enablement for our entire department</span><span class="deck-tab-s">AI enablement</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
 <button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">04</span><span class="deck-tab-t">Establishing a shared view of secure development</span><span class="deck-tab-s">Secure development</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
 <button class="deck-tab" type="button" role="tab" aria-selected="false"><span class="deck-tab-n">05</span><span class="deck-tab-t">An AI hub for evidence review</span><span class="deck-tab-s">AI evidence hub</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
 </div>
 <div class="deck-main">
 <div class="deck-stack">
-<article class="work-card deck-card" data-pos="0" aria-hidden="false"><img class="work-art" src="/_blob/63a4e942c38523db37dcfd0c586c0d23" alt="">
+<article class="work-card deck-card" data-pos="0" aria-hidden="false"><img class="work-art" src="/_blob/3b5f22f71158f3815cefdbb1c3cf66f2" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">01</div>
+<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Aligning to an AI partner’s model-use standard</h3>
+<div class="proof-line"><span>AI governance</span><span>Model access and use</span><span>In progress</span></div>
+<dl class="pw">
+<div><dt>Problem</dt><dd>A strategic AI partner sets privacy and security expectations for how its models are accessed and used, and Microsoft needs a clear view of how its own controls line up against them.</dd></div>
+<div><dt>What I own</dt><dd>I’m assessing that alignment: translating the standard into testable requirements and testing controls over data retention, access and enforcement across the channels where the models are used.</dd></div>
+<div><dt>Result</dt><dd>Work in progress, building a clear picture of where controls already align and where they need attention, to guide remediation.</dd></div>
+</dl>
+</article>
+<article class="work-card deck-card" data-pos="1" aria-hidden="true"><img class="work-art" src="/_blob/313d4143aabfcc90c7d3d87433b2aed8" alt="">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Azure migration readiness across two acquisitions</h3>
 <div class="proof-line"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div>
 <dl class="pw">
@@ -698,8 +705,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div><dt>Result</dt><dd>A structured view of ownership and readiness, agreed with a senior executive, to inform migration decisions.</dd></div>
 </dl>
 </article>
-<article class="work-card deck-card" data-pos="1" aria-hidden="true"><img class="work-art" src="/_blob/75763187c55913a427f4e7496b55120a" alt="">
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">02</div>
+<article class="work-card deck-card" data-pos="2" aria-hidden="true"><img class="work-art" src="/_blob/6969f0866d59a68c2d674a4ed0d70e20" alt="">
+<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">AI enablement for our entire department</h3>
 <div class="proof-line"><span>13 contributors</span><span>2 months</span><span>About 200 professionals</span></div>
 <dl class="pw">
@@ -709,17 +716,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </dl>
 <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px"><span class="tlx-tag">Copilot Studio</span><span class="tlx-tag">Microsoft Foundry</span><span class="tlx-tag">Azure</span></div>
 </article>
-<article class="work-card deck-card" data-pos="2" aria-hidden="true"><img class="work-art" src="/_blob/1b8ac6cf3539ea2abfee079108aeeb62" alt="">
-<div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">03</div>
-<h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Aligning to an AI partner’s model-use standard</h3>
-<div class="proof-line"><span>AI governance</span><span>Model access and use</span><span>In progress</span></div>
-<dl class="pw">
-<div><dt>Problem</dt><dd>A strategic AI partner sets privacy and security expectations for how its models are accessed and used, and Microsoft needs a clear view of how its own controls line up against them.</dd></div>
-<div><dt>What I own</dt><dd>I’m assessing that alignment: translating the standard into testable requirements and testing controls over data retention, access and enforcement across the channels where the models are used.</dd></div>
-<div><dt>Result</dt><dd>Work in progress, building a clear picture of where controls already align and where they need attention, to guide remediation.</dd></div>
-</dl>
-</article>
-<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/43f18def865be815a4cf272a68ab9c9c" alt="">
+<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/c3fe8825c023819a4d960e157c94c7cd" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">04</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">Establishing a shared view of secure development</h3>
 <div class="proof-line"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div>
@@ -729,7 +726,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div><dt>Result</dt><dd>A shared secure-development baseline for subsequent gaming audit planning.</dd></div>
 </dl>
 </article>
-<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/81c4b773e75f956b1b89a53c21957579" alt="">
+<article class="work-card deck-card" data-pos="3" aria-hidden="true"><img class="work-art" src="/_blob/625c720a8950450a578a8ee1de40d8b9" alt="">
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.68); font-weight: 500">05</div>
 <h3 class="serif" style="margin: 0; font-size: 28px; line-height: 1.18; letter-spacing: -0.02em; font-weight: 400">An AI hub for evidence review</h3>
 <div class="proof-line"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div>
@@ -854,19 +851,19 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <div class="appr-grid">
 <article class="appr-card">
-<div class="appr-art"><img src="/_blob/1ca8eacf17c61511b80495ad3bfcfec2" alt=""></div>
+<div class="appr-art"><img src="/_blob/2fa6abb27397ba5aa2222c98759fc44c" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">01</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Understand the system</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I work with engineers on their own terms, from code review to KQL test plans. Understanding the system leads to better questions about its risks.</p>
 </article>
 <article class="appr-card">
-<div class="appr-art"><img src="/_blob/5a799255273e51b591df1fc25d8fe70b" alt=""></div>
+<div class="appr-art"><img src="/_blob/5b745b5941d122c68afaff451fade4f8" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">02</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Find the shared picture</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I lead rotating teams of 8–12 and make scope, ownership and dependencies clear, so everyone can see how their work fits together.</p>
 </article>
 <article class="appr-card">
-<div class="appr-art"><img src="/_blob/81976d1b13c9fe451785a1a34783cfb9" alt=""></div>
+<div class="appr-art"><img src="/_blob/22de51a210b6659b1f93a221fb84cc8e" alt=""></div>
 <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em; color: rgba(55,56,58,0.6); font-weight: 500">03</div>
 <h3 class="serif" style="margin: 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 400">Make the decision clear</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.65; color: rgba(55,56,58,0.8)">I frame risks by likelihood and financial and reputational impact, then work with directors and corporate vice presidents to commit to remediation.</p>

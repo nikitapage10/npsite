@@ -1,6 +1,6 @@
 const http = require('http'), fs = require('fs'), path = require('path');
 const root = path.join(__dirname, '..');
-const types = { '.html': 'text/html; charset=utf-8', '.mp4': 'video/mp4' };
+const types = { '.html': 'text/html; charset=utf-8', '.mp4': 'video/mp4', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.pdf': 'application/pdf' };
 http.createServer((req, res) => {
   const p = path.join(root, decodeURIComponent(req.url.split('?')[0]) === '/' ? 'index.html' : decodeURIComponent(req.url.split('?')[0]));
   if (!p.startsWith(path.normalize(root)) || !fs.existsSync(p)) { res.writeHead(404); return res.end(); }
