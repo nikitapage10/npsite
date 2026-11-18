@@ -802,15 +802,12 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 }
 @media (max-width:767px) and (prefers-reduced-motion: reduce){.mh-cue span{animation:none}}
 @media (max-width:767px){
-.mh-foot{position:absolute;left:28px;right:28px;bottom:calc(env(safe-area-inset-bottom, 0px) + 92px);display:flex;flex-direction:column;gap:22px;opacity:var(--o5,0);transform:translateY(calc((1 - var(--o5,0)) * 18px))}
-.mh-co{display:flex;align-items:center;gap:18px;padding-top:18px;border-top:1px solid rgba(55,56,58,0.14)}
-.mh-co-g{display:flex;align-items:center;gap:12px}
+.mh-copy{top:26svh}
+.mh-copy2{top:auto !important;bottom:calc(env(safe-area-inset-bottom, 0px) + 28px)}
+.mh-co{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 10px;margin-top:6px;padding-top:16px;border-top:1px solid rgba(55,56,58,0.14);opacity:var(--o5,0);transform:translateY(calc((1 - var(--o5,0)) * 14px))}
 .mh-co-k{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7782}
-.mh-co img{height:22px;width:auto;object-fit:contain}
-.mh-co img[alt="Microsoft"]{height:26px}
-.mh-co-sep{width:1px;height:22px;background:rgba(55,56,58,0.16)}
-.mh-down{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7782}
-.mh-down span{width:1px;height:26px;background:#6E7782;animation:mh-cue 1.8s ease-in-out infinite;transform-origin:top}
+.mh-co-n{font-size:17px;color:#2D2E30;letter-spacing:-0.01em}
+.mh-co-sep{width:1px;height:14px;background:rgba(55,56,58,0.2);margin:0 4px;align-self:center}
 }
 </style>
 </head>
@@ -852,8 +849,8 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="mh-copy2">
 <p class="mh-sub">Technology and risk leader at Microsoft, based in Denver.</p>
 <div class="mh-cta"><a class="btn btn-hero" href="#work">Explore my work</a><a class="btn btn-hero btn-ghost" href="Nikita-Page-Resume.pdf" target="_blank" rel="noopener">View my resume</a></div>
+<div class="mh-co"><span class="mh-co-k">Now</span><span class="serif mh-co-n">Microsoft</span><span class="mh-co-sep" aria-hidden="true"></span><span class="mh-co-k">Before</span><span class="serif mh-co-n">Verizon · KPMG</span></div>
 </div>
-<div class="mh-foot"><div class="mh-co"><div class="mh-co-g"><span class="mh-co-k">Now</span><img loading="lazy" decoding="async" src="assets/logo-microsoft.webp" alt="Microsoft"></div><span class="mh-co-sep" aria-hidden="true"></span><div class="mh-co-g"><span class="mh-co-k">Previously</span><img loading="lazy" decoding="async" src="assets/logo-verizon.webp" alt="Verizon"><img loading="lazy" decoding="async" src="assets/logo-kpmg.webp" alt="KPMG"></div></div><div class="mh-down" aria-hidden="true"><span></span>Keep scrolling</div></div>
 </div>
 </div>
 <div id="top" data-np="track" style="position: relative; height: 210vh">
