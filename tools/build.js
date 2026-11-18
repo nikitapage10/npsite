@@ -354,8 +354,9 @@ ${heroInk}
     function heroFrame() {
       if (!mh) return;
       var p = reduce ? 1 : prog(mh), z = ease(seg(p, 0.28, 0.72)), st = mh.style;
-      st.setProperty('--s', (3.2 - 2.2 * z).toFixed(4));
-      st.setProperty('--tx', (-15 * (1 - z)).toFixed(3) + 'vw');
+      st.setProperty('--s', (3.2 - 0.6 * z).toFixed(4));
+      st.setProperty('--tx', (-15 + 33 * z).toFixed(3) + 'vw');
+      st.setProperty('--z', z.toFixed(3));
       var rr = ease(seg(p, 0.06, 0.5)) * 130;
       st.setProperty('--r', rr.toFixed(2));
       st.setProperty('--po', rr > 0.5 ? '1' : '0');

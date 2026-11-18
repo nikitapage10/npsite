@@ -773,8 +773,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 .mh-cue{display:flex;align-items:center;gap:10px;margin-top:28px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7782}
 .mh-cue span{width:1px;height:28px;background:#6E7782;animation:mh-cue 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes mh-cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
-.mh-copy{position:absolute;left:0;right:0;top:calc(33svh + 34vw);padding:0 28px;display:flex;flex-direction:column;gap:16px}
-.mh-h{margin:0;font-size:38px;line-height:1.08;letter-spacing:-0.03em;font-weight:400;color:#2D2E30}
+.mh-copy{position:absolute;left:28px;top:31svh;width:50%}
+.mh-copy2{position:absolute;left:0;right:0;top:63svh;padding:0 28px;display:flex;flex-direction:column;gap:16px}
+.mh-veil{position:absolute;inset:0;pointer-events:none;opacity:var(--z,0);background:linear-gradient(90deg,#F2EDE9 0%,rgba(242,237,233,0.9) 26%,rgba(242,237,233,0) 56%),linear-gradient(180deg,rgba(242,237,233,0) 46%,#F2EDE9 60%),linear-gradient(0deg,rgba(242,237,233,0) 84%,#F2EDE9 94%)}
+.mh-h{margin:0;font-size:34px;line-height:1.08;letter-spacing:-0.03em;font-weight:400;color:#2D2E30}
 .mh-h span{display:inline-block;opacity:var(--o2,0);transform:translateY(calc((1 - var(--o2,0)) * 30px))}
 .mh-h span:nth-child(2){opacity:var(--o2b,0);transform:translateY(calc((1 - var(--o2b,0)) * 30px))}
 .mh-h span:nth-child(3){opacity:var(--o2c,0);transform:translateY(calc((1 - var(--o2c,0)) * 30px))}
@@ -832,8 +834,11 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 <div class="mh-pin">
 <div class="mh-art" aria-hidden="true"><img loading="lazy" decoding="async" class="mh-sk" src="assets/hero-sketch.webp" alt=""><img loading="lazy" decoding="async" class="mh-pt" src="assets/hero-paint.webp" alt=""></div>
 <div class="mh-intro"><div class="serif mh-name">Nikita Page</div><div class="mh-role">Technology programs · Risk · Applied AI</div><div class="mh-cue" aria-hidden="true"><span></span>Scroll</div></div>
+<div class="mh-veil" aria-hidden="true"></div>
 <div class="mh-copy">
 <h1 class="serif mh-h"><span>I bring clarity</span> <span>to complex</span> <span>technology decisions.</span></h1>
+</div>
+<div class="mh-copy2">
 <p class="mh-sub">Technology and risk leader at Microsoft, based in Denver.</p>
 <div class="mh-cta"><a class="btn btn-hero" href="#work">Explore my work</a><a class="btn btn-hero btn-ghost" href="Nikita-Page-Resume.pdf" target="_blank" rel="noopener">View my resume</a></div>
 </div>
@@ -1854,8 +1859,9 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
     function heroFrame() {
       if (!mh) return;
       var p = reduce ? 1 : prog(mh), z = ease(seg(p, 0.28, 0.72)), st = mh.style;
-      st.setProperty('--s', (3.2 - 2.2 * z).toFixed(4));
-      st.setProperty('--tx', (-15 * (1 - z)).toFixed(3) + 'vw');
+      st.setProperty('--s', (3.2 - 0.6 * z).toFixed(4));
+      st.setProperty('--tx', (-15 + 33 * z).toFixed(3) + 'vw');
+      st.setProperty('--z', z.toFixed(3));
       var rr = ease(seg(p, 0.06, 0.5)) * 130;
       st.setProperty('--r', rr.toFixed(2));
       st.setProperty('--po', rr > 0.5 ? '1' : '0');
