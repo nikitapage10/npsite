@@ -9,7 +9,7 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
   canvas.style.background = '#F3EEE8 url(' + sketchSrc + ') 78% 0 / cover no-repeat';
   var gl = canvas.getContext('webgl', { premultipliedAlpha: false, antialias: false });
   if (!gl) return function () {};
-  var IMG_W = 2048, IMG_H = 1160, LINE_Y = 0.064;   // image size and the y of the top construction line (fraction)
+  var IMG_W = 2711, IMG_H = 1536, LINE_Y = 0.064;   // image size and the y of the top construction line (fraction)
   // Defaults: watercolor bleed (feathered, wicking edges) with a moderate spread.
   var O = { brush: 0.08, flow: 0.04, spread: 0.034, life: 5.0, grow: 0.32, stretch: 0.3, warp: 0.6, ragged: 0.3,
     gap: 0.8, sat: 0.4, rim: 0.2, halo: 1.0, soft: 0.14, demo: false };

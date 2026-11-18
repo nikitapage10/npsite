@@ -40,8 +40,8 @@ const BLOBS = {
   "9bdec23150a5e336244130a3dc3de770": "assets/paper-mask.webp",
   "b3a1907df41a6bf570eb5a69b37ebbfc": "assets/washi.webp",
   "8dad07a8a984ef5ac4efacfe031593d2": "Nikita-Page-Resume.pdf",
-  "fd6c4d19b1fd4c298d9684f30dfe05ee": "assets/hero-sketch.webp",
-  "92434a94f618a14baa1c6650adf268a0": "assets/hero-paint.webp"
+  "e0783f01218dfe12e4de8a573c272fa1": "assets/hero-sketch.webp",
+  "d903554653da2b90d347740f6443e261": "assets/hero-paint.webp"
 };
 
 // Link previews (LinkedIn, Slack, iMessage, email) and the browser-tab icon.
@@ -366,6 +366,7 @@ ${heroInk}
       st.setProperty('--o2c', ease(seg(p, 0.7, 0.84)).toFixed(3));
       st.setProperty('--o3', ease(seg(p, 0.78, 0.9)).toFixed(3));
       st.setProperty('--o4', ease(seg(p, 0.84, 0.96)).toFixed(3));
+      st.setProperty('--o5', ease(seg(p, 0.9, 1)).toFixed(3));
     }
     function journeyFrame() {
       if (!mj || !jtrack) return;
