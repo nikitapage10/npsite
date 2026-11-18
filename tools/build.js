@@ -347,8 +347,34 @@ ${heroInk}
       function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 900); val.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
       requestAnimationFrame(step);
     }
+    var mh = root.querySelector('[data-mstory="hero"]'), mj = root.querySelector('[data-mstory="journey"]');
+    var jcards = mj ? [].slice.call(mj.querySelectorAll('.mj-card')) : [], jbig = mj ? mj.querySelector('.mj-big-v') : null, jtrack = mj ? mj.querySelector('.mj-track') : null, jlast = -1;
+    function seg(p, a, b) { return Math.max(0, Math.min(1, (p - a) / (b - a))); }
+    function ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+    function heroFrame() {
+      if (!mh) return;
+      var p = reduce ? 1 : prog(mh), z = ease(seg(p, 0.28, 0.72)), st = mh.style;
+      st.setProperty('--s', (3.2 - 2.2 * z).toFixed(4));
+      st.setProperty('--tx', (-15 * (1 - z)).toFixed(3) + 'vw');
+      st.setProperty('--r', (ease(seg(p, 0.06, 0.5)) * 120).toFixed(2));
+      st.setProperty('--o1', (1 - seg(p, 0.02, 0.18)).toFixed(3));
+      st.setProperty('--o2', ease(seg(p, 0.6, 0.74)).toFixed(3));
+      st.setProperty('--o2b', ease(seg(p, 0.65, 0.79)).toFixed(3));
+      st.setProperty('--o2c', ease(seg(p, 0.7, 0.84)).toFixed(3));
+      st.setProperty('--o3', ease(seg(p, 0.78, 0.9)).toFixed(3));
+      st.setProperty('--o4', ease(seg(p, 0.84, 0.96)).toFixed(3));
+    }
+    function journeyFrame() {
+      if (!mj || !jtrack) return;
+      var lc = jcards[jcards.length - 1], p = prog(mj), max = Math.max(0, lc.offsetLeft + lc.offsetWidth + 28 - root.clientWidth), q = seg(p, 0.05, 0.92);
+      mj.style.setProperty('--jx', (-max * ease(q)).toFixed(1) + 'px');
+      mj.style.setProperty('--jp', q.toFixed(3));
+      var k = Math.min(jcards.length - 1, Math.round(ease(q) * (jcards.length - 1)));
+      if (k !== jlast) { jcards.forEach(function (c, i) { c.classList.toggle('on', i === k); }); if (jbig) jbig.textContent = jcards[k].getAttribute('data-big'); jlast = k; }
+    }
     function frame() {
       raf = 0;
+      heroFrame(); journeyFrame();
       if (ms) { var n = Math.round(prog(ms) * 1.25 * words.length); words.forEach(function (w, i) { w.classList.toggle('on', reduce || i < n); }); }
       if (mn && stats.length) {
         var k = Math.min(stats.length - 1, Math.floor(prog(mn) * stats.length * 0.999));
