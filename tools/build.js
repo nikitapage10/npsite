@@ -356,7 +356,9 @@ ${heroInk}
       var p = reduce ? 1 : prog(mh), z = ease(seg(p, 0.28, 0.72)), st = mh.style;
       st.setProperty('--s', (3.2 - 2.2 * z).toFixed(4));
       st.setProperty('--tx', (-15 * (1 - z)).toFixed(3) + 'vw');
-      st.setProperty('--r', (ease(seg(p, 0.06, 0.5)) * 120).toFixed(2));
+      var rr = ease(seg(p, 0.06, 0.5)) * 130;
+      st.setProperty('--r', rr.toFixed(2));
+      st.setProperty('--po', rr > 0.5 ? '1' : '0');
       st.setProperty('--o1', (1 - seg(p, 0.02, 0.18)).toFixed(3));
       st.setProperty('--o2', ease(seg(p, 0.6, 0.74)).toFixed(3));
       st.setProperty('--o2b', ease(seg(p, 0.65, 0.79)).toFixed(3));
