@@ -688,6 +688,76 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 .fl[data-step="3"] .fl-pri path:nth-of-type(2){transition-delay:3.6s}
 .fl[data-step="3"] .fl-pri path:nth-of-type(3){transition-delay:3.9s}
 @media (prefers-reduced-motion: reduce){.ap-spin,.ap-spin2,.rt-drift,.fl[data-step="3"] .fl-beam{animation:none !important}.fl-pri path{stroke-dashoffset:0 !important}}
+/* ================= Phone experience (<=767px) ================= */
+.m-only{display:none}
+@media (max-width:767px){
+.m-only{display:block}
+#translate,.np-root .deck,.np-root .deck-tabs,.np-root .deck-controls{display:none !important}
+.np-root a[href="#translate"]{display:none !important}
+/* statement: words light up as you scroll */
+.ms{height:190vh;position:relative;background:#FFFFFF}
+.ms-pin{position:sticky;top:0;height:100vh;box-sizing:border-box;padding:96px 28px 40px;display:flex;flex-direction:column;justify-content:center;gap:22px}
+.ms-k,.mn-k{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#6E7782}
+.ms-text{margin:0;font-size:36px;line-height:1.16;letter-spacing:-0.025em;color:#37383A}
+.ms-text .w{opacity:0.14;transition:opacity .35s ease}
+.ms-text .w.on{opacity:1}
+/* numbers: one at a time, counting up */
+.mn{height:320vh;position:relative;background:#2D2E30;color:#F1F1EF}
+.mn-pin{position:sticky;top:0;height:100vh;box-sizing:border-box;padding:96px 28px 56px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.mn-k{color:#9EA6B0}
+.mn-stage{position:relative;flex:1}
+.mn-stat{position:absolute;left:0;right:0;top:50%;transform:translateY(-30%);opacity:0;transition:opacity .6s ease,transform .8s cubic-bezier(0.2,0.8,0.2,1)}
+.mn-stat.on{opacity:1;transform:translateY(-50%)}
+.mn-stat.past{opacity:0;transform:translateY(-75%)}
+.mn-num{font-size:132px;line-height:0.9;letter-spacing:-0.05em;color:#FFFFFF}
+.mn-pre{font-size:60px;vertical-align:top;margin-right:4px;color:#9EA6B0}
+.mn-lab{margin-top:18px;max-width:300px;font-size:19px;line-height:1.4;color:#D5D8DC}
+.mn-dots,.mw-dots{display:flex;gap:8px}
+.mn-dots i,.mw-dots i{width:22px;height:2px;background:rgba(255,255,255,0.22);transition:background .3s,width .3s}
+.mn-dots i.on{background:#FFFFFF;width:40px}
+/* work: swipeable cards */
+.mw{margin:28px -20px 0}
+.mw-track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.mw-track::-webkit-scrollbar{display:none}
+.mw-card{flex:0 0 84%;scroll-snap-align:center;display:flex;flex-direction:column;gap:10px;padding:22px 22px 26px;background:#FFFFFF;border:1px solid rgba(55,56,58,0.12);box-shadow:0 22px 40px -30px rgba(28,30,34,0.45);transform:scale(0.94);opacity:0.55;transition:transform .45s cubic-bezier(0.2,0.8,0.2,1),opacity .45s}
+.mw-card.on{transform:none;opacity:1}
+.mw-art{width:120px;height:120px;align-self:flex-end;margin:-6px -6px -24px 0}
+.mw-n{font-size:11px;letter-spacing:0.2em;color:#6E7782}
+.mw-h{margin:0;font-size:25px;line-height:1.18;letter-spacing:-0.02em;font-weight:400}
+.mw-chips{display:flex;flex-wrap:wrap;gap:6px}
+.mw-chips span{font-size:11.5px;padding:4px 9px;border:1px solid rgba(55,56,58,0.16);color:rgba(55,56,58,0.8)}
+.mw-p{margin:4px 0 0;font-size:15px;line-height:1.6;color:rgba(55,56,58,0.82)}
+.mw-foot{display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.mw-dots i{background:rgba(55,56,58,0.18)}
+.mw-dots i.on{background:#37383A;width:40px}
+.mw-hint{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#6E7782}
+/* How I work: the diagram stays put while the steps scroll past */
+.fl{display:flex;flex-direction:column;margin-top:32px}
+.fl-stage{order:-1;position:sticky;top:64px;z-index:2;padding:6px 6px 34px;margin:0 -8px;align-self:stretch}
+.fl-caps{bottom:10px}
+.fl-steps{position:relative;z-index:1;gap:0}
+.fl-step{min-height:58vh;align-content:end;padding-bottom:6vh;color:rgba(55,56,58,0.35);border-top:0}
+.fl-step .fl-more{grid-template-rows:1fr}
+.fl-step .fl-inner{opacity:0.35;transition:opacity .4s}
+.fl-step[aria-selected="true"] .fl-inner{opacity:1}
+.fl-bar{display:none}
+/* timeline: lighter cards that rise in */
+.tlx-tags,.tlx-more{display:none !important}
+.tlx-card p{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.tlx-card{transition:opacity .7s ease,transform .8s cubic-bezier(0.2,0.8,0.2,1),box-shadow .4s}
+.m-armed .tlx-card{opacity:0;transform:translateY(36px)}
+.m-armed .tlx-item.m-in .tlx-card{opacity:1;transform:none}
+/* beyond the day job: a swipe row */
+.bey-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -20px;padding:4px 20px 18px;scrollbar-width:none}
+.bey-grid::-webkit-scrollbar{display:none}
+.bey-card{flex:0 0 78%;scroll-snap-align:center}
+.bey{padding-bottom:56px}
+/* everything else: gentle rise on entry */
+.m-rise{transition:opacity .8s ease,transform .9s cubic-bezier(0.2,0.8,0.2,1)}
+.m-armed .m-rise{opacity:0;transform:translateY(28px)}
+.m-armed .m-rise.m-in{opacity:1;transform:none}
+}
+@media (max-width:767px) and (prefers-reduced-motion: reduce){.ms-text .w{opacity:1}.mn-stat,.mw-card,.tlx-card,.m-rise{transition:none !important}.m-armed .tlx-card,.m-armed .m-rise{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -830,6 +900,10 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 </section>
 
+<div class="m-only m-story">
+<section class="ms" data-mstory="words"><div class="ms-pin"><div class="ms-k">In one sentence</div><p class="serif ms-text"><span class="w">Ten</span> <span class="w">years.</span> <span class="w">Eight</span> <span class="w">industries.</span> <span class="w">One</span> <span class="w">way</span> <span class="w">of</span> <span class="w">working:</span> <span class="w">understand</span> <span class="w">the</span> <span class="w">system,</span> <span class="w">bring</span> <span class="w">people</span> <span class="w">to</span> <span class="w">a</span> <span class="w">shared</span> <span class="w">picture,</span> <span class="w">and</span> <span class="w">help</span> <span class="w">leaders</span> <span class="w">decide</span> <span class="w">what</span> <span class="w">matters</span> <span class="w">most.</span></p></div></section>
+<section class="mn" data-mstory="nums"><div class="mn-pin"><div class="mn-k">By the numbers</div><div class="mn-stage"><div class="mn-stat" data-to="10"><div class="mn-num serif"><span class="mn-pre"></span><span class="mn-val">0</span></div><div class="mn-lab">years in technology risk and assurance</div></div><div class="mn-stat" data-to="8"><div class="mn-num serif"><span class="mn-pre"></span><span class="mn-val">0</span></div><div class="mn-lab">industries, from banking and retail to gaming and AI</div></div><div class="mn-stat" data-to="12"><div class="mn-num serif"><span class="mn-pre">~</span><span class="mn-val">0</span></div><div class="mn-lab">engagements a year at Microsoft, with rotating teams of 8–12</div></div><div class="mn-stat" data-to="200"><div class="mn-num serif"><span class="mn-pre">~</span><span class="mn-val">0</span></div><div class="mn-lab">professionals shown how to put AI to work</div></div></div><div class="mn-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div></section>
+</div>
 <section id="work">
 <div class="sec" style="max-width: 1392px; margin: 0 auto; box-sizing: border-box">
 <div class="chapter">
@@ -839,6 +913,13 @@ a:focus-visible,button:focus-visible{outline:2px solid #7D8691;outline-offset:3p
 </div>
 <p class="serif lede" style="margin: 0; align-self: end; line-height: 1.45; color: rgba(55,56,58,0.85)">My work brings together technical investigation, cross-team coordination and clear recommendations. Each project starts with a different problem and requires understanding both the system and the people responsible for it.</p>
 </div>
+<div class="m-only mw"><div class="mw-track" data-mw="">
+<article class="mw-card"><img loading="lazy" decoding="async" class="mw-art" src="assets/work-ai-standard.svg" alt=""><div class="mw-n">01 / 05</div><h3 class="serif mw-h">Aligning to an AI partner’s model-use standard</h3><div class="mw-chips"><span>AI governance</span><span>Model access and use</span><span>In progress</span></div><p class="mw-p">Work in progress, building a clear picture of where controls already align and where they need attention, to guide remediation.</p></article>
+<article class="mw-card"><img loading="lazy" decoding="async" class="mw-art" src="assets/work-migration.svg" alt=""><div class="mw-n">02 / 05</div><h3 class="serif mw-h">Azure migration readiness across two acquisitions</h3><div class="mw-chips"><span>2 acquisitions</span><span>Migration readiness and ownership</span></div><p class="mw-p">A structured view of ownership and readiness, agreed with a senior executive, to inform migration decisions.</p></article>
+<article class="mw-card"><img loading="lazy" decoding="async" class="mw-art" src="assets/work-enablement.svg" alt=""><div class="mw-n">03 / 05</div><h3 class="serif mw-h">AI enablement for our entire department</h3><div class="mw-chips"><span>13 contributors</span><span>2 months</span><span>About 200 professionals</span></div><p class="mw-p">A one-hour enablement session for the entire department, about 200 audit, risk and compliance professionals, with concrete demonstrations they could map to their own work.</p></article>
+<article class="mw-card"><img loading="lazy" decoding="async" class="mw-art" src="assets/work-securedev.svg" alt=""><div class="mw-n">04 / 05</div><h3 class="serif mw-h">Establishing a shared view of secure development</h3><div class="mw-chips"><span>ABK, ZeniMax and Minecraft</span><span>Gaming audit planning</span></div><p class="mw-p">A shared secure-development baseline for subsequent gaming audit planning.</p></article>
+<article class="mw-card"><img loading="lazy" decoding="async" class="mw-art" src="assets/work-evidence.svg" alt=""><div class="mw-n">05 / 05</div><h3 class="serif mw-h">An AI hub for evidence review</h3><div class="mw-chips"><span>Built personally</span><span>Applied on one audit</span><span>Auditor-reviewed</span></div><p class="mw-p">A working review workflow, applied on an audit, that brings evidence mapping and narrative updates together while staying inside defined data boundaries.</p></article>
+</div><div class="mw-foot"><div class="mw-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div><span class="mw-hint">Swipe</span></div></div>
 <div data-np="deck" class="deck">
 <div class="deck-tabs" role="tablist" aria-label="Projects">
 <button class="deck-tab" type="button" role="tab" aria-selected="true"><span class="deck-tab-n">01</span><span class="deck-tab-t">Aligning to an AI partner’s model-use standard</span><span class="deck-tab-s">AI governance</span><span class="deck-tab-bar" aria-hidden="true"></span></button>
@@ -1682,6 +1763,11 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
     }
     steps.forEach(function (st, i) { st.addEventListener('click', function () { set(i + 1, true); }); });
     el.classList.add('fl-armed', 'fl-auto');
+    if (window.matchMedia && window.matchMedia('(max-width:767px)').matches) {
+      auto = false; el.classList.remove('fl-auto');
+      var sio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) set(steps.indexOf(e.target) + 1, true); }); }, { rootMargin: '-62% 0px -18% 0px' });
+      steps.forEach(function (st) { sio.observe(st); });
+    }
     var io = new IntersectionObserver(function (es) {
       inView = es[0].isIntersecting;
       if (inView && !el.classList.contains('fl-seen')) { el.classList.add('fl-seen'); set(cur); }
@@ -1689,6 +1775,51 @@ function npHeroInk(canvas, area, nav, sketchSrc, paintSrc, opts) {
     io.observe(el);
   }
   npFlow($('flow'));
+  function npMobileInit(root) {
+    if (!root || !window.matchMedia || !window.matchMedia('(max-width:767px)').matches) return function () {};
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var words = [].slice.call(root.querySelectorAll('.ms-text .w'));
+    var ms = root.querySelector('[data-mstory="words"]'), mn = root.querySelector('[data-mstory="nums"]');
+    var stats = mn ? [].slice.call(mn.querySelectorAll('.mn-stat')) : [], dots = mn ? [].slice.call(mn.querySelectorAll('.mn-dots i')) : [];
+    var shown = -1, raf = 0;
+    function prog(sec) { var r = sec.getBoundingClientRect(), vh = root.clientHeight; return Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - vh))); }
+    function count(stat) {
+      var val = stat.querySelector('.mn-val'), to = +stat.getAttribute('data-to'), t0 = 0;
+      if (reduce) { val.textContent = to; return; }
+      function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 900); val.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    }
+    function frame() {
+      raf = 0;
+      if (ms) { var n = Math.round(prog(ms) * 1.25 * words.length); words.forEach(function (w, i) { w.classList.toggle('on', reduce || i < n); }); }
+      if (mn && stats.length) {
+        var k = Math.min(stats.length - 1, Math.floor(prog(mn) * stats.length * 0.999));
+        if (mn.getBoundingClientRect().top > root.clientHeight * 0.5) k = -1;
+        if (k !== shown) {
+          stats.forEach(function (st, i) { st.classList.toggle('on', i === k); st.classList.toggle('past', i < k); });
+          dots.forEach(function (d, i) { d.classList.toggle('on', i === k); });
+          if (k >= 0) count(stats[k]);
+          shown = k;
+        }
+      }
+    }
+    function onScroll() { if (!raf) raf = requestAnimationFrame(frame); }
+    root.addEventListener('scroll', onScroll, { passive: true }); frame();
+    // swipe rows: which card is centred
+    var tracks = [].slice.call(root.querySelectorAll('[data-mw]')), offs = [];
+    tracks.forEach(function (tr) {
+      var cards = [].slice.call(tr.children), ds = [].slice.call(tr.parentNode.querySelectorAll('.mw-dots i'));
+      function upd() { var c = tr.scrollLeft + tr.clientWidth / 2, best = 0, bd = 1e9; cards.forEach(function (cd, i) { var d = Math.abs(cd.offsetLeft + cd.offsetWidth / 2 - c); if (d < bd) { bd = d; best = i; } }); cards.forEach(function (cd, i) { cd.classList.toggle('on', i === best); }); ds.forEach(function (d, i) { d.classList.toggle('on', i === best); }); }
+      tr.addEventListener('scroll', upd, { passive: true }); upd(); offs.push(function () { tr.removeEventListener('scroll', upd); });
+    });
+    // rise-in: timeline cards and section headings
+    root.querySelectorAll('section h2, section .serif[style*="font-size: 18px"], .tlx-edu, .bey-k').forEach(function (el) { if (!el.closest('.m-story')) el.classList.add('m-rise'); });
+    root.classList.add('m-armed');
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('m-in'); io.unobserve(e.target); } }); }, { root: root, rootMargin: '0px 0px -12% 0px' });
+    root.querySelectorAll('.m-rise, .tlx-item').forEach(function (el) { io.observe(el); });
+    return function () { root.removeEventListener('scroll', onScroll); io.disconnect(); offs.forEach(function (f) { f(); }); root.classList.remove('m-armed'); };
+  }
+  npMobileInit(root);
   function npInd(grid) {
     if (!grid) return;
     document.addEventListener('click', function (e) { var pop = e.target.closest && e.target.closest('.ind-pop'); if (pop) { pop.parentNode.open = false; return; } if (!e.target.closest || !e.target.closest('.ind-d')) grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); });

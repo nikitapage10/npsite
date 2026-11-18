@@ -321,6 +321,11 @@ ${heroInk}
     }
     steps.forEach(function (st, i) { st.addEventListener('click', function () { set(i + 1, true); }); });
     el.classList.add('fl-armed', 'fl-auto');
+    if (window.matchMedia && window.matchMedia('(max-width:767px)').matches) {
+      auto = false; el.classList.remove('fl-auto');
+      var sio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) set(steps.indexOf(e.target) + 1, true); }); }, { rootMargin: '-62% 0px -18% 0px' });
+      steps.forEach(function (st) { sio.observe(st); });
+    }
     var io = new IntersectionObserver(function (es) {
       inView = es[0].isIntersecting;
       if (inView && !el.classList.contains('fl-seen')) { el.classList.add('fl-seen'); set(cur); }
@@ -328,6 +333,51 @@ ${heroInk}
     io.observe(el);
   }
   npFlow($('flow'));
+  function npMobileInit(root) {
+    if (!root || !window.matchMedia || !window.matchMedia('(max-width:767px)').matches) return function () {};
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var words = [].slice.call(root.querySelectorAll('.ms-text .w'));
+    var ms = root.querySelector('[data-mstory="words"]'), mn = root.querySelector('[data-mstory="nums"]');
+    var stats = mn ? [].slice.call(mn.querySelectorAll('.mn-stat')) : [], dots = mn ? [].slice.call(mn.querySelectorAll('.mn-dots i')) : [];
+    var shown = -1, raf = 0;
+    function prog(sec) { var r = sec.getBoundingClientRect(), vh = root.clientHeight; return Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - vh))); }
+    function count(stat) {
+      var val = stat.querySelector('.mn-val'), to = +stat.getAttribute('data-to'), t0 = 0;
+      if (reduce) { val.textContent = to; return; }
+      function step(t) { if (!t0) t0 = t; var k = Math.min(1, (t - t0) / 900); val.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    }
+    function frame() {
+      raf = 0;
+      if (ms) { var n = Math.round(prog(ms) * 1.25 * words.length); words.forEach(function (w, i) { w.classList.toggle('on', reduce || i < n); }); }
+      if (mn && stats.length) {
+        var k = Math.min(stats.length - 1, Math.floor(prog(mn) * stats.length * 0.999));
+        if (mn.getBoundingClientRect().top > root.clientHeight * 0.5) k = -1;
+        if (k !== shown) {
+          stats.forEach(function (st, i) { st.classList.toggle('on', i === k); st.classList.toggle('past', i < k); });
+          dots.forEach(function (d, i) { d.classList.toggle('on', i === k); });
+          if (k >= 0) count(stats[k]);
+          shown = k;
+        }
+      }
+    }
+    function onScroll() { if (!raf) raf = requestAnimationFrame(frame); }
+    root.addEventListener('scroll', onScroll, { passive: true }); frame();
+    // swipe rows: which card is centred
+    var tracks = [].slice.call(root.querySelectorAll('[data-mw]')), offs = [];
+    tracks.forEach(function (tr) {
+      var cards = [].slice.call(tr.children), ds = [].slice.call(tr.parentNode.querySelectorAll('.mw-dots i'));
+      function upd() { var c = tr.scrollLeft + tr.clientWidth / 2, best = 0, bd = 1e9; cards.forEach(function (cd, i) { var d = Math.abs(cd.offsetLeft + cd.offsetWidth / 2 - c); if (d < bd) { bd = d; best = i; } }); cards.forEach(function (cd, i) { cd.classList.toggle('on', i === best); }); ds.forEach(function (d, i) { d.classList.toggle('on', i === best); }); }
+      tr.addEventListener('scroll', upd, { passive: true }); upd(); offs.push(function () { tr.removeEventListener('scroll', upd); });
+    });
+    // rise-in: timeline cards and section headings
+    root.querySelectorAll('section h2, section .serif[style*="font-size: 18px"], .tlx-edu, .bey-k').forEach(function (el) { if (!el.closest('.m-story')) el.classList.add('m-rise'); });
+    root.classList.add('m-armed');
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('m-in'); io.unobserve(e.target); } }); }, { root: root, rootMargin: '0px 0px -12% 0px' });
+    root.querySelectorAll('.m-rise, .tlx-item').forEach(function (el) { io.observe(el); });
+    return function () { root.removeEventListener('scroll', onScroll); io.disconnect(); offs.forEach(function (f) { f(); }); root.classList.remove('m-armed'); };
+  }
+  npMobileInit(root);
   function npInd(grid) {
     if (!grid) return;
     document.addEventListener('click', function (e) { var pop = e.target.closest && e.target.closest('.ind-pop'); if (pop) { pop.parentNode.open = false; return; } if (!e.target.closest || !e.target.closest('.ind-d')) grid.querySelectorAll('.ind-d[open]').forEach(function (d) { d.open = false; }); });
